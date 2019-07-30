@@ -2,15 +2,14 @@
 
 import React from 'react';
 import { Route, Switch } from 'react-router';
-import { BrowserRouter} from 'react-router-dom';
+import Ranking from './Ranking';
 import WaitingRoom from './WaitingRoom';
 
 const Platform = ({ match }) => (
-  <BrowserRouter>
-    <Switch>
-      <Route exact path={`${match.url}/waiting_room`} component={WaitingRoom} />
-    </Switch>
-  </BrowserRouter>
+  <Switch>
+    <Route exact path={`${match.url}/ranking`} component={Ranking} />
+    <Route exact path={`${match.url}/waiting_room`} component={WaitingRoom} />
+  </Switch>
 );
 
 export default Platform;
