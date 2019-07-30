@@ -7,6 +7,8 @@ import { BrowserRouter } from 'react-router-dom';
 
 import Platform from './platform';
 
+import MainPage from './MainPage';
+
 const App = () => {
   return (
     <div className="container">
@@ -14,6 +16,7 @@ const App = () => {
       <BrowserRouter>
         <Switch>
           <Route path={'/platform'} component={Platform} />
+          <Route component={MainPage} />          
         </Switch>
       </BrowserRouter>
     </div>
