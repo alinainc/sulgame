@@ -5,13 +5,15 @@ import { Route, Switch } from 'react-router';
 
 import Entry from './Entry';
 import Ranking from './Ranking';
+import Ready from './Ready';
 import WaitingRoom from './WaitingRoom';
 
 const Platform = ({ match }) => (
   <Switch>
     <Route exact path={`${match.url}/entry`} component={Entry} />
     <Route exact path={`${match.url}/ranking`} component={Ranking} />
-    <Route path={`${match.url}/waiting_room`} component={WaitingRoom} />
+    <Route exact path={`${match.url}/ready`} component={Ready} />
+    <Route exact path={`${match.url}/waiting_room`} component={WaitingRoom} />
   </Switch>
 );
 
