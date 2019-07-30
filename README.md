@@ -1,5 +1,7 @@
-# PLVS VLTRA!
+# sul games
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- A mobile web page for fun mini games with alcohol
+
 
 ## Available Scripts
 
