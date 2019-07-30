@@ -2,7 +2,8 @@
 
 import React from 'react';
 import { Button, Col, Container, Row } from 'reactstrap';
-import SimpleList from '../components/SimpleList'
+
+import SimpleList from '../components/SimpleList';
 
 const WaitingRoom = () => {
   // temporary players, games, and URL for frontend demo
@@ -24,33 +25,31 @@ const WaitingRoom = () => {
     );
   };
 
-  const renderPlayers = (players) => {
-    return (
+  // eslint-disable-next-line no-shadow
+  const renderPlayers = players => (
+    <SimpleList
+      cols={[{
+        key: 'name',
+        name: 'Players',
+        xs: 12,
+      }]}
+      items={players}
+    />
+  );
+
+  // eslint-disable-next-line no-shadow
+  const renderGames = games => (
+    <>
       <SimpleList
         cols={[{
           key: 'name',
-          name: 'Players',
+          name: 'Games',
           xs: 12,
         }]}
-        items={players}
+        items={games}
       />
-    )
-  };
-
-  const renderGames = (games) => {
-    return (
-      <>
-        <SimpleList
-          cols={[{
-            key: 'name',
-            name: 'Games',
-            xs: 12,
-          }]}
-          items={games}
-        />
-      </>
-    )
-  };
+    </>
+  );
 
   return (
     <div className="container">
@@ -62,6 +61,6 @@ const WaitingRoom = () => {
       </Container>
     </div>
   );
-}
+};
 
 export default WaitingRoom;

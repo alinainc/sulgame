@@ -8,6 +8,7 @@ import Ranking from './Ranking';
 import Ready from './Ready';
 import WaitingRoom from './WaitingRoom';
 
+/* eslint-disable */
 const Platform = ({ match }) => (
   <Switch>
     <Route exact path={`${match.url}/entry`} component={Entry} />
