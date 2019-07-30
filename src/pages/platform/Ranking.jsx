@@ -1,6 +1,8 @@
 // Copyright (C) 2019 Alina Inc. All rights reserved.
 import React from 'react';
 
+import m from './../../messages/ranking';
+
 const Ranking = () => {
     let rows_test = [ // FIXME dummy data should be exchaged by real data 
     { rank: 1, title: 'Hong', score: 100 },
@@ -12,7 +14,7 @@ const Ranking = () => {
       const { rank, title, score } = user
       return(
         <tr key={idx}>
-          <td>{rank}</td>
+          <td>{rank}{m.rank.postfix}</td>
           <td>{title}</td>
           <td>{score}</td>
         </tr>
@@ -22,13 +24,13 @@ const Ranking = () => {
 
   return (
     <div className="container">
-      <h1>RANK</h1>
+      <h1>{m.title}</h1>
       <table>
         <thead>
           <tr>
-            <th>#</th>
-            <th>name</th>
-            <th>score</th>
+            <th>{m.rank.title}</th>
+            <th>{m.name}</th>
+            <th>{m.score}</th>
           </tr>
         </thead>
         <tbody>
