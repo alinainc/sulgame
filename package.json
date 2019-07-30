@@ -2,9 +2,6 @@
   "name": "react-firebase-authentication",
   "version": "0.1.0",
   "private": true,
-  "devDependencies": {
-    "eslint": "^6.1.0"
-  },
   "dependencies": {
     "firebase": "^6.3.3",
     "react": "^16.8.6",
