@@ -2,7 +2,7 @@
 import React from 'react';
 
 const Ranking = () => {
-    let rows_test = [
+    let rows_test = [ // FIXME dummy data should be exchaged by real data 
     { rank: 1, title: 'Hong', score: 100 },
     { rank: 2, title: 'Pikachu', score: 90 },
   ];
@@ -11,7 +11,7 @@ const Ranking = () => {
     return rows_test.map((user, idx) => {
       const { rank, title, score } = user
       return(
-        <tr key={rank}>
+        <tr key={idx}>
           <td>{rank}</td>
           <td>{title}</td>
           <td>{score}</td>
