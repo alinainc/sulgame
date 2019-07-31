@@ -14,7 +14,7 @@ const Platform = ({ match }) => (
     <Route exact path={`${match.url}/entry`} component={Entry} />
     <Route exact path={`${match.url}/ranking`} component={Ranking} />
     <Route exact path={`${match.url}/ready`} component={Ready} />
-    <Route exact path={`${match.url}/waiting_room`} component={WaitingRoom} />
+    <Route path={`${match.url}/waiting_room`} component={WaitingRoom} />
   </Switch>
 );
 
