@@ -2,6 +2,7 @@
 
 import PropTypes from 'prop-types';
 import React, { Fragment } from 'react';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { Button, Col, Container, Row } from 'reactstrap';
 
 import { FirebaseDatabaseNode } from '@react-firebase/database';
@@ -11,14 +12,16 @@ import GameList from '../components/GameList';
 import PlayerList from '../components/PlayerList';
 
 
-const WaitingRoom = ({ match: { params: { roomId } } }) => {
+const WaitingRoom = ({ match: { params: { roomId }, url } }) => {
   const renderRoomIdCopy = () => (
     <Fragment>
       <Row>roomId</Row>
       <Row>
         <Col>{roomId}</Col>
         <Col>
-          <Button>URL 복사</Button>
+          <CopyToClipboard text={`localhost:3000${url}`}>
+            <Button>URL 복사</Button>
+          </CopyToClipboard>
         </Col>
       </Row>
     </Fragment>
@@ -69,6 +72,7 @@ WaitingRoom.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
       roomId: PropTypes.string.isRequired,
+      url: PropTypes.string.isRequired,
     }),
   }).isRequired,
 };
