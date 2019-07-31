@@ -19,8 +19,8 @@
     "lint": "eslint . --ext js,jsx",
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "npm/install": "find . -name 'package.json' -not -path '*/node_modules/*' -exec sh -c 'cd $(dirname \"$0\") && npm install' {} \\;",
+    "npm/uninstall": "find . -name 'package.json' -not -path '*/node_modules/*' -exec sh -c 'cd $(dirname \"$0\") && rm -rf node_modules' {} \\;"
   },
   "eslintConfig": {
     "extends": "react-app"
