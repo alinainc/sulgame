@@ -30,6 +30,7 @@ const Ranking = () => {
   return (
     <Container>
       <h1>{ranking.title}</h1>
+      <Button>{button.quit}</Button>
       <Table hover>
         <thead>
           <tr>
