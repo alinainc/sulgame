@@ -1,16 +1,27 @@
 // Copyright (C) 2019 Alina Inc. All rights reserved.
-
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 const Ready = () => {
-  const [status, setStatus] = React.useState('ready');
-  // eslint-disable-next-line no-unused-vars
-  const timer = setTimeout(() => setStatus('start'), 3000);
+  const [seconds, setSeconds] = useState(3);
+  useEffect(() => {
+    let interval = null;
+    if (seconds > 1) {
+      interval = setInterval(() => {
+        setSeconds(n => n - 1);
+      }, 1000);
+    } else {
+      clearInterval(interval);
+    }
+    return () => clearInterval(interval);
+  }, [seconds]);
 
+  // FIXME 게임제목 to real game name for each game
+  // FIXME 한줄설명to real game explanation for each game
   return (
-    <div className="container">
-      <h2>게임 제목</h2>
-      {status}
+    <div>
+      <h1> 게임 제목 </h1>
+      <div>{seconds}</div>
+      <div> 한줄설명 </div>
     </div>
   );
 };
