@@ -3,12 +3,12 @@
 import React from 'react';
 import { Button } from 'reactstrap';
 
-import shapes from '../shapes';
 import mainPage from '../messages/mainPage';
+import shapes from '../shapes';
 
-const MainPage = (history) => {
+const MainPage = ({ history }) => {
   const onClickButton = () => {
-    console.log(mainPage.button);
+    history.push('/platform/entry');
   };
   return (
     <div>
