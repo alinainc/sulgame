@@ -29,7 +29,7 @@ const Entry = ({ history, match: { params } }) => {
           type="button"
           onClick={makeRoom(runMutation)}
         >
-          {entry.button}
+          {isEmpty(params) ? entry.make.room : entry.enter}
         </Button>
       )}
     </FirebaseDatabaseMutation>
@@ -45,7 +45,7 @@ const Entry = ({ history, match: { params } }) => {
         }
         return (
           <div>
-            <h2>{entry.title}</h2>
+            <h2>{isEmpty(params) ? entry.make.room : entry.enter}</h2>
             <Row>
               <Input innerRef={inputRef} placeholder={entry.nickName} />
             </Row>
