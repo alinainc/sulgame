@@ -1,31 +1,36 @@
 // Copyright (C) 2019 Alina Inc. All rights reserved.
 
+import React from 'react';
+import { Container, Table } from 'reactstrap';
+
 import m from '../../messages/ranking';
 
-/* eslint-disable */
 const Ranking = () => {
-  const rowsTest = [ // FIXME dummy data should be exchaged by real data 
+  const rowsTest = [ // FIXME dummy data should be exchaged by real data
     { rank: 1, score: 100, title: 'Hong' },
     { rank: 2, score: 90, title: 'Pikachu' },
   ];
 
   const renderData = () => (
-    rowsTest.map((user, idx) => {
+    rowsTest.map((user) => {
       const { rank, score, title } = user;
-      return(
-        <tr key={idx}>
-          <td>{rank}{m.rank.postfix}</td>
+      return (
+        <tr key={rank}>
+          <th scope="row">
+            {rank}
+            {m.rank.postfix}
+          </th>
           <td>{title}</td>
           <td>{score}</td>
         </tr>
-      )
+      );
     })
   );
 
   return (
-    <div className="container">
+    <Container>
       <h1>{m.title}</h1>
-      <table>
+      <Table hover>
         <thead>
           <tr>
             <th>{m.rank.title}</th>
@@ -36,11 +41,9 @@ const Ranking = () => {
         <tbody>
           {renderData()}
         </tbody>
-      </table>
-    </div>
-  )
-}
+      </Table>
+    </Container>
+  );
+};
 
-    
-    
 export default Ranking;
