@@ -5,14 +5,12 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { Col, Row, Spinner } from 'reactstrap';
 
-const WaitingList = ({ col, value }) => {
+const PlayerList = ({ col, value }) => {
   let items;
 
   if (value) {
     if (value.players) {
       items = Object.values(value.players);
-    } else {
-      items = Object.values(value);
     }
   }
 
@@ -32,7 +30,7 @@ const WaitingList = ({ col, value }) => {
   );
 };
 
-WaitingList.propTypes = {
+PlayerList.propTypes = {
   col: PropTypes.shape({
     className: PropTypes.string,
     key: PropTypes.string,
@@ -45,9 +43,9 @@ WaitingList.propTypes = {
   }),
 };
 
-WaitingList.defaultProps = {
+PlayerList.defaultProps = {
   col: undefined,
   value: undefined,
 };
 
-export default WaitingList;
+export default PlayerList;

@@ -7,7 +7,8 @@ import { Button, Col, Container, Row } from 'reactstrap';
 import { FirebaseDatabaseNode } from '@react-firebase/database';
 
 import { games } from '../../messages';
-import WaitingList from '../components/WaitingList';
+import GameList from '../components/GameList';
+import PlayerList from '../components/PlayerList';
 
 
 const WaitingRoom = ({ match: { params: { roomId } } }) => {
@@ -26,7 +27,7 @@ const WaitingRoom = ({ match: { params: { roomId } } }) => {
   const renderPlayers = () => (
     <FirebaseDatabaseNode path={`/rooms/${roomId}/`}>
       {({ value }) => (
-        <WaitingList
+        <PlayerList
           col={{
             key: 'name',
             name: 'Players',
@@ -41,13 +42,13 @@ const WaitingRoom = ({ match: { params: { roomId } } }) => {
 
 
   const renderGames = () => (
-    <WaitingList
-      col={{
+    <GameList
+      title={{ key: 'Games' }}
+      rows={[{
         key: 'name',
-        name: 'Games',
-        xsChild: 12,
-        xsHead: 12,
-      }}
+      }, {
+        key: 'description',
+      }]}
       value={games}
     />
   );
