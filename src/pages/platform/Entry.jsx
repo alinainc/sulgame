@@ -11,7 +11,7 @@ import shapes from '../../shapes';
 const Entry = ({ history }) => {
   const inputRef = useRef(null);
   const makeRoom = runMutation => async () => {
-    const res = await runMutation({ players: { nickname: inputRef.current.value } });
+    const res = await runMutation({ players: { host: { name: inputRef.current.value } } });
     history.push(`waiting_room/${res.key}`);
   };
   return (
