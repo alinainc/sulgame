@@ -1,7 +1,8 @@
 // Copyright (C) 2019 Alina Inc. All rights reserved.
 
 
-import * as firebase from 'firebase';
+import firebase from 'firebase/app';
+import 'firebase/database';
 import React from 'react';
 import { Route, Switch } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
@@ -9,9 +10,9 @@ import { ToastContainer } from 'react-toastify';
 
 import { FirebaseDatabaseProvider } from '@react-firebase/database';
 
+import config from '../firebase.config';
 import MainPage from './MainPage';
 import Platform from './platform';
-import config from '../firebase.config';
 
 const App = () => (
   <FirebaseDatabaseProvider firebase={firebase} {...config}>
