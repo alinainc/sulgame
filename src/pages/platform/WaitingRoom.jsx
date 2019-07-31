@@ -72,8 +72,8 @@ WaitingRoom.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
       roomId: PropTypes.string.isRequired,
-      url: PropTypes.string.isRequired,
     }),
+    url: PropTypes.string.isRequired,
   }).isRequired,
 };
 
