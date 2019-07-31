@@ -21,7 +21,7 @@ const App = () => (
       <BrowserRouter>
         <Switch>
           <Route path="/platform" component={Platform} />
-          <Route path="/clickGame" component={ClickGame} />
+          <Route path="/clickgame" component={ClickGame} />
           <Route component={MainPage} />
         </Switch>
       </BrowserRouter>
