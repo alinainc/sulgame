@@ -1,9 +1,9 @@
 // Copyright (C) 2019 Alina Inc. All rights reserved.
 
 import React from 'react';
-import { Container, Table } from 'reactstrap';
+import { Button, Container, Table } from 'reactstrap';
 
-import m from '../../messages/ranking';
+import { button, ranking } from '../../messages';
 
 const Ranking = () => {
   const rowsTest = [ // FIXME dummy data should be exchaged by real data
@@ -18,7 +18,7 @@ const Ranking = () => {
         <tr key={rank}>
           <th scope="row">
             {rank}
-            {m.rank.postfix}
+            {ranking.rank.postfix}
           </th>
           <td>{title}</td>
           <td>{score}</td>
@@ -29,19 +29,21 @@ const Ranking = () => {
 
   return (
     <Container>
-      <h1>{m.title}</h1>
+      <h1>{ranking.title}</h1>
       <Table hover>
         <thead>
           <tr>
-            <th>{m.rank.title}</th>
-            <th>{m.name}</th>
-            <th>{m.score}</th>
+            <th>{ranking.rank.title}</th>
+            <th>{ranking.name}</th>
+            <th>{ranking.score}</th>
           </tr>
         </thead>
         <tbody>
           {renderData()}
         </tbody>
       </Table>
+      <Button>{button.retry.othergame}</Button>
+      <Button>{button.retry.thisgame}</Button>
     </Container>
   );
 };
