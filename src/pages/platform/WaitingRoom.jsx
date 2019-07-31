@@ -1,31 +1,28 @@
 // Copyright (C) 2019 Alina Inc. All rights reserved.
 
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Button, Col, Container, Row } from 'reactstrap';
 
 import SimpleList from '../components/SimpleList';
 
 const WaitingRoom = () => {
-  // temporary players, games, and URL for frontend demo
-  const players = [{ name: 'a' }, { name: 'b' }, { name: 'c' }];
-  const games = [{ name: 'game1' }, { name: 'game2' }, { name: 'game3' }];
-  const tempURL = 'sdlkjxsdsdfj';
+  // FIXME: temporary players, games, and URL for frontend demo
+  const dummyPlayers = [{ name: 'a' }, { name: 'b' }, { name: 'c' }];
+  const dummyGames = [{ name: 'game1' }, { name: 'game2' }, { name: 'game3' }];
+  const dummyURL = 'sdlkjxsdsdfj';
 
-  const renderUrlCopy = (URL) => {
-    return (
-      <>
-        <Row>Url</Row>
-        <Row>
-          <Col>{URL}</Col>
-          <Col>
-            <Button>Copy</Button>
-          </Col>
-        </Row>
-      </>
-    );
-  };
+  const renderUrlCopy = URL => (
+    <Fragment>
+      <Row>Url</Row>
+      <Row>
+        <Col>{URL}</Col>
+        <Col>
+          <Button>Copy</Button>
+        </Col>
+      </Row>
+    </Fragment>
+  );
 
-  // eslint-disable-next-line no-shadow
   const renderPlayers = players => (
     <SimpleList
       cols={[{
@@ -37,9 +34,8 @@ const WaitingRoom = () => {
     />
   );
 
-  // eslint-disable-next-line no-shadow
   const renderGames = games => (
-    <>
+    <Fragment>
       <SimpleList
         cols={[{
           key: 'name',
@@ -48,16 +44,16 @@ const WaitingRoom = () => {
         }]}
         items={games}
       />
-    </>
+    </Fragment>
   );
 
   return (
     <div className="container">
       <Container>
         <h1>대기 방</h1>
-        {renderUrlCopy(tempURL)}
-        {renderPlayers(players)}
-        {renderGames(games)}
+        {renderUrlCopy(dummyURL)}
+        {renderPlayers(dummyPlayers)}
+        {renderGames(dummyGames)}
       </Container>
     </div>
   );
