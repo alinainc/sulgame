@@ -6,20 +6,24 @@ import React from 'react';
 import { Spinner, Col, Row } from 'reactstrap';
 
 const WaitingList = ({ col, value }) => {
+  let items;
   if (value) {
-    if (!Array.isArray(value.players)){
-      value.players = [value.players];
-    };
+    if (value.players){
+      items = Object.values(value.players);
+    }
+    else {
+      items = Object.values(value);
+    }
   };
   
   return (
     <div className="simple-list grid-border">
       <Row className="header">
-        <Col key={col.name} xs={col.xs}>{col.name}</Col>
+        <Col key={col.name} xs={col.xsHead}>{col.name}</Col>
       </Row>
-      {!value ? <Spinner color="primary" /> : value.players.map((item, i) => (
+      {!value ? <Spinner color="primary" /> : items.map((item, i) => (
         <Row className="row-hover" key={item.name || item.nickname}>
-          <Col className="col truncate-hover" key={col.name} xs={col.xs}>
+          <Col className="col truncate-hover" key={col.name} xs={col.xsChild}>
             {col.row ? col.row(item, i) : get(item, col.key, '')}
           </Col>
         </Row>

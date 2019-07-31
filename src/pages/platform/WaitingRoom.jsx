@@ -3,47 +3,64 @@
 import React, { Fragment } from 'react';
 import { Button, Col, Container, Row } from 'reactstrap';
 import WaitingList from '../components/WaitingList'
+import { games } from '../../messages';
 
 import { FirebaseDatabaseNode } from '@react-firebase/database';
 
 const WaitingRoom = ({ match }) => {
-  const roomURL = match.params.roomURL;
+  const roomId = match.params.roomId;
 
-  const renderPlayers = players => (
-    <SimpleList
-      cols={[{
-        key: 'name',
-        name: 'Players',
-        xs: 12,
-      }]}
-      items={players}
-    />
+  const renderRoomIdCopy = roomId => (
+    <Fragment>
+      <Row>roomId</Row>
+      <Row>
+        <Col>{roomId}</Col>
+        <Col>
+          <Button>URL 복사</Button>
+        </Col>
+      </Row>
+    </Fragment>
   );
 
-  const renderPlayers = (URL) => {
+  const renderPlayers = (roomId) => {
     return (
-      <FirebaseDatabaseNode path={`/rooms/${URL}/`}>
+      <FirebaseDatabaseNode path={`/rooms/${roomId}/`}>
         {({value}) =>
           <WaitingList
             col={{
-              key: 'nickname',
+              key: 'name',
               name: 'Players',
-              xs: 12,
+              xsHead: 12,
+              xsChild: 3,
             }}
             value={value}
           />
         }
       </FirebaseDatabaseNode>
-      
-    )
+    );
+  };
+
+  const renderGames = () => {
+    return (
+      <WaitingList
+        col={{
+          key: 'name',
+          name: 'Games',
+          xsHead: 12,
+          xsChild: 12,
+        }}
+        value={games}
+      />
+    );
   };
 
   return (
     <div className="container">
       <Container>
         <h1>대기 방</h1>
-        {renderUrlCopy(roomURL)}
-        {renderPlayers(roomURL)}
+        {renderRoomIdCopy(roomId)}
+        {renderPlayers(roomId)}
+        {renderGames()}
       </Container>
     </div>
   );
