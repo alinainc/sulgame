@@ -12,14 +12,14 @@ import { button, games } from '../../messages';
 import GameList from '../components/GameList';
 import PlayerList from '../components/PlayerList';
 
-const WaitingRoom = ({ match: { params: { isHost, roomId }, url } }) => {
+const WaitingRoom = ({ match: { params: { isHost, roomId } } }) => {
   const renderRoomIdCopy = () => (
     <Fragment>
       <Row>roomId</Row>
       <Row>
         <Col>{roomId}</Col>
         <Col>
-          <CopyToClipboard text={`localhost:3000${url}`}>
+          <CopyToClipboard text={`localhost:3000/platform/entry/${roomId}`}>
             <Button>URL 복사</Button>
           </CopyToClipboard>
         </Col>
