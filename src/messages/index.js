@@ -20,6 +20,7 @@ export {
 };
 
 export default {
+  button,
   entry,
   game1,
   game2,
