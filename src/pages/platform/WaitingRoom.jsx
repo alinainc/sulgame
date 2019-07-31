@@ -2,26 +2,12 @@
 
 import React, { Fragment } from 'react';
 import { Button, Col, Container, Row } from 'reactstrap';
+import WaitingList from '../components/WaitingList'
 
-import SimpleList from '../components/SimpleList';
+import { FirebaseDatabaseNode } from '@react-firebase/database';
 
-const WaitingRoom = () => {
-  // FIXME: temporary players, games, and URL for frontend demo
-  const dummyPlayers = [{ name: 'a' }, { name: 'b' }, { name: 'c' }];
-  const dummyGames = [{ name: 'game1' }, { name: 'game2' }, { name: 'game3' }];
-  const dummyURL = 'sdlkjxsdsdfj';
-
-  const renderUrlCopy = URL => (
-    <Fragment>
-      <Row>Url</Row>
-      <Row>
-        <Col>{URL}</Col>
-        <Col>
-          <Button>Copy</Button>
-        </Col>
-      </Row>
-    </Fragment>
-  );
+const WaitingRoom = ({ match }) => {
+  const roomURL = match.params.roomURL;
 
   const renderPlayers = players => (
     <SimpleList
@@ -34,26 +20,30 @@ const WaitingRoom = () => {
     />
   );
 
-  const renderGames = games => (
-    <Fragment>
-      <SimpleList
-        cols={[{
-          key: 'name',
-          name: 'Games',
-          xs: 12,
-        }]}
-        items={games}
-      />
-    </Fragment>
-  );
+  const renderPlayers = (URL) => {
+    return (
+      <FirebaseDatabaseNode path={`/rooms/${URL}/`}>
+        {({value}) =>
+          <WaitingList
+            col={{
+              key: 'nickname',
+              name: 'Players',
+              xs: 12,
+            }}
+            value={value}
+          />
+        }
+      </FirebaseDatabaseNode>
+      
+    )
+  };
 
   return (
     <div className="container">
       <Container>
         <h1>대기 방</h1>
-        {renderUrlCopy(dummyURL)}
-        {renderPlayers(dummyPlayers)}
-        {renderGames(dummyGames)}
+        {renderUrlCopy(roomURL)}
+        {renderPlayers(roomURL)}
       </Container>
     </div>
   );
