@@ -3,21 +3,25 @@
 import React from 'react';
 import { Button } from 'reactstrap';
 
+import shapes from '../shapes';
 import mainPage from '../messages/mainPage';
 
-/* eslint-disable */
-const MainPage = () => {
+const MainPage = (history) => {
   const onClickButton = () => {
     console.log(mainPage.button);
   };
   return (
     <div>
-      {mainPage.title}
+      <h2>{mainPage.title}</h2>
       <Button type="button" onClick={onClickButton}>
         {mainPage.button}
       </Button>
     </div>
   );
+};
+
+MainPage.propTypes = {
+  history: shapes.history.isRequired,
 };
 
 export default MainPage;
