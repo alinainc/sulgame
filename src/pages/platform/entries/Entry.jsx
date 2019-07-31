@@ -6,7 +6,7 @@ import { Button, Input, Row, Spinner } from 'reactstrap';
 
 import { FirebaseDatabaseMutation, FirebaseDatabaseNode } from '@react-firebase/database';
 
-import entry from '../../../messages/entry';
+import { entry } from '../../../messages';
 import shapes from '../../../shapes';
 
 const Entry = ({ history, match: { params } }) => {
@@ -38,7 +38,7 @@ const Entry = ({ history, match: { params } }) => {
           return <Spinner color="primary" />;
         }
         if (!isEmpty(params) && !value[params.roomId]) {
-          return <div>존재하는 방이 없습니다</div>;
+          return <div>{entry.room.not}</div>;
         }
         return (
           <div>
