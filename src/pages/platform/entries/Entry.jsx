@@ -17,7 +17,7 @@ const Entry = ({ history, match: { params } }) => {
       ? await runMutation({ players: { host: { name: inputRef.current.value } } })
       : await runMutation({ name: inputRef.current.value });
     if (isEmpty(params)) {
-      history.push(`/platform/waiting_room/${res.key}`);
+      history.push(`/platform/waiting_room/${res.key}/host`);
     } else {
       history.push(`/platform/waiting_room/${params.roomId}`);
     }

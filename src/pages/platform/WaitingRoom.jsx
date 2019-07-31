@@ -1,5 +1,6 @@
 // Copyright (C) 2019 Alina Inc. All rights reserved.
 
+import { get } from 'lodash';
 import PropTypes from 'prop-types';
 import React, { Fragment } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
@@ -7,12 +8,11 @@ import { Button, Col, Container, Row } from 'reactstrap';
 
 import { FirebaseDatabaseNode } from '@react-firebase/database';
 
-import { games } from '../../messages';
+import { button, games } from '../../messages';
 import GameList from '../components/GameList';
 import PlayerList from '../components/PlayerList';
 
-
-const WaitingRoom = ({ match: { params: { roomId }, url } }) => {
+const WaitingRoom = ({ match: { params: { isHost, roomId }, url } }) => {
   const renderRoomIdCopy = () => (
     <Fragment>
       <Row>roomId</Row>
@@ -48,6 +48,16 @@ const WaitingRoom = ({ match: { params: { roomId }, url } }) => {
     <GameList
       title={{ key: 'Games' }}
       rows={[{
+        host: isHost
+          ? item => (
+            <>
+              <Col>
+                {get(item, 'name', '')}
+              </Col>
+              <Col><Button>{button.start}</Button></Col>
+            </>
+          )
+          : undefined,
         key: 'name',
       }, {
         key: 'description',
@@ -71,6 +81,7 @@ const WaitingRoom = ({ match: { params: { roomId }, url } }) => {
 WaitingRoom.propTypes = {
   match: PropTypes.shape({
     params: PropTypes.shape({
+      isHost: PropTypes.string,
       roomId: PropTypes.string.isRequired,
     }),
     url: PropTypes.string.isRequired,
