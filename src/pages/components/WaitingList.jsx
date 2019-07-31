@@ -3,28 +3,28 @@
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Spinner, Col, Row } from 'reactstrap';
+import { Col, Row, Spinner } from 'reactstrap';
 
 const WaitingList = ({ col, value }) => {
   let items;
+
   if (value) {
-    if (value.players){
+    if (value.players) {
       items = Object.values(value.players);
-    }
-    else {
+    } else {
       items = Object.values(value);
     }
-  };
-  
+  }
+
   return (
     <div className="simple-list grid-border">
       <Row className="header">
         <Col key={col.name} xs={col.xsHead}>{col.name}</Col>
       </Row>
-      {!value ? <Spinner color="primary" /> : items.map((item, i) => (
+      {!value ? <Spinner color="primary" /> : items.map(item => (
         <Row className="row-hover" key={item.name || item.nickname}>
           <Col className="col truncate-hover" key={col.name} xs={col.xsChild}>
-            {col.row ? col.row(item, i) : get(item, col.key, '')}
+            {get(item, col.key, '')}
           </Col>
         </Row>
       ))}
@@ -33,13 +33,16 @@ const WaitingList = ({ col, value }) => {
 };
 
 WaitingList.propTypes = {
-  cols: PropTypes.arrayOf(PropTypes.shape({
+  col: PropTypes.shape({
     className: PropTypes.string,
     key: PropTypes.string,
     name: PropTypes.string.isRequired,
-    xs: PropTypes.number,
-  })),
-  items: PropTypes.arrayOf(PropTypes.shape({})),
+    xsChild: PropTypes.number,
+    xsHead: PropTypes.number,
+  }),
+  value: PropTypes.shape({
+    players: PropTypes.shape({}),
+  }),
 };
 
 WaitingList.defaultProps = {
