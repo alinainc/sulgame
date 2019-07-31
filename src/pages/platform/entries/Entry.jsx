@@ -16,8 +16,11 @@ const Entry = ({ history, match: { params } }) => {
     const res = isEmpty(params)
       ? await runMutation({ players: { host: { name: inputRef.current.value } } })
       : await runMutation({ name: inputRef.current.value });
-
-    history.push(`waiting_room/${res.key}`);
+    if (isEmpty(params)) {
+      history.push(`/platform/waiting_room/${res.key}`);
+    } else {
+      history.push(`/platform/waiting_room/${params.roomId}`);
+    }
   };
   const enter = () => (
     <FirebaseDatabaseMutation path={path} type="push">
