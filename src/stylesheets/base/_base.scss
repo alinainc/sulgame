@@ -3,9 +3,11 @@
 }
 
 .mobilalayout {
+    display: flex;
+    flex-direction: column;
     background-color: #333333;
     color: beige;
-    // FIXME might need to be dynamically changed
-    width: 414px;
-    height: 736px;
+    // FIXME might need to change height
+    height: 1400px;
+    padding: 10% 10%;
 };
