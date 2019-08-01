@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { Button } from 'reactstrap';
 
-import clickGame from '../../messages/clickGame';
+import clickGame from 'messages';
 
 const Play = () => {
   const [clickCount, setClickCount] = useState(0);

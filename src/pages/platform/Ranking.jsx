@@ -2,9 +2,9 @@
 
 import React from 'react';
 import { Button, Container, Table } from 'reactstrap';
+import shapes from 'shapes';
 
-import { button, ranking } from '../../messages';
-import shapes from '../../shapes';
+import { button, ranking } from 'messages';
 
 const Ranking = ({ history, match: { params: { isHost, roomId }} }) => {
   const rowsTest = [ // FIXME dummy data should be exchaged by real data

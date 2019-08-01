@@ -9,9 +9,9 @@ import { ToastContainer } from 'react-toastify';
 
 import { FirebaseDatabaseProvider } from '@react-firebase/database';
 
-import config from '../firebase.config';
-import MainPage from './MainPage';
-import ClickGame from './clickGame';
+import config from 'pages/firebase.config';
+import MainPage from 'platform/MainPage';
+import ClickGame from 'pages/ClickGame';
 import Platform from './platform';
 
 const App = () => (
