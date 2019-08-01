@@ -13,7 +13,7 @@ const MainPage = ({ history }) => {
   };
   return (
     <Container>
-      <h2>{mainPage.title}</h2>
+      <h1>{mainPage.title}</h1>
       <Button type="button" onClick={onClickButton}>
         {mainPage.button}
       </Button>
