@@ -2,14 +2,12 @@
 
 import { isEmpty } from 'lodash';
 import React, { useRef } from 'react';
-import { Button, Input, Row, Spinner } from 'reactstrap';
+import { Button, Container, Input, Row, Spinner } from 'reactstrap';
 
 import { FirebaseDatabaseMutation, FirebaseDatabaseNode } from '@react-firebase/database';
 
 import { entry } from '../../../messages';
 import shapes from '../../../shapes';
-
-
 
 const Entry = ({ history, match: { params } }) => {
   const inputRef = useRef(null);
@@ -46,24 +44,26 @@ const Entry = ({ history, match: { params } }) => {
           return <div>{entry.room.not}</div>;
         }
         return (
-          <div>
-            <h2>{isEmpty(params) ? entry.make.room : entry.enter}</h2>
-            <Row>
-              <Input innerRef={inputRef} placeholder={entry.nickName} />
+          <Container>
+            <Row className="littleTitle">
+              <h2>{isEmpty(params) ? entry.make.room : entry.enter}</h2>
             </Row>
-            <Row>
-              {enter()}
+            <Row className="entryInput">
+              <Input innerRef={inputRef} placeholder={entry.nickName} className="nick_textArea" />
+              <Row className="button_bottom_right">
+                {enter()}
+              </Row>
             </Row>
-          </div>
+          </Container>
         );
       }}
     </FirebaseDatabaseNode>
   );
 
   return (
-    <div className="containers">
+    <Container>
       {checkRoomExists()}
-    </div>
+    </Container>
   );
 };
 
