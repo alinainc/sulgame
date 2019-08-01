@@ -19,17 +19,15 @@ import './stylesheets/main.scss';
 
 const App = () => (
   <FirebaseDatabaseProvider firebase={firebase} {...config}>
-    <div className="mobilalayout">
-      <ToastContainer />
-      <BrowserRouter>
-        <Switch>
-          <Route path="/games" component={Game} />
-          <Route path="/platform" component={Platform} />
-          <Route path="/clickgame" component={ClickGame} />
-          <Route component={MainPage} />
-        </Switch>
-      </BrowserRouter>
-    </div>
+    <ToastContainer />
+    <BrowserRouter>
+      <Switch>
+        <Route path="/games" component={Game} />
+        <Route path="/platform" component={Platform} />
+        <Route path="/clickgame" component={ClickGame} />
+        <Route component={MainPage} />
+      </Switch>
+    </BrowserRouter>
   </FirebaseDatabaseProvider>
 );
 

@@ -16,10 +16,6 @@ $information-laptop: "only screen and (min-width: 1025px)";
   html { font-size: 64px; }
 }
 
-html {
-  background-color: #000;
-}
-
 h1 {
   font-size: 3.5rem;
 }
@@ -28,7 +24,7 @@ h2 {
   font-size: 2rem;
 }
 
-.mobilalayout {
+#root {
   display: flex;
   flex-direction: column;
   background-color: #333;
