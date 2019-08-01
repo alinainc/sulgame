@@ -8,7 +8,7 @@ import { FirebaseDatabaseMutation } from '@react-firebase/database';
 import clickGame from '../../messages/clickGame';
 import shapes from '../../shapes';
 
-const Play = ({ match: { params: { roomId, userId } } }) => {
+const Play = ({ history, match: { params: { roomId, userId } } }) => {
   const [clickCount, setClickCount] = useState(0);
   const defalutSecond = 10;
   const [seconds, setSeconds] = useState(defalutSecond);
@@ -31,6 +31,11 @@ const Play = ({ match: { params: { roomId, userId } } }) => {
       <FirebaseDatabaseMutation path={`/rooms/${roomId}/players/${userId}`} type="update">
         {({ runMutation }) => {
           runMutation({ end: 1, gameData: clickCount });
+          if (userId === 'host') {
+            history.push(`/platform/ranking/${roomId}/host`);
+          } else {
+            history.push(`/platform/ranking/${roomId}`);
+          }
           return null;
         }}
       </FirebaseDatabaseMutation>
@@ -55,6 +60,7 @@ const Play = ({ match: { params: { roomId, userId } } }) => {
 };
 
 Play.propTypes = {
+  history: shapes.history.isRequired,
   match: shapes.match.isRequired,
 };
 
