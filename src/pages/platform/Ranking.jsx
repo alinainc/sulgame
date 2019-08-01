@@ -13,6 +13,7 @@ import PlayerList from '../components/PlayerList';
 const Ranking = ({ history, isHost, match: { params: { roomId } } }) => {
   const toMain = () => history.push('/');
   const toWaiting = () => history.push(`/platform/waiting_room/${roomId}/host`);
+  const toThisGame = () => history.push(`/clickgame/play/${roomId}/user/host`);
 
   const renderRanking = () => (
     <FirebaseDatabaseNode path={`/rooms/${roomId}`}>
@@ -44,7 +45,7 @@ const Ranking = ({ history, isHost, match: { params: { roomId } } }) => {
         ? (
           <>
             <Button onClick={toWaiting}>{button.retry.othergame}</Button>
-            <Button>{button.retry.thisgame}</Button>
+            <Button onClick={toThisGame}>{button.retry.thisgame}</Button>
           </>
         )
         : undefined}
