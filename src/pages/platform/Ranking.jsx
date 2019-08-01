@@ -74,13 +74,8 @@ const Ranking = ({ history, isHost, match: { params: { roomId, userId } } }) => 
       {isHost
         ? (
           <>
-<<<<<<< HEAD
-            <Button onClick={toWaiting}>{button.retry.othergame}</Button>
-            <Button onClick={toThisGame}>{button.retry.thisgame}</Button>
-=======
             {toWaiting()}
             <Button>{button.retry.thisgame}</Button>
->>>>>>> Finish prototype for game 1
           </>
         )
         : undefined}
