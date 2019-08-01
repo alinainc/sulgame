@@ -12,14 +12,14 @@ import shapes from '../../../shapes';
 const Entry = ({ history, match: { params } }) => {
   const inputRef = useRef(null);
   const path = isEmpty(params) ? '/rooms/' : `/rooms/${params.roomId}/players`;
-  const makeRoom = runMutation => async () => {
+  const makeOrEnterRoom = runMutation => async () => {
     const res = isEmpty(params)
-      ? await runMutation({ players: { host: { name: inputRef.current.value } } })
-      : await runMutation({ name: inputRef.current.value });
+      ? await runMutation({ players: { host: { name: inputRef.current.value, start: 0 } } })
+      : await runMutation({ name: inputRef.current.value, start: 0 });
     if (isEmpty(params)) {
       history.push(`/platform/waiting_room/${res.key}/host`);
     } else {
-      history.push(`/platform/waiting_room/${params.roomId}`);
+      history.push(`/platform/waiting_room/${params.roomId}/user/${res.key}`);
     }
   };
   const enter = () => (
@@ -27,7 +27,7 @@ const Entry = ({ history, match: { params } }) => {
       {({ runMutation }) => (
         <Button
           type="button"
-          onClick={makeRoom(runMutation)}
+          onClick={makeOrEnterRoom(runMutation)}
         >
           {isEmpty(params) ? entry.make.room : entry.enter}
         </Button>
