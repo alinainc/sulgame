@@ -6,7 +6,7 @@ import { Button, Container, Table } from 'reactstrap';
 import { button, ranking } from '../../messages';
 import shapes from '../../shapes';
 
-const Ranking = ({ history }) => {
+const Ranking = ({ history, match: { params: { isHost, roomId }} }) => {
   const rowsTest = [ // FIXME dummy data should be exchaged by real data
     { rank: 1, score: 100, title: 'Hong' },
     { rank: 2, score: 90, title: 'Pikachu' },
@@ -28,12 +28,13 @@ const Ranking = ({ history }) => {
     })
   );
 
-  const goMain = () => history.push('/');
+  const toMain = () => history.push('/');
+  const toWaiting = () => history.push(`/platform/waiting_room/${roomId}/host`);
 
   return (
     <Container>
       <h1>{ranking.title}</h1>
-      <Button onClick={goMain}>{button.quit}</Button>
+      <Button onClick={toMain}>{button.quit}</Button>
       <Table hover>
         <thead>
           <tr>
@@ -46,8 +47,14 @@ const Ranking = ({ history }) => {
           {renderData()}
         </tbody>
       </Table>
-      <Button>{button.retry.othergame}</Button>
-      <Button>{button.retry.thisgame}</Button>
+      {isHost
+        ? (
+          <>
+            <Button onClick={toWaiting}>{button.retry.othergame}</Button>
+            <Button>{button.retry.thisgame}</Button>
+          </>
+        )
+        : undefined}
     </Container>
   );
 };

@@ -12,7 +12,8 @@ import Entry from './entries';
 const Platform = ({ match }) => (
   <Switch>
     <Route path={`${match.url}/entry`} component={Entry} />
-    <Route exact path={`${match.url}/ranking`} component={Ranking} />
+    <Route exact path={`${match.url}/ranking/:roomId/:isHost`} component={Ranking} />
+    <Route exact path={`${match.url}/ranking/:roomId`} component={Ranking} />
     <Route exact path={`${match.url}/ready`} component={Ready} />
     <Route path={`${match.url}/waiting_room/:roomId/:isHost`} component={WaitingRoom} />
     <Route path={`${match.url}/waiting_room/:roomId/user/:userId`} component={WaitingRoom} />
