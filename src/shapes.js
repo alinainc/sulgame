@@ -7,7 +7,18 @@ export const location = PropTypes.shape({
 });
 
 export const match = PropTypes.shape({
-  params: PropTypes.shape({}).isRequired,
+  params: PropTypes.shape({
+    isHost: PropTypes.string,
+    roomId: PropTypes.string,
+    url: PropTypes.string,
+    userId: PropTypes.string,
+  }).isRequired,
+});
+
+export const params = PropTypes.shape({
+  isHost: PropTypes.string,
+  roomId: PropTypes.string.isRequired,
+  userId: PropTypes.string,
 });
 
 export const history = PropTypes.shape({
