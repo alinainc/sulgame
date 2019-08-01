@@ -13,7 +13,7 @@ import shapes from '../../shapes';
 import GameList from '../components/GameList';
 import PlayerList from '../components/PlayerList';
 
-const WaitingRoom = ({ history, match: { params: { isHost, roomId } } }) => {
+const WaitingRoom = ({ history, match: { params: { isHost, roomId, userId } } }) => {
   const renderRoomIdCopy = () => (
     <Fragment>
       <Row>roomId</Row>
@@ -62,9 +62,12 @@ const WaitingRoom = ({ history, match: { params: { isHost, roomId } } }) => {
   );
   const playGame = () => (
     <FirebaseDatabaseMutation path={`/rooms/${roomId}/players/host`} type="update">
-      {({ runMutation }) => (
-        <Button onClick={() => runMutation({ start: 1 })}>{button.start}</Button>
-      )}
+      {({ runMutation }) => {
+        if (userId) {
+          return null;
+        }
+        return <Button onClick={() => runMutation({ start: 1 })}>{button.start}</Button>;
+      }}
     </FirebaseDatabaseMutation>
   );
   const renderGames = () => (
