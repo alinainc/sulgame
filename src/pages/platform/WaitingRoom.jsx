@@ -51,7 +51,10 @@ const WaitingRoom = ({ isHost, match: { params: { roomId, userId } } }) => {
           return null;
         }
         if (value === 1) {
-          return <Redirect to="/clickgame/play" />;
+          if (!userId) {
+            return <Redirect to={`/clickgame/play/${roomId}/user/host`} />;
+          }
+          return <Redirect to={`/clickgame/play/${roomId}/user/${userId}`} />;
         }
         return null;
       }}
@@ -67,6 +70,7 @@ const WaitingRoom = ({ isHost, match: { params: { roomId, userId } } }) => {
       }}
     </FirebaseDatabaseMutation>
   );
+
   const renderGames = () => (
     <GameList
       title={{ key: 'Games' }}

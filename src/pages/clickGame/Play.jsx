@@ -3,9 +3,12 @@
 import React, { useEffect, useState } from 'react';
 import { Button } from 'reactstrap';
 
-import clickGame from '../../messages/clickGame';
+import { FirebaseDatabaseMutation } from '@react-firebase/database';
 
-const Play = () => {
+import clickGame from '../../messages/clickGame';
+import shapes from '../../shapes';
+
+const Play = ({ match: { params: { roomId, userId } } }) => {
   const [clickCount, setClickCount] = useState(0);
   const defalutSecond = 10;
   const [seconds, setSeconds] = useState(defalutSecond);
@@ -23,6 +26,17 @@ const Play = () => {
     }, sec);
   }, [defalutSecond]);
 
+  if (buttonState) {
+    return (
+      <FirebaseDatabaseMutation path={`/rooms/${roomId}/players/${userId}`} type="update">
+        {({ runMutation }) => {
+          runMutation({ end: 1, gameData: clickCount });
+          return null;
+        }}
+      </FirebaseDatabaseMutation>
+    );
+  }
+
   const onClickButton = () => {
     const click = clickCount + 1;
     setClickCount(click);
@@ -38,6 +52,10 @@ const Play = () => {
       </Button>
     </div>
   );
+};
+
+Play.propTypes = {
+  match: shapes.match.isRequired,
 };
 
 export default Play;

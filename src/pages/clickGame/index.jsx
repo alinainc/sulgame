@@ -9,7 +9,7 @@ import Play from './Play';
 
 const Platform = ({ match }) => (
   <Switch>
-    <Route exact path={`${match.url}/play`} component={Play} />
+    <Route exact path={`${match.url}/play/:roomId/user/:userId`} component={Play} />
   </Switch>
 );
 
