@@ -2,37 +2,67 @@
 
 import PropTypes from 'prop-types';
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 import { Button, Container } from 'reactstrap';
 
-import { FirebaseDatabaseNode } from '@react-firebase/database';
+import { FirebaseDatabaseMutation, FirebaseDatabaseNode } from '@react-firebase/database';
 
 import { button, ranking } from '../../messages';
 import shapes from '../../shapes';
 import PlayerList from '../components/PlayerList';
 
-const Ranking = ({ history, isHost, match: { params: { roomId } } }) => {
+const Ranking = ({ history, isHost, match: { params: { roomId, userId } } }) => {
   const toMain = () => history.push('/');
-  const toWaiting = () => history.push(`/platform/waiting_room/${roomId}/host`);
   const toThisGame = () => history.push(`/clickgame/play/${roomId}/user/host`);
+  const toWaiting = () => (
+    <FirebaseDatabaseMutation path={`/rooms/${roomId}/players/host`} type="update">
+      {({ runMutation }) => (
+        <Button onClick={() => {
+          runMutation({ end: 0, start: 0 });
+          return <Redirect to={`/platform/waiting_room/${roomId}/host`} />;
+        }}
+        >
+          {button.retry.othergame}
+        </Button>
+      )}
+    </FirebaseDatabaseMutation>
+  );
+
+  const listenToWaiting = () => (
+    <FirebaseDatabaseMutation path={`/rooms/${roomId}/players/${userId}`} type="update">
+      {({ runMutation }) => {
+        runMutation({ end: null, gameData: null });
+        return <Redirect to={`/platform/waiting_room/${roomId}/user/${userId}`} />;
+      }}
+    </FirebaseDatabaseMutation>
+  );
 
   const renderRanking = () => (
     <FirebaseDatabaseNode path={`/rooms/${roomId}`}>
-      {({ value }) => (
-        <PlayerList
-          cols={[{
-            key: 'rank',
-            name: ranking.rank.title,
-          }, {
-            key: 'name',
-            name: ranking.name,
-          }, {
-            key: 'gameData',
-            name: ranking.score,
-          }]}
-          isRank
-          value={value}
-        />
-      )}
+      {({ value }) => {
+        if (!value) {
+          return null;
+        }
+        if (!value.players.host.start) {
+          return listenToWaiting(value.players.host.start);
+        }
+        return (
+          <PlayerList
+            cols={[{
+              key: 'rank',
+              name: ranking.rank.title,
+            }, {
+              key: 'name',
+              name: ranking.name,
+            }, {
+              key: 'gameData',
+              name: ranking.score,
+            }]}
+            isRank
+            value={value}
+          />
+        );
+      }}
     </FirebaseDatabaseNode>
   );
 
@@ -44,8 +74,13 @@ const Ranking = ({ history, isHost, match: { params: { roomId } } }) => {
       {isHost
         ? (
           <>
+<<<<<<< HEAD
             <Button onClick={toWaiting}>{button.retry.othergame}</Button>
             <Button onClick={toThisGame}>{button.retry.thisgame}</Button>
+=======
+            {toWaiting()}
+            <Button>{button.retry.thisgame}</Button>
+>>>>>>> Finish prototype for game 1
           </>
         )
         : undefined}
@@ -56,11 +91,7 @@ const Ranking = ({ history, isHost, match: { params: { roomId } } }) => {
 Ranking.propTypes = {
   history: shapes.history.isRequired,
   isHost: PropTypes.bool,
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      roomId: PropTypes.string.isRequired,
-    }),
-  }).isRequired,
+  match: shapes.match.isRequired,
 };
 
 Ranking.defaultProps = {

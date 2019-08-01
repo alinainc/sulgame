@@ -31,11 +31,11 @@ const Play = ({ match: { params: { roomId, userId } } }) => {
     return (
       <FirebaseDatabaseMutation path={`/rooms/${roomId}/players/${userId}`} type="update">
         {({ runMutation }) => {
-          runMutation({ end: 1, gameData: clickCount });
+          runMutation({ end: 1, gameData: clickCount || 0 });
           if (userId === 'host') {
-            return <Redirect to={`/platform/ranking/${roomId}/host`} />;
+            return <Redirect to={`/platform/ranking/${roomId}/user/host`} />;
           }
-          return <Redirect to={`/platform/ranking/${roomId}/host`} />;
+          return <Redirect to={`/platform/ranking/${roomId}/user/${userId}`} />;
         }}
       </FirebaseDatabaseMutation>
     );

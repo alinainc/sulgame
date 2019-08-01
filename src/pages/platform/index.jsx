@@ -14,10 +14,10 @@ const Platform = ({ match }) => (
     <Route path={`${match.url}/entry`} component={Entry} />
     <Route
       exact
-      path={`${match.url}/ranking/:roomId/host`}
+      path={`${match.url}/ranking/:roomId/user/host`}
       render={props => <Ranking {...props} isHost key={props.match.params.roomId} />}
     />
-    <Route exact path={`${match.url}/ranking/:roomId`} component={Ranking} />
+    <Route exact path={`${match.url}/ranking/:roomId/user/:userId`} component={Ranking} />
     <Route exact path={`${match.url}/ready`} component={Ready} />
     <Route
       exact
