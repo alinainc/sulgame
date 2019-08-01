@@ -1,0 +1,36 @@
+.grid-border > .row {
+  border-bottom: 1px solid #ddd;
+  padding: 5px 0;
+}
+
+.row.header {
+  border-bottom: 2px solid #ddd;
+  font-weight: bold;
+  padding-bottom: 8px;
+  text-align: left;
+}
+
+.row-hover {
+  &:hover {
+    background-color: #eee;
+  }
+}
+
+@mixin truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-break: break-all;
+}
+
+.truncate {
+  @include truncate;
+}
+
+.truncate-hover {
+  @include truncate;
+
+  &:hover {
+    white-space: normal;
+  }
+}

@@ -28,7 +28,7 @@ const PlayerList = ({ cols, isRank, value }) => {
       {!value
         ? <Spinner color="primary" />
         : items.map((item, i) => (
-          <Row className="row-hover" key={item.name || item.nickname}>
+          <Row key={item.name || item.nickname}>
             {cols.map(col => (
               <Col className="col truncate-hover" key={col.name} xs={col.xsChild}>
                 {col.key === 'rank' ? `${(i + 1)} ${ranking.rank.postfix}` : get(item, col.key, '')}

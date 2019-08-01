@@ -2,7 +2,7 @@
 
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
-import React, { Fragment } from 'react';
+import React from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { Redirect } from 'react-router-dom';
 import { Button, Col, Container, Row } from 'reactstrap';
@@ -16,9 +16,9 @@ import PlayerList from '../components/PlayerList';
 
 const WaitingRoom = ({ isHost, match: { params: { roomId, userId } } }) => {
   const renderUrlCopy = () => (
-    <Fragment>
+    <div className="simple-list grid-border">
       <Row>
-        url
+        <Col xs={2}>URL:</Col>
         <Col>{`localhost:3000/platform/entry/${roomId}`}</Col>
         <Col>
           <CopyToClipboard text={`localhost:3000/platform/entry/${roomId}`}>
@@ -26,7 +26,7 @@ const WaitingRoom = ({ isHost, match: { params: { roomId, userId } } }) => {
           </CopyToClipboard>
         </Col>
       </Row>
-    </Fragment>
+    </div>
   );
 
   const renderPlayers = () => (
