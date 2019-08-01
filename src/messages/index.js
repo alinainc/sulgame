@@ -6,6 +6,7 @@ import game1 from './game1';
 import game2 from './game2';
 import mainPage from './mainPage';
 import ranking from './ranking';
+import waitingRoom from './waitingRoom';
 
 const games = { game1, game2 };
 
@@ -17,6 +18,7 @@ export {
   games,
   mainPage,
   ranking,
+  waitingRoom,
 };
 
 export default {
@@ -27,4 +29,5 @@ export default {
   games,
   mainPage,
   ranking,
+  waitingRoom,
 };

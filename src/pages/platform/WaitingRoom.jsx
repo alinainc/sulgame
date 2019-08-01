@@ -9,7 +9,7 @@ import { Button, Col, Container, Row } from 'reactstrap';
 
 import { FirebaseDatabaseMutation, FirebaseDatabaseNode } from '@react-firebase/database';
 
-import { button, games } from '../../messages';
+import { button, games, waitingRoom } from '../../messages';
 import shapes from '../../shapes';
 import GameList from '../components/GameList';
 import PlayerList from '../components/PlayerList';
@@ -19,7 +19,7 @@ const WaitingRoom = ({ isHost, match: { params: { roomId, userId } } }) => {
     <Fragment>
       <Row>
         url
-        <Col>{roomId}</Col>
+        <Col>{`localhost:3000/platform/entry/${roomId}`}</Col>
         <Col>
           <CopyToClipboard text={`localhost:3000/platform/entry/${roomId}`}>
             <Button>URL 복사</Button>
@@ -35,7 +35,7 @@ const WaitingRoom = ({ isHost, match: { params: { roomId, userId } } }) => {
         <PlayerList
           cols={[{
             key: 'name',
-            name: 'Players',
+            name: waitingRoom.players,
             xsChild: 3,
             xsHead: 12,
           }]}
@@ -44,6 +44,7 @@ const WaitingRoom = ({ isHost, match: { params: { roomId, userId } } }) => {
       )}
     </FirebaseDatabaseNode>
   );
+
   const listenStart = () => (
     <FirebaseDatabaseNode path={`/rooms/${roomId}/players/host/start`}>
       {({ value }) => {
@@ -60,6 +61,7 @@ const WaitingRoom = ({ isHost, match: { params: { roomId, userId } } }) => {
       }}
     </FirebaseDatabaseNode>
   );
+
   const playGame = () => (
     <FirebaseDatabaseMutation path={`/rooms/${roomId}/players/host`} type="update">
       {({ runMutation }) => {
@@ -73,7 +75,7 @@ const WaitingRoom = ({ isHost, match: { params: { roomId, userId } } }) => {
 
   const renderGames = () => (
     <GameList
-      title={{ key: 'Games' }}
+      title={{ key: waitingRoom.games }}
       rows={[{
         host: isHost
           ? item => (
@@ -96,7 +98,7 @@ const WaitingRoom = ({ isHost, match: { params: { roomId, userId } } }) => {
   return (
     <div className="container">
       <Container>
-        <h1>대기 방</h1>
+        <h1>{waitingRoom.title}</h1>
         {renderRoomIdCopy()}
         {renderPlayers()}
         {renderGames()}
