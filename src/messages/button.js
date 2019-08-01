@@ -1,5 +1,7 @@
 // Copyright (C) 2019 Alina Inc. All rights reserved.
+
 export default {
+  copy: 'URL 복사',
   quit: '나가기',
   retry: {
     othergame: '게임고르기',

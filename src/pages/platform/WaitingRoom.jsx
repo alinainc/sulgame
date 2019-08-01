@@ -15,14 +15,14 @@ import GameList from '../components/GameList';
 import PlayerList from '../components/PlayerList';
 
 const WaitingRoom = ({ isHost, match: { params: { roomId, userId } } }) => {
-  const renderRoomIdCopy = () => (
+  const renderUrlCopy = () => (
     <Fragment>
       <Row>
         url
         <Col>{`localhost:3000/platform/entry/${roomId}`}</Col>
         <Col>
           <CopyToClipboard text={`localhost:3000/platform/entry/${roomId}`}>
-            <Button>URL 복사</Button>
+            <Button>{button.copy}</Button>
           </CopyToClipboard>
         </Col>
       </Row>
@@ -99,7 +99,7 @@ const WaitingRoom = ({ isHost, match: { params: { roomId, userId } } }) => {
     <div className="container">
       <Container>
         <h1>{waitingRoom.title}</h1>
-        {renderRoomIdCopy()}
+        {renderUrlCopy()}
         {renderPlayers()}
         {renderGames()}
         {listenStart()}
