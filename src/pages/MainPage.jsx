@@ -6,7 +6,6 @@ import { Button, Container } from 'reactstrap';
 import mainPage from '../messages/mainPage';
 import shapes from '../shapes';
 
-
 const MainPage = ({ history }) => {
   const onClickButton = () => {
     history.push('/platform/entry');
