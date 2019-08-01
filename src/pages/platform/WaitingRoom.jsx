@@ -1,6 +1,7 @@
 // Copyright (C) 2019 Alina Inc. All rights reserved.
 
 import { get } from 'lodash';
+import PropTypes from 'prop-types';
 import React, { Fragment } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { Redirect } from 'react-router-dom';
@@ -13,8 +14,7 @@ import shapes from '../../shapes';
 import GameList from '../components/GameList';
 import PlayerList from '../components/PlayerList';
 
-const WaitingRoom = ({ match: { params: { isHost, roomId, userId } } }) => {
-
+const WaitingRoom = ({ isHost, match: { params: { roomId, userId } } }) => {
   const renderRoomIdCopy = () => (
     <Fragment>
       <Row>roomId</Row>
@@ -33,12 +33,12 @@ const WaitingRoom = ({ match: { params: { isHost, roomId, userId } } }) => {
     <FirebaseDatabaseNode path={`/rooms/${roomId}/`}>
       {({ value }) => (
         <PlayerList
-          col={{
+          cols={[{
             key: 'name',
             name: 'Players',
             xsChild: 3,
             xsHead: 12,
-          }}
+          }]}
           value={value}
         />
       )}
@@ -103,7 +103,12 @@ const WaitingRoom = ({ match: { params: { isHost, roomId, userId } } }) => {
 };
 
 WaitingRoom.propTypes = {
+  isHost: PropTypes.bool,
   match: shapes.match.isRequired,
+};
+
+WaitingRoom.defaultProps = {
+  isHost: undefined,
 };
 
 export default WaitingRoom;

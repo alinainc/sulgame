@@ -1,54 +1,45 @@
 // Copyright (C) 2019 Alina Inc. All rights reserved.
 
+import PropTypes from 'prop-types';
 import React from 'react';
-import { Button, Container, Table } from 'reactstrap';
+import { Button, Container } from 'reactstrap';
+
+import { FirebaseDatabaseNode } from '@react-firebase/database';
 
 import { button, ranking } from '../../messages';
 import shapes from '../../shapes';
+import PlayerList from '../components/PlayerList';
 
-
-// eslint-disable-next-line react/prop-types
-const Ranking = ({ history, match: { params: { isHost, roomId } } }) => {
-  const rowsTest = [ // FIXME dummy data should be exchaged by real data
-    { rank: 1, score: 100, title: 'Hong' },
-    { rank: 2, score: 90, title: 'Pikachu' },
-  ];
-
-  const renderData = () => (
-    rowsTest.map((user) => {
-      const { rank, score, title } = user;
-      return (
-        <tr key={rank}>
-          <th scope="row">
-            {rank}
-            {ranking.rank.postfix}
-          </th>
-          <td>{title}</td>
-          <td>{score}</td>
-        </tr>
-      );
-    })
-  );
-
+const Ranking = ({ history, isHost, match: { params: { roomId } } }) => {
   const toMain = () => history.push('/');
   const toWaiting = () => history.push(`/platform/waiting_room/${roomId}/host`);
+
+  const renderRanking = () => (
+    <FirebaseDatabaseNode path={`/rooms/${roomId}`}>
+      {({ value }) => (
+        <PlayerList
+          cols={[{
+            key: 'rank',
+            name: ranking.rank.title,
+          }, {
+            key: 'name',
+            name: ranking.name,
+          }, {
+            key: 'gameData',
+            name: ranking.score,
+          }]}
+          isRank
+          value={value}
+        />
+      )}
+    </FirebaseDatabaseNode>
+  );
 
   return (
     <Container>
       <h1>{ranking.title}</h1>
       <Button onClick={toMain}>{button.quit}</Button>
-      <Table hover>
-        <thead>
-          <tr>
-            <th>{ranking.rank.title}</th>
-            <th>{ranking.name}</th>
-            <th>{ranking.score}</th>
-          </tr>
-        </thead>
-        <tbody>
-          {renderData()}
-        </tbody>
-      </Table>
+      {renderRanking()}
       {isHost
         ? (
           <>
@@ -63,6 +54,16 @@ const Ranking = ({ history, match: { params: { isHost, roomId } } }) => {
 
 Ranking.propTypes = {
   history: shapes.history.isRequired,
+  isHost: PropTypes.bool,
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      roomId: PropTypes.string.isRequired,
+    }),
+  }).isRequired,
+};
+
+Ranking.defaultProps = {
+  isHost: undefined,
 };
 
 export default Ranking;
