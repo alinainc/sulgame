@@ -12,6 +12,7 @@ import { FirebaseDatabaseProvider } from '@react-firebase/database';
 import config from './firebase.config';
 import MainPage from './pages/MainPage';
 import ClickGame from './pages/clickGame';
+import Game from './pages/games';
 import Platform from './pages/platform';
 
 import './stylesheets/main.scss';
@@ -22,6 +23,7 @@ const App = () => (
       <ToastContainer />
       <BrowserRouter>
         <Switch>
+          <Route path="/games" component={Game} />
           <Route path="/platform" component={Platform} />
           <Route path="/clickgame" component={ClickGame} />
           <Route component={MainPage} />
