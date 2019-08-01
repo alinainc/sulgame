@@ -34,7 +34,7 @@ const Ranking = ({ history, match: { params: { isHost, roomId } } }) => {
   const toWaiting = () => history.push(`/platform/waiting_room/${roomId}/host`);
 
   return (
-    <Container className="box">
+    <Container className="mobilalayout">
       <h1>{ranking.title}</h1>
       <Button onClick={toMain}>{button.quit}</Button>
       <Table hover>

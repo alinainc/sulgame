@@ -67,14 +67,12 @@ const WaitingRoom = ({ match: { params: { isHost, roomId } } }) => {
   );
 
   return (
-    <div className="container">
-      <Container>
-        <h1>대기 방</h1>
-        {renderRoomIdCopy()}
-        {renderPlayers()}
-        {renderGames()}
-      </Container>
-    </div>
+    <Container className="mobilalayout">
+      <h1>대기 방</h1>
+      {renderRoomIdCopy()}
+      {renderPlayers()}
+      {renderGames()}
+    </Container>
   );
 };
 

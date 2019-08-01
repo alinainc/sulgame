@@ -1,7 +1,7 @@
 // Copyright (C) 2019 Alina Inc. All rights reserved.
 
 import React from 'react';
-import { Button } from 'reactstrap';
+import { Button, Container } from 'reactstrap';
 
 import mainPage from '../messages/mainPage';
 import shapes from '../shapes';
@@ -12,12 +12,12 @@ const MainPage = ({ history }) => {
     history.push('/platform/entry');
   };
   return (
-    <div>
+    <Container className="mobilalayout">
       <h2>{mainPage.title}</h2>
       <Button type="button" onClick={onClickButton}>
         {mainPage.button}
       </Button>
-    </div>
+    </Container>
   );
 };
 
