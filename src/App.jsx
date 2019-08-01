@@ -18,7 +18,7 @@ import './stylesheets/main.scss';
 
 const App = () => (
   <FirebaseDatabaseProvider firebase={firebase} {...config}>
-    <div className="container">
+    <div className="mobilalayout">
       <ToastContainer />
       <BrowserRouter>
         <Switch>

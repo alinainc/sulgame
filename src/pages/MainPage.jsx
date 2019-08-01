@@ -12,7 +12,7 @@ const MainPage = ({ history }) => {
     history.push('/platform/entry');
   };
   return (
-    <Container className="mobilalayout">
+    <Container>
       <h2>{mainPage.title}</h2>
       <Button type="button" onClick={onClickButton}>
         {mainPage.button}

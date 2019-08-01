@@ -1,4 +1,11 @@
+.html {
+    background-color: #000000;
+}
+
 .mobilalayout {
     background-color: #333333;
-    color: beige
+    color: beige;
+    // FIXME might need to be dynamically changed
+    width: 414px;
+    height: 736px;
 };
