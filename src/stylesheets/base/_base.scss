@@ -1,16 +1,21 @@
 // Copyright (C) 2019 Alina Inc. All rights reserved.
+@media (min-width: 0px) {
+    html { font-size: 14px;}
+}
+@media (min-width:500px) {
+    html { font-size: 32px;}
+}
 
 html {
     background-color: #000000;
-    font-size: 14px;
 }
 
 h1 {
-    font-size: 48px;
+    font-size: 3.5rem;
 }
 
 h2 {
-    font-size: 32px;
+    font-size: 2rem;
 }
 
 .mobilalayout {
