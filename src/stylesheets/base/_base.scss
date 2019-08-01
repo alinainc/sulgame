@@ -1,9 +1,17 @@
 // Copyright (C) 2019 Alina Inc. All rights reserved.
-@media (min-width: 0px) {
+
+$information-phone: "only screen and (max-width: 414px)";
+$information-ipad: "only screen and (min-width: 415px) and (max-width: 1024px)";
+$information-laptop: "only screen and (min-width: 1025px)";
+
+@media #{$information-phone} {
     html { font-size: 14px;}
 }
-@media (min-width:500px) {
+@media #{$information-ipad} {
     html { font-size: 32px;}
+}
+@media #{$information-laptop} {
+    html { font-size: 64px;}
 }
 
 html {
