@@ -2,9 +2,10 @@
 
 import React from 'react';
 import { Button } from 'reactstrap';
-import shapes from 'shapes';
 
-import { mainPage } from 'messages';
+import mainPage from '../messages/mainPage';
+import shapes from '../shapes';
+
 
 const MainPage = ({ history }) => {
   const onClickButton = () => {

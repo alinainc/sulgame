@@ -6,9 +6,9 @@ import { Button, Input, Row, Spinner } from 'reactstrap';
 
 import { FirebaseDatabaseMutation, FirebaseDatabaseNode } from '@react-firebase/database';
 
-import shapes from 'shapes';
+import { entry } from '../../../messages';
+import shapes from '../../../shapes';
 
-import { entry } from 'messages';
 
 
 const Entry = ({ history, match: { params } }) => {

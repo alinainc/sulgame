@@ -3,8 +3,9 @@
 import React from 'react';
 import { Route, Switch } from 'react-router';
 
-import Play from 'Play';
-import shapes from 'shapes';
+import shapes from '../../shapes';
+import Play from './Play';
+
 
 const Platform = ({ match }) => (
   <Switch>
