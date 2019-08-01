@@ -6,6 +6,7 @@ import React from 'react';
 import { Col, Row, Spinner } from 'reactstrap';
 
 import { ranking } from '../../messages';
+import RankLogic from './RankLogic';
 
 const PlayerList = ({ cols, isRank, value }) => {
   let items;
@@ -14,13 +15,7 @@ const PlayerList = ({ cols, isRank, value }) => {
     if (value.players) {
       items = Object.values(value.players);
       if (isRank) {
-        switch (items[0].start) {
-          case 1:
-            items.sort((a, b) => (parseFloat(b.gameData) - parseFloat(a.gameData)));
-            break;
-          default:
-            items.sort((a, b) => (parseFloat(b.gameData) - parseFloat(a.gameData)));
-        }
+        RankLogic(items);
       }
     }
   }
