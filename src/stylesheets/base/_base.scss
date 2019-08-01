@@ -1,3 +1,5 @@
+// Copyright (C) 2019 Alina Inc. All rights reserved.
+
 .html {
     background-color: #000000;
 }
@@ -9,4 +11,9 @@
     color: beige;
     min-height: 100vh;
     padding: 10% 10%;
+    position: relative;
 };
+
+.centerText {
+    text-align: center;
+}
