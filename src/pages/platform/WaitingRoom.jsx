@@ -1,9 +1,9 @@
 // Copyright (C) 2019 Alina Inc. All rights reserved.
 
 import { get } from 'lodash';
-import PropTypes from 'prop-types';
 import React, { Fragment } from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { Redirect } from 'react-router-dom';
 import { Button, Col, Container, Row } from 'reactstrap';
 
 import { FirebaseDatabaseMutation, FirebaseDatabaseNode } from '@react-firebase/database';
@@ -13,7 +13,8 @@ import shapes from '../../shapes';
 import GameList from '../components/GameList';
 import PlayerList from '../components/PlayerList';
 
-const WaitingRoom = ({ history, match: { params: { isHost, roomId, userId } } }) => {
+const WaitingRoom = ({ match: { params: { isHost, roomId, userId } } }) => {
+
   const renderRoomIdCopy = () => (
     <Fragment>
       <Row>roomId</Row>
@@ -43,10 +44,6 @@ const WaitingRoom = ({ history, match: { params: { isHost, roomId, userId } } })
       )}
     </FirebaseDatabaseNode>
   );
-  const redirectToGameOne = () => {
-    history.push('/clickgame/play');
-    return null;
-  };
   const listenStart = () => (
     <FirebaseDatabaseNode path={`/rooms/${roomId}/players/host/start`}>
       {({ value }) => {
@@ -54,7 +51,7 @@ const WaitingRoom = ({ history, match: { params: { isHost, roomId, userId } } })
           return null;
         }
         if (value === 1) {
-          return redirectToGameOne();
+          return <Redirect to="/clickgame/play" />;
         }
         return null;
       }}
@@ -106,15 +103,7 @@ const WaitingRoom = ({ history, match: { params: { isHost, roomId, userId } } })
 };
 
 WaitingRoom.propTypes = {
-  history: shapes.history.isRequired,
-  match: PropTypes.shape({
-    params: PropTypes.shape({
-      isHost: PropTypes.string,
-      roomId: PropTypes.string.isRequired,
-      userId: PropTypes.string,
-    }),
-    url: PropTypes.string.isRequired,
-  }).isRequired,
+  match: shapes.match.isRequired,
 };
 
 export default WaitingRoom;
