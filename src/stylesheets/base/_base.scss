@@ -5,47 +5,50 @@ $information-ipad: "only screen and (min-width: 415px) and (max-width: 1024px)";
 $information-laptop: "only screen and (min-width: 1025px)";
 
 @media #{$information-phone} {
-    html { font-size: 14px;}
+  html { font-size: 14px; }
 }
+
 @media #{$information-ipad} {
-    html { font-size: 32px;}
+  html { font-size: 32px; }
 }
+
 @media #{$information-laptop} {
-    html { font-size: 64px;}
+  html { font-size: 64px; }
 }
 
 html {
-    background-color: #000000;
+  background-color: #000;
 }
 
 h1 {
-    font-size: 3.5rem;
+  font-size: 3.5rem;
 }
 
 h2 {
-    font-size: 2rem;
+  font-size: 2rem;
 }
 
 .mobilalayout {
-    display: flex;
-    flex-direction: column;
-    background-color: #333333;
-    color: beige;
-    min-height: 100vh;
-    padding: 10% 10%;
-    position: relative;
-};
+  display: flex;
+  flex-direction: column;
+  background-color: #333;
+  color: beige;
+  min-height: 100vh;
+  padding: 10% 10%;
+  position: relative;
+}
 
 .centerText {
-    text-align: center;
+  text-align: center;
 }
 
 .littleTitle {
-    margin: 20px 0px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .button_bottom_right {
-    position: absolute;
-    bottom: 10%;
-    right: 10%;
+  position: absolute;
+  bottom: 10%;
+  right: 10%;
 }
