@@ -17,8 +17,8 @@ import PlayerList from '../components/PlayerList';
 const WaitingRoom = ({ isHost, match: { params: { roomId, userId } } }) => {
   const renderRoomIdCopy = () => (
     <Fragment>
-      <Row>roomId</Row>
       <Row>
+        url
         <Col>{roomId}</Col>
         <Col>
           <CopyToClipboard text={`localhost:3000/platform/entry/${roomId}`}>
