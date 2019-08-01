@@ -1,6 +1,7 @@
 // Copyright (C) 2019 Alina Inc. All rights reserved.
 
 import React, { useEffect, useState } from 'react';
+import { Redirect } from 'react-router-dom';
 import { Button } from 'reactstrap';
 
 import { FirebaseDatabaseMutation } from '@react-firebase/database';
@@ -8,7 +9,7 @@ import { FirebaseDatabaseMutation } from '@react-firebase/database';
 import clickGame from '../../messages/clickGame';
 import shapes from '../../shapes';
 
-const Play = ({ history, match: { params: { roomId, userId } } }) => {
+const Play = ({ match: { params: { roomId, userId } } }) => {
   const [clickCount, setClickCount] = useState(0);
   const defalutSecond = 10;
   const [seconds, setSeconds] = useState(defalutSecond);
@@ -32,11 +33,9 @@ const Play = ({ history, match: { params: { roomId, userId } } }) => {
         {({ runMutation }) => {
           runMutation({ end: 1, gameData: clickCount });
           if (userId === 'host') {
-            history.push(`/platform/ranking/${roomId}/host`);
-          } else {
-            history.push(`/platform/ranking/${roomId}`);
+            return <Redirect to={`/platform/ranking/${roomId}/host`} />;
           }
-          return null;
+          return <Redirect to={`/platform/ranking/${roomId}/host`} />;
         }}
       </FirebaseDatabaseMutation>
     );
