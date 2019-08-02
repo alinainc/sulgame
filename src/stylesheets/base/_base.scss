@@ -13,7 +13,7 @@ $information-laptop: "only screen and (min-width: 1025px)";
 }
 
 @media #{$information-laptop} {
-  html { font-size: 64px; }
+  html { font-size: 48px; }
 }
 
 h1 {
