@@ -7,9 +7,9 @@ import { Button, Container } from 'reactstrap';
 
 import { FirebaseDatabaseMutation, FirebaseDatabaseNode } from '@react-firebase/database';
 
-import { button, ranking } from '../../messages';
-import shapes from '../../shapes';
-import PlayerList from '../components/PlayerList';
+import { button, ranking } from '../../../messages';
+import shapes from '../../../shapes';
+import PlayerList from '../../components/PlayerList';
 
 const Ranking = ({ history, isHost, match: { params: { roomId, userId } } }) => {
   const toMain = () => history.push('/');
