@@ -16,6 +16,7 @@ import Game from './pages/games';
 import Platform from './pages/platform';
 
 import './stylesheets/main.scss';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 
 const App = () => (
   <FirebaseDatabaseProvider firebase={firebase} {...config}>
