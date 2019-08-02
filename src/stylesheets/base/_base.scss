@@ -77,14 +77,27 @@ h2 {
   width: 30vw;
   height: 30vw;
 }
+
+.moon {
+  position: relative;
+  display: block;
+  width: 8rem;
+  height: 8rem;
+  background-color: transparent;
+  box-shadow: inset -10px 5px 0 5px #f3d076;
+  border-radius: 50%;
+  border-color: transparent;
+}
+
+.entry #setting-box {
   height: 20vh;
   position: relative;
 }
 
-.entry__setting--textarea {
+.entry {
   // margin-top: 20px;
   // margin-bottom: 20px;
-  background: black;
+  // background: black;
   max-width: 40vw;
   // max-height: 14px;
   position: absolute;
