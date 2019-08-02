@@ -1,6 +1,6 @@
 // Copyright (C) 2019 Alina Inc. All rights reserved.
 
-import { get } from 'lodash';
+import { get, remove } from 'lodash';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Col, Container, Row, Spinner } from 'reactstrap';
@@ -14,6 +14,7 @@ const PlayerList = ({ cols, isRank, value }) => {
   if (value) {
     if (value.players) {
       items = Object.values(value.players);
+      remove(items, ({ end }) => (end === 0));
       if (isRank) {
         RankLogic(items);
       }
