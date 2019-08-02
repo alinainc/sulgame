@@ -14,7 +14,6 @@ const Play = ({ match: { params: { roomId, userId } } }) => {
   const defalutSecond = 10;
   const [seconds, setSeconds] = useState(defalutSecond);
   const [buttonState, setButtonState] = React.useState(false);
-
   useEffect(() => {
     const id = setInterval(() => {
       setSeconds(s => s - 1);
