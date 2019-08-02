@@ -23,39 +23,49 @@ h1 {
 
 h2 {
   font-size: 2rem;
-  margin-top: 5vh;
   margin-bottom: 5px;
+  margin-top: 5vh;
 }
 
 #root {
-  display: flex;
-  flex-direction: column;
   background-color: #333;
   color: beige;
+  display: flex;
+  flex-direction: column;
   min-height: 100vh;
-  padding: 10% 10%;
   position: relative;
-}
-
-.text--center-horizental {
-  text-align: center;
 }
 
 .bottom-right {
-  position: absolute;
   bottom: 10%;
+  position: absolute;
   right: 10%;
 }
 
-.entry__setting-area {
-  position: relative;
+.divider {
+  background-color: #708090;
+  width: 100vw;
+}
+
+.entry #setting-area {
   height: 20vh;
+  position: relative;
 }
 
 .entry__setting--textarea {
   // margin-top: 20px;
   // margin-bottom: 20px;
+  background: black;
   max-width: 40vw;
+  // max-height: 14px;
   position: absolute;
   bottom: 10%;
+  overflow: hidden;
+  resize: none;
+  line-height: 1em;
+  white-space: nowrap;
+}
+
+.text--center-horizental {
+  text-align: center;
 }
