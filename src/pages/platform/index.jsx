@@ -6,8 +6,8 @@ import { Route, Switch } from 'react-router';
 import shapes from '../../shapes';
 import Ranking from './Ranking';
 import Ready from './Ready';
-import WaitingRoom from './WaitingRoom';
 import Entry from './entries';
+import WaitingRoom from './waitingRoom';
 
 const Platform = ({ match }) => (
   <Switch>
@@ -19,12 +19,7 @@ const Platform = ({ match }) => (
     />
     <Route exact path={`${match.url}/ranking/:roomId/user/:userId`} component={Ranking} />
     <Route exact path={`${match.url}/ready`} component={Ready} />
-    <Route
-      exact
-      path={`${match.url}/waiting_room/:roomId/host`}
-      render={props => <WaitingRoom {...props} isHost key={props.match.params.roomId} />}
-    />
-    <Route exact path={`${match.url}/waiting_room/:roomId/user/:userId`} component={WaitingRoom} />
+    <Route path={`${match.url}/waiting_room`} component={WaitingRoom} />
   </Switch>
 );
 
