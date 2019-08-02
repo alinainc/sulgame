@@ -44,6 +44,13 @@ h2 {
   position: relative;
 }
 
+.btn {
+  background-color: transparent;
+  border-color: cornflowerblue;
+  color: cornflowerblue;
+  font-size: 1.5em;
+}
+
 .bottom-right {
   bottom: 10%;
   position: absolute;
@@ -54,6 +61,11 @@ h2 {
   text-align: center;
 }
 
+.circle {
+  border: 1px solid;
+  border-radius: 50%;
+}
+
 .divider {
   background-color: #708090;
   width: 120vw;
@@ -61,7 +73,10 @@ h2 {
   left: -10vw;
 }
 
-.entry #setting-area {
+.entry.btn {
+  width: 30vw;
+  height: 30vw;
+}
   height: 20vh;
   position: relative;
 }
