@@ -47,3 +47,16 @@ h2 {
   bottom: 10%;
   right: 10%;
 }
+
+.entry__setting-area {
+  position: relative;
+  height: 20vh;
+}
+
+.entry__setting--textarea {
+  // margin-top: 20px;
+  // margin-bottom: 20px;
+  max-width: 25vh;
+  position: absolute;
+  bottom: 10%;
+}
