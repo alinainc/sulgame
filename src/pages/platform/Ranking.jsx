@@ -13,13 +13,12 @@ import PlayerList from '../components/PlayerList';
 
 const Ranking = ({ history, isHost, match: { params: { roomId, userId } } }) => {
   const toMain = () => history.push('/');
-  const toThisGame = () => history.push(`/clickgame/play/${roomId}/user/host`);
   const toWaiting = () => (
     <FirebaseDatabaseMutation path={`/rooms/${roomId}/players/host`} type="update">
       {({ runMutation }) => (
         <Button onClick={() => {
+          history.push(`/platform/waiting_room/${roomId}/host`);
           runMutation({ end: 0, start: 0 });
-          return <Redirect to={`/platform/waiting_room/${roomId}/host`} />;
         }}
         >
           {button.retry.othergame}
