@@ -13,9 +13,9 @@ const MainPage = ({ history }) => {
   return (
     <Container>
       <Container className="sulGame">
-        <h1 className="centerText">{mainPage.title}</h1>
+        <h1 className="text--center-horizental">{mainPage.title}</h1>
       </Container>
-      <Button type="button" onClick={onClickButton} className="button_bottom_right">
+      <Button type="button" onClick={onClickButton} className="button--bottom-right">
         {mainPage.button}
       </Button>
     </Container>

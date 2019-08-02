@@ -45,12 +45,12 @@ const Entry = ({ history, match: { params } }) => {
         }
         return (
           <Container>
-            <Row className="littleTitle">
+            <Row >
               <h2>{isEmpty(params) ? entry.make.room : entry.enter}</h2>
             </Row>
             <Row className="entryInput">
               <Input innerRef={inputRef} placeholder={entry.nickName} className="nick_textArea" />
-              <Row className="button_bottom_right">
+              <Row className="button--bottom-right">
                 {enter()}
               </Row>
             </Row>

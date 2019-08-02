@@ -18,10 +18,14 @@ $information-laptop: "only screen and (min-width: 1025px)";
 
 h1 {
   font-size: 3.5rem;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 h2 {
   font-size: 2rem;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 #root {
@@ -34,16 +38,11 @@ h2 {
   position: relative;
 }
 
-.centerText {
+.text--center-horizental {
   text-align: center;
 }
 
-.littleTitle {
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-
-.button_bottom_right {
+.button--bottom-right {
   position: absolute;
   bottom: 10%;
   right: 10%;
