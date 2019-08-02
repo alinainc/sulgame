@@ -42,9 +42,15 @@ h2 {
   right: 10%;
 }
 
+.center-horizental {
+  text-align: center;
+}
+
 .divider {
   background-color: #708090;
-  width: 100vw;
+  width: 120vw;
+  position: relative;
+  left: -10vw;
 }
 
 .entry #setting-area {
@@ -64,8 +70,4 @@ h2 {
   resize: none;
   line-height: 1em;
   white-space: nowrap;
-}
-
-.text--center-horizental {
-  text-align: center;
 }

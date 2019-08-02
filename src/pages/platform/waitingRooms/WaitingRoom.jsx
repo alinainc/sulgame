@@ -37,7 +37,7 @@ const WaitingRoom = ({ isHost, match: { params: { roomId, userId } } }) => {
   return (
     <div className="container">
       <Container>
-        <h1>{waitingRoom.title}</h1>
+        <h2>{waitingRoom.title}</h2>
         {initGameData()}
         <UrlCopy roomId={roomId} />
         <PlayerList roomId={roomId} />

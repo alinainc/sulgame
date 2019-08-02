@@ -13,7 +13,7 @@ const MainPage = ({ history }) => {
   return (
     <Container>
       <Container>
-        <h1 className="text--center-horizental">{mainPage.title}</h1>
+        <h1 className="center-horizental">{mainPage.title}</h1>
       </Container>
       <Button type="button" onClick={onClickButton} className="bottom-right">
         {mainPage.button}
