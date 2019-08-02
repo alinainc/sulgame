@@ -7,7 +7,7 @@ import shapes from '../../shapes';
 import Ranking from './Ranking';
 import Ready from './Ready';
 import Entry from './entries';
-import WaitingRoom from './waitingRoom';
+import WaitingRoom from './waitingRooms';
 
 const Platform = ({ match }) => (
   <Switch>
