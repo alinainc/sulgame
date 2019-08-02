@@ -19,6 +19,7 @@ $information-laptop: "only screen and (min-width: 1025px)";
 }
 
 html {
+  background-color: #333;
   font-family: 'Nanum Gothic', sans-serif;
 }
 
@@ -36,7 +37,6 @@ h2 {
 }
 
 #root {
-  background-color: #333;
   color: beige;
   display: flex;
   flex-direction: column;
