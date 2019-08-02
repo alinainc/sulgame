@@ -27,10 +27,24 @@ const Ranking = ({ history, isHost, match: { params: { roomId, userId } } }) => 
     </FirebaseDatabaseMutation>
   );
 
-  const listenToWaiting = () => (
+  const replayGame = () => (
+    <FirebaseDatabaseMutation path={`/rooms/${roomId}/players/host`} type="update">
+      {({ runMutation }) => (
+        <Button onClick={() => {
+          history.push(`/platform/waiting_room/${roomId}/host`);
+          runMutation({ end: 0, start: 0 });
+        }}
+        >
+          {button.retry.othergame}
+        </Button>
+      )}
+    </FirebaseDatabaseMutation>
+  );
+
+  const initGameData = () => (
     <FirebaseDatabaseMutation path={`/rooms/${roomId}/players/${userId}`} type="update">
       {({ runMutation }) => {
-        runMutation({ end: null, gameData: null });
+        runMutation({ end: 0, gameData: 0 });
         return <Redirect to={`/platform/waiting_room/${roomId}/user/${userId}`} />;
       }}
     </FirebaseDatabaseMutation>
@@ -43,7 +57,15 @@ const Ranking = ({ history, isHost, match: { params: { roomId, userId } } }) => 
           return null;
         }
         if (!value.players.host.start) {
-          return listenToWaiting(value.players.host.start);
+          return <Redirect to={`/platform/waiting_room/${roomId}/user/${userId}`} />;
+        }
+        if (!value.players.host.replay) {
+          if (value.gameType === 1) {
+            if (!userId) {
+              return <Redirect to={`/clickgame/play/${roomId}/user/host`} />;
+            }
+            return <Redirect to={`/clickgame/play/${roomId}/user/${userId}`} />;
+          }
         }
         return (
           <PlayerList
