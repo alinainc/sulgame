@@ -2,7 +2,7 @@
 
 import { isEmpty } from 'lodash';
 import React, { useRef } from 'react';
-import { Button, Container, Input, Row, Spinner } from 'reactstrap';
+import { Button, Col, Container, Input, Row, Spinner } from 'reactstrap';
 
 import { FirebaseDatabaseMutation, FirebaseDatabaseNode } from '@react-firebase/database';
 
@@ -45,15 +45,17 @@ const Entry = ({ history, match: { params } }) => {
         }
         return (
           <Container>
-            <Row >
+            <Row>
               <h2>{isEmpty(params) ? entry.make.room : entry.enter}</h2>
             </Row>
-            <Row className="entryInput">
-              <Input innerRef={inputRef} placeholder={entry.nickName} className="nick_textArea" />
+            <Col className="entry__setting-area">
+              <Row>
+                <Input innerRef={inputRef} placeholder={entry.nickName} className="entry__setting--textarea" />
+              </Row>
               <Row className="button--bottom-right">
                 {enter()}
               </Row>
-            </Row>
+            </Col>
           </Container>
         );
       }}
