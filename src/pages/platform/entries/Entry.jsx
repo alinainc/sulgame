@@ -59,7 +59,7 @@ const Entry = ({ history, match: { params } }) => {
               <Row>
                 <Input innerRef={inputRef} placeholder={entry.nickName} className="entry__setting--textarea" />
               </Row>
-              <Row className="button--bottom-right">
+              <Row className="bottom-right">
                 {enter()}
               </Row>
             </Col>
