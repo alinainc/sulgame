@@ -1,6 +1,6 @@
 // Copyright (C) 2019 Alina Inc. All rights reserved.
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Fragment } from 'react';
 import { Redirect } from 'react-router-dom';
 import { Button } from 'reactstrap';
 
@@ -28,15 +28,23 @@ const Play = ({ match: { params: { roomId, userId } } }) => {
 
   if (buttonState) {
     return (
-      <FirebaseDatabaseMutation path={`/rooms/${roomId}/players/${userId}`} type="update">
-        {({ runMutation }) => {
-          runMutation({ end: 1, gameData: clickCount || 0 });
-          if (userId === 'host') {
-            return <Redirect to={`/platform/ranking/${roomId}/user/host`} />;
-          }
-          return <Redirect to={`/platform/ranking/${roomId}/user/${userId}`} />;
-        }}
-      </FirebaseDatabaseMutation>
+      <Fragment>
+        <FirebaseDatabaseMutation path={`/rooms/${roomId}/players/host/`} type="update">
+          {({ runMutation }) => {
+            runMutation({ replay: 0 });
+            return null;
+          }}
+        </FirebaseDatabaseMutation>
+        <FirebaseDatabaseMutation path={`/rooms/${roomId}/players/${userId}`} type="update">
+          {({ runMutation }) => {
+            runMutation({ end: 1, gameData: clickCount || 0 });
+            if (userId === 'host') {
+              return <Redirect to={`/platform/ranking/${roomId}/user/host`} />;
+            }
+            return <Redirect to={`/platform/ranking/${roomId}/user/${userId}`} />;
+          }}
+        </FirebaseDatabaseMutation>
+      </Fragment>
     );
   }
 

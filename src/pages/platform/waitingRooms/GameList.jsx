@@ -35,7 +35,15 @@ const PlayerList = ({ isHost, roomId, userId }) => {
         if (userId !== 'host') {
           return null;
         }
-        return <Button onClick={() => runMutation({ start: 1 })}>{button.start}</Button>;
+        return (
+          <Button onClick={() => {
+            runMutation({ gametype: 1, start: 1 });
+          }
+            }
+          >
+            {button.start}
+          </Button>
+        );
       }}
     </FirebaseDatabaseMutation>
   );
