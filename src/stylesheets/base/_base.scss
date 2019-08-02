@@ -40,24 +40,26 @@ h2 {
   color: beige;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  min-height: 90vh;
   position: relative;
 }
 
 .btn {
   background-color: transparent;
-  border-color: cornflowerblue;
+  // border-color: cornflowerblue;
   color: cornflowerblue;
   font-size: 1.5em;
 }
 
-.bottom-right {
-  bottom: 10%;
+.bottom {
+  bottom: 0;
   position: absolute;
-  right: 10%;
+  // right: 10%;
 }
 
 .center-horizental {
+  margin-left: auto;
+  margin-right: auto;
   text-align: center;
 }
 
