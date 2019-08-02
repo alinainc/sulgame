@@ -1,18 +1,18 @@
 // Copyright (C) 2019 Alina Inc. All rights reserved.
 
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Button, Row } from 'reactstrap';
 
-import { sequenceGame } from '../../messages';
+import { sequenceGame } from '../../../messages';
 
-const Sequence = () => {
-  const intervalRef = React.useRef();
-  const answerRef = React.useRef(1);
-  const [isClicked] = React.useState(Array(9).fill(false));
-  const [milliseconds, setMilliseconds] = React.useState(0);
-  const [result, setResult] = React.useState('');
+const Play = () => {
+  const intervalRef = useRef();
+  const answerRef = useRef(1);
+  const [isClicked] = useState(Array(9).fill(false));
+  const [milliseconds, setMilliseconds] = useState(0);
+  const [result, setResult] = useState('');
 
-  React.useEffect(() => {
+  useEffect(() => {
     const intervalId = setInterval(() => {
       setMilliseconds(s => s + 1);
     }, 100);
@@ -44,17 +44,18 @@ const Sequence = () => {
     return array;
   };
 
-  const arrayRef = React.useRef(createShuffledArray());
+  const arrayRef = useRef(createShuffledArray());
 
   const createButtons = (index) => {
     const buttons = [];
     for (let i = 0; i < 3; i += 1) {
       buttons.push(
         <Button
-          key={index[i]}
-          value={index[i]}
-          onClick={onButtonClick}
           disabled={isClicked[index[i] - 1]}
+          key={index[i]}
+          onClick={onButtonClick}
+          size="lg"
+          value={index[i]}
         >
           {index[i]}
         </Button>,
@@ -74,11 +75,12 @@ const Sequence = () => {
   return (
     <div className="container">
       <h2>{sequenceGame.title}</h2>
-      <Row>{`${sequenceGame.time}: ${milliseconds}`}</Row>
-      <Row>{`${sequenceGame.result.title}: ${result}`}</Row>
+      <p>{sequenceGame.description}</p>
+      <p>{`${sequenceGame.time}: ${milliseconds}`}</p>
+      <p>{`${sequenceGame.result.title}: ${result}`}</p>
       {createGameBoard()}
     </div>
   );
 };
 
-export default Sequence;
+export default Play;

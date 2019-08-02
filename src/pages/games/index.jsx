@@ -4,11 +4,13 @@ import React from 'react';
 import { Route, Switch } from 'react-router';
 
 import shapes from '../../shapes';
-import Sequence from './Sequence';
+import Choose from './choose';
+import Sequence from './sequence';
 
 const Game = ({ match }) => (
   <Switch>
-    <Route exact path={`${match.url}/sequence`} component={Sequence} />
+    <Route path={`${match.url}/choose`} component={Choose} />
+    <Route path={`${match.url}/sequence`} component={Sequence} />
   </Switch>
 );
 

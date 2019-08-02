@@ -1,6 +1,8 @@
 // Copyright (C) 2019 Alina Inc. All rights reserved.
 
 export default {
+  A: 'A',
+  B: 'B',
   copy: 'URL 복사',
   quit: '나가기',
   retry: {

@@ -1,19 +1,21 @@
 // Copyright (C) 2019 Alina Inc. All rights reserved.
 
 import button from './button';
+import chooseGame from './chooseGame';
+import clickGame from './clickGame';
 import entry from './entry';
-import game1 from './game1';
 import mainPage from './mainPage';
 import ranking from './ranking';
 import sequenceGame from './sequenceGame';
 import waitingRoom from './waitingRoom';
 
-const games = { game1, sequenceGame };
+const games = { chooseGame, clickGame, sequenceGame };
 
 export {
   button,
+  chooseGame,
+  clickGame,
   entry,
-  game1,
   games,
   mainPage,
   ranking,
@@ -23,8 +25,9 @@ export {
 
 export default {
   button,
+  chooseGame,
+  clickGame,
   entry,
-  game1,
   games,
   mainPage,
   ranking,
