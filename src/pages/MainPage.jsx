@@ -13,9 +13,10 @@ const MainPage = ({ history }) => {
   return (
     <Container>
       <Container>
+        <div className="moon" />
         <h1 className="center-horizental">{mainPage.title}</h1>
       </Container>
-      <Button type="button" onClick={onClickButton} className="bottom-right btn circle main">
+      <Button type="button" onClick={onClickButton} className="bottom main">
         {mainPage.button}
       </Button>
     </Container>
