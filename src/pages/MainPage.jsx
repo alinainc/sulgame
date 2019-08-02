@@ -15,7 +15,7 @@ const MainPage = ({ history }) => {
       <Container>
         <h1 className="center-horizental">{mainPage.title}</h1>
       </Container>
-      <Button type="button" onClick={onClickButton} className="bottom-right btn circle entry">
+      <Button type="button" onClick={onClickButton} className="bottom-right btn circle main">
         {mainPage.button}
       </Button>
     </Container>
