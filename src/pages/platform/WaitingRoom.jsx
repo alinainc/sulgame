@@ -16,17 +16,15 @@ import PlayerList from '../components/PlayerList';
 
 const WaitingRoom = ({ isHost, match: { params: { roomId, userId } } }) => {
   const renderUrlCopy = () => (
-    <div className="simple-list grid-border">
+    <Container>
+      <Row>URL</Row>
       <Row>
-        <Col xs={2}>URL:</Col>
-        <Col>{`localhost:3000/platform/entry/${roomId}`}</Col>
-        <Col>
-          <CopyToClipboard text={`localhost:3000/platform/entry/${roomId}`}>
-            <Button>{button.copy}</Button>
-          </CopyToClipboard>
-        </Col>
+        <textarea maxLength="20">{`localhost:3000/platform/entry/${roomId}`}</textarea>
+        <CopyToClipboard text={`localhost:3000/platform/entry/${roomId}`}>
+          <Button>{button.copy}</Button>
+        </CopyToClipboard>
       </Row>
-    </div>
+    </Container>
   );
 
   const renderPlayers = () => (
@@ -98,7 +96,7 @@ const WaitingRoom = ({ isHost, match: { params: { roomId, userId } } }) => {
   return (
     <div className="container">
       <Container>
-        <h1>{waitingRoom.title}</h1>
+        <h2>{waitingRoom.title}</h2>
         {renderUrlCopy()}
         {renderPlayers()}
         {renderGames()}

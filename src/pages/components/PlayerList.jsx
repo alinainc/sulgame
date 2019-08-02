@@ -3,7 +3,7 @@
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Col, Row, Spinner } from 'reactstrap';
+import { Col, Container, Row, Spinner } from 'reactstrap';
 
 import { ranking } from '../../messages';
 import RankLogic from './RankLogic';
@@ -21,8 +21,8 @@ const PlayerList = ({ cols, isRank, value }) => {
   }
 
   return (
-    <div className="simple-list grid-border">
-      <Row className="header">
+    <Container>
+      <Row>
         {cols.map(col => <Col key={col.name} xs={col.xsHead}>{col.name}</Col>)}
       </Row>
       {!value
@@ -30,13 +30,13 @@ const PlayerList = ({ cols, isRank, value }) => {
         : items.map((item, i) => (
           <Row key={item.name || item.nickname}>
             {cols.map(col => (
-              <Col className="col truncate-hover" key={col.name} xs={col.xsChild}>
+              <Col key={col.name} xs={col.xsChild}>
                 {col.key === 'rank' ? `${(i + 1)} ${ranking.rank.postfix}` : get(item, col.key, '')}
               </Col>
             ))}
           </Row>
         ))}
-    </div>
+    </Container>
   );
 };
 
