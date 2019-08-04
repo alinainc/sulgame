@@ -3,18 +3,18 @@
 import React from 'react';
 import { Route, Switch } from 'react-router';
 
-import shapes from '../../shapes';
+import shapes from '../../../shapes';
 import Play from './Play';
 
 
-const Platform = ({ match }) => (
+const Click = ({ match }) => (
   <Switch>
     <Route exact path={`${match.url}/play/:roomId/user/:userId`} component={Play} />
   </Switch>
 );
 
-Platform.propTypes = {
+Click.propTypes = {
   match: shapes.match.isRequired,
 };
 
-export default Platform;
+export default Click;

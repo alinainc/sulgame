@@ -1,13 +1,13 @@
 // Copyright (C) 2019 Alina Inc. All rights reserved.
 
-import React, { useEffect, useState, Fragment } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { Button } from 'reactstrap';
 
 import { FirebaseDatabaseMutation } from '@react-firebase/database';
 
-import clickGame from '../../messages/clickGame';
-import shapes from '../../shapes';
+import clickGame from '../../../messages/clickGame';
+import shapes from '../../../shapes';
 
 const Play = ({ match: { params: { roomId, userId } } }) => {
   const [clickCount, setClickCount] = useState(0);

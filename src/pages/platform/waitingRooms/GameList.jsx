@@ -13,23 +13,23 @@ import GameListForm from '../../components/GameList';
 
 const PlayerList = ({ isHost, roomId, userId }) => {
   const listenStart = () => (
-    <FirebaseDatabaseNode path={`/rooms/${roomId}/players/host/start`}>
+    <FirebaseDatabaseNode path={`/rooms/${roomId}/players/host`}>
       {({ value }) => {
         if (!value) {
           return null;
         }
-        if (value === 1) {
+        if (value.start === 1) {
           if (!userId) {
-            return <Redirect to={`/clickgame/play/${roomId}/user/host`} />;
+            return <Redirect to={`/games/${value.gametype}/play/${roomId}/user/host`} />;
           }
-          return <Redirect to={`/clickgame/play/${roomId}/user/${userId}`} />;
+          return <Redirect to={`/games/${value.gametype}/play/${roomId}/user/${userId}`} />;
         }
         return null;
       }}
     </FirebaseDatabaseNode>
   );
 
-  const playGame = () => (
+  const playGame = gametype => (
     <FirebaseDatabaseMutation path={`/rooms/${roomId}/players/host`} type="update">
       {({ runMutation }) => {
         if (userId !== 'host') {
@@ -37,7 +37,7 @@ const PlayerList = ({ isHost, roomId, userId }) => {
         }
         return (
           <Button onClick={() => {
-            runMutation({ gametype: 1, start: 1 });
+            runMutation({ gametype, start: 1 });
           }
             }
           >
@@ -58,7 +58,7 @@ const PlayerList = ({ isHost, roomId, userId }) => {
               <Col>
                 {get(item, 'name', '')}
               </Col>
-              <Col>{playGame()}</Col>
+              <Col>{playGame(item.type)}</Col>
             </>
           )
           : undefined,
