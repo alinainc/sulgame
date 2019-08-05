@@ -6,11 +6,12 @@ import clickGame from './clickGame';
 import entry from './entry';
 import mainPage from './mainPage';
 import ranking from './ranking';
+import rouletteGame from './rouletteGame';
 import sequenceGame from './sequenceGame';
 import subwayGame from './subwayGame';
 import waitingRoom from './waitingRoom';
 
-const games = { chooseGame, clickGame, sequenceGame };
+const games = { chooseGame, clickGame, rouletteGame, sequenceGame };
 
 export {
   button,

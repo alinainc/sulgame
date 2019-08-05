@@ -9,7 +9,7 @@ import { Button, Col } from 'reactstrap';
 import { FirebaseDatabaseMutation, FirebaseDatabaseNode } from '@react-firebase/database';
 
 import { button, games, waitingRoom } from '../../../messages';
-import GameListForm from '../../components/GameList';
+import GameListForm from '../../components/GameListForm';
 
 const PlayerList = ({ isHost, roomId, userId }) => {
   const listenStart = () => (

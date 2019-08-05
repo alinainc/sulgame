@@ -1,6 +1,6 @@
 // Copyright (C) 2019 Alina Inc. All rights reserved.
 
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { Button } from 'reactstrap';
 
@@ -14,7 +14,7 @@ const Play = ({ match: { params: { roomId, userId } } }) => {
   const [clickCount, setClickCount] = useState(0);
   const defalutSecond = 10;
   const [seconds, setSeconds] = useState(defalutSecond);
-  const [buttonState, setButtonState] = React.useState(false);
+  const [buttonState, setButtonState] = useState(false);
 
   const initGameData = () => {
     if (userId) {
@@ -44,7 +44,7 @@ const Play = ({ match: { params: { roomId, userId } } }) => {
 
   if (buttonState) {
     return (
-      <Fragment>
+      <>
         <FirebaseDatabaseMutation path={`/rooms/${roomId}/players/host/`} type="update">
           {({ runMutation }) => {
             runMutation({ replay: 0 });
@@ -60,7 +60,7 @@ const Play = ({ match: { params: { roomId, userId } } }) => {
             return <Redirect to={`/platform/ranking/${roomId}/user/${userId}`} />;
           }}
         </FirebaseDatabaseMutation>
-      </Fragment>
+      </>
     );
   }
 

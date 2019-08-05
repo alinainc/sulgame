@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { Container, Row } from 'reactstrap';
 
-const GameList = ({ rows, title, value }) => {
+const GameListForm = ({ rows, title, value }) => {
   const items = Object.values(value);
 
   return (
@@ -22,7 +22,7 @@ const GameList = ({ rows, title, value }) => {
   );
 };
 
-GameList.propTypes = {
+GameListForm.propTypes = {
   rows: PropTypes.arrayOf(PropTypes.shape({
     key: PropTypes.string,
   })),
@@ -32,10 +32,10 @@ GameList.propTypes = {
   }),
 };
 
-GameList.defaultProps = {
+GameListForm.defaultProps = {
   rows: [],
   title: undefined,
   value: undefined,
 };
 
-export default GameList;
+export default GameListForm;
