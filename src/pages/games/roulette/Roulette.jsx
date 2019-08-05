@@ -6,7 +6,6 @@ import React from 'react';
 import { Button } from 'reactstrap';
 
 import rouletteGame from '../../../messages/rouletteGame';
-import ReplayButton from '../../platform/rankings/ReplayButton';
 
 class Roulette extends React.Component {
   constructor(props) {
@@ -113,9 +112,9 @@ class Roulette extends React.Component {
       // Arrow
       ctx.fillStyle = 'red';
       ctx.beginPath();
-      ctx.lineTo(baseSize + 10, baseSize - (outsideRadius + 20));
-      ctx.lineTo(baseSize + 0, baseSize - (outsideRadius - 5));
-      ctx.lineTo(baseSize - 10, baseSize - (outsideRadius + 20));
+      ctx.lineTo(baseSize + 100, baseSize - (outsideRadius + 200));
+      ctx.lineTo(baseSize + 0, baseSize - (outsideRadius - 50));
+      ctx.lineTo(baseSize - 100, baseSize - (outsideRadius + 200));
       ctx.fill();
       ctx.stroke();
     }
