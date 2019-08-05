@@ -12,7 +12,7 @@ const UrlCopy = ({ roomId }) => (
     <Row className="bar">{`${waitingRoom.url}`}</Row>
     <Row>
       <Col>
-        <textarea>{`localhost:3000/platform/entry/${roomId}`}</textarea>
+        <textarea defaultValue={`localhost:3000/platform/entry/${roomId}`} disabled />
       </Col>
       <Col>
         <CopyToClipboard text={`localhost:3000/platform/entry/${roomId}`}>
