@@ -18,7 +18,8 @@
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.0.1",
     "react-toastify": "^5.3.2",
-    "reactstrap": "^8.0.1"
+    "reactstrap": "^8.0.1",
+    "stylelint-config-scss": "^1.0.0-security"
   },
   "scripts": {
     "lint": "eslint . --ext js,jsx",
