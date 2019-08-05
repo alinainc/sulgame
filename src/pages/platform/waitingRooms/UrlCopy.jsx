@@ -10,7 +10,7 @@ import { button, waitingRoom } from '../../../messages';
 
 const UrlCopy = ({ roomId }) => (
   <Container>
-    <Row className="divider">{`${waitingRoom.url}:`}</Row>
+    <Row className="center divider inline y">{`${waitingRoom.url}`}</Row>
     <Row>
       <Col>
         <textarea>{`localhost:3000/platform/entry/${roomId}`}</textarea>

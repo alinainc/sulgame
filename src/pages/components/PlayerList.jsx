@@ -23,7 +23,7 @@ const PlayerList = ({ cols, isRank, value }) => {
 
   return (
     <Container>
-      <Row className="divider">
+      <Row className="center divider inline y">
         {cols.map(col => <Col key={col.name} xs={col.xsHead}>{col.name}</Col>)}
       </Row>
       {!value
