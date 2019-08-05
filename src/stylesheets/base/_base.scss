@@ -48,6 +48,11 @@ h2 {
 }
 
 .btn {
+  &.rating {
+    width: 100%;
+    padding: 5px;
+    margin-top: 8%;
+  }
   border-radius: 10%;
   border-color: transparent;
   background-color: $primary-dark-grey;
@@ -88,11 +93,58 @@ h2 {
     }
   }
 }
+.centered {
+  position: relative;
+  display: inline-block;
+  width: 90%;
+  padding: 1em;
+}
 
 .circle {
   border: 1px solid;
   border-radius: 50%;
 }
+
+.container {
+  width: 90%;
+  height: 90%;
+  margin: 10px auto;
+}
+
+.feedback {
+  &.description {
+    border-style: solid;
+    border-radius: 10%;
+    margin-top: 13%;
+    padding: 3%;
+  }
+}
+
+.gap {
+  margin-top: 5%;
+}
+
+.outer {
+  display: table;
+  width: 100%;
+  height: 100%;
+}
+.inner {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.textarea {
+  border-radius: 5%;
+  margin-bottom: 7%;
+  margin-top: 10%;
+  padding-top: 5%;
+  padding-bottom: 40%;
+  width: 87%;
+}
+
+
 
 .divider {
   position: relative;
