@@ -10,21 +10,18 @@ import GameList from './GameList';
 import PlayerList from './PlayerList';
 import UrlCopy from './UrlCopy';
 
-const WaitingRoom = ({ isHost, match: { params: { roomId, userId } } }) => {
-
-  return (
-    <div className="container">
-      <Container>
-        <h2>{waitingRoom.title}</h2>
-        <UrlCopy roomId={roomId} />
-        <PlayerList roomId={roomId} />
-        {isHost
-          ? (<GameList roomId={roomId} isHost={isHost} />)
-          : (<GameList userId={userId} roomId={roomId} isHost={isHost} />)}
-      </Container>
-    </div>
-  );
-};
+const WaitingRoom = ({ isHost, match: { params: { roomId, userId } } }) => (
+  <div className="container">
+    <Container>
+      <h2>{waitingRoom.title}</h2>
+      <UrlCopy roomId={roomId} />
+      <PlayerList roomId={roomId} />
+      {isHost
+        ? (<GameList roomId={roomId} isHost={isHost} />)
+        : (<GameList userId={userId} roomId={roomId} isHost={isHost} />)}
+    </Container>
+  </div>
+);
 
 WaitingRoom.propTypes = {
   isHost: PropTypes.bool,

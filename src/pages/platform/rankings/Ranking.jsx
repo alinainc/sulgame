@@ -23,9 +23,17 @@ const Ranking = ({ history, isHost, match: { params: { roomId, userId } } }) => 
         }
         if (value.players.host.replay === 1) {
           if (!userId) {
-            return <Redirect to={`/games/click/play/${roomId}/user/host`} />;
+            return (
+              <Redirect
+                to={`/games/${value.players.host.gametype}/play/${roomId}/user/host`}
+              />
+            );
           }
-          return <Redirect to={`/games/click/play/${roomId}/user/${userId}`} />;
+          return (
+            <Redirect
+              to={`/games/${value.players.host.gametype}/play/${roomId}/user/${userId}`}
+            />
+          );
         }
         if (!value.players.host.start) {
           return <Redirect to={`/platform/waiting_room/${roomId}/user/${userId}`} />;
