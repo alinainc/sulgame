@@ -65,10 +65,17 @@ h2 {
   }
 }
 
-.center-horizental {
-  margin-left: auto;
-  margin-right: auto;
-  text-align: center;
+.center {
+  &.horizental {
+    &.block {
+      margin-right: auto;
+      margin-left: auto;
+    }
+
+    &.inline {
+      text-align: center;
+    }
+  }
 }
 
 .circle {
