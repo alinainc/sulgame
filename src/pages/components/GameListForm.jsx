@@ -10,7 +10,7 @@ const GameListForm = ({ rows, title, value }) => {
 
   return (
     <Container>
-      <Row className="center divider inline y" key={title.key}>{title.key}</Row>
+      <Row className="divider" key={title.key}>{title.key}</Row>
       {items.map(item => (
         rows.map(row => (
           <Row key={row.key}>
