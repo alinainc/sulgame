@@ -2,12 +2,13 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import { Redirect } from 'react-router-dom';
-import { Button } from 'reactstrap';
+import { Button, Spinner } from 'reactstrap';
 
-import { FirebaseDatabaseMutation } from '@react-firebase/database';
+import { FirebaseDatabaseMutation, FirebaseDatabaseNode } from '@react-firebase/database';
 
 import { button, chooseGame } from '../../../messages';
 import shapes from '../../../shapes';
+import InitWithMount from '../../components/InitWithMount';
 import ChoiceList from './ChoiceList';
 
 const Play = ({ match: { params: { roomId, userId } } }) => {
@@ -15,6 +16,20 @@ const Play = ({ match: { params: { roomId, userId } } }) => {
   const [buttonState, setButtonState] = useState(false);
   const resultRef = useRef(Math.floor(Math.random() * 2 + 1));
   const choiceRef = useRef(ChoiceList[Math.floor(Math.random() * ChoiceList.length)]);
+
+  const storeChoice = () => {
+    if (userId === 'host') {
+      return (
+        <FirebaseDatabaseMutation path={`/rooms/${roomId}/players/host/`} type="update">
+          {({ runMutation }) => {
+            const initData = () => runMutation({ choice: choiceRef.current });
+            return <InitWithMount init={initData} />;
+          }}
+        </FirebaseDatabaseMutation>
+      );
+    }
+    return null;
+  };
 
   useEffect(() => {
     const id = setInterval(() => {
@@ -30,6 +45,17 @@ const Play = ({ match: { params: { roomId, userId } } }) => {
   const onButtonClick = ({ target: { value } }) => {
     resultRef.current = value;
   };
+
+  const renderChoice = () => (
+    <FirebaseDatabaseNode path={`/rooms/${roomId}/players/host/choice`}>
+      {({ value }) => {
+        if (!value) {
+          return <Spinner color="primary" />;
+        }
+        return <h6>{value}</h6>;
+      }}
+    </FirebaseDatabaseNode>
+  );
 
   if (buttonState) {
     return (
@@ -55,12 +81,13 @@ const Play = ({ match: { params: { roomId, userId } } }) => {
 
   return (
     <div className="container">
+      {storeChoice()}
       <h2>{chooseGame.title}</h2>
       <p>{chooseGame.description}</p>
       <p>{`${chooseGame.time}: ${seconds}`}</p>
-      <h6>{choiceRef.current}</h6>
-      <Button disabled={buttonState} onClick={onButtonClick} size="lg" value="1">{button.A}</Button>
-      <Button disabled={buttonState} onClick={onButtonClick} size="lg" value="2">{button.B}</Button>
+      {renderChoice()}
+      <Button disabled={buttonState} onClick={onButtonClick} size="lg" value="A">{button.A}</Button>
+      <Button disabled={buttonState} onClick={onButtonClick} size="lg" value="B">{button.B}</Button>
     </div>
   );
 };

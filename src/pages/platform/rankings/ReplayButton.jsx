@@ -28,8 +28,8 @@ const ReplayButton = ({ history, isHost, roomId }) => {
     <FirebaseDatabaseMutation path={`/rooms/${roomId}/players/host`} type="update">
       {({ runMutation }) => (
         <Button onClick={() => {
-          history.push(`/platform/waiting_room/${roomId}/host`);
-          runMutation({ replay: 1 });
+          // history.push(`/platform/waiting_room/${roomId}/host`);
+          runMutation({ choice: null, replay: 1 });
         }}
         >
           {button.retry.thisgame}

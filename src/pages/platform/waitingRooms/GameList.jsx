@@ -13,20 +13,22 @@ import GameListForm from '../../components/GameListForm';
 
 const PlayerList = ({ isHost, roomId, userId }) => {
   const listenStart = () => (
-    <FirebaseDatabaseNode path={`/rooms/${roomId}/players/host`}>
-      {({ value }) => {
-        if (!value) {
-          return null;
-        }
-        if (value.start === 1) {
-          if (!userId) {
-            return <Redirect to={`/games/${value.gametype}/play/${roomId}/user/host`} />;
+    <Fragment>
+      <FirebaseDatabaseNode path={`/rooms/${roomId}/players/host`}>
+        {({ value }) => {
+          if (!value) {
+            return null;
           }
-          return <Redirect to={`/games/${value.gametype}/play/${roomId}/user/${userId}`} />;
-        }
-        return null;
-      }}
-    </FirebaseDatabaseNode>
+          if (value.start === 1) {
+            if (!userId) {
+              return <Redirect to={`/games/${value.gametype}/play/${roomId}/user/host`} />;
+            }
+            return <Redirect to={`/games/${value.gametype}/play/${roomId}/user/${userId}`} />;
+          }
+          return null;
+        }}
+      </FirebaseDatabaseNode>
+    </Fragment>
   );
 
   const playGame = gametype => (
