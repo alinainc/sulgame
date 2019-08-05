@@ -57,9 +57,9 @@ const Entry = ({ history, match: { params } }) => {
             <Row>
               <h2>{isEmpty(params) ? entry.make.room : entry.enter}</h2>
             </Row>
-            <Col className="entry__setting-box">
+            <Col>
               <Input innerRef={inputRef} placeholder={entry.nickName} className="entry" />
-              <Row className="bottom-right">
+              <Row className="bottom right">
                 {enter()}
               </Row>
             </Col>

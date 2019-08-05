@@ -1,0 +1,20 @@
+// Copyright (C) 2019 Alina Inc. All rights reserved.
+
+.entry {
+  // margin-top: 20px;
+  // margin-bottom: 20px;
+  // background: black;
+  max-width: 40vw;
+  // max-height: 14px;
+  position: absolute;
+  bottom: 10%;
+  overflow: hidden;
+  resize: none;
+  line-height: 1em;
+  white-space: nowrap;
+
+  #setting-box {
+    height: 20vh;
+    position: relative;
+  }
+}
