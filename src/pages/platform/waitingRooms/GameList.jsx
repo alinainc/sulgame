@@ -2,7 +2,7 @@
 
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
-import React, { Fragment } from 'react';
+import React from 'react';
 import { Redirect } from 'react-router-dom';
 import { Button, Col } from 'reactstrap';
 

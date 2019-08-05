@@ -1,6 +1,6 @@
 // Copyright (C) 2019 Alina Inc. All rights reserved.
 
-import React, { Fragment, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { Button, Row } from 'reactstrap';
 
@@ -78,7 +78,7 @@ const Play = ({ match: { params: { roomId, userId } } }) => {
 
   if (result === sequenceGame.result.success) {
     return (
-      <Fragment>
+      <>
         <FirebaseDatabaseMutation path={`/rooms/${roomId}/players/host/`} type="update">
           {({ runMutation }) => {
             runMutation({ replay: 0 });
@@ -94,7 +94,7 @@ const Play = ({ match: { params: { roomId, userId } } }) => {
             return <Redirect to={`/platform/ranking/${roomId}/user/${userId}`} />;
           }}
         </FirebaseDatabaseMutation>
-      </Fragment>
+      </>
     );
   }
 
