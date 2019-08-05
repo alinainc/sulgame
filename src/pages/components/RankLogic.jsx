@@ -1,11 +1,14 @@
 // Copyright (C) 2019 Alina Inc. All rights reserved.
 
 const RankLogic = (items) => {
-  switch (items[0].start) {
-    case 1:
+  switch (items[0].gametype) {
+    case 'choose':
       items.sort((a, b) => (parseFloat(b.gameData) - parseFloat(a.gameData)));
       break;
-    case 2:
+    case 'click':
+      items.sort((a, b) => (parseFloat(b.gameData) - parseFloat(a.gameData)));
+      break;
+    case 'sequence':
       items.sort((a, b) => (parseFloat(a.gameData) - parseFloat(b.gameData)));
       break;
     default:
