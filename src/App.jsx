@@ -11,6 +11,7 @@ import { FirebaseDatabaseProvider } from '@react-firebase/database';
 
 import config from './firebase.config';
 import MainPage from './pages/MainPage';
+import Rating from './pages/components/Rating';
 import Game from './pages/games';
 import Platform from './pages/platform';
 
@@ -26,6 +27,7 @@ const App = () => (
         <Route path="/platform" component={Platform} />
         <Route component={MainPage} />
       </Switch>
+      <Rating />
     </BrowserRouter>
   </FirebaseDatabaseProvider>
 );
