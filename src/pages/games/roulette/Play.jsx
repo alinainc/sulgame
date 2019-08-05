@@ -3,6 +3,8 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import { FirebaseDatabaseNode } from '@react-firebase/database';
+
 import shapes from '../../../shapes';
 import ReplayButton from '../../platform/rankings/ReplayButton';
 import Roulette from './Roulette';
@@ -11,13 +13,21 @@ const Play = ({ history, isHost, match: { params: { roomId } } }) => {
   const handleOnComplete = (value) => {
     console.log(value);
   };
-
-  const options = ['고대웅', '민홍', '배진영', '윤지은', '정경진', '한주성'];
+  const getName = obj => Object.values(obj).map(e => e.name);
   return (
-    <>
-      <Roulette options={options} baseSize={500} onComplete={handleOnComplete} />
-      <ReplayButton history={history} roomId={roomId} isHost={isHost} />
-    </>
+    <FirebaseDatabaseNode path={`/rooms/${roomId}/players`}>
+      {({ value }) => {
+        if (!value) {
+          return null;
+        }
+        return (
+          <>
+            <Roulette options={getName(value)} baseSize={500} onComplete={handleOnComplete} />
+            <ReplayButton history={history} roomId={roomId} isHost={isHost} />
+          </>
+        );
+      }}
+    </FirebaseDatabaseNode>
   );
 };
 
