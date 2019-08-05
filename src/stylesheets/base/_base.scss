@@ -5,6 +5,9 @@
 $information-phone: "only screen and (max-width: 414px)";
 $information-ipad: "only screen and (min-width: 415px) and (max-width: 1024px)";
 $information-laptop: "only screen and (min-width: 1025px)";
+$primary-blue: #06f;
+$primary-yellow: #f3d076;
+$primary-grey: #708090;
 
 @media #{$information-phone} {
   html { font-size: 14px; }
@@ -86,7 +89,7 @@ h2 {
 .divider {
   position: relative;
   left: -10vw;
-  background-color: #708090;
+  background-color: $primary-grey;
   width: 120vw;
 }
 
@@ -95,7 +98,7 @@ h2 {
   position: relative;
   border-radius: 50%;
   border-color: transparent;
-  box-shadow: inset -10px 5px 0 5px #f3d076;
+  box-shadow: inset -10px 5px 0 5px $primary-yellow;
   background-color: transparent;
   width: 8rem;
   height: 8rem;
