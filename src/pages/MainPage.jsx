@@ -11,12 +11,12 @@ const MainPage = ({ history }) => {
     history.push('/platform/entry');
   };
   return (
-    <Container className="main">
+    <Container className="mainpage">
       <Container>
         <div className="block center y moon" />
         <h1 className="center y inline">{mainPage.title}</h1>
       </Container>
-      <Container className="bottom center">
+      <Container className="center bottom y">
         <div className="block center y">
           <div className="center y inline">{mainPage.button}</div>
         </div>
