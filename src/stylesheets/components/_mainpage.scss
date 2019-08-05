@@ -1,10 +1,15 @@
 // Copyright (C) 2019 Alina Inc. All rights reserved.
 
-.main.btn {
-  width: 20vh;
-  height: 20vh;
-}
+.main {
+  .btn {
+    width: 10vh;
+    height: 10vh;
+    font-size: 6em;
+    padding: 0;
+    vertical-align: middle;
+  }
 
-.main.moon {
-  margin-top: 20vh;
+  .moon {
+    margin-top: 20vh;
+  }
 }
