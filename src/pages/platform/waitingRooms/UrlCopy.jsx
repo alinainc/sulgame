@@ -1,6 +1,7 @@
 // Copyright (C) 2019 Alina Inc. All rights reserved.
 
 import PropTypes from 'prop-types';
+import QRCode from 'qrcode.react';
 import React from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { Button, Col, Container, Row } from 'reactstrap';
@@ -16,6 +17,7 @@ const UrlCopy = ({ roomId }) => (
         <CopyToClipboard text={`localhost:3000/platform/entry/${roomId}`}>
           <Button>{button.copy}</Button>
         </CopyToClipboard>
+        <QRCode value={`localhost:3000/platform/entry/${roomId}`} />
       </Col>
     </Row>
   </Container>
