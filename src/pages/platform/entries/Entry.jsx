@@ -23,7 +23,7 @@ const Entry = ({ history, match: { params } }) => {
   const makeOrEnterRoom = runMutation => async () => {
     if (isHost) {
       const res = await runMutation({
-        players: { host: { connect: 1, name: inputRef.current.value, start: 0 } }
+        players: { host: { connect: 1, name: inputRef.current.value, start: 0 } },
       });
       history.push(`/platform/waiting_room/${res.key}/host`);
     } else {
