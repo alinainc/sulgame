@@ -9,8 +9,8 @@ const GameListForm = ({ rows, title, value }) => {
   const items = Object.values(value);
 
   return (
-    <Container>
-      <Row className="divider" key={title.key}>{title.key}</Row>
+    <Container className="section">
+      <Row className="bar" key={title.key}>{title.key}</Row>
       {items.map(item => (
         rows.map(row => (
           <Row key={row.key}>

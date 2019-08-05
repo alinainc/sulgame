@@ -152,10 +152,16 @@ h2 {
   width: 87%;
 }
 
-.divider {
-  left: 0;
-  background-color: $primary-grey;
-  text-align: center;
+.section {
+  > .bar {
+    left: 0;
+    background-color: $primary-grey;
+    text-align: center;
+  }
+
+  .contents {
+    display: inline;
+  }
 }
 
 .moon {

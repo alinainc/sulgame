@@ -8,8 +8,8 @@ import { Button, Col, Container, Row } from 'reactstrap';
 import { button, waitingRoom } from '../../../messages';
 
 const UrlCopy = ({ roomId }) => (
-  <Container>
-    <Row className="divider">{`${waitingRoom.url}`}</Row>
+  <Container className="section">
+    <Row className="bar">{`${waitingRoom.url}`}</Row>
     <Row>
       <Col>
         <textarea>{`localhost:3000/platform/entry/${roomId}`}</textarea>

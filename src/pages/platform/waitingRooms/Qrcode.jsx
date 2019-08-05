@@ -6,8 +6,8 @@ import React from 'react';
 import { Container, Row } from 'reactstrap';
 
 const Qrcode = ({ roomId }) => (
-  <Container>
-    <Row className="divider">QR code</Row>
+  <Container className="section">
+    <Row className="bar">QR code</Row>
     <Row>
       <QRCode value={`localhost:3000/platform/entry/${roomId}`} />
     </Row>
