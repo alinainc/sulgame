@@ -8,6 +8,7 @@ $information-laptop: "only screen and (min-width: 1025px)";
 $primary-blue: #06f;
 $primary-yellow: #f3d076;
 $primary-grey: #708090;
+$primary-dark-grey: #3c4453;
 
 @media #{$information-phone} {
   html { font-size: 14px; }
@@ -48,9 +49,9 @@ h2 {
 
 .btn {
   border-radius: 10%;
-  background-color: transparent;
-  // border-color: cornflowerblue;
-  color: cornflowerblue;
+  border-color: transparent;
+  background-color: $primary-dark-grey;
+  color: #333;
   font-size: 1em;
 }
 
