@@ -56,7 +56,7 @@ const Rating = ({ history }) => {
 };
 
 Rating.propTypes = {
-  history: PropTypes.shape({}).isRequired,
+  history: PropTypes.shape({ goBack: PropTypes.func }).isRequired,
 };
 
 export default Rating;
