@@ -1,7 +1,6 @@
 // Copyright (C) 2019 Alina Inc. All rights reserved.
 
 import PropTypes from 'prop-types';
-import QRCode from 'qrcode.react';
 import React from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { Button, Col, Container, Row } from 'reactstrap';
