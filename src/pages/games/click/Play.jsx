@@ -9,12 +9,15 @@ import { FirebaseDatabaseMutation } from '@react-firebase/database';
 import clickGame from '../../../messages/clickGame';
 import shapes from '../../../shapes';
 import InitWithMount from '../../components/InitWithMount';
+import Ready from '../../components/Ready';
 
 const Play = ({ match: { params: { roomId, userId } } }) => {
   const [clickCount, setClickCount] = useState(0);
-  const defalutSecond = 10;
-  const [seconds, setSeconds] = useState(defalutSecond);
+  const gameSeconds = 10;
+  const totalSeconds = 13;
+  const [seconds, setSeconds] = useState(totalSeconds);
   const [buttonState, setButtonState] = useState(false);
+  const [gameStart, setGameStart] = useState(false);
 
   const initGameData = () => {
     if (userId) {
@@ -35,12 +38,18 @@ const Play = ({ match: { params: { roomId, userId } } }) => {
       setSeconds(s => s - 1);
     }, 1000);
 
-    const sec = defalutSecond * 1000;
+    const sec = totalSeconds * 1000;
+    const loadSec = (totalSeconds - gameSeconds) * 1000;
+
+    setTimeout(() => {
+      setGameStart(true);
+    }, loadSec);
+
     setTimeout(() => {
       setButtonState(true);
       clearInterval(id);
     }, sec);
-  }, [defalutSecond]);
+  }, [gameSeconds]);
 
   if (buttonState) {
     return (
@@ -70,10 +79,11 @@ const Play = ({ match: { params: { roomId, userId } } }) => {
   };
 
   return (
-    <div>
+    <div className={!gameStart ? 'game-backdrop' : null}>
+      {!gameStart ? <Ready description={clickGame.description} gameStart={gameStart} seconds={seconds - gameSeconds} title={clickGame.title} /> : null}
       {initGameData()}
       <h2>{clickGame.title}</h2>
-      <p>{`${clickGame.time}: ${seconds}`}</p>
+      <p>{`${clickGame.time}: ${seconds > gameSeconds ? gameSeconds : seconds}`}</p>
       <p>{`${clickGame.score}: ${clickCount}`}</p>
       <Button type="button" onClick={onClickButton} disabled={buttonState}>
         {clickGame.button}

@@ -1,0 +1,47 @@
+// Copyright (C) 2019 Alina Inc. All rights reserved.
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1050;
+  width: 100%;
+  height: 100%;
+  color: beige;
+  font-family: 'Nanum Gothic', sans-serif;
+}
+
+.modal-backdrop.show {
+  opacity: 0.5;
+}
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1040;
+  background-color: #000;
+  width: 100vw;
+  height: 100vh;
+}
+
+.modal-content {
+  text-align: center;
+}
+
+.modal-title {
+  font-family: 'Gugi', 'Nanum Gothic', sans-serif;
+  font-size: 400%;
+}
+
+.modal-body {
+  font-size: 400%;
+  padding-bottom: 1em;
+}
+
+.modal-footer {
+  font-size: 125%;
+}
+.game-backdrop {
+  -webkit-filter: blur(5px);
+}

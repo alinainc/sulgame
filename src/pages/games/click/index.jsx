@@ -6,7 +6,6 @@ import { Route, Switch } from 'react-router';
 import shapes from '../../../shapes';
 import Play from './Play';
 
-
 const Click = ({ match }) => (
   <Switch>
     <Route exact path={`${match.url}/play/:roomId/user/:userId`} component={Play} />
