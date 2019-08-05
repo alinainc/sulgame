@@ -70,8 +70,9 @@ h2 {
 }
 
 .center {
-  &.horizental {
+  &.y {
     &.block {
+      display: block;
       margin-right: auto;
       margin-left: auto;
     }
@@ -79,6 +80,14 @@ h2 {
     &.inline {
       text-align: center;
     }
+  }
+
+  &.x {
+    // position: relative;
+    // top: 0;
+    display: block;
+    margin-top: auto;
+    margin-bottom: auto;
   }
 }
 
