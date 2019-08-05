@@ -8,7 +8,11 @@ import Play from './Play';
 
 const RouletteGame = ({ match }) => (
   <Switch>
-    <Route exact path={`${match.url}/play/:roomId/user/:userId`} component={Play} />
+    <Route
+      exact
+      path={`${match.url}/play/:roomId/user/:userId`}
+      render={props => <Play {...props} isHost key={props.match.params.roomId} />}
+    />
   </Switch>
 );
 

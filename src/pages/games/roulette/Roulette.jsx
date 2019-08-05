@@ -6,6 +6,7 @@ import React from 'react';
 import { Button } from 'reactstrap';
 
 import rouletteGame from '../../../messages/rouletteGame';
+import ReplayButton from '../../platform/rankings/ReplayButton';
 
 class Roulette extends React.Component {
   constructor(props) {
