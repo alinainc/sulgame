@@ -70,10 +70,10 @@ const PlayerList = ({ isHost, roomId, userId }) => {
     />
   );
   return (
-    <Fragment>
+    <>
       {listenStart()}
       {renderGames()}
-    </Fragment>
+    </>
   );
 };
 
