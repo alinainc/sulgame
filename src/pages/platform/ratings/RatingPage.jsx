@@ -1,12 +1,12 @@
 // Copyright (C) 2019 Alina Inc. All rights reserved.
 
+import PropTypes from 'prop-types';
 import React from 'react';
-import { Button } from 'reactstrap';
 
 import messages from '../../../messages';
 import Rating from '../../components/Rating';
 
-const RatingPage = () => (
+const RatingPage = ({ history }) => (
   <div className="container">
     <div className="outer">
       <div className="inner">
@@ -19,10 +19,7 @@ const RatingPage = () => (
               <p>{messages.feedback.contents3}</p>
               <p>{messages.feedback.end}</p>
             </div>
-            <Rating />
-            <div>
-              <Button type="button" className="btn rating">submit</Button>
-            </div>
+            <Rating history={history} />
           </div>
         </div>
       </div>
@@ -30,8 +27,8 @@ const RatingPage = () => (
   </div>
 );
 
-
 RatingPage.propTypes = {
+  history: PropTypes.shape({}).isRequired,
 };
 
 export default RatingPage;
