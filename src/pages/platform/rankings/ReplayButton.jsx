@@ -53,8 +53,12 @@ const ReplayButton = ({ history, isHost, roomId }) => {
 
 ReplayButton.propTypes = {
   history: shapes.history.isRequired,
-  isHost: PropTypes.bool.isRequired,
+  isHost: PropTypes.bool,
   roomId: PropTypes.string.isRequired,
+};
+
+ReplayButton.defaultProps = {
+  isHost: undefined,
 };
 
 export default ReplayButton;
