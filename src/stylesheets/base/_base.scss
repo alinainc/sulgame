@@ -30,31 +30,31 @@ h1 {
 }
 
 h2 {
-  font-size: 2rem;
-  margin-bottom: 5px;
   margin-top: 5vh;
+  margin-bottom: 5px;
+  font-size: 2rem;
 }
 
 #root {
-  color: beige;
   display: flex;
+  position: relative;
   flex-direction: column;
   min-height: 90vh;
-  position: relative;
+  color: beige;
 }
 
 .btn {
+  border-radius: 10%;
   background-color: transparent;
   // border-color: cornflowerblue;
-  border-radius: 10%;
   color: cornflowerblue;
   font-size: 1em;
 }
 
 .bottom {
-  bottom: 0;
   display: relative;
   position: absolute;
+  bottom: 0;
 
   &.right {
     right: 0;
@@ -84,19 +84,19 @@ h2 {
 }
 
 .divider {
-  background-color: #708090;
-  width: 120vw;
   position: relative;
   left: -10vw;
+  background-color: #708090;
+  width: 120vw;
 }
 
 .moon {
-  position: relative;
   display: block;
-  width: 8rem;
-  height: 8rem;
-  background-color: transparent;
-  box-shadow: inset -10px 5px 0 5px #f3d076;
+  position: relative;
   border-radius: 50%;
   border-color: transparent;
+  box-shadow: inset -10px 5px 0 5px #f3d076;
+  background-color: transparent;
+  width: 8rem;
+  height: 8rem;
 }
