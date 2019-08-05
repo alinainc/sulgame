@@ -14,8 +14,11 @@ import UrlCopy from './UrlCopy';
 const WaitingRoom = ({ isHost, match: { params: { roomId, userId } } }) => (
   <Container className="waiting">
     <h2>{waitingRoom.title}</h2>
-    <UrlCopy roomId={roomId} />
-    <Qrcode value={`localhost:3000/platform/entry/${roomId}`} />
+    <Container className="section enter">
+      <div className="bar">초대하기</div>
+      <Qrcode value={`localhost:3000/platform/entry/${roomId}`} />
+      <UrlCopy roomId={roomId} />
+    </Container>
     <PlayerList roomId={roomId} />
     {isHost
       ? (<GameList roomId={roomId} isHost={isHost} />)

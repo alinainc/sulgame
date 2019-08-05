@@ -6,11 +6,11 @@ import React from 'react';
 import { Container, Row } from 'reactstrap';
 
 const Qrcode = ({ roomId }) => (
-  <Container className="section">
-    <Row className="bar">QR code</Row>
+  <Container className="section qrcode">
     <Row>
-      <QRCode value={`localhost:3000/platform/entry/${roomId}`} />
+      <QRCode value={`localhost:3000/platform/entry/${roomId}`} className="contents" />
     </Row>
+    <Row className="bar">QR code</Row>
   </Container>
 );
 

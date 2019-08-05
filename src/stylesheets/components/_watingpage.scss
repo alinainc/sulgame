@@ -7,4 +7,54 @@
   > div {
     border: 1px gray solid;
   }
+
+  .urlcopy {
+    display: inline-block;
+    margin: 5px;
+    width: 48vw;
+
+    > .bar {
+      background-color: transparent;
+    }
+
+    .warper {
+      display: relative;
+      margin: auto;
+      width: 40vw;
+      text-align: center;
+
+      textarea {
+        border-radius: 10%;
+        font-size: 1rem;
+      }
+    }
+
+    .contents {
+      max-width: 38vw;
+    }
+  }
+
+  .qrcode {
+    display: inline-block;
+    margin: 5px;
+    width: 40vw;
+
+    > .bar {
+      background-color: transparent;
+    }
+
+    .contents {
+      border: 0.2em whitesmoke solid;
+    }
+  }
+
+  .players {
+    display: inline-block;
+    margin: 5px;
+    text-align: center;
+
+    .face {
+      font-size: 2em;
+    }
+  }
 }

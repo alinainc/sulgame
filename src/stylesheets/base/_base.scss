@@ -101,17 +101,21 @@ h2 {
 }
 
 .section {
-  margin-left: auto;
   margin-right: auto;
+  margin-left: auto;
 
   > .bar {
     left: 0;
     background-color: $primary-grey;
     text-align: center;
+    font-size: 1.2rem;
+    font-weight: 700;
   }
 
   .contents {
-    display: inline;
+    display: inline-block;
+    margin-right: auto;
+    margin-left: auto;
   }
 }
 

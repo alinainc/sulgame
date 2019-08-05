@@ -29,10 +29,15 @@ const PlayerList = ({ cols, isRank, value }) => {
       {!value
         ? <Spinner color="primary" />
         : items.map((item, i) => (
-          <Row key={item.name || item.nickname}>
+          <Row key={item.name || item.nickname} className="players">
             {cols.map(col => (
               <Col key={col.name} xs={col.xsChild}>
-                {col.key === 'rank' ? `${(i + 1)} ${ranking.rank.postfix}` : get(item, col.key, '')}
+                <div>
+                  <span role="img" aria-label="face" className="face"> 🧞‍</span>
+                </div>
+                <div>
+                  {col.key === 'rank' ? `${(i + 1)} ${ranking.rank.postfix}` : get(item, col.key, ' ')}
+                </div>
               </Col>
             ))}
           </Row>
