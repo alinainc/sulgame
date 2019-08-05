@@ -17,12 +17,12 @@ const MainPage = ({ history }) => {
         <h1 className="center y inline">{mainPage.title}</h1>
       </Container>
       <Container className="bottom center">
-        <Button type="button" onClick={onClickButton} className="btn block center y">
-          <span>+</span>
-        </Button>
         <div className="block center y">
           <div className="center y inline">{mainPage.button}</div>
         </div>
+        <Button type="button" onClick={onClickButton} className="btn block center y">
+          <span>+</span>
+        </Button>
       </Container>
     </Container>
   );
