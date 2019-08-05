@@ -16,7 +16,7 @@ const MainPage = ({ history }) => {
         <div className="center-horizental main moon" />
         <h1 className="center-horizental">{mainPage.title}</h1>
       </Container>
-      <Button type="button" onClick={onClickButton} className="bottom main">
+      <Button type="button" onClick={onClickButton} className="bottom right main">
         {mainPage.button}
       </Button>
     </Container>
