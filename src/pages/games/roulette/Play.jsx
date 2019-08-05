@@ -1,5 +1,6 @@
 // Copyright (C) 2019 Alina Inc. All rights reserved.
 
+import PropTypes from 'prop-types';
 import React from 'react';
 
 import shapes from '../../../shapes';
@@ -21,7 +22,13 @@ const Play = ({ history, isHost, match: { params: { roomId } } }) => {
 };
 
 Play.propTypes = {
+  history: shapes.history.isRequired,
+  isHost: PropTypes.bool,
   match: shapes.match.isRequired,
+};
+
+Play.defaultProps = {
+  isHost: false,
 };
 
 export default Play;
