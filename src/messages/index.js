@@ -4,6 +4,7 @@ import button from './button';
 import chooseGame from './chooseGame';
 import clickGame from './clickGame';
 import entry from './entry';
+import feedback from './feedback';
 import mainPage from './mainPage';
 import ranking from './ranking';
 import rouletteGame from './rouletteGame';
@@ -18,6 +19,7 @@ export {
   chooseGame,
   clickGame,
   entry,
+  feedback,
   games,
   mainPage,
   ranking,
@@ -31,6 +33,7 @@ export default {
   chooseGame,
   clickGame,
   entry,
+  feedback,
   games,
   mainPage,
   ranking,
