@@ -6,6 +6,8 @@ import { useEffect } from 'react';
 const InitWithMount = ({ init }) => {
   useEffect(() => {
     init();
+  // FIXME!
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return null;
 };
