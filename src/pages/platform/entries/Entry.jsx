@@ -22,10 +22,12 @@ const Entry = ({ history, match: { params } }) => {
   const path = isEmpty(params) ? '/rooms/' : `/rooms/${params.roomId}/players`;
   const makeOrEnterRoom = runMutation => async () => {
     if (isHost) {
-      const res = await runMutation({ players: { host: { name: inputRef.current.value, start: 0 } } });
+      const res = await runMutation({
+        players: { host: { connect: 1, name: inputRef.current.value, start: 0 } }
+      });
       history.push(`/platform/waiting_room/${res.key}/host`);
     } else {
-      const res = await runMutation({ name: inputRef.current.value });
+      const res = await runMutation({ connect: 1, name: inputRef.current.value });
       history.push(`/platform/waiting_room/${params.roomId}/user/${res.key}`);
     }
   };

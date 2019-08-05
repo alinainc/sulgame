@@ -14,7 +14,7 @@ const PlayerList = ({ cols, isRank, value }) => {
   if (value) {
     if (value.players) {
       items = Object.values(value.players);
-      remove(items, ({ end }) => (end === 0));
+      remove(items, ({ connect }) => (connect === 0));
       if (isRank) {
         RankLogic(items);
       }

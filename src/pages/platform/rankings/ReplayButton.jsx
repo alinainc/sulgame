@@ -15,7 +15,7 @@ const ReplayButton = ({ history, isHost, roomId }) => {
       {({ runMutation }) => (
         <Button onClick={() => {
           history.push(`/platform/waiting_room/${roomId}/host`);
-          runMutation({ end: 0, start: 0 });
+          runMutation({ start: 0 });
         }}
         >
           {button.retry.othergame}
@@ -29,7 +29,7 @@ const ReplayButton = ({ history, isHost, roomId }) => {
       {({ runMutation }) => (
         <Button onClick={() => {
           history.push(`/platform/waiting_room/${roomId}/host`);
-          runMutation({ end: 0, replay: 1 });
+          runMutation({ replay: 1 });
         }}
         >
           {button.retry.thisgame}
@@ -53,12 +53,7 @@ const ReplayButton = ({ history, isHost, roomId }) => {
 
 ReplayButton.propTypes = {
   history: shapes.history.isRequired,
-  isHost: PropTypes.bool,
+  isHost: PropTypes.bool.isRequired,
   roomId: PropTypes.string.isRequired,
 };
-
-ReplayButton.defaultProps = {
-  isHost: undefined,
-};
-
 export default ReplayButton;
