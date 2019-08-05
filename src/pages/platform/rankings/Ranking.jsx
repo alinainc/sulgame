@@ -30,14 +30,6 @@ const Ranking = ({ history, isHost, match: { params: { roomId, userId } } }) => 
         if (!value.players.host.start) {
           return <Redirect to={`/platform/waiting_room/${roomId}/user/${userId}`} />;
         }
-        if (value.players.host.replay) {
-          if (value.gameType === 1) {
-            if (!userId) {
-              return <Redirect to={`/clickgame/play/${roomId}/user/host`} />;
-            }
-            return <Redirect to={`/clickgame/play/${roomId}/user/${userId}`} />;
-          }
-        }
         return (
           <PlayerList
             cols={[{
@@ -75,7 +67,7 @@ Ranking.propTypes = {
 };
 
 Ranking.defaultProps = {
-  isHost: undefined,
+  isHost: false,
 };
 
 export default Ranking;
