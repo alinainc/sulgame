@@ -12,12 +12,13 @@ const UrlCopy = ({ roomId }) => (
   <Container>
     <Row className="divider">{`${waitingRoom.url}:`}</Row>
     <Row>
-      <Col>{`localhost:3000/platform/entry/${roomId}`}</Col>
+      <Col>
+        <textarea>{`localhost:3000/platform/entry/${roomId}`}</textarea>
+      </Col>
       <Col>
         <CopyToClipboard text={`localhost:3000/platform/entry/${roomId}`}>
           <Button>{button.copy}</Button>
         </CopyToClipboard>
-        <QRCode value={`localhost:3000/platform/entry/${roomId}`} />
       </Col>
     </Row>
   </Container>
