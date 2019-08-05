@@ -16,11 +16,13 @@ const MainPage = ({ history }) => {
         <div className="block center y moon" />
         <h1 className="center y inline">{mainPage.title}</h1>
       </Container>
-      <Container className="bottom right">
-        <Button type="button" onClick={onClickButton} className="btn">
-          +
+      <Container className="bottom center">
+        <Button type="button" onClick={onClickButton} className="btn block center y">
+          <span>+</span>
         </Button>
-        <div>{mainPage.button}</div>
+        <div className="block center y">
+          <div className="center y inline">{mainPage.button}</div>
+        </div>
       </Container>
     </Container>
   );

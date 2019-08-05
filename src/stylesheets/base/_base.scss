@@ -67,6 +67,12 @@ h2 {
   &.left {
     left: 0;
   }
+
+  &.center {
+    right: 0;
+    left: 0;
+    margin: auto;
+  }
 }
 
 .center {
