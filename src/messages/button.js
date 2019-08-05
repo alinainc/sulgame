@@ -10,4 +10,5 @@ export default {
     thisgame: '다시하기',
   },
   start: '시작!',
+  submit: '제출!',
 };
