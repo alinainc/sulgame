@@ -7,6 +7,7 @@ import entry from './entry';
 import mainPage from './mainPage';
 import ranking from './ranking';
 import sequenceGame from './sequenceGame';
+import subwayGame from './subwayGame';
 import waitingRoom from './waitingRoom';
 
 const games = { chooseGame, clickGame, sequenceGame };
@@ -20,6 +21,7 @@ export {
   mainPage,
   ranking,
   sequenceGame,
+  subwayGame,
   waitingRoom,
 };
 
@@ -32,5 +34,6 @@ export default {
   mainPage,
   ranking,
   sequenceGame,
+  subwayGame,
   waitingRoom,
 };
