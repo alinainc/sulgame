@@ -3,7 +3,6 @@
 import { get } from 'lodash';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Container, Row } from 'reactstrap';
 
 const GameListForm = ({ rows, title, value }) => {
   const items = Object.values(value);

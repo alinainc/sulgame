@@ -1,6 +1,5 @@
 // Copyright (C) 2019 Alina Inc. All rights reserved.
 
-import { get } from 'lodash';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Redirect } from 'react-router-dom';
