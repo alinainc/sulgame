@@ -1,31 +1,20 @@
 // Copyright (C) 2019 Alina Inc. All rights reserved.
-import React, { useEffect, useState } from 'react';
-import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import PropTypes from 'prop-types';
+import React from 'react';
+import { Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
 
-const Ready = ({ description, seconds, title }) => {
-  // const [seconds, setSeconds] = useState(3);
-  // useEffect(() => {
-  //   let interval = null;
-  //   if (seconds > 1) {
-  //     interval = setInterval(() => {
-  //       setSeconds(n => n - 1);
-  //     }, 1000);
-  //   } else {
-  //     clearInterval(interval);
-  //     setGameStart(true);
-  //   }
-  //   return () => clearInterval(interval);
-  // }, [seconds]);
+const Ready = ({ description, seconds, title }) => (
+  <Modal centered isOpen>
+    <ModalHeader>{title}</ModalHeader>
+    <ModalBody>{seconds}</ModalBody>
+    <ModalFooter>{description}</ModalFooter>
+  </Modal>
+);
 
-  // // FIXME 게임제목 to real game name for each game
-  // // FIXME 한줄설명to real game explanation for each game
-  return (
-    <Modal centered isOpen>
-      <ModalHeader>{title}</ModalHeader>
-      <ModalBody>{seconds}</ModalBody>
-      <ModalFooter>{description}</ModalFooter>
-    </Modal>
-  );
-};
+Ready.propTypes = {
+  description: PropTypes.string.isRequired,
+  seconds: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+}
 
 export default Ready;
