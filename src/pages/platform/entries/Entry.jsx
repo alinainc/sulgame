@@ -1,16 +1,9 @@
 // Copyright (C) 2019 Alina Inc. All rights reserved.
 
 import { isEmpty } from 'lodash';
-import React, { useRef, Fragment } from 'react';
+import React, { useRef } from 'react';
 import { toast } from 'react-toastify';
-import {
-  Button,
-  Col,
-  Container,
-  Input,
-  Row,
-  Spinner,
-} from 'reactstrap';
+import { Input, Spinner } from 'reactstrap';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { FirebaseDatabaseMutation, FirebaseDatabaseNode } from '@react-firebase/database';
@@ -46,7 +39,7 @@ const Entry = ({ history, match: { params } }) => {
   const enter = () => (
     <FirebaseDatabaseMutation path={path} type="push">
       {({ runMutation }) => (
-        <Fragment>
+        <>
           <Input
             innerRef={inputRef}
             placeholder={entry.nickName}
@@ -60,7 +53,7 @@ const Entry = ({ history, match: { params } }) => {
           >
             {isEmpty(params) ? entry.enter : entry.enter}
           </button>
-        </Fragment>
+        </>
       )}
     </FirebaseDatabaseMutation>
   );
@@ -75,14 +68,12 @@ const Entry = ({ history, match: { params } }) => {
         }
         return (
           <div className="entry">
-            <Row>
+            <div>
               <h2 id="header">{isEmpty(params) ? entry.make.room : entry.enter}</h2>
-            </Row>
-            <Col>
-              <Row>
-                {enter()}
-              </Row>
-            </Col>
+            </div>
+            <div>
+              {enter()}
+            </div>
           </div>
         );
       }}
@@ -90,9 +81,9 @@ const Entry = ({ history, match: { params } }) => {
   );
 
   return (
-    <Container>
+    <div>
       {checkRoomExists()}
-    </Container>
+    </div>
   );
 };
 
