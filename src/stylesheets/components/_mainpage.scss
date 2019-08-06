@@ -7,6 +7,7 @@
 
   button {
     margin: 5px;
+    border-radius: 1rem;
     background-color: $primary-dark-grey;
     padding: 0;
     width: 10vh;
@@ -15,17 +16,9 @@
     color: #333;
     font-size: 2em;
 
-    :hover {
-      background: $primary-yellow;
+    &:hover {
+      background-color: $primary-yellow;
     }
-
-    :active {
-      transform: scale(1.2);
-    }
-  }
-
-  .moon {
-    margin-top: 20vh;
   }
 
   div {
@@ -33,5 +26,13 @@
     margin-right: auto;
     margin-left: auto;
     text-align: center;
+  }
+
+  .moon {
+    margin-top: 20vh;
+  }
+
+  .msg {
+    color: lightgray;
   }
 }

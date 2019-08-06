@@ -17,7 +17,7 @@ const MainPage = ({ history }) => {
       </div>
       <div className="bottom center">
         <div>
-          <div>{mainPage.button}</div>
+          <div className="msg">{mainPage.button}</div>
         </div>
         <button type="button" onClick={onClickButton}>
           <span>+</span>

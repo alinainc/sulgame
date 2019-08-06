@@ -40,11 +40,18 @@ h2 {
 }
 
 button {
-  border-radius: 10%;
+  transition: all 0.2s;
+  border-radius: 1.8rem;
   border-color: transparent;
-  background-color: grey;
+  background-color: lightslategray;
+  padding: 0.2rem 0.5rem;
+  text-align: center;
   color: whitesmoke;
   font-size: 1em;
+
+  &:active {
+    background-color: $primary-yellow;
+  }
 }
 
 #root {
