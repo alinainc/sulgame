@@ -6,6 +6,8 @@ export default {
     room: '당신의 닉네임은?',
   },
   nickName: '닉네임',
+  noinput: '닉네임을 입력해주세요',
+  overmax: '닉네임은 최대 6글자까지 가능합니다',
   room: {
     not: '방이 존재하지 않습니다',
   },
