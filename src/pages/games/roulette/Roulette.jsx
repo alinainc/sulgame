@@ -35,7 +35,7 @@ class Roulette extends React.Component {
     baseSize: 500,
     options: ['item1', 'item2', 'item3', 'item4', 'item5'],
     spinAngleStart: Math.random() * 10 + 10,
-    spinTimeTotal: Math.random() * 3 + 4 * 1000,
+    spinTimeTotal: Math.random() * 3 + 5 * 1000,
   };
 
   componentDidMount() {
@@ -67,40 +67,37 @@ class Roulette extends React.Component {
   drawRouletteWheel() {
     const { baseSize, options } = this.props;
     let { arc, startAngle } = this.state;
-    
-    
-    // const spinTimeout = null;
-    // const spinTime = 0;
-    // const spinTimeTotal = 0;
-    
     let ctx;
     
     const canvas = this.refs.canvas;
     if (canvas.getContext) {
       const outsideRadius = baseSize;
-      const textRadius = baseSize - 200;
+      // 룰렛 안 글자 위치
+      const textRadius = baseSize / 2;
       const insideRadius = 0;
       
       ctx = canvas.getContext('2d');
       ctx.clearRect(0,0,600,600);
-      
       ctx.strokeStyle = 'white';
       ctx.lineWidth = 2;
-      
       ctx.font = '30px Helvetica, Arial';
       
       for (let i = 0; i < options.length; i++) {
         const angle = startAngle + i * arc;
         
         ctx.fillStyle = this.getColor(i, options.length);
-        
+         
         ctx.beginPath();
+        // ctc.arc(x좌표, y좌표, 반지름, 시작각도, 끝각도, 그리는 방향)
+        // 그리는 방향 false: 시계 방향, true: 반시계 방향
         ctx.arc(baseSize, baseSize, outsideRadius, angle, angle + arc, false);
         ctx.arc(baseSize, baseSize, insideRadius, angle + arc, angle, true);
         ctx.fill();
         
+        // 룰렛 안 글자
         ctx.save();
         ctx.fillStyle = 'white';
+        // ctx.translate(x, y): (x, y)를 (0, 0)으로 정해주는 함수
         ctx.translate(baseSize + Math.cos(angle + arc / 2) * textRadius,
         baseSize + Math.sin(angle + arc / 2) * textRadius);
         ctx.rotate(angle + arc / 2 + Math.PI / 2);
@@ -109,7 +106,7 @@ class Roulette extends React.Component {
         ctx.restore();
       }
       
-      // Arrow
+      // 화살표
       ctx.fillStyle = 'red';
       ctx.beginPath();
       ctx.lineTo(baseSize + 10, baseSize - (outsideRadius + 20));
@@ -154,9 +151,11 @@ class Roulette extends React.Component {
     const arcd = arc * 180 / Math.PI;
     const index = Math.floor((360 - degrees % 360) / arcd);
     ctx.save();
-    ctx.font = 'bold 50px Helvetica, Arial';
+    ctx.font = 'bold 40px Helvetica, Arial';
     const text = options[index]
-    ctx.fillText(text, baseSize - ctx.measureText(text).width / 2, baseSize);
+
+    // 당첨된 항목 글자 위치 조정
+    ctx.fillText(text, baseSize - ctx.measureText(text).width / 2, baseSize * 1.8);
     ctx.restore();
     this.props.onComplete(text);
   }
