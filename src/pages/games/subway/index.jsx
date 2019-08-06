@@ -5,10 +5,12 @@ import { Route, Switch } from 'react-router';
 
 import shapes from '../../../shapes';
 import Play from './Play';
+import SelectLine from './SelectLine';
 
 const Subway = ({ match }) => (
   <Switch>
-    <Route exact path={`${match.url}/play`} component={Play} />
+    <Route exact path={`${match.url}/play/:roomId/user/:userId`} component={SelectLine} />
+    <Route exact path={`${match.url}/play/:lineNum/:roomId/user/:userId`} component={Play} />
   </Switch>
 );
 
