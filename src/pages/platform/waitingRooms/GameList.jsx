@@ -11,6 +11,7 @@ import { button, games, waitingRoom } from '../../../messages';
 import GameListForm from '../../components/GameListForm';
 
 const PlayerList = ({ isHost, roomId, userId }) => {
+
   const listenStart = () => (
     <FirebaseDatabaseNode path={`/rooms/${roomId}/players/host`}>
       {({ value }) => {
@@ -23,6 +24,7 @@ const PlayerList = ({ isHost, roomId, userId }) => {
           }
           return <Redirect to={`/games/${value.gametype}/play/${roomId}/user/${userId}`} />;
         }
+
         return null;
       }}
     </FirebaseDatabaseNode>

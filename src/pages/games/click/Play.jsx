@@ -24,7 +24,7 @@ const Play = ({ match: { params: { roomId, userId } } }) => {
       return (
         <FirebaseDatabaseMutation path={`/rooms/${roomId}/players/${userId}`} type="update">
           {({ runMutation }) => {
-            const initData = () => runMutation({ connect: 0, gameData: 0 });
+            const initData = () => runMutation({ gameData: 0 });
             return <InitWithMount init={initData} />;
           }}
         </FirebaseDatabaseMutation>
@@ -62,7 +62,7 @@ const Play = ({ match: { params: { roomId, userId } } }) => {
         </FirebaseDatabaseMutation>
         <FirebaseDatabaseMutation path={`/rooms/${roomId}/players/${userId}`} type="update">
           {({ runMutation }) => {
-            runMutation({ connect: 1, gameData: clickCount || 0 });
+            runMutation({ gameData: clickCount || 0 });
             if (userId === 'host') {
               return <Redirect to={`/platform/ranking/${roomId}/user/host`} />;
             }
@@ -73,7 +73,8 @@ const Play = ({ match: { params: { roomId, userId } } }) => {
     );
   }
 
-  const onClickButton = () => {
+  const onClickButton = (e) => {
+    e.preventDefault();
     const click = clickCount + 1;
     setClickCount(click);
   };
@@ -96,13 +97,19 @@ const Play = ({ match: { params: { roomId, userId } } }) => {
       <div className="game-body">
         <p>{`${clickGame.time}: ${seconds > gameSeconds ? gameSeconds : seconds}`}</p>
         <p>{`${clickGame.score}: ${clickCount}`}</p>
-        <Button type="button" onClick={onClickButton} disabled={buttonState}>
+        <Button
+          className="clickgame button"
+          type="button"
+          onClick={onClickButton}
+          disabled={buttonState}
+        >
           {clickGame.button}
         </Button>
       </div>
     </div>
   );
 };
+
 
 Play.propTypes = {
   match: shapes.match.isRequired,

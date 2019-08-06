@@ -1,11 +1,13 @@
 // Copyright (C) 2019 Alina Inc. All rights reserved.
 
+import firebase from 'firebase/app';
 import { isEmpty } from 'lodash';
+import generateHash from 'random-hash';
 import React, { useRef } from 'react';
 import { toast } from 'react-toastify';
 import { Input, Spinner } from 'reactstrap';
-import 'react-toastify/dist/ReactToastify.css';
 
+import 'react-toastify/dist/ReactToastify.css';
 import { FirebaseDatabaseMutation, FirebaseDatabaseNode } from '@react-firebase/database';
 
 import messages, { entry } from '../../../messages';
@@ -26,11 +28,14 @@ const Entry = ({ history, match: { params } }) => {
     }
     if (isHost) {
       const res = await runMutation({
-        players: { host: { connect: 1, name: inputRef.current.value, start: 0 } },
+        players: { host: { connect: generateHash(), name: inputRef.current.value, start: 0 } },
       });
       history.push(`/platform/waiting_room/${res.key}/host`);
     } else {
-      const res = await runMutation({ connect: 1, name: inputRef.current.value });
+      const hostVal = await firebase.database()
+        .ref(`/rooms/${params.roomId}/players/host/connect`)
+        .once('value');
+      const res = await runMutation({ connect: hostVal.val(), name: inputRef.current.value });
       history.push(`/platform/waiting_room/${params.roomId}/user/${res.key}`);
     }
     return null;

@@ -1,5 +1,6 @@
 // Copyright (C) 2019 Alina Inc. All rights reserved.
 
+import firebase from 'firebase/app';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Redirect } from 'react-router-dom';
@@ -13,6 +14,15 @@ import ReplayButton from './ReplayButton';
 
 const Ranking = ({ history, isHost, match: { params: { roomId, userId } } }) => {
   const toMain = () => history.push('/');
+
+  const updateConnect = async () => {
+    const hostConnect = await firebase.database()
+      .ref(`/rooms/${roomId}/players/host/connect`)
+      .once('value');
+    firebase.database()
+      .ref(`/rooms/${roomId}/players/${userId}`)
+      .update({ connect: hostConnect.val() });
+  };
 
   const renderRanking = () => (
     <FirebaseDatabaseNode path={`/rooms/${roomId}`}>
@@ -28,6 +38,7 @@ const Ranking = ({ history, isHost, match: { params: { roomId, userId } } }) => 
               />
             );
           }
+          updateConnect();
           return (
             <Redirect
               to={`/games/${value.players.host.gametype}/play/${roomId}/user/${userId}`}
@@ -35,6 +46,7 @@ const Ranking = ({ history, isHost, match: { params: { roomId, userId } } }) => 
           );
         }
         if (!value.players.host.start) {
+          updateConnect();
           return <Redirect to={`/platform/waiting_room/${roomId}/user/${userId}`} />;
         }
         return (

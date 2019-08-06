@@ -1,6 +1,7 @@
 // Copyright (C) 2019 Alina Inc. All rights reserved.
 
 import PropTypes from 'prop-types';
+import generateHash from 'random-hash';
 import React from 'react';
 
 import { FirebaseDatabaseMutation } from '@react-firebase/database';
@@ -9,16 +10,16 @@ import { button } from '../../../messages';
 import shapes from '../../../shapes';
 
 const ReplayButton = ({ history, isHost, roomId }) => {
+
   const toWaiting = () => (
     <FirebaseDatabaseMutation path={`/rooms/${roomId}/players/host`} type="update">
       {({ runMutation }) => (
         <button
-          type="button"
           onClick={() => {
             history.push(`/platform/waiting_room/${roomId}/host`);
-            runMutation({ start: 0 });
-          }
-        }
+            runMutation({ connect: generateHash(), start: 0 });
+          }}
+          type="button"
         >
           {button.retry.othergame}
         </button>
@@ -30,8 +31,11 @@ const ReplayButton = ({ history, isHost, roomId }) => {
     <FirebaseDatabaseMutation path={`/rooms/${roomId}/players/host`} type="update">
       {({ runMutation }) => (
         <button
+          onClick={async () => {
+            // history.push(`/platform/waiting_room/${roomId}/host`);
+            runMutation({ choice: null, connect: generateHash(), replay: 1 });
+          }}
           type="button"
-          onClick={() => { runMutation({ choice: null, replay: 1 }); }}
         >
           {button.retry.thisgame}
         </button>
