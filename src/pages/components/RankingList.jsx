@@ -35,16 +35,14 @@ const RankingList = ({ cols, isRank, value }) => {
           ? <Spinner color="primary" />
           : items.map((item, i) => (
             <tr>
-              <td>
-                {cols.map(col => (
-                  <td>
-                    {col.key === 'rank'
-                      ? `${i + 1}${ranking.rank.postfix}`
-                      : get(item, col.key, ' ')}
-                  </td>
-                ))
-                }
-              </td>
+              {cols.map(col => (
+                <td>
+                  {col.key === 'rank'
+                    ? `${i + 1}${ranking.rank.postfix}`
+                    : get(item, col.key, ' ')}
+                </td>
+              ))
+              }
             </tr>
           ))
         }
