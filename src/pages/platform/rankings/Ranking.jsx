@@ -9,7 +9,7 @@ import { FirebaseDatabaseNode } from '@react-firebase/database';
 
 import { button, ranking } from '../../../messages';
 import shapes from '../../../shapes';
-import PlayerList from '../../components/PlayerList';
+import RankingList from '../../components/RankingList';
 import ReplayButton from './ReplayButton';
 
 const Ranking = ({ history, isHost, match: { params: { roomId, userId } } }) => {
@@ -39,7 +39,7 @@ const Ranking = ({ history, isHost, match: { params: { roomId, userId } } }) => 
           return <Redirect to={`/platform/waiting_room/${roomId}/user/${userId}`} />;
         }
         return (
-          <PlayerList
+          <RankingList
             cols={[{
               key: 'rank',
               name: ranking.rank.title,
@@ -60,7 +60,7 @@ const Ranking = ({ history, isHost, match: { params: { roomId, userId } } }) => 
 
   return (
     <Container>
-      <h1>{ranking.title}</h1>
+      <h2>{ranking.title}</h2>
       <Button onClick={toMain}>{button.quit}</Button>
       {renderRanking()}
       <ReplayButton history={history} roomId={roomId} isHost={isHost} />
