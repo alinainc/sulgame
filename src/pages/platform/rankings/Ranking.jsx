@@ -3,7 +3,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Redirect } from 'react-router-dom';
-import { Button, Container } from 'reactstrap';
 
 import { FirebaseDatabaseNode } from '@react-firebase/database';
 
@@ -59,12 +58,12 @@ const Ranking = ({ history, isHost, match: { params: { roomId, userId } } }) => 
   );
 
   return (
-    <Container>
+    <div>
       <h2>{ranking.title}</h2>
-      <Button onClick={toMain}>{button.quit}</Button>
+      <button type="button" onClick={toMain}>{button.quit}</button>
       {renderRanking()}
       <ReplayButton history={history} roomId={roomId} isHost={isHost} />
-    </Container>
+    </div>
   );
 };
 

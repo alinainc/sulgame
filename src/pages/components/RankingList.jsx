@@ -22,24 +22,34 @@ const RankingList = ({ cols, isRank, value }) => {
   }
 
   return (
-    <div className="section">
-      <div className="bar">
-        {cols.map(col => <span key={col.name} xs={col.xsHead}>{col.name}</span>)}
-      </div>
-      {!value
-        ? <Spinner color="primary" />
-        : items.map((item, i) => (
-          <div key={item.name || item.nickname} className="players">
-            {cols.map(col => (
-              <span>
-                {col.key === 'rank'
-                  ? `${(i + 1)} ${ranking.rank.postfix}`
-                  : get(item, col.key, ' ')}
-              </span>
-            ))}
-          </div>
-        ))}
-    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>{ranking.rank.title}</th>
+          <th>{ranking.name}</th>
+          <th>{ranking.score}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {!items
+          ? <Spinner color="primary" />
+          : items.map((item, i) => (
+            <tr>
+              <td>
+                {cols.map(col => (
+                  <td>
+                    {col.key === 'rank'
+                      ? `${i + 1}${ranking.rank.postfix}`
+                      : get(item, col.key, ' ')}
+                  </td>
+                ))
+                }
+              </td>
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
   );
 };
 
