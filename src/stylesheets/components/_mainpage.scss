@@ -1,6 +1,10 @@
 // Copyright (C) 2019 Alina Inc. All rights reserved.
 
 .mainpage {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+
   button {
     margin: 5px;
     background-color: $primary-dark-grey;
@@ -22,5 +26,12 @@
 
   .moon {
     margin-top: 20vh;
+  }
+
+  div {
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    text-align: center;
   }
 }

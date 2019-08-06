@@ -75,20 +75,6 @@ button {
   }
 }
 
-.center {
-  &.y {
-    &.block {
-      display: block;
-      margin-right: auto;
-      margin-left: auto;
-    }
-
-    &.inline {
-      text-align: center;
-    }
-  }
-}
-
 .circle {
   border: 1px solid;
   border-radius: 50%;
