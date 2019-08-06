@@ -68,6 +68,8 @@ const Play = ({ match: { params: { roomId, userId } } }) => {
     for (let i = 0; i < 3; i += 1) {
       buttons.push(
         <Button
+          classes={{ disabled: 'sequence button disabled' }}
+          className="sequence button"
           disabled={isClicked[index[i] - 1]}
           key={index[i]}
           onClick={onButtonClick}
