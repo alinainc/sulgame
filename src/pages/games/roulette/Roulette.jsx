@@ -183,7 +183,7 @@ class Roulette extends React.Component {
           />
         </div>
         <div className="roulette-container">
-          <Button onClick={this.handleOnClick}>{rouletteGame.spin}</Button>
+          <Button className="roulette-btn" onClick={this.handleOnClick}>{rouletteGame.spin}</Button>
         </div>
       </div>
     );
