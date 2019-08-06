@@ -2,9 +2,8 @@
 
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Container } from 'reactstrap';
 
-import { waitingRoom } from '../../../messages';
+import { mainPage, waitingRoom } from '../../../messages';
 import shapes from '../../../shapes';
 import GameList from './GameList';
 import PlayerList from './PlayerList';
@@ -12,18 +11,21 @@ import Qrcode from './Qrcode';
 import UrlCopy from './UrlCopy';
 
 const WaitingRoom = ({ isHost, match: { params: { roomId, userId } } }) => (
-  <Container className="waiting">
-    <h2>{waitingRoom.title}</h2>
-    <Container className="section enter">
-      <div className="bar">초대하기</div>
+  <div className="waiting">
+    <h1>
+      <span>{mainPage.title}</span>
+      <span role="img" aria-label="moon">🌙</span>
+    </h1>
+    <div className="section enter">
+      <div className="bar">{waitingRoom.invite}</div>
       <Qrcode value={`localhost:3000/platform/entry/${roomId}`} />
       <UrlCopy roomId={roomId} />
-    </Container>
+    </div>
     <PlayerList roomId={roomId} />
     {isHost
       ? (<GameList roomId={roomId} isHost={isHost} />)
       : (<GameList userId={userId} roomId={roomId} isHost={isHost} />)}
-  </Container>
+  </div>
 );
 
 WaitingRoom.propTypes = {
