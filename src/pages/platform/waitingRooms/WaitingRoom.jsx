@@ -3,6 +3,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
+import domain from '../../../domain.config';
 import { mainPage, waitingRoom } from '../../../messages';
 import shapes from '../../../shapes';
 import GameList from './GameList';
@@ -18,7 +19,7 @@ const WaitingRoom = ({ isHost, match: { params: { roomId, userId } } }) => (
     </h1>
     <div className="section enter">
       <div className="bar">{waitingRoom.invite}</div>
-      <Qrcode value={`localhost:3000/platform/entry/${roomId}`} />
+      <Qrcode value={`${domain.default}/platform/entry/${roomId}`} />
       <UrlCopy roomId={roomId} />
     </div>
     <PlayerList roomId={roomId} />

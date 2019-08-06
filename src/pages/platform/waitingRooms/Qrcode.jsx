@@ -5,10 +5,12 @@ import QRCode from 'qrcode.react';
 import React from 'react';
 import { Container, Row } from 'reactstrap';
 
+import domain from '../../../domain.config';
+
 const Qrcode = ({ roomId }) => (
   <Container className="section qrcode">
     <Row>
-      <QRCode value={`localhost:3000/platform/entry/${roomId}`} className="contents" />
+      <QRCode value={`${domain.default}/platform/entry/${roomId}`} className="contents" />
     </Row>
     <Row className="bar">QR code</Row>
   </Container>
