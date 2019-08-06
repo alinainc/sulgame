@@ -22,7 +22,6 @@ const Play = ({ match: { params: { roomId, userId } } }) => {
   const [gameStart, setGameStart] = useState(false);
 
   const storeChoice = () => {
-
     if (userId === 'host') {
       return (
         <FirebaseDatabaseMutation path={`/rooms/${roomId}/players/host/`} type="update">
@@ -64,7 +63,7 @@ const Play = ({ match: { params: { roomId, userId } } }) => {
         if (!value) {
           return <Spinner color="primary" />;
         }
-        return <h6>{value}</h6>;
+        return <h2>{value}</h2>;
       }}
     </FirebaseDatabaseNode>
   );
@@ -92,7 +91,7 @@ const Play = ({ match: { params: { roomId, userId } } }) => {
   }
 
   return (
-    <div className={!gameStart ? 'game-backdrop' : 'container'}>
+    <div className={!gameStart ? 'game-backdrop' : 'game-container'}>
       {!gameStart
         ? (
           <Ready
@@ -105,12 +104,28 @@ const Play = ({ match: { params: { roomId, userId } } }) => {
         : null
       }
       {storeChoice()}
-      <h2>{chooseGame.title}</h2>
-      <p>{chooseGame.description}</p>
-      <p>{`${chooseGame.time}: ${seconds}`}</p>
-      {renderChoice()}
-      <Button disabled={buttonState} onClick={onButtonClick} size="lg" value="A">{button.A}</Button>
-      <Button disabled={buttonState} onClick={onButtonClick} size="lg" value="B">{button.B}</Button>
+      <h5 className="game-header">{chooseGame.title}</h5>
+      <div className="game-body">
+        <p>{chooseGame.description}</p>
+        <p>{`${chooseGame.time}: ${seconds}`}</p>
+        {renderChoice()}
+        <Button
+          disabled={buttonState}
+          onClick={onButtonClick}
+          size="lg"
+          value="A"
+        >
+          {button.A}
+        </Button>
+        <Button
+          disabled={buttonState}
+          onClick={onButtonClick}
+          size="lg"
+          value="B"
+        >
+          {button.B}
+        </Button>
+      </div>
     </div>
   );
 };

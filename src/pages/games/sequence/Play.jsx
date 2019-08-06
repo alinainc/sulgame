@@ -84,7 +84,7 @@ const Play = ({ match: { params: { roomId, userId } } }) => {
   const createGameBoard = () => {
     const gameBoard = [];
     for (let i = 0; i < 3; i += 1) {
-      gameBoard.push(<Row key={i}>{createButtons(arrayRef.current.slice(i * 3, i * 3 + 3))}</Row>);
+      gameBoard.push(<Row className="game-board" key={i}>{createButtons(arrayRef.current.slice(i * 3, i * 3 + 3))}</Row>);
     }
     return gameBoard;
   };
@@ -112,7 +112,7 @@ const Play = ({ match: { params: { roomId, userId } } }) => {
   }
 
   return (
-    <div className={!gameStart ? 'game-backdrop' : 'container'}>
+    <div className={!gameStart ? 'game-backdrop' : 'game-container'}>
       {!gameStart
         ? (
           <Ready
@@ -124,11 +124,13 @@ const Play = ({ match: { params: { roomId, userId } } }) => {
         )
         : null
       }
-      <h2>{sequenceGame.title}</h2>
-      <p>{sequenceGame.description}</p>
-      <p>{`${sequenceGame.time}: ${milliseconds}`}</p>
-      <p>{`${sequenceGame.result.title}: ${result}`}</p>
-      {createGameBoard()}
+      <h5 className="game-header">{sequenceGame.title}</h5>
+      <div className="game-body">
+        <p className="sequence-body">{sequenceGame.description}</p>
+        <p>{`${sequenceGame.time}: ${milliseconds}`}</p>
+        <p className="sequence-body">{`${sequenceGame.result.title}: ${result}`}</p>
+        {createGameBoard()}
+      </div>
     </div>
   );
 };

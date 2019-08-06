@@ -79,7 +79,7 @@ const Play = ({ match: { params: { roomId, userId } } }) => {
   };
 
   return (
-    <div className={!gameStart ? 'game-backdrop' : null}>
+    <div className={!gameStart ? 'game-backdrop' : 'game-container'}>
       {!gameStart
         ? (
           <Ready
@@ -92,12 +92,14 @@ const Play = ({ match: { params: { roomId, userId } } }) => {
         : null
       }
       {initGameData()}
-      <h2>{clickGame.title}</h2>
-      <p>{`${clickGame.time}: ${seconds > gameSeconds ? gameSeconds : seconds}`}</p>
-      <p>{`${clickGame.score}: ${clickCount}`}</p>
-      <Button type="button" onClick={onClickButton} disabled={buttonState}>
-        {clickGame.button}
-      </Button>
+      <h5 className="game-header">{clickGame.title}</h5>
+      <div className="game-body">
+        <p>{`${clickGame.time}: ${seconds > gameSeconds ? gameSeconds : seconds}`}</p>
+        <p>{`${clickGame.score}: ${clickCount}`}</p>
+        <Button type="button" onClick={onClickButton} disabled={buttonState}>
+          {clickGame.button}
+        </Button>
+      </div>
     </div>
   );
 };
