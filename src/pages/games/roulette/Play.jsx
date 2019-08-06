@@ -22,7 +22,7 @@ const Play = ({ history, isHost, match: { params: { roomId } } }) => {
         }
         return (
           <>
-            <Roulette options={getName(value)} baseSize={500} onComplete={handleOnComplete} />
+            <Roulette options={getName(value)} baseSize={150} onComplete={handleOnComplete} />
             <ReplayButton history={history} roomId={roomId} isHost={isHost} />
           </>
         );

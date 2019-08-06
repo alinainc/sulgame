@@ -87,7 +87,7 @@ class Roulette extends React.Component {
       ctx.strokeStyle = 'white';
       ctx.lineWidth = 2;
       
-      ctx.font = '80px Helvetica, Arial';
+      ctx.font = '30px Helvetica, Arial';
       
       for (let i = 0; i < options.length; i++) {
         const angle = startAngle + i * arc;
@@ -112,9 +112,9 @@ class Roulette extends React.Component {
       // Arrow
       ctx.fillStyle = 'red';
       ctx.beginPath();
-      ctx.lineTo(baseSize + 100, baseSize - (outsideRadius + 200));
-      ctx.lineTo(baseSize + 0, baseSize - (outsideRadius - 50));
-      ctx.lineTo(baseSize - 100, baseSize - (outsideRadius + 200));
+      ctx.lineTo(baseSize + 10, baseSize - (outsideRadius + 20));
+      ctx.lineTo(baseSize + 0, baseSize - (outsideRadius - 20));
+      ctx.lineTo(baseSize - 10, baseSize - (outsideRadius + 20));
       ctx.fill();
       ctx.stroke();
     }
@@ -154,9 +154,9 @@ class Roulette extends React.Component {
     const arcd = arc * 180 / Math.PI;
     const index = Math.floor((360 - degrees % 360) / arcd);
     ctx.save();
-    ctx.font = 'bold 100px Helvetica, Arial';
+    ctx.font = 'bold 50px Helvetica, Arial';
     const text = options[index]
-    ctx.fillText(text, baseSize - ctx.measureText(text).width / 2, baseSize / 3);
+    ctx.fillText(text, baseSize - ctx.measureText(text).width / 2, baseSize);
     ctx.restore();
     this.props.onComplete(text);
   }
