@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import messages from '../../../messages';
+import Footer from '../../components/Footer';
 import Rating from '../../components/Rating';
 
 const RatingPage = ({ history }) => (
@@ -26,6 +27,7 @@ const RatingPage = ({ history }) => (
         </div>
       </div>
     </div>
+    <Footer />
   </div>
 );
 
