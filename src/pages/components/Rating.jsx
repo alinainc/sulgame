@@ -3,7 +3,7 @@
 import PropTypes from 'prop-types';
 import React, { useRef } from 'react';
 import Ratings from 'react-ratings-declarative';
-import { Button, Input } from 'reactstrap';
+import { Input } from 'reactstrap';
 
 import { FirebaseDatabaseMutation } from '@react-firebase/database';
 
