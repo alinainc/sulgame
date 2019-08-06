@@ -29,3 +29,24 @@
   padding: 5px;
   width: 30%;
 }
+
+.game-list {
+  vertical-align: center;
+  position: relative;
+
+  .game-info {
+    position: left;
+    padding-right: 2%;
+  }
+}
+
+.game {
+  border-bottom: 1px solid gray;
+  // text-align: center;
+  padding: 2%;
+  padding-right: 0%;
+}
+
+#game-description {
+  width: 86%;
+}

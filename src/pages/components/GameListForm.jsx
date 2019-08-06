@@ -9,16 +9,26 @@ const GameListForm = ({ rows, title, value }) => {
   const items = Object.values(value);
 
   return (
-    <Container className="section">
-      <Row className="bar" key={title.key}>{title.key}</Row>
-      {items.map(item => (
-        rows.map(row => (
-          <Row key={row.key}>
-            {row.host ? row.host(item) : get(item, row.key, '')}
-          </Row>
-        ))
-      ))}
-    </Container>
+    <div className="section">
+      <div className="bar" key={title.key}>{title.key}</div>
+      <div className="game-list">
+        {items.map(item => (
+          rows.map(row => (
+            <table className="game" key={row.key}>
+              <tbody className="game-info">
+                <tr>
+                  <td>{get(item, 'name', '')}</td>
+                  <td rowSpan="3">{row.host ? row.host(item) : null}</td>
+                </tr>
+                <tr>
+                  <td id="game-description">{get(item, 'description', '')}</td>
+                </tr>
+              </tbody>
+            </table>
+          ))
+        ))}
+      </div>
+    </div>
   );
 };
 

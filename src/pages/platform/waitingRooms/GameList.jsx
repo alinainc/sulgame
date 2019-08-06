@@ -37,7 +37,7 @@ const PlayerList = ({ isHost, roomId, userId }) => {
           return null;
         }
         return (
-          <button type="button" onClick={() => { runMutation({ gametype, start: 1 }); }}>
+          <button className="game-start" type="button" onClick={() => { runMutation({ gametype, start: 1 }); }}>
             {button.start}
           </button>
         );
@@ -48,29 +48,15 @@ const PlayerList = ({ isHost, roomId, userId }) => {
   const renderGames = () => (
     <GameListForm
       title={{ key: waitingRoom.games }}
-      rows={[{
-        host: isHost
-          ? item => (
-            <>
-              <span>
-                {get(item, 'name', '')}
-              </span>
-              <span>{playGame(item.type)}</span>
-            </>
-          )
-          : undefined,
-        key: 'name',
-      }, {
-        key: 'description',
-      }]}
+      rows={[{ host: item => <>{playGame(item.type)}</> }]}
       value={games}
     />
   );
   return (
-    <>
+    <div className="section">
       {listenStart()}
       {renderGames()}
-    </>
+    </div>
   );
 };
 
