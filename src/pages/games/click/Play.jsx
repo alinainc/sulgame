@@ -80,7 +80,17 @@ const Play = ({ match: { params: { roomId, userId } } }) => {
 
   return (
     <div className={!gameStart ? 'game-backdrop' : null}>
-      {!gameStart ? <Ready description={clickGame.description} gameStart={gameStart} seconds={seconds - gameSeconds} title={clickGame.title} /> : null}
+      {!gameStart
+        ? (
+          <Ready
+            description={clickGame.description}
+            gameStart={gameStart}
+            seconds={seconds - gameSeconds}
+            title={clickGame.title}
+          />
+        )
+        : null
+      }
       {initGameData()}
       <h2>{clickGame.title}</h2>
       <p>{`${clickGame.time}: ${seconds > gameSeconds ? gameSeconds : seconds}`}</p>

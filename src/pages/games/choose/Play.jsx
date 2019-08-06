@@ -9,15 +9,20 @@ import { FirebaseDatabaseMutation, FirebaseDatabaseNode } from '@react-firebase/
 import { button, chooseGame } from '../../../messages';
 import shapes from '../../../shapes';
 import InitWithMount from '../../components/InitWithMount';
+import Ready from '../../components/Ready';
 import ChoiceList from './ChoiceList';
 
 const Play = ({ match: { params: { roomId, userId } } }) => {
-  const [seconds, setSeconds] = useState(3);
   const [buttonState, setButtonState] = useState(false);
   const resultRef = useRef(Math.floor(Math.random() * 2 + 1));
   const choiceRef = useRef(ChoiceList[Math.floor(Math.random() * ChoiceList.length)]);
+  const gameSeconds = 3;
+  const totalSeconds = 6;
+  const [seconds, setSeconds] = useState(totalSeconds);
+  const [gameStart, setGameStart] = useState(false);
 
   const storeChoice = () => {
+
     if (userId === 'host') {
       return (
         <FirebaseDatabaseMutation path={`/rooms/${roomId}/players/host/`} type="update">
@@ -36,10 +41,17 @@ const Play = ({ match: { params: { roomId, userId } } }) => {
       setSeconds(s => s - 1);
     }, 1000);
 
+    const sec = totalSeconds * 1000;
+    const loadSec = (totalSeconds - gameSeconds) * 1000;
+
+    setTimeout(() => {
+      setGameStart(true);
+    }, loadSec);
+
     setTimeout(() => {
       setButtonState(true);
       clearInterval(id);
-    }, 3000);
+    }, sec);
   }, []);
 
   const onButtonClick = ({ target: { value } }) => {
@@ -80,7 +92,18 @@ const Play = ({ match: { params: { roomId, userId } } }) => {
   }
 
   return (
-    <div className="container">
+    <div className={!gameStart ? 'game-backdrop' : 'container'}>
+      {!gameStart
+        ? (
+          <Ready
+            description={chooseGame.description}
+            gameStart={gameStart}
+            seconds={seconds - gameSeconds}
+            title={chooseGame.title}
+          />
+        )
+        : null
+      }
       {storeChoice()}
       <h2>{chooseGame.title}</h2>
       <p>{chooseGame.description}</p>
