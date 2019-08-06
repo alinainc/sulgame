@@ -8,7 +8,7 @@ import { FirebaseDatabaseNode } from '@react-firebase/database';
 import { waitingRoom } from '../../../messages';
 import PlayerListForm from '../../components/PlayerList';
 
-const PlayerList = ({ roomId }) => (
+const PlayerList = ({ roomId, userId }) => (
   <FirebaseDatabaseNode path={`/rooms/${roomId}/`}>
     {({ value }) => (
       <PlayerListForm
@@ -19,6 +19,7 @@ const PlayerList = ({ roomId }) => (
           xsHead: 12,
         }]}
         value={value}
+        userId={userId}
       />
     )}
   </FirebaseDatabaseNode>
@@ -26,6 +27,7 @@ const PlayerList = ({ roomId }) => (
 
 PlayerList.propTypes = {
   roomId: PropTypes.string.isRequired,
+  userId: PropTypes.string.isRequired,
 };
 
 export default PlayerList;

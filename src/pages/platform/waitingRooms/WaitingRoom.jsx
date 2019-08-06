@@ -22,7 +22,7 @@ const WaitingRoom = ({ isHost, match: { params: { roomId, userId } } }) => (
       <Qrcode value={`${domain.default}/platform/entry/${roomId}`} />
       <UrlCopy roomId={roomId} />
     </div>
-    <PlayerList roomId={roomId} />
+    <PlayerList roomId={roomId} userId={isHost ? 'host' : userId} />
     {isHost
       ? (<GameList roomId={roomId} isHost={isHost} />)
       : (<GameList userId={userId} roomId={roomId} isHost={isHost} />)}

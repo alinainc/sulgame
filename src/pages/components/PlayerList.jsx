@@ -4,12 +4,18 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { Spinner } from 'reactstrap';
 
-const PlayerList = ({ value }) => {
+const PlayerList = ({ userId, value }) => {
   let items;
 
   if (value) {
     if (value.players) {
-      items = Object.values(value.players);
+      items = Object.keys(value.players).map((player) => {
+        const item = Object.assign({}, value.players[player]);
+        if (player === userId) {
+          item.isMe = true;
+        }
+        return item;
+      });
     }
   }
 
@@ -24,7 +30,7 @@ const PlayerList = ({ value }) => {
             <div>
               <span role="img" aria-label="face" className="face"> 🧞‍</span>
             </div>
-            <div>
+            <div id={item.isMe ? 'me' : null}>
               {item.name}
             </div>
           </div>
@@ -34,6 +40,7 @@ const PlayerList = ({ value }) => {
 };
 
 PlayerList.propTypes = {
+  userId: PropTypes.string.isRequired,
   value: PropTypes.shape({
     players: PropTypes.shape({}),
   }),
