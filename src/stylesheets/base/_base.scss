@@ -55,6 +55,20 @@ button {
   color: beige;
 }
 
+.btn {
+  border-radius: 10%;
+  border-color: transparent;
+  background-color: $primary-dark-grey;
+  color: #333;
+  font-size: 1em;
+
+  &.rating {
+    margin-top: 8%;
+    padding: 5px;
+    width: 100%;
+  }
+}
+
 .bottom {
   display: relative;
   position: absolute;

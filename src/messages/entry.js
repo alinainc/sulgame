@@ -3,7 +3,7 @@
 export default {
   enter: '입장하기',
   make: {
-    room: '당신의 닉네임은?',
+    room: '너의 이름은..',
   },
   nickName: '닉네임',
   noinput: '닉네임을 입력해주세요',

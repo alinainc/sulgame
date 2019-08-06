@@ -50,11 +50,12 @@ const Entry = ({ history, match: { params } }) => {
           <Input
             innerRef={inputRef}
             placeholder={entry.nickName}
-            className="entry"
+            id="input"
             onKeyPress={e => (e.key === 'Enter') && makeOrEnterRoom(runMutation)()}
           />
           <Button
             type="button"
+            id="button"
             onClick={makeOrEnterRoom(runMutation)}
           >
             {isEmpty(params) ? entry.enter : entry.enter}
@@ -73,16 +74,16 @@ const Entry = ({ history, match: { params } }) => {
           return <div>{entry.room.not}</div>;
         }
         return (
-          <Container>
+          <div className="entry">
             <Row>
-              <h2>{isEmpty(params) ? entry.make.room : entry.enter}</h2>
+              <h2 id="header">{isEmpty(params) ? entry.make.room : entry.enter}</h2>
             </Row>
             <Col>
-              <Row className="bottom right">
+              <Row>
                 {enter()}
               </Row>
             </Col>
-          </Container>
+          </div>
         );
       }}
     </FirebaseDatabaseNode>
