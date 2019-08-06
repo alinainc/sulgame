@@ -45,14 +45,13 @@ h2 {
   flex-direction: column;
   min-height: 90vh;
   color: beige;
-  text-align: center;
 }
 
 .btn {
   border-radius: 10%;
   border-color: transparent;
-  background-color: $primary-dark-grey;
-  color: #333;
+  background-color: grey;
+  color: whitesmoke;
   font-size: 1em;
 
   &.rating {

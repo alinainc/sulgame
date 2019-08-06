@@ -3,10 +3,12 @@
 .mainpage {
   .btn {
     margin: 5px;
+    background-color: $primary-dark-grey;
     padding: 0;
     width: 10vh;
     height: 10vh;
     vertical-align: middle;
+    color: #333;
     font-size: 2em;
   }
 
