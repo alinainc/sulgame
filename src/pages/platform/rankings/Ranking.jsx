@@ -71,8 +71,14 @@ const Ranking = ({ history, isHost, match: { params: { roomId, userId } } }) => 
 
   return (
     <div className="ranking">
-      <h2>{ranking.title}</h2>
-      <button type="button" onClick={toMain}>{button.quit}</button>
+      <h1>{ranking.title}</h1>
+      <button
+        type="button"
+        onClick={toMain}
+        className="quit"
+      >
+        {button.quit}
+      </button>
       {renderRanking()}
       <ReplayButton history={history} roomId={roomId} isHost={isHost} />
     </div>
