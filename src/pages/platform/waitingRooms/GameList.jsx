@@ -4,7 +4,6 @@ import { get } from 'lodash';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Redirect } from 'react-router-dom';
-import { Button, Col } from 'reactstrap';
 
 import { FirebaseDatabaseMutation, FirebaseDatabaseNode } from '@react-firebase/database';
 
@@ -51,10 +50,10 @@ const PlayerList = ({ isHost, roomId, userId }) => {
         host: isHost
           ? item => (
             <>
-              <Col>
+              <span>
                 {get(item, 'name', '')}
-              </Col>
-              <Col>{playGame(item.type)}</Col>
+              </span>
+              <span>{playGame(item.type)}</span>
             </>
           )
           : undefined,
