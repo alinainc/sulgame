@@ -107,7 +107,7 @@ const Play = ({ match: { params: { roomId, userId } } }) => {
       <h5 className="game-header">{chooseGame.title}</h5>
       <div className="game-body">
         <p>{chooseGame.description}</p>
-        <p>{`${chooseGame.time}: ${seconds}`}</p>
+        <p>{`${chooseGame.time}: ${seconds > gameSeconds ? gameSeconds : seconds}`}</p>
         {renderChoice()}
         <Button
           disabled={buttonState}
