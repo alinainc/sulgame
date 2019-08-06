@@ -1,7 +1,7 @@
 // Copyright (C) 2019 Alina Inc. All rights reserved.
 
 import { isEmpty } from 'lodash';
-import React, { useRef } from 'react';
+import React, { useRef, Fragment } from 'react';
 import { toast } from 'react-toastify';
 import {
   Button,
@@ -42,15 +42,24 @@ const Entry = ({ history, match: { params } }) => {
     }
     return null;
   };
+
   const enter = () => (
     <FirebaseDatabaseMutation path={path} type="push">
       {({ runMutation }) => (
-        <Button
-          type="button"
-          onClick={makeOrEnterRoom(runMutation)}
-        >
-          {isEmpty(params) ? entry.enter : entry.enter}
-        </Button>
+        <Fragment>
+          <Input
+            innerRef={inputRef}
+            placeholder={entry.nickName}
+            className="entry"
+            onKeyPress={e => (e.key === 'Enter') && makeOrEnterRoom(runMutation)()}
+          />
+          <Button
+            type="button"
+            onClick={makeOrEnterRoom(runMutation)}
+          >
+            {isEmpty(params) ? entry.enter : entry.enter}
+          </Button>
+        </Fragment>
       )}
     </FirebaseDatabaseMutation>
   );
@@ -69,7 +78,6 @@ const Entry = ({ history, match: { params } }) => {
               <h2>{isEmpty(params) ? entry.make.room : entry.enter}</h2>
             </Row>
             <Col>
-              <Input innerRef={inputRef} placeholder={entry.nickName} className="entry" />
               <Row className="bottom right">
                 {enter()}
               </Row>
