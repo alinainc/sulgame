@@ -8,19 +8,32 @@ import { FirebaseDatabaseMutation } from '@react-firebase/database';
 
 import { sequenceGame } from '../../../messages';
 import shapes from '../../../shapes';
+import Ready from '../../components/Ready';
 
 const Play = ({ match: { params: { roomId, userId } } }) => {
   const intervalRef = useRef();
   const answerRef = useRef(1);
   const [isClicked] = useState(Array(9).fill(false));
   const [milliseconds, setMilliseconds] = useState(0);
+  const [loadSeconds, setLoadSeconds] = useState(3);
   const [result, setResult] = useState('');
+  const [gameStart, setGameStart] = useState(false);
 
   useEffect(() => {
-    const intervalId = setInterval(() => {
-      setMilliseconds(s => s + 1);
-    }, 100);
-    intervalRef.current = intervalId;
+    const load = setInterval(() => {
+      setLoadSeconds(s => s - 1);
+    }, 1000);
+
+    setTimeout(() => {
+      setGameStart(true);
+      clearInterval(load);
+
+      const intervalId = setInterval(() => {
+        setMilliseconds(s => s + 1);
+      }, 100);
+
+      intervalRef.current = intervalId;
+    }, 3000);
   }, []);
 
   const onButtonClick = ({ target: { value } }) => {
@@ -99,7 +112,18 @@ const Play = ({ match: { params: { roomId, userId } } }) => {
   }
 
   return (
-    <div className="container">
+    <div className={!gameStart ? 'game-backdrop' : 'container'}>
+      {!gameStart
+        ? (
+          <Ready
+            description={sequenceGame.description}
+            gameStart={gameStart}
+            seconds={loadSeconds}
+            title={sequenceGame.title}
+          />
+        )
+        : null
+      }
       <h2>{sequenceGame.title}</h2>
       <p>{sequenceGame.description}</p>
       <p>{`${sequenceGame.time}: ${milliseconds}`}</p>
