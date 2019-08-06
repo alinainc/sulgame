@@ -39,26 +39,20 @@ h2 {
   font-size: 2rem;
 }
 
+button {
+  border-radius: 10%;
+  border-color: transparent;
+  background-color: grey;
+  color: whitesmoke;
+  font-size: 1em;
+}
+
 #root {
   display: flex;
   position: relative;
   flex-direction: column;
   min-height: 90vh;
   color: beige;
-}
-
-.btn {
-  border-radius: 10%;
-  border-color: transparent;
-  background-color: grey;
-  color: whitesmoke;
-  font-size: 1em;
-
-  &.rating {
-    margin-top: 8%;
-    padding: 5px;
-    width: 100%;
-  }
 }
 
 .bottom {

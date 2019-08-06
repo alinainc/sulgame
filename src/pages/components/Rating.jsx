@@ -20,9 +20,9 @@ const Rating = ({ history }) => {
   const SubmitButton = (
     <FirebaseDatabaseMutation path="/feedback" type="push">
       {({ runMutation }) => (
-        <Button
+        <button
           type="button"
-          className="btn rating"
+          className="rating"
           onClick={
             () => {
               history.goBack();
@@ -32,7 +32,7 @@ const Rating = ({ history }) => {
           }
         >
           {messages.button.submit}
-        </Button>
+        </button>
       )}
     </FirebaseDatabaseMutation>
   );
