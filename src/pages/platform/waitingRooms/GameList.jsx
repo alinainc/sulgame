@@ -36,13 +36,9 @@ const PlayerList = ({ isHost, roomId, userId }) => {
           return null;
         }
         return (
-          <Button onClick={() => {
-            runMutation({ gametype, start: 1 });
-          }
-            }
-          >
+          <button type="button" onClick={() => { runMutation({ gametype, start: 1 }); }}>
             {button.start}
-          </Button>
+          </button>
         );
       }}
     </FirebaseDatabaseMutation>

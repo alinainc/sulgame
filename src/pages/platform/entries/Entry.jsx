@@ -53,13 +53,13 @@ const Entry = ({ history, match: { params } }) => {
             id="input"
             onKeyPress={e => (e.key === 'Enter') && makeOrEnterRoom(runMutation)()}
           />
-          <Button
+          <button
             type="button"
             id="button"
             onClick={makeOrEnterRoom(runMutation)}
           >
             {isEmpty(params) ? entry.enter : entry.enter}
-          </Button>
+          </button>
         </Fragment>
       )}
     </FirebaseDatabaseMutation>

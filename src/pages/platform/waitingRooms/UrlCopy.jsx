@@ -3,23 +3,23 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import { Button, Container, Row } from 'reactstrap';
+import { Container, Row } from 'reactstrap';
 
 import domain from '../../../domain.config';
 import { button, waitingRoom } from '../../../messages';
 
 const UrlCopy = ({ roomId }) => (
-  <Container className="section urlcopy">
-    <Row className="bar">{`${waitingRoom.url}`}</Row>
-    <Row className="warper">
+  <div className="section urlcopy">
+    <div className="bar">{`${waitingRoom.url}`}</div>
+    <div className="warper">
       <textarea defaultValue={`${domain.default}/platform/entry/${roomId}`} disabled />
       <CopyToClipboard text={`${domain.default}/platform/entry/${roomId}`}>
-        <Button className="contents">
+        <button type="button" className="contents">
           <span>{button.copy}</span>
-        </Button>
+        </button>
       </CopyToClipboard>
-    </Row>
-  </Container>
+    </div>
+  </div>
 );
 
 UrlCopy.propTypes = {
