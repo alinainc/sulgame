@@ -130,7 +130,7 @@ const Play = ({ match: { params: { roomId, userId } } }) => {
         )
         : null
       }
-      <h5 className="game-header">{sequenceGame.title}</h5>
+      <h1 className="game-header">{sequenceGame.title}</h1>
       <div className="game-body">
         <p className="sequence-body">{sequenceGame.description}</p>
         <p>{`${sequenceGame.time}: ${milliseconds}`}</p>
