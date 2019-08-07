@@ -29,14 +29,14 @@ const RankingList = ({ cols, isRank, userId, value }) => {
 
   return (
     <table>
-      <thead>
+      <thead key="head">
         <tr>
           <th>{ranking.rank.title}</th>
           <th>{ranking.name}</th>
           <th>{ranking.score}</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody key="body">
         {!items
           ? <Spinner color="primary" />
           : items.map((item, i) => (
