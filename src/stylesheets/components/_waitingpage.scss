@@ -72,4 +72,25 @@
       color: $primary-yellow;
     }
   }
+
+  .game-list {
+    margin: auto;
+
+    table {
+      margin: 0.5rem;
+      border: 0.15rem solid $primary-yellow;
+      border-radius: 1rem;
+      padding: 0.5rem;
+    }
+
+    button {
+      border-radius: 50%;
+      width: 3.2rem;
+      height: 3.2rem;
+    }
+
+    #game-name {
+      width: 75vw;
+    }
+  }
 }

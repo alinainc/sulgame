@@ -11,7 +11,7 @@ import { FirebaseDatabaseMutation, FirebaseDatabaseNode } from '@react-firebase/
 import { button, games, waitingRoom } from '../../../messages';
 import GameListForm from '../../components/GameListForm';
 
-const PlayerList = ({ isHost, roomId, userId }) => {
+const PlayerList = ({ roomId, userId }) => {
   const updateConnect = async () => {
     const hostConnect = await firebase.database()
       .ref(`/rooms/${roomId}/players/host/connect`)

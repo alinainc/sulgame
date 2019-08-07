@@ -8,7 +8,7 @@ const GameListForm = ({ rows, title, value }) => {
   const items = Object.values(value);
 
   return (
-    <div className="section game">
+    <div className="section game-list">
       <div className="bar" key={title.key}>{title.key}</div>
       {items.map(item => (
         <table key={item.key}>
