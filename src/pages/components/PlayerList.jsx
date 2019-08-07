@@ -1,5 +1,6 @@
 // Copyright (C) 2019 Alina Inc. All rights reserved.
 
+import { remove } from 'lodash';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Spinner } from 'reactstrap';
@@ -17,6 +18,8 @@ const PlayerList = ({ userId, value }) => {
         }
         return item;
       });
+      const host = remove(items, (e => e.key === 'host'));
+      items.unshift(host[0]);
     }
   }
 
