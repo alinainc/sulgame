@@ -5,7 +5,11 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 const GameListForm = ({ rows, title, value }) => {
-  const items = Object.values(value);
+  const items = Object.keys(value).map((game) => {
+    const item = Object.assign({}, value[game]);
+    item.key = game;
+    return item;
+  });
 
   return (
     <div className="section game-list">
@@ -14,11 +18,11 @@ const GameListForm = ({ rows, title, value }) => {
         <table key={item.key}>
           {rows.map(row => (
             <tbody>
-              <tr>
-                <td id="game-name">{get(item, 'name', '')}</td>
-                <td rowSpan="2">{row.host ? row.host(item) : null}</td>
+              <tr key="name">
+                <td key="game_name" id="game-name">{get(item, 'name', '')}</td>
+                <td key="button" rowSpan="2">{row.host ? row.host(item) : null}</td>
               </tr>
-              <tr>
+              <tr key="description">
                 <td>{get(item, 'description', '')}</td>
               </tr>
             </tbody>

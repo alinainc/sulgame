@@ -66,6 +66,7 @@ RankingList.propTypes = {
     xsHead: PropTypes.number,
   })),
   isRank: PropTypes.bool,
+  userId: PropTypes.string.isRequired,
   value: PropTypes.shape({
     players: PropTypes.shape({}),
   }),

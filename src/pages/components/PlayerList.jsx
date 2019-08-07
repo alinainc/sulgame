@@ -11,6 +11,7 @@ const PlayerList = ({ userId, value }) => {
     if (value.players) {
       items = Object.keys(value.players).map((player) => {
         const item = Object.assign({}, value.players[player]);
+        item.key = player;
         if (player === userId) {
           item.isMe = true;
         }
@@ -26,11 +27,11 @@ const PlayerList = ({ userId, value }) => {
       </div>
       {!items
         ? <Spinner color="primary" /> : items.map(item => (
-          <div key={item.name} className="players">
-            <div>
+          <div key={item.key} className="players">
+            <div key="img">
               <span role="img" aria-label="face" className="face"> 🧞‍</span>
             </div>
-            <div id={item.isMe ? 'me' : null}>
+            <div key="name" id={item.isMe ? 'me' : null}>
               {item.name}
             </div>
           </div>
