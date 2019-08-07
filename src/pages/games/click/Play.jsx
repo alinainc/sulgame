@@ -3,7 +3,6 @@
 import firebase from 'firebase/app';
 import React, { useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
-import { Button } from 'reactstrap';
 
 import { FirebaseDatabaseMutation } from '@react-firebase/database';
 

@@ -6,7 +6,7 @@ import React from 'react';
 
 import domain from '../../../domain.config';
 
-const Qrcode = ({ roomId }) => console.log(roomId)||(
+const Qrcode = ({ roomId }) => (
   <div>
     <div>
       <QRCode value={`http://${domain.default}/platform/entry/${roomId}`} id="qr" />
