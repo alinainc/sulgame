@@ -98,8 +98,9 @@
 
   .game-list {
     margin: auto;
+    width: 90vw;
 
-    table {
+    &table {
       margin: 0.5rem;
       border: 0.15rem solid $primary-yellow;
       border-radius: 1rem;

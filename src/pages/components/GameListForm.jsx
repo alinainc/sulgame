@@ -14,15 +14,17 @@ const GameListForm = ({ rows, value }) => {
   return (
     items.map(item => (
       rows.map(row => (
-        <tbody key={get(item, 'key', '')}>
-          <tr>
-            <td id="game-name">{get(item, 'name', '')}</td>
-            <td rowSpan="2">{row.host ? row.host(item) : null}</td>
-          </tr>
-          <tr>
-            <td>{get(item, 'description', '')}</td>
-          </tr>
-        </tbody>
+        <table key={get(item, 'key', '')} className="game-list">
+          <tbody>
+            <tr>
+              <td id="game-name">{get(item, 'name', '')}</td>
+              <td rowSpan="2">{row.host ? row.host(item) : null}</td>
+            </tr>
+            <tr>
+              <td>{get(item, 'description', '')}</td>
+            </tr>
+          </tbody>
+        </table>
       ))
     ))
   );
