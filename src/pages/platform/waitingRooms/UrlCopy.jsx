@@ -17,12 +17,12 @@ const UrlCopy = ({ roomId }) => (
     <tbody>
       <tr>
         <td>
-          <textarea defaultValue={`${domain.default}/platform/entry/${roomId}`} disabled />
+          <textarea defaultValue={`http://${domain.default}/platform/entry/${roomId}`} disabled />
         </td>
       </tr>
       <tr>
         <td className="btn-warp">
-          <CopyToClipboard text={`${domain.default}/platform/entry/${roomId}`}>
+          <CopyToClipboard text={`http://${domain.default}/platform/entry/${roomId}`}>
             <button type="button">{button.copy}</button>
           </CopyToClipboard>
         </td>
