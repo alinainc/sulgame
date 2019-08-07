@@ -9,20 +9,27 @@ import { waitingRoom } from '../../../messages';
 import PlayerListForm from '../../components/PlayerList';
 
 const PlayerList = ({ roomId, userId }) => (
-  <FirebaseDatabaseNode path={`/rooms/${roomId}/`}>
-    {({ value }) => (
-      <PlayerListForm
-        cols={[{
-          key: 'name',
-          name: waitingRoom.players,
-          xsChild: 3,
-          xsHead: 12,
-        }]}
-        value={value}
-        userId={userId}
-      />
-    )}
-  </FirebaseDatabaseNode>
+  <table>
+    <thead>
+      <tr>
+        <td>{waitingRoom.players}</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <FirebaseDatabaseNode path={`/rooms/${roomId}/`}>
+            {({ value }) => (
+              <PlayerListForm
+                value={value}
+                userId={userId}
+              />
+            )}
+          </FirebaseDatabaseNode>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 );
 
 PlayerList.propTypes = {
