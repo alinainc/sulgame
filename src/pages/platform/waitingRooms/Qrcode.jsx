@@ -7,16 +7,14 @@ import React from 'react';
 import domain from '../../../domain.config';
 
 const Qrcode = ({ roomId }) => (
-  <table>
-    <tbody>
+  <div>
+    <div>
       <QRCode value={`${domain.default}/platform/entry/${roomId}`} id="qr" />
-    </tbody>
-    <thead>
-      <tr>
-        <td>QR code</td>
-      </tr>
-    </thead>
-  </table>
+    </div>
+    <div>
+      QR code
+    </div>
+  </div>
 );
 
 Qrcode.propTypes = {
