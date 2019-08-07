@@ -12,8 +12,8 @@ import Ready from '../../components/Ready';
 
 const Play = ({ match: { params: { roomId, userId } } }) => {
   const [clickCount, setClickCount] = useState(0);
-  const gameSeconds = 1000;
-  const totalSeconds = 1003;
+  const gameSeconds = 5;
+  const totalSeconds = 8;
   const [seconds, setSeconds] = useState(totalSeconds);
   const [buttonState, setButtonState] = useState(false);
   const [gameStart, setGameStart] = useState(false);
