@@ -9,6 +9,11 @@ const MainPage = ({ history }) => {
   const onClickButton = () => {
     history.push('/platform/entry');
   };
+
+  const onFeedbackClick = () => {
+    history.push('/platform/rating');
+  };
+
   return (
     <div className="mainpage">
       <div>
@@ -22,6 +27,13 @@ const MainPage = ({ history }) => {
         <button type="button" onClick={onClickButton}>
           <span>+</span>
         </button>
+      </div>
+      <div>
+        <footer className="footer">
+          <button type="button" className="feedback" onClick={onFeedbackClick}>
+            <span role="img" aria-label="feedback">✉️</span>
+          </button>
+        </footer>
       </div>
     </div>
   );
