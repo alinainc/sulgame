@@ -17,7 +17,7 @@ const ReplayButton = ({ history, isHost, roomId }) => {
         <button
           onClick={() => {
             history.push(`/platform/waiting_room/${roomId}/host`);
-            runMutation({ connect: generateHash(), start: 0 });
+            runMutation({ start: 0 });
           }}
           type="button"
         >

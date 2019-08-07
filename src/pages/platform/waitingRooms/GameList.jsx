@@ -1,6 +1,12 @@
 // Copyright (C) 2019 Alina Inc. All rights reserved.
 
+<<<<<<< HEAD
+=======
+import firebase from 'firebase/app';
+import { get } from 'lodash';
+>>>>>>> Add remove leavers function
 import PropTypes from 'prop-types';
+import generateHash from 'random-hash';
 import React from 'react';
 import { Redirect } from 'react-router-dom';
 
@@ -10,6 +16,16 @@ import { button, games, waitingRoom } from '../../../messages';
 import GameListForm from '../../components/GameListForm';
 
 const PlayerList = ({ isHost, roomId, userId }) => {
+
+  const updateConnect = async () => {
+    const hostConnect = await firebase.database()
+      .ref(`/rooms/${roomId}/players/host/connect`)
+      .once('value');
+    await firebase.database()
+      .ref(`/rooms/${roomId}/players/${userId}`)
+      .update({ connect: hostConnect.val() });
+  };
+
 
   const listenStart = () => (
     <FirebaseDatabaseNode path={`/rooms/${roomId}/players/host`}>
@@ -21,6 +37,7 @@ const PlayerList = ({ isHost, roomId, userId }) => {
           if (!userId) {
             return <Redirect to={`/games/${value.gametype}/play/${roomId}/user/host`} />;
           }
+          updateConnect();
           return <Redirect to={`/games/${value.gametype}/play/${roomId}/user/${userId}`} />;
         }
 
@@ -36,7 +53,13 @@ const PlayerList = ({ isHost, roomId, userId }) => {
           return null;
         }
         return (
-          <button className="game-start" type="button" onClick={() => { runMutation({ gametype, start: 1 }); }}>
+          <button
+            className="game-start"
+            type="button"
+            onClick={() => {
+              runMutation({ connect: generateHash(), gametype, start: 1 });
+            }}
+          >
             {button.start}
           </button>
         );

@@ -15,15 +15,41 @@ import ReplayButton from './ReplayButton';
 const Ranking = ({ history, isHost, match: { params: { roomId, userId } } }) => {
   const toMain = () => history.push('/');
 
+  const removeLeaver = async () => {
+    const users = await firebase.database()
+      .ref(`/rooms/${roomId}/players`)
+      .once('value');
+    const { host: { connect } } = users.val();
+    const leavers = [];
+    Object.keys(users.val()).forEach((player) => {
+      if (users.val()[player].connect !== connect) {
+        leavers.push(player);
+      }
+    });
+    leavers.forEach((leaver) => {
+      firebase.database()
+        .ref(`/rooms/${roomId}/players/${leaver}`)
+        .set(null);
+    });
+  };
+  if (isHost) {
+    removeLeaver();
+  }
+
   const updateConnect = async () => {
     const hostConnect = await firebase.database()
       .ref(`/rooms/${roomId}/players/host/connect`)
       .once('value');
-    firebase.database()
+    await firebase.database()
       .ref(`/rooms/${roomId}/players/${userId}`)
       .update({ connect: hostConnect.val() });
   };
-
+  const getHostConnect = async () => {
+    const connect = await firebase.database()
+      .ref(`/rooms/${roomId}/players/host/connect`)
+      .once('value');
+    return connect.val();
+  };
   const renderRanking = () => (
     <FirebaseDatabaseNode path={`/rooms/${roomId}`}>
       {({ value }) => {
@@ -49,6 +75,7 @@ const Ranking = ({ history, isHost, match: { params: { roomId, userId } } }) => 
           updateConnect();
           return <Redirect to={`/platform/waiting_room/${roomId}/user/${userId}`} />;
         }
+        const hostConnect = getHostConnect();
         return (
           <RankingList
             cols={[{
@@ -63,6 +90,7 @@ const Ranking = ({ history, isHost, match: { params: { roomId, userId } } }) => 
             }]}
             isRank
             value={value}
+            hostConnect={hostConnect}
           />
         );
       }}
