@@ -1,8 +1,10 @@
 // Copyright (C) 2019 Alina Inc. All rights reserved.
 
+import firebase from 'firebase/app';
 import React, { useEffect, useState } from 'react';
+import { Redirect } from 'react-router-dom';
 
-import { FirebaseDatabaseMutation, FirebaseDatabaseNode } from '@react-firebase/database';
+import { FirebaseDatabaseNode } from '@react-firebase/database';
 
 import { button, rouletteGame } from '../../../messages';
 import shapes from '../../../shapes';
@@ -11,6 +13,15 @@ import Roulette from './Roulette';
 
 const Play = ({ history, match: { params: { roomId, userId } } }) => {
   const [gameStart, setGameStart] = useState(false);
+  useEffect(() => {
+    if (userId === 'host') {
+      firebase.database()
+        .ref(`/rooms/${roomId}/players/host/`)
+        .update({
+          gameData: null,
+        });
+    }
+  }, [roomId, userId]);
 
   useEffect(() => {
     setTimeout(() => {
@@ -19,51 +30,89 @@ const Play = ({ history, match: { params: { roomId, userId } } }) => {
   }, [gameStart]);
 
   const toWaiting = () => (
-    <FirebaseDatabaseMutation path={`/rooms/${roomId}/players/host`} type="update">
-      {({ runMutation }) => (
-        <button
-          type="button"
-          onClick={() => {
-            if (userId === 'host') {
-              history.push(`/platform/waiting_room/${roomId}/host`);
-              runMutation({ start: 0 });
-            }
-          }}
-        >
-          {button.retry.othergame}
-        </button>
-      )}
-    </FirebaseDatabaseMutation>
+    <button
+      type="button"
+      onClick={async () => {
+        await firebase.database().ref(`/rooms/${roomId}/players/host`).update({ start: 0 });
+        history.push(`/platform/waiting_room/${roomId}/host`);
+      }}
+    >
+      {button.retry.othergame}
+    </button>
   );
-  const handleOnComplete = value => console.log(value);
+  const listenToWaitingRoom = () => (
+    <FirebaseDatabaseNode path={`/rooms/${roomId}/players/host`}>
+      {({ value }) => {
+        if (!value) {
+          return null;
+        }
+        if (value.start === 0) {
+          return <Redirect to={`/platform/waiting_room/${roomId}/user/${userId}`} />;
+        }
+        return null;
+      }}
+    </FirebaseDatabaseNode>
+  );
+  const handleOnComplete = async (value) => {
+    await firebase.database()
+      .ref(`/rooms/${roomId}/players/host`)
+      .update({ gameData: value });
+  };
   const getName = obj => Object.values(obj).map(e => e.name);
 
+  if (userId === 'host') {
+    return (
+      <div className={!gameStart ? 'game-backdrop' : 'roulette-container'}>
+        <FirebaseDatabaseNode path={`/rooms/${roomId}/players`}>
+          {({ value }) => {
+            if (!value) {
+              return null;
+            }
+            return (
+              <>
+                <Roulette
+                  roomId={roomId}
+                  options={getName(value)}
+                  baseSize={150}
+                  onComplete={handleOnComplete}
+                />
+                {toWaiting()}
+                {(value.host.gameData !== 0) ? value.host.gameData : null}
+              </>
+            );
+          }}
+        </FirebaseDatabaseNode>
+        {!gameStart
+          ? (
+            <Ready
+              description={rouletteGame.description}
+              title={rouletteGame.title}
+            />
+          )
+          : null
+        }
+      </div>
+    );
+  }
 
   return (
-    <div className={!gameStart ? 'game-backdrop' : 'roulette-container'}>
-      <FirebaseDatabaseNode path={`/rooms/${roomId}/players`}>
+    <>
+      {listenToWaitingRoom()}
+      <FirebaseDatabaseNode path={`/rooms/${roomId}/players/host`}>
         {({ value }) => {
           if (!value) {
             return null;
           }
-          return (
-            <>
-              <Roulette options={getName(value)} baseSize={150} onComplete={handleOnComplete} />
-              {toWaiting()}
-            </>
-          );
+          if (value.gameData === 0) {
+            return <div>{rouletteGame.waiting}</div>;
+          }
+          if (value.gameData !== 0) {
+            return <div>{value.gameData}</div>;
+          }
+          return null;
         }}
       </FirebaseDatabaseNode>
-      {!gameStart
-        ? (
-          <Ready
-            description={rouletteGame.description}
-            title={rouletteGame.title}
-          />
-        )
-        : null
-      }
-    </div>
+    </>
   );
 };
 

@@ -13,8 +13,11 @@ const Ready = ({ description, seconds, title }) => (
 
 Ready.propTypes = {
   description: PropTypes.string.isRequired,
-  seconds: PropTypes.number.isRequired,
+  seconds: PropTypes.number,
   title: PropTypes.string.isRequired,
-}
+};
+Ready.defaultProps = {
+  seconds: undefined,
+};
 
 export default Ready;

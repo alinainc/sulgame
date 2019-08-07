@@ -10,7 +10,6 @@ import { button } from '../../../messages';
 import shapes from '../../../shapes';
 
 const ReplayButton = ({ history, isHost, roomId }) => {
-
   const toWaiting = () => (
     <FirebaseDatabaseMutation path={`/rooms/${roomId}/players/host`} type="update">
       {({ runMutation }) => (

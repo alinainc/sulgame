@@ -1,9 +1,10 @@
 /* eslint-disable */
 
+import firebase from 'firebase/app';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import rouletteGame from '../../../messages/rouletteGame';
+import { rouletteGame } from '../../../messages';
 
 class Roulette extends React.Component {
   constructor(props) {
@@ -149,12 +150,12 @@ class Roulette extends React.Component {
     const arcd = arc * 180 / Math.PI;
     const index = Math.floor((360 - degrees % 360) / arcd);
     ctx.save();
-    ctx.font = 'bold 40px Helvetica, Arial';
+    // ctx.font = 'bold 40px Helvetica, Arial';
     const text = options[index]
 
-    // 당첨된 항목 글자 위치 조정
-    ctx.fillText(text, baseSize - ctx.measureText(text).width / 2, baseSize * 1.8);
-    ctx.restore();
+    // // 당첨된 항목 글자 위치 조정
+    // ctx.fillText(text, baseSize - ctx.measureText(text).width / 2, baseSize * 1.8);
+    // ctx.restore();
     this.props.onComplete(text);
   }
   
@@ -166,13 +167,14 @@ class Roulette extends React.Component {
   
   handleOnClick() {
     this.spin();
+    firebase.database().ref(`/rooms/${this.props.roomId}/players/host`).update({ gameData: 0 });
   }
 
   render() {
     const { baseSize } = this.props;
     return (
       <div className="roulette-container">
-        <h5 className="game-header">{rouletteGame.title}</h5>
+        <h1 className="game-header">{rouletteGame.title}</h1>
         <canvas
           className="roulette-canvas"
           height={baseSize * 2}

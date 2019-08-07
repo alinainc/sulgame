@@ -7,4 +7,5 @@ export default {
   spin: '돌리기',
   title: '돌려라!',
   type: 'roulette',
+  waiting: '방장이 돌림판을 돌리는중입니다...',
 };
