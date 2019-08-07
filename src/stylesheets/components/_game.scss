@@ -9,6 +9,36 @@
 }
 
 .game {
-  margin: auto;
+  margin-right: auto;
+  margin-left: auto;
   text-align: center;
+
+  h1 {
+    margin-bottom: 0;
+  }
+
+  div {
+    margin-top: 5rem;
+  }
+
+  #verse {
+    margin: 1rem;
+    font-family: 'Gugi', 'Nanum Gothic', sans-serif;
+    font-size: 2rem;
+  }
+
+  .description {
+    color: #aaa;
+  }
+
+  .time {
+    color: #ccc;
+  }
+}
+
+#choose-game {
+  button {
+    padding: 2rem;
+    font-size: 2rem;
+  }
 }

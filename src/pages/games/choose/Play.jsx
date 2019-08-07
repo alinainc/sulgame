@@ -66,7 +66,7 @@ const Play = ({ match: { params: { roomId, userId } } }) => {
         return (
           <div>
             <button type="button" value={value[0]} onClick={onButtonClick}>{value[0]}</button>
-            <p>vs</p>
+            <p id="verse">vs</p>
             <button type="button" value={value[1]} onClick={onButtonClick}>{value[1]}</button>
           </div>
         );
@@ -109,11 +109,15 @@ const Play = ({ match: { params: { roomId, userId } } }) => {
         )
         : null
       }
-      <h1>{chooseGame.title}</h1>
       <div className="game">
-        <p>{chooseGame.description}</p>
-        <p>{`${chooseGame.time}: ${seconds > gameSeconds ? gameSeconds : seconds}`}</p>
-        {renderChoice()}
+        <h1>{chooseGame.title}</h1>
+        <p className="description">{chooseGame.description}</p>
+        <p className="time">
+          {`${chooseGame.time}: ${seconds > gameSeconds ? gameSeconds : seconds}`}
+        </p>
+        <div id="choose-game">
+          {renderChoice()}
+        </div>
       </div>
     </div>
   );
