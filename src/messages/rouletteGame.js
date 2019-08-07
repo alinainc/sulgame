@@ -5,7 +5,8 @@ export default {
   name: '돌려라!',
   result: '결과',
   spin: '돌리기',
+  spining: '룰렛이 돌아가는 중입니다',
   title: '돌려라!',
   type: 'roulette',
-  waiting: '방장이 돌림판을 돌리는중입니다...',
+  waiting: '방장이 룰렛을 돌리기를 기다리는 중입니다',
 };

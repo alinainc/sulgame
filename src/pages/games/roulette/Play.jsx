@@ -77,7 +77,7 @@ const Play = ({ history, match: { params: { roomId, userId } } }) => {
                   onComplete={handleOnComplete}
                 />
                 {toWaiting()}
-                {(value.host.gameData !== 0) ? value.host.gameData : null}
+                {(value.host.gameData !== 0) ? <div className="roulette-result">{value.host.gameData}</div> : null}
               </>
             );
           }}
@@ -103,11 +103,14 @@ const Play = ({ history, match: { params: { roomId, userId } } }) => {
           if (!value) {
             return null;
           }
-          if (value.gameData === 0) {
-            return <div>{rouletteGame.waiting}</div>;
+          if (value.gameData === undefined) {
+            return <div className="roulette-pending">{rouletteGame.waiting}</div>;
           }
-          if (value.gameData !== 0) {
-            return <div>{value.gameData}</div>;
+          if (value.gameData === 0) {
+            return <div className="roulette-pending">{rouletteGame.spining}</div>;
+          }
+          if (value.gameData) {
+            return <div className="roulette-result vertical-center">{`결과:${value.gameData}`}</div>;
           }
           return null;
         }}
