@@ -56,7 +56,7 @@ const Entry = ({ history, match: { params } }) => {
             id="button"
             onClick={makeOrEnterRoom(runMutation)}
           >
-            {isEmpty(params) ? entry.enter : entry.enter}
+            {entry.enter}
           </button>
         </>
       )}
@@ -74,7 +74,7 @@ const Entry = ({ history, match: { params } }) => {
         return (
           <div className="entry">
             <div>
-              <h2 id="header">{isEmpty(params) ? entry.make.room : entry.enter}</h2>
+              <h2 id="header">{entry.ask.name}</h2>
             </div>
             <div>
               {enter()}
