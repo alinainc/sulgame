@@ -73,7 +73,7 @@ const Play = ({ match: { params: { roomId, userId } } }) => {
   };
 
   return (
-    <div className={!gameStart ? 'game-backdrop' : 'game-container'}>
+    <div className={!gameStart ? 'game game-backdrop' : 'game game-container'}>
       {!gameStart
         ? (
           <Ready
@@ -85,10 +85,12 @@ const Play = ({ match: { params: { roomId, userId } } }) => {
         )
         : null
       }
-      <h5 className="game-header">{clickGame.title}</h5>
-      <div className="game-body">
-        <p>{`${clickGame.time}: ${seconds > gameSeconds ? gameSeconds : seconds}`}</p>
-        <p>{`${clickGame.score}: ${clickCount}`}</p>
+      <h1>{clickGame.title}</h1>
+      <p className="description">
+        {`${clickGame.time}: ${seconds > gameSeconds ? gameSeconds : seconds}`}
+      </p>
+      <p className="time">{`${clickGame.score}: ${clickCount}`}</p>
+      <div>
         <Button
           className="clickgame button"
           type="button"
