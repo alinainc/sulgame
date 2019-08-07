@@ -45,7 +45,7 @@ const Play = ({ match: { params: { lineNum } } }) => {
         clearInterval(intervalRef.current);
       }, sec);
     }
-  }, [defaultSecond, gameSeconds, answers]);
+  }, [defaultSecond, gameSeconds, answers, gameStart]);
 
   const stop = (disabledButton, resultText, initSeconds) => {
     if (disabledButton) {
