@@ -37,4 +37,5 @@ UrlCopy.propTypes = {
 UrlCopy.defaultProps = {
   roomId: 'host',
 };
+
 export default UrlCopy;

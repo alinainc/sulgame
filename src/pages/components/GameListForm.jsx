@@ -14,7 +14,7 @@ const GameListForm = ({ rows, value }) => {
   return (
     items.map(item => (
       rows.map(row => (
-        <tbody>
+        <tbody key={get(item, 'key', '')}>
           <tr>
             <td id="game-name">{get(item, 'name', '')}</td>
             <td rowSpan="2">{row.host ? row.host(item) : null}</td>
