@@ -16,6 +16,10 @@ import ReplayButton from './ReplayButton';
 const Ranking = ({ history, isHost, match: { params: { roomId, userId } } }) => {
   const toMain = () => history.push('/');
 
+  const onFeedbackClick = () => {
+    history.push('/platform/rating');
+  };
+
   const removeLeaver = async () => {
     const users = await firebase.database()
       .ref(`/rooms/${roomId}/players`)
@@ -117,6 +121,11 @@ const Ranking = ({ history, isHost, match: { params: { roomId, userId } } }) => 
       </button>
       {renderRanking()}
       <ReplayButton history={history} roomId={roomId} isHost={isHost} />
+      <footer className="footer">
+        <button type="button" className="feedback" onClick={onFeedbackClick}>
+          <span role="img" aria-label="feedback">✉️</span>
+        </button>
+      </footer>
     </div>
   );
 };
