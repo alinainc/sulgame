@@ -96,6 +96,7 @@ const Ranking = ({ history, isHost, match: { params: { roomId, userId } } }) => 
               name: ranking.score,
             }]}
             isRank
+            userId={isHost ? 'host' : userId}
             value={value}
             hostConnect={hostConnect}
           />

@@ -1,6 +1,6 @@
 // Copyright (C) 2019 Alina Inc. All rights reserved.
 
-import { get, remove } from 'lodash';
+import { get } from 'lodash';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Spinner } from 'reactstrap';
@@ -8,13 +8,19 @@ import { Spinner } from 'reactstrap';
 import { ranking } from '../../messages';
 import RankLogic from './RankLogic';
 
-const RankingList = ({ cols, isRank, value }) => {
+const RankingList = ({ cols, isRank, userId, value }) => {
   let items;
 
   if (value) {
     if (value.players) {
-      items = Object.values(value.players);
-      remove(items, ({ connect }) => (connect === 0));
+      items = Object.keys(value.players).map((player) => {
+        const item = Object.assign({}, value.players[player]);
+        item.key = player;
+        if (player === userId) {
+          item.isMe = true;
+        }
+        return item;
+      });
       if (isRank) {
         RankLogic(items);
       }
@@ -34,9 +40,9 @@ const RankingList = ({ cols, isRank, value }) => {
         {!items
           ? <Spinner color="primary" />
           : items.map((item, i) => (
-            <tr>
+            <tr key={item.key}>
               {cols.map(col => (
-                <td>
+                <td id={col.key === 'name' && item.isMe ? 'me' : null} key={col.key}>
                   {col.key === 'rank'
                     ? `${i + 1}${ranking.rank.postfix}`
                     : get(item, col.key, ' ')}
