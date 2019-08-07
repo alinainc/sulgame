@@ -72,14 +72,12 @@ const GameList = ({ roomId, userId }) => {
   return (
     <Fragment>
       {listenStart()}
-      <table>
+      <table className="vertical-scroll">
         <thead>
           <tr>{waitingRoom.games}</tr>
         </thead>
         <div className="vertical-scroll">
-          <tbody>
-            <tr>{renderGames()}</tr>
-          </tbody>
+          {renderGames()}
         </div>
       </table>
     </Fragment>
