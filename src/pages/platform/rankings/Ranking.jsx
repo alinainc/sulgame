@@ -9,6 +9,7 @@ import { FirebaseDatabaseNode } from '@react-firebase/database';
 
 import { button, ranking } from '../../../messages';
 import shapes from '../../../shapes';
+import RankingGroup from '../../components/RankingGroup';
 import RankingList from '../../components/RankingList';
 import ReplayButton from './ReplayButton';
 
@@ -75,7 +76,13 @@ const Ranking = ({ history, isHost, match: { params: { roomId, userId } } }) => 
           updateConnect();
           return <Redirect to={`/platform/waiting_room/${roomId}/user/${userId}`} />;
         }
+
+        if (value.players.host.gametype === 'choose') {
+          return <RankingGroup isRank roomId={roomId} value={value} />;
+        }
+
         const hostConnect = getHostConnect();
+
         return (
           <RankingList
             cols={[{

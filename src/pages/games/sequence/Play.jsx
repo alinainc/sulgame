@@ -86,7 +86,11 @@ const Play = ({ match: { params: { roomId, userId } } }) => {
   const createGameBoard = () => {
     const gameBoard = [];
     for (let i = 0; i < 3; i += 1) {
-      gameBoard.push(<Row className="game-board" key={i}>{createButtons(arrayRef.current.slice(i * 3, i * 3 + 3))}</Row>);
+      gameBoard.push(
+        <Row className="game-board" key={i}>
+          {createButtons(arrayRef.current.slice(i * 3, i * 3 + 3))}
+        </Row>,
+      );
     }
     return gameBoard;
   };

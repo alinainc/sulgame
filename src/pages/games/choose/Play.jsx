@@ -13,8 +13,9 @@ import Ready from '../../components/Ready';
 import ChoiceList from './ChoiceList';
 
 const Play = ({ match: { params: { roomId, userId } } }) => {
+  const answer = ['A', 'B'];
   const [buttonState, setButtonState] = useState(false);
-  const resultRef = useRef(Math.floor(Math.random() * 2 + 1));
+  const resultRef = useRef(answer[Math.floor(Math.random() * 2)]);
   const choiceRef = useRef(ChoiceList[Math.floor(Math.random() * ChoiceList.length)]);
   const gameSeconds = 3;
   const totalSeconds = 6;
@@ -22,11 +23,19 @@ const Play = ({ match: { params: { roomId, userId } } }) => {
   const [gameStart, setGameStart] = useState(false);
 
   const storeChoice = () => {
-    if (userId === 'host') {
+    if (userId) {
       return (
-        <FirebaseDatabaseMutation path={`/rooms/${roomId}/players/host/`} type="update">
+        <FirebaseDatabaseMutation path={`/rooms/${roomId}/players/${userId}`} type="update">
           {({ runMutation }) => {
-            const initData = () => runMutation({ choice: choiceRef.current });
+            if (userId === 'host') {
+              const initData = () => runMutation({
+                choice: choiceRef.current,
+                gameData: null,
+                order: resultRef.current,
+              });
+              return <InitWithMount init={initData} />;
+            }
+            const initData = () => runMutation({ gameData: null });
             return <InitWithMount init={initData} />;
           }}
         </FirebaseDatabaseMutation>

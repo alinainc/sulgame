@@ -5,7 +5,7 @@ const RankLogic = (items) => {
     if (item.gametype) {
       switch (item.gametype) {
         case 'choose':
-          items.sort((a, b) => (parseFloat(b.gameData) - parseFloat(a.gameData)));
+          items.sort((a, b) => (a.gameData > b.gameData ? 1 : -1));
           break;
         case 'click':
           items.sort((a, b) => (parseFloat(b.gameData) - parseFloat(a.gameData)));

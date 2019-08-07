@@ -1,6 +1,5 @@
 // Copyright (C) 2019 Alina Inc. All rights reserved.
 
-import PropTypes from 'prop-types';
 import React, { useRef } from 'react';
 import Ratings from 'react-ratings-declarative';
 import { Input } from 'reactstrap';
@@ -8,6 +7,7 @@ import { Input } from 'reactstrap';
 import { FirebaseDatabaseMutation } from '@react-firebase/database';
 
 import messages from '../../messages';
+import shapes from '../../shapes';
 
 const Rating = ({ history }) => {
   const inputRating = useRef(0);
@@ -56,7 +56,7 @@ const Rating = ({ history }) => {
 };
 
 Rating.propTypes = {
-  history: PropTypes.shape({ goBack: PropTypes.func }).isRequired,
+  history: shapes.history.isRequired,
 };
 
 export default Rating;
