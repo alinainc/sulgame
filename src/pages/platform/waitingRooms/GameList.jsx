@@ -76,9 +76,15 @@ const GameList = ({ roomId, userId }) => {
         <thead>
           <tr>{waitingRoom.games}</tr>
         </thead>
-        <div className="vertical-scroll">
-          {renderGames()}
-        </div>
+        <tbody>
+          <tr>
+            <td>
+              <div className="vertical-scroll">
+                {renderGames()}
+              </div>
+            </td>
+          </tr>
+        </tbody>
       </table>
     </Fragment>
   );
