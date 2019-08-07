@@ -11,13 +11,13 @@
   text-align: center;
   line-height: 1em;
   white-space: nowrap;
-  
+
   #setting-box {
-    height: 20vh;
     position: relative;
+    height: 20vh;
   }
 
-  #header { 
+  #header {
     font-size: 200%;
     margin-block-start: 3em;
     margin-block-end: 3em;
@@ -28,16 +28,16 @@
   }
 
   .input-group {
-    position: relative;
     display: flex;
+    position: relative;
     flex-wrap: wrap;
     align-items: stretch;
     width: 100%;
   }
 
   .form-control {
-    border: 1px solid #ced4da;
-    border-radius: .25rem;
     flex: 1 1 auto;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
   }
 }
