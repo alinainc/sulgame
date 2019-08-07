@@ -1,6 +1,6 @@
 // Copyright (C) 2019 Alina Inc. All rights reserved.
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { FirebaseDatabaseMutation, FirebaseDatabaseNode } from '@react-firebase/database';
 
@@ -11,6 +11,12 @@ import Roulette from './Roulette';
 
 const Play = ({ history, match: { params: { roomId, userId } } }) => {
   const [gameStart, setGameStart] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setGameStart(true);
+    }, 1000);
+  }, [gameStart]);
 
   const toWaiting = () => (
     <FirebaseDatabaseMutation path={`/rooms/${roomId}/players/host`} type="update">
@@ -34,15 +40,17 @@ const Play = ({ history, match: { params: { roomId, userId } } }) => {
 
 
   return (
-    <div className="roulette-container">
+    <div className={!gameStart ? 'game-backdrop' : 'roulette-container'}>
       <FirebaseDatabaseNode path={`/rooms/${roomId}/players`}>
         {({ value }) => {
           if (!value) {
             return null;
           }
-          setGameStart(true);
           return (
-            <Roulette options={getName(value)} baseSize={150} onComplete={handleOnComplete} />
+            <>
+              <Roulette options={getName(value)} baseSize={150} onComplete={handleOnComplete} />
+              {toWaiting()}
+            </>
           );
         }}
       </FirebaseDatabaseNode>
@@ -53,7 +61,7 @@ const Play = ({ history, match: { params: { roomId, userId } } }) => {
             title={rouletteGame.title}
           />
         )
-        : toWaiting()
+        : null
       }
     </div>
   );

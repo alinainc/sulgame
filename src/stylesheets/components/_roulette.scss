@@ -21,3 +21,9 @@
     margin-bottom: 30px;
   }
 }
+
+.roulette-backdrop {
+  -webkit-filter: blur(50px);
+  filter: blur(50px);
+  text-align: center;
+}
