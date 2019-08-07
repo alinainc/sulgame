@@ -1,5 +1,6 @@
 // Copyright (C) 2019 Alina Inc. All rights reserved.
 
+import firebase from 'firebase/app';
 import React, { useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { Button } from 'reactstrap';
@@ -8,7 +9,6 @@ import { FirebaseDatabaseMutation } from '@react-firebase/database';
 
 import clickGame from '../../../messages/clickGame';
 import shapes from '../../../shapes';
-import InitWithMount from '../../components/InitWithMount';
 import Ready from '../../components/Ready';
 
 const Play = ({ match: { params: { roomId, userId } } }) => {
@@ -19,20 +19,13 @@ const Play = ({ match: { params: { roomId, userId } } }) => {
   const [buttonState, setButtonState] = useState(false);
   const [gameStart, setGameStart] = useState(false);
 
-  const initGameData = () => {
+  useEffect(() => {
     if (userId) {
-      return (
-        <FirebaseDatabaseMutation path={`/rooms/${roomId}/players/${userId}`} type="update">
-          {({ runMutation }) => {
-            const initData = () => runMutation({ gameData: 0 });
-            return <InitWithMount init={initData} />;
-          }}
-        </FirebaseDatabaseMutation>
-      );
+      firebase.database()
+        .ref(`/rooms/${roomId}/players/${userId}`)
+        .update({ gameData: 0 });
     }
-    return null;
-  };
-
+  }, [roomId, userId]);
   useEffect(() => {
     const id = setInterval(() => {
       setSeconds(s => s - 1);
@@ -92,7 +85,6 @@ const Play = ({ match: { params: { roomId, userId } } }) => {
         )
         : null
       }
-      {initGameData()}
       <h5 className="game-header">{clickGame.title}</h5>
       <div className="game-body">
         <p>{`${clickGame.time}: ${seconds > gameSeconds ? gameSeconds : seconds}`}</p>
