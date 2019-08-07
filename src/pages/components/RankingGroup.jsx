@@ -7,12 +7,12 @@ import { Spinner } from 'reactstrap';
 
 import { FirebaseDatabaseNode } from '@react-firebase/database';
 
-import { chooseGame } from '../../messages';
 import RankLogic from './RankLogic';
 
 const RankingGroup = ({ isRank, roomId, value }) => {
   const groupA = [];
   const groupB = [];
+  let hostItem = {};
   let items;
 
   if (value.players) {
@@ -29,9 +29,15 @@ const RankingGroup = ({ isRank, roomId, value }) => {
     }
 
     items.forEach((item) => {
-      if (item.gameData === items[0].choice[0]) {
+      if (item.gametype) {
+        hostItem = item;
+      }
+    });
+
+    items.forEach((item) => {
+      if (item.gameData === hostItem.choice[0]) {
         groupA.push(item.name);
-      } else if (item.gameData === items[0].choice[1]) {
+      } else if (item.gameData === hostItem.choice[1]) {
         groupB.push(item.name);
       }
     });
@@ -68,8 +74,8 @@ const RankingGroup = ({ isRank, roomId, value }) => {
       <table>
         <thead>
           <tr>
-            <th>{items[0].choice[0]}</th>
-            <th>{items[0].choice[1]}</th>
+            <th>{hostItem.choice[0]}</th>
+            <th>{hostItem.choice[1]}</th>
           </tr>
         </thead>
         <tbody>

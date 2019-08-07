@@ -13,10 +13,9 @@ import Ready from '../../components/Ready';
 import ChoiceList from './ChoiceList';
 
 const Play = ({ match: { params: { roomId, userId } } }) => {
-  const answer = ['A', 'B'];
   const [buttonState, setButtonState] = useState(false);
-  const resultRef = useRef(answer[Math.floor(Math.random() * 2)]);
   const choiceRef = useRef(ChoiceList[Math.floor(Math.random() * ChoiceList.length)]);
+  const resultRef = useRef(choiceRef.current[Math.floor(Math.random() * 2)]);
   const gameSeconds = 3;
   const totalSeconds = 6;
   const [seconds, setSeconds] = useState(totalSeconds);

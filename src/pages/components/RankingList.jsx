@@ -13,6 +13,7 @@ const RankingList = ({ cols, isRank, userId, value }) => {
 
   if (value) {
     if (value.players) {
+      console.log(value.players);
       items = Object.keys(value.players).map((player) => {
         const item = Object.assign({}, value.players[player]);
         item.key = player;
