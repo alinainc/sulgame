@@ -19,18 +19,21 @@
   }
 
   > table {
-    border: 0.2rem wheat solid;
+    margin-top: 0.5em;
+    border: 0.2rem lightslategray solid;
     border-radius: 0.5rem;
     width: 96vw;
 
     thead {
+      background-color: lightslategray;
       text-align: center;
+      color: whitesmoke;
       font-weight: 800;
     }
 
-    td {
-      border: 0.1rem wheat solid;
-    }
+    // td {
+    //   border: 0.1rem wheat solid;
+    // }
 
     .btn-warp {
       text-align: center;
@@ -98,15 +101,10 @@
 
   .game-list {
     margin: auto;
+    border: 0.15rem lightslategray solid;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
     width: 90vw;
-
-    &table {
-      margin: 0.5rem;
-      border: 0.15rem solid $primary-yellow;
-      border-radius: 1rem;
-      padding: 0.5rem;
-      width: 90vw;
-    }
 
     button {
       border-radius: 50%;
