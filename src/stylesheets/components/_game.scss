@@ -13,12 +13,12 @@
   margin-left: auto;
   text-align: center;
 
-  h1 {
-    margin-bottom: 0;
+  > div {
+    margin-top: 5rem;
   }
 
-  div {
-    margin-top: 5rem;
+  h1 {
+    margin-bottom: 0;
   }
 
   .description {
@@ -31,19 +31,36 @@
   }
 }
 
-#choose-game {
-  button {
-    padding: 2rem;
-    font-size: 2rem;
+#sequence-button {
+  margin: 0.2rem;
+  border-radius: 50%;
+  background: lightslategray;
+  width: 70px;
+  height: 70px;
+  text-align: center;
+  text-decoration: none;
+  line-height: 50px;
+  color: #f5f5f5;
+  font-size: 20px;
+  font-weight: bold;
 
-    &:hover {
-      background-color: $primary-yellow;
-    }
+  &:disabled {
+    box-shadow: 0 0 0.5rem $primary-yellow;
+    background-color: $primary-yellow;
   }
+}
 
-  #verse {
-    margin: 1rem;
-    font-family: 'Gugi', 'Nanum Gothic', sans-serif;
-    font-size: 2rem;
+#choose-button {
+  padding: 2rem;
+  font-size: 2rem;
+
+  &:hover {
+    background-color: $primary-yellow;
   }
+}
+
+#verse {
+  margin: 1rem;
+  font-family: 'Gugi', 'Nanum Gothic', sans-serif;
+  font-size: 2rem;
 }

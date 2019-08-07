@@ -74,17 +74,16 @@ const Play = ({ match: { params: { roomId, userId } } }) => {
     const buttons = [];
     for (let i = 0; i < 3; i += 1) {
       buttons.push(
-        <Button
-          classes={{ disabled: 'sequence button disabled' }}
-          className="sequence button"
+        <button
+          type="button"
+          id="sequence-button"
           disabled={isClicked[index[i] - 1]}
           key={index[i]}
           onClick={onButtonClick}
-          size="lg"
           value={index[i]}
         >
           {index[i]}
-        </Button>,
+        </button>,
       );
     }
     return buttons;
@@ -94,9 +93,9 @@ const Play = ({ match: { params: { roomId, userId } } }) => {
     const gameBoard = [];
     for (let i = 0; i < 3; i += 1) {
       gameBoard.push(
-        <Row className="game-board" key={i}>
+        <div className="game-board" key={i}>
           {createButtons(arrayRef.current.slice(i * 3, i * 3 + 3))}
-        </Row>,
+        </div>,
       );
     }
     return gameBoard;
@@ -141,7 +140,7 @@ const Play = ({ match: { params: { roomId, userId } } }) => {
       <p className="description">{sequenceGame.description}</p>
       <p className="time">{`${sequenceGame.time}: ${milliseconds}`}</p>
       <p className="time">{`${sequenceGame.result.title}: ${result}`}</p>
-      <div className="game-body">
+      <div>
         {createGameBoard()}
       </div>
     </div>

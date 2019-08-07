@@ -7,7 +7,7 @@ import { Spinner } from 'reactstrap';
 
 import { FirebaseDatabaseMutation, FirebaseDatabaseNode } from '@react-firebase/database';
 
-import { button, chooseGame } from '../../../messages';
+import { chooseGame } from '../../../messages';
 import shapes from '../../../shapes';
 import Ready from '../../components/Ready';
 import ChoiceList from './ChoiceList';
@@ -65,9 +65,13 @@ const Play = ({ match: { params: { roomId, userId } } }) => {
         }
         return (
           <div>
-            <button type="button" value={value[0]} onClick={onButtonClick}>{value[0]}</button>
+            <button type="button" value={value[0]} onClick={onButtonClick} id="choose-button">
+              {value[0]}
+            </button>
             <p id="verse">vs</p>
-            <button type="button" value={value[1]} onClick={onButtonClick}>{value[1]}</button>
+            <button type="button" value={value[1]} onClick={onButtonClick} id="choose-button">
+              {value[1]}
+            </button>
           </div>
         );
       }}
@@ -115,7 +119,7 @@ const Play = ({ match: { params: { roomId, userId } } }) => {
         <p className="time">
           {`${chooseGame.time}: ${seconds > gameSeconds ? gameSeconds : seconds}`}
         </p>
-        <div id="choose-game">
+        <div>
           {renderChoice()}
         </div>
       </div>
