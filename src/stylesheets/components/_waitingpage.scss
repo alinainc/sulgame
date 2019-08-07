@@ -89,9 +89,9 @@
   }
 
   .horizontal-scroll {
-    overflow-x: scroll;
-    overflow-y: hidden;
+    overflow: auto;
     white-space: nowrap;
+    width: 93vw;
   }
 
   .vertical-scroll {

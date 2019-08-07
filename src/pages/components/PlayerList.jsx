@@ -24,19 +24,21 @@ const PlayerListForm = ({ userId, value }) => {
   }
 
   return (
-    !items
-      ? <Spinner color="primary" /> : items.map(item => (
-        <span key={item.key}>
-          <div className="players">
-            <div key="img" id={item.key === 'host' ? 'host' : null}>
-              <span role="img" aria-label="face" className="face"> 🧞‍</span>
+    <div className="horizontal-scroll">
+      {!items
+        ? <Spinner color="primary" /> : items.map(item => (
+          <span key={item.key}>
+            <div className="players">
+              <div key="img" id={item.key === 'host' ? 'host' : null}>
+                <span role="img" aria-label="face" className="face"> 🧞‍</span>
+              </div>
+              <div id={item.isMe ? 'me' : null}>
+                {item.name}
+              </div>
             </div>
-            <div id={item.isMe ? 'me' : null}>
-              {item.name}
-            </div>
-          </div>
-        </span>
-      ))
+          </span>
+        ))}
+    </div>
   );
 };
 
