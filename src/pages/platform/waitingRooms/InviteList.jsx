@@ -17,7 +17,7 @@ const InviteList = ({ roomId }) => (
     </thead>
     <tbody>
       <tr>
-        <td><Qrcode value={`${domain.default}/platform/entry/${roomId}`} /></td>
+        <td><Qrcode roomId={roomId} value={`${domain.default}/platform/entry/${roomId}`} /></td>
         <td><UrlCopy roomId={roomId} /></td>
       </tr>
     </tbody>
