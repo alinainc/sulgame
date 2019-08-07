@@ -30,7 +30,10 @@ const PlayerListForm = ({ userId, value }) => {
           <span key={item.key}>
             <div className="players">
               <div key="img" id={item.key === 'host' ? 'host' : null}>
-                <span role="img" aria-label="face" className="face"> 🧞‍</span>
+                {(item.key === 'host')
+                  ? (<span role="img" aria-label="face" className="face">👑</span>)
+                  : (<span role="img" aria-label="face" className="face">‍🧞</span>)
+                }
               </div>
               <div id={item.isMe ? 'me' : null}>
                 {item.name}
