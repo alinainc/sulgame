@@ -1,5 +1,9 @@
 // Copyright (C) 2019 Alina Inc. All rights reserved.
 
+#qr {
+  border: 0.2rem whitesmoke solid;
+}
+
 .waiting {
   margin: 0;
   padding: 0;
@@ -18,11 +22,22 @@
   > table {
     border: 0.2rem wheat solid;
     border-radius: 0.5rem;
-    
+    max-width: 96vw;
+
+    thead {
+      text-align: center;
+      font-weight: 800;
+    }
+
     td {
       border: 0.1rem wheat solid;
     }
+
+    .btn-warp {
+      text-align: center;
+    }
   }
+
   .bar {
     color: whitesmoke;
   }
@@ -50,20 +65,6 @@
 
     .contents {
       max-width: 38vw;
-    }
-  }
-
-  .qrcode {
-    display: inline-block;
-    margin: 5px;
-    width: 40vw;
-
-    > .bar {
-      background-color: transparent;
-    }
-
-    .contents {
-      border: 0.2em whitesmoke solid;
     }
   }
 
