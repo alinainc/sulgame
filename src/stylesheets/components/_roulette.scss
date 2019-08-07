@@ -1,0 +1,23 @@
+.roulette-container {
+  display: block;
+  margin-right: auto;
+  margin-left: auto;
+
+  h5 {
+    margin-top: 30px;
+  }
+
+  button {
+    display: block;
+    margin-top: 10px;
+    margin-right: auto;
+    margin-bottom: 10px;
+    margin-left: auto;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+
+  #canvas-container {
+    margin-bottom: 30px;
+  }
+}

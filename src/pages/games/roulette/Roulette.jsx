@@ -3,8 +3,6 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { Button } from 'reactstrap';
-
 import rouletteGame from '../../../messages/rouletteGame';
 
 class Roulette extends React.Component {
@@ -173,18 +171,15 @@ class Roulette extends React.Component {
   render() {
     const { baseSize } = this.props;
     return (
-      <div className="roulette">
-        <div className="roulette-container">
-          <canvas
-            className="roulette-canvas"
-            height={baseSize * 2}
-            ref="canvas"
-            width={baseSize * 2}
-          />
-        </div>
-        <div className="roulette-container">
-          <Button className="roulette-btn" onClick={this.handleOnClick}>{rouletteGame.spin}</Button>
-        </div>
+      <div className="roulette-container">
+        <h5 className="game-header">{rouletteGame.title}</h5>
+        <canvas
+          className="roulette-canvas"
+          height={baseSize * 2}
+          ref="canvas"
+          width={baseSize * 2}
+        />
+        <button onClick={this.handleOnClick}>{rouletteGame.spin}</button>
       </div>
     );
   }

@@ -1,7 +1,6 @@
 // Copyright (C) 2019 Alina Inc. All rights reserved.
 
 import React from 'react';
-import { Button } from 'reactstrap';
 
 import { FirebaseDatabaseMutation, FirebaseDatabaseNode } from '@react-firebase/database';
 
@@ -13,21 +12,19 @@ const Play = ({ history, match: { params: { roomId } } }) => {
   const toWaiting = () => (
     <FirebaseDatabaseMutation path={`/rooms/${roomId}/players/host`} type="update">
       {({ runMutation }) => (
-        <Button
-          className="roulette-btn"
+        <button
+          type="button"
           onClick={() => {
             history.push(`/platform/waiting_room/${roomId}/host`);
             runMutation({ start: 0 });
           }}
         >
           {button.retry.othergame}
-        </Button>
+        </button>
       )}
     </FirebaseDatabaseMutation>
   );
-
   const handleOnComplete = value => console.log(value);
-
   const getName = obj => Object.values(obj).map(e => e.name);
 
   return (
@@ -37,10 +34,10 @@ const Play = ({ history, match: { params: { roomId } } }) => {
           return null;
         }
         return (
-          <>
+          <div className="roulette-container">
             <Roulette options={getName(value)} baseSize={150} onComplete={handleOnComplete} />
             {toWaiting()}
-          </>
+          </div>
         );
       }}
     </FirebaseDatabaseNode>
