@@ -118,7 +118,7 @@ const Play = ({ match: { params: { roomId, userId } } }) => {
   }
 
   return (
-    <div className={!gameStart ? 'game-backdrop' : 'game-container'}>
+    <div className={!gameStart ? 'game game-backdrop' : 'game game-container'}>
       {!gameStart
         ? (
           <Ready
@@ -130,11 +130,11 @@ const Play = ({ match: { params: { roomId, userId } } }) => {
         )
         : null
       }
-      <h1 className="game-header">{sequenceGame.title}</h1>
+      <h1>{sequenceGame.title}</h1>
+      <p className="description">{sequenceGame.description}</p>
+      <p className="time">{`${sequenceGame.time}: ${milliseconds}`}</p>
+      <p className="time">{`${sequenceGame.result.title}: ${result}`}</p>
       <div className="game-body">
-        <p className="sequence-body">{sequenceGame.description}</p>
-        <p>{`${sequenceGame.time}: ${milliseconds}`}</p>
-        <p className="sequence-body">{`${sequenceGame.result.title}: ${result}`}</p>
         {createGameBoard()}
       </div>
     </div>
