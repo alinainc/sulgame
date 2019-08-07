@@ -1,10 +1,6 @@
 // Copyright (C) 2019 Alina Inc. All rights reserved.
 
-<<<<<<< HEAD
-=======
 import firebase from 'firebase/app';
-import { get } from 'lodash';
->>>>>>> Add remove leavers function
 import PropTypes from 'prop-types';
 import generateHash from 'random-hash';
 import React from 'react';
@@ -16,7 +12,6 @@ import { button, games, waitingRoom } from '../../../messages';
 import GameListForm from '../../components/GameListForm';
 
 const PlayerList = ({ isHost, roomId, userId }) => {
-
   const updateConnect = async () => {
     const hostConnect = await firebase.database()
       .ref(`/rooms/${roomId}/players/host/connect`)
