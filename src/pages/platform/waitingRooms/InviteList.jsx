@@ -12,7 +12,7 @@ const InviteList = ({ roomId }) => (
   <table className="enter">
     <thead>
       <tr>
-        <td>{waitingRoom.invite}</td>
+        <td colSpan="2">{waitingRoom.invite}</td>
       </tr>
     </thead>
     <tbody>

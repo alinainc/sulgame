@@ -3,17 +3,20 @@
 import PropTypes from 'prop-types';
 import QRCode from 'qrcode.react';
 import React from 'react';
-import { Container, Row } from 'reactstrap';
 
 import domain from '../../../domain.config';
 
 const Qrcode = ({ roomId }) => (
-  <Container className="section qrcode">
-    <Row>
-      <QRCode value={`${domain.default}/platform/entry/${roomId}`} className="contents" />
-    </Row>
-    <Row className="bar">QR code</Row>
-  </Container>
+  <table>
+    <tbody>
+      <QRCode value={`${domain.default}/platform/entry/${roomId}`} id="qr" />
+    </tbody>
+    <thead>
+      <tr>
+        <td>QR code</td>
+      </tr>
+    </thead>
+  </table>
 );
 
 Qrcode.propTypes = {

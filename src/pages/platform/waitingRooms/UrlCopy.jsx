@@ -8,6 +8,7 @@ import domain from '../../../domain.config';
 import { button, waitingRoom } from '../../../messages';
 
 const UrlCopy = ({ roomId }) => (
+<<<<<<< Updated upstream
   <div className="section urlcopy">
     <div className="bar">{`${waitingRoom.url}`}</div>
     <div className="warper">
@@ -19,6 +20,30 @@ const UrlCopy = ({ roomId }) => (
       </CopyToClipboard>
     </div>
   </div>
+=======
+  <table>
+    <thead>
+      <tr>
+        <td>{waitingRoom.url}</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          <textarea defaultValue={`${domain.default}/platform/entry/${roomId}`} disabled />
+        </td>
+      </tr>
+      <tr>
+        <td className="btn-warp">
+          <CopyToClipboard text={`${domain.default}/platform/entry/${roomId}`}>
+            <button type="button">{button.copy}</button>
+          </CopyToClipboard>
+        </td>
+      </tr>
+      
+    </tbody>
+  </table>
+>>>>>>> Stashed changes
 );
 
 UrlCopy.propTypes = {
