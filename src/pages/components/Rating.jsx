@@ -12,6 +12,7 @@ import shapes from '../../shapes';
 const Rating = ({ history }) => {
   const inputRating = useRef(0);
   const inputRef = useRef(null);
+  const emailRef = useRef(null);
   const options = {
     widgetDimension: '30px',
     widgetHoverColor: '#f3d076',
@@ -26,7 +27,11 @@ const Rating = ({ history }) => {
           onClick={
             () => {
               history.goBack();
-              runMutation({ contents: inputRef.current.value, star: inputRating.current });
+              runMutation({
+                contents: inputRef.current.value,
+                email: emailRef.current.value,
+                star: inputRating.current,
+              });
               return null;
             }
           }
@@ -39,6 +44,7 @@ const Rating = ({ history }) => {
   return (
     <div>
       <Input className="textarea" innerRef={inputRef} type="textarea" />
+      <Input className="emailarea" innerRef={emailRef} placeholder={messages.feedback.email} />
       <Ratings
         rating={inputRating.current}
         widgetRatedColors="blue"
