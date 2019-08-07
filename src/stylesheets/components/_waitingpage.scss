@@ -5,8 +5,7 @@
 }
 
 .waiting {
-  margin: 0;
-  padding: 0;
+  margin: auto;
 
   > h1 {
     margin: 0;
@@ -22,7 +21,7 @@
   > table {
     border: 0.2rem wheat solid;
     border-radius: 0.5rem;
-    max-width: 96vw;
+    width: 96vw;
 
     thead {
       text-align: center;
