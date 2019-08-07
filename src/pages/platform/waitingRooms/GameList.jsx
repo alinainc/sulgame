@@ -74,7 +74,9 @@ const GameList = ({ roomId, userId }) => {
       {listenStart()}
       <table className="vertical-scroll">
         <thead>
-          <tr>{waitingRoom.games}</tr>
+          <tr>
+            <td>{waitingRoom.games}</td>
+          </tr>
         </thead>
         <tbody>
           <tr>
