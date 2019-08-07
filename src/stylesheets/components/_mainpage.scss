@@ -5,6 +5,10 @@
   margin-right: auto;
   margin-left: auto;
 
+  .add-button {
+    height: 45vh;
+  }
+
   button {
     margin: 5px;
     border-radius: 1rem;
@@ -35,8 +39,15 @@
     text-align: center;
   }
 
+  .title {
+    font-size: 3.5rem;
+    position: relative;
+    top: -7rem;
+    text-shadow: 0.1rem 0 #333;
+  }
+
   .moon {
-    margin-top: 20vh;
+    margin-top: 10vh;
   }
 
   .msg {

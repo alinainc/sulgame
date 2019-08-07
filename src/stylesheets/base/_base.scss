@@ -105,6 +105,10 @@ button {
   border-radius: 50%;
 }
 
+.footer {
+  display: inline-block;
+}
+
 .section {
   margin-right: auto;
   margin-left: auto;
@@ -129,8 +133,8 @@ button {
   position: relative;
   border-radius: 50%;
   border-color: transparent;
-  box-shadow: inset -10px 5px 0 5px $primary-yellow;
+  box-shadow: inset -15px 5px 0 5px $primary-yellow;
   background-color: transparent;
-  width: 8rem;
-  height: 8rem;
+  width: 15rem;
+  height: 15rem;
 }

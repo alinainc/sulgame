@@ -18,9 +18,9 @@ const MainPage = ({ history }) => {
     <div className="mainpage">
       <div>
         <div className="moon" />
-        <h1>{mainPage.title}</h1>
+        <h1 className="title">{mainPage.title}</h1>
       </div>
-      <div className="bottom center">
+      <div className="bottom center add-button">
         <div>
           <div className="msg">{mainPage.button}</div>
         </div>
