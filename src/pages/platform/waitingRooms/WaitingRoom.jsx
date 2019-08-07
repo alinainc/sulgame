@@ -13,7 +13,6 @@ import InviteList from './InviteList';
 import PlayerList from './PlayerList';
 
 const WaitingRoom = ({ isHost, match: { params: { roomId, userId } } }) => {
-
   const renderWaitingRoom = () => (
     <div className="waiting">
       <h1>
@@ -44,7 +43,6 @@ const WaitingRoom = ({ isHost, match: { params: { roomId, userId } } }) => {
   );
 
   return checkUserExists();
-
 };
 
 WaitingRoom.propTypes = {
