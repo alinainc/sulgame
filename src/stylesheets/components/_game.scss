@@ -21,12 +21,6 @@
     margin-top: 5rem;
   }
 
-  #verse {
-    margin: 1rem;
-    font-family: 'Gugi', 'Nanum Gothic', sans-serif;
-    font-size: 2rem;
-  }
-
   .description {
     color: #aaa;
   }
@@ -39,6 +33,12 @@
 #choose-game {
   button {
     padding: 2rem;
+    font-size: 2rem;
+  }
+
+  #verse {
+    margin: 1rem;
+    font-family: 'Gugi', 'Nanum Gothic', sans-serif;
     font-size: 2rem;
   }
 }
