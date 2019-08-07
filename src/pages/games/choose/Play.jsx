@@ -1,5 +1,6 @@
 // Copyright (C) 2019 Alina Inc. All rights reserved.
 
+import firebase from 'firebase/app';
 import React, { useEffect, useRef, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { Button, Spinner } from 'reactstrap';
@@ -8,7 +9,6 @@ import { FirebaseDatabaseMutation, FirebaseDatabaseNode } from '@react-firebase/
 
 import { button, chooseGame } from '../../../messages';
 import shapes from '../../../shapes';
-import InitWithMount from '../../components/InitWithMount';
 import Ready from '../../components/Ready';
 import ChoiceList from './ChoiceList';
 
@@ -22,28 +22,20 @@ const Play = ({ match: { params: { roomId, userId } } }) => {
   const [seconds, setSeconds] = useState(totalSeconds);
   const [gameStart, setGameStart] = useState(false);
 
-  const storeChoice = () => {
-    if (userId) {
-      return (
-        <FirebaseDatabaseMutation path={`/rooms/${roomId}/players/${userId}`} type="update">
-          {({ runMutation }) => {
-            if (userId === 'host') {
-              const initData = () => runMutation({
-                choice: choiceRef.current,
-                gameData: null,
-                order: resultRef.current,
-              });
-              return <InitWithMount init={initData} />;
-            }
-            const initData = () => runMutation({ gameData: null });
-            return <InitWithMount init={initData} />;
-          }}
-        </FirebaseDatabaseMutation>
-      );
+  useEffect(() => {
+    if (userId === 'host') {
+      firebase.database()
+        .ref(`/rooms/${roomId}/players/host/`)
+        .update({
+          choice: choiceRef.current,
+          gameData: null,
+          order: resultRef.current,
+        });
     }
-    return null;
-  };
-
+    firebase.database()
+      .ref(`/rooms/${roomId}/players/${userId}/`)
+      .update({ gameData: null });
+  }, [roomId, userId]);
   useEffect(() => {
     const id = setInterval(() => {
       setSeconds(s => s - 1);
@@ -112,7 +104,6 @@ const Play = ({ match: { params: { roomId, userId } } }) => {
         )
         : null
       }
-      {storeChoice()}
       <h5 className="game-header">{chooseGame.title}</h5>
       <div className="game-body">
         <p>{chooseGame.description}</p>
