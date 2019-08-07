@@ -15,6 +15,14 @@
     border: 1px gray solid;
   }
 
+  > table {
+    border: 0.2rem wheat solid;
+    border-radius: 0.5rem;
+    
+    td {
+      border: 0.1rem wheat solid;
+    }
+  }
   .bar {
     color: whitesmoke;
   }

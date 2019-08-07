@@ -3,7 +3,7 @@
 import firebase from 'firebase/app';
 import PropTypes from 'prop-types';
 import generateHash from 'random-hash';
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Redirect } from 'react-router-dom';
 
 import { FirebaseDatabaseMutation, FirebaseDatabaseNode } from '@react-firebase/database';
@@ -64,27 +64,31 @@ const PlayerList = ({ roomId, userId }) => {
 
   const renderGames = () => (
     <GameListForm
-      title={{ key: waitingRoom.games }}
       rows={[{ host: item => <>{playGame(item.type)}</> }]}
       value={games}
       className="game"
     />
   );
   return (
-    <div className="section">
+    <Fragment>
       {listenStart()}
-      {renderGames()}
-    </div>
+      <table>
+        <thead>
+          <tr>{waitingRoom.games}</tr>
+        </thead>
+        <tbody>
+          <tr>{renderGames()}</tr>
+        </tbody>
+      </table>
+    </Fragment>
   );
 };
 
 PlayerList.propTypes = {
-  isHost: PropTypes.bool,
   roomId: PropTypes.string.isRequired,
   userId: PropTypes.string,
 };
 PlayerList.defaultProps = {
-  isHost: false,
   userId: 'host',
 };
 export default PlayerList;
