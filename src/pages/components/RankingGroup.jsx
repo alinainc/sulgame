@@ -63,7 +63,7 @@ const RankingGroup = ({ isRank, roomId, value }) => {
         if (!order) {
           return <Spinner color="primary" />;
         }
-        return <h3 align="center">{`${order.value} 마셔라!`}</h3>;
+        return <h3>{`${order.value} 마셔라!`}</h3>;
       }}
     </FirebaseDatabaseNode>
   );
