@@ -2,11 +2,12 @@
 
 .mainpage {
   display: block;
-  margin-right: auto;
-  margin-left: auto;
+  position: relative;
+  right: 0;
+  left: 0;
 
   .add-button {
-    position: fixed;
+    position: relative;
     height: 45vh;
   }
 
@@ -41,10 +42,10 @@
   }
 
   .title {
-    font-size: 3.5rem;
     position: relative;
     top: -7rem;
     text-shadow: 0.1rem 0 #333;
+    font-size: 3.5rem;
   }
 
   .moon {
