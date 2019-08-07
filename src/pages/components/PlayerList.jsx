@@ -25,17 +25,19 @@ const PlayerList = ({ userId, value }) => {
       <div className="bar">
         <span>플레이어</span>
       </div>
-      {!items
-        ? <Spinner color="primary" /> : items.map(item => (
-          <div key={item.key} className="players">
-            <div key="img">
-              <span role="img" aria-label="face" className="face"> 🧞‍</span>
+      <div className="horizontal-scroll">
+        {!items
+          ? <Spinner color="primary" /> : items.map(item => (
+            <div key={item.key} className="players">
+              <div key="img">
+                <span role="img" aria-label="face" className="face"> 🧞‍</span>
+              </div>
+              <div key="name" id={item.isMe ? 'me' : null}>
+                {item.name}
+              </div>
             </div>
-            <div key="name" id={item.isMe ? 'me' : null}>
-              {item.name}
-            </div>
-          </div>
-        ))}
+          ))}
+      </div>
     </div>
   );
 };

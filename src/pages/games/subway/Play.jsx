@@ -5,51 +5,56 @@ import { Button, Col, Input, Row } from 'reactstrap';
 
 import { subwayGame } from '../../../messages';
 import shapes from '../../../shapes';
+import Ready from '../../components/Ready';
 import Station from './Station';
 
 const Play = ({ match: { params: { lineNum } } }) => {
   const defaultSecond = 10;
+  const gameSeconds = 13;
   const inputRef = React.useRef();
   const intervalRef = React.useRef();
   const timeoutRef = React.useRef();
   const stationRef = React.useRef(Station[lineNum]);
-  const [seconds, setSeconds] = React.useState(defaultSecond);
+  const [seconds, setSeconds] = React.useState(gameSeconds);
   const [disabled, setDisabled] = React.useState(false);
   const [answers, setAnswers] = React.useState([]);
   const [result, setResult] = React.useState();
+  const [gameStart, setGameStart] = React.useState(false);
 
   React.useEffect(() => {
+    if (!gameStart) {
+      const loadSec = (gameSeconds - defaultSecond) * 1000;
+      setTimeout(() => {
+        setGameStart(true);
+      }, loadSec);
+    }
     if (stationRef.current.length < 1) {
       setDisabled(true);
       setResult(subwayGame.play.result.finish);
       clearInterval(intervalRef.current);
       clearTimeout(timeoutRef.current);
     } else {
-      const intervalId = setInterval(() => {
+      intervalRef.current = setInterval(() => {
         setSeconds(s => s - 1);
       }, 1000);
-      intervalRef.current = intervalId;
 
       const sec = defaultSecond * 1000;
-      const timeoutId = setTimeout(() => {
+      timeoutRef.current = setTimeout(() => {
         setDisabled(true);
         setResult(subwayGame.play.result.timeout);
-        clearInterval(intervalId);
+        clearInterval(intervalRef.current);
       }, sec);
-      timeoutRef.current = timeoutId;
     }
-  }, [defaultSecond, answers]);
+  }, [defaultSecond, gameSeconds, answers]);
 
   const stop = (disabledButton, resultText, initSeconds) => {
     if (disabledButton) {
       setDisabled(disabledButton);
     }
-    if (resultText) {
-      setResult(resultText);
-    }
     if (initSeconds) {
       setSeconds(initSeconds);
     }
+    setResult(resultText);
     clearTimeout(timeoutRef.current);
     clearInterval(intervalRef.current);
   };
@@ -85,7 +90,15 @@ const Play = ({ match: { params: { lineNum } } }) => {
     }
   };
   return (
-    <div>
+    <div className={!gameStart ? 'game-backdrop' : null}>
+      {!gameStart
+        && (
+          <Ready
+            description={subwayGame.description}
+            seconds={seconds - defaultSecond}
+            title={subwayGame.title}
+          />
+        )}
       <h1>{subwayGame.play.title}</h1>
       <h3>{`${subwayGame.selectLine.line[lineNum]}`}</h3>
       <ul>

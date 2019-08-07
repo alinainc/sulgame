@@ -82,6 +82,17 @@
     }
   }
 
+  .horizontal-scroll {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+  }
+
+  .vertical-scroll {
+      overflow: auto;
+      height: 300px;
+  }
+
   .game-list {
     margin: auto;
 
