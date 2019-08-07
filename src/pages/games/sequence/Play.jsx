@@ -1,5 +1,6 @@
 // Copyright (C) 2019 Alina Inc. All rights reserved.
 
+import firebase from 'firebase/app';
 import React, { useEffect, useRef, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import { Button, Row } from 'reactstrap';
@@ -18,7 +19,13 @@ const Play = ({ match: { params: { roomId, userId } } }) => {
   const [loadSeconds, setLoadSeconds] = useState(3);
   const [result, setResult] = useState('');
   const [gameStart, setGameStart] = useState(false);
-
+  useEffect(() => {
+    if (userId) {
+      firebase.database()
+        .ref(`/rooms/${roomId}/players/${userId}`)
+        .update({ gameData: null });
+    }
+  }, [roomId, userId]);
   useEffect(() => {
     const load = setInterval(() => {
       setLoadSeconds(s => s - 1);
