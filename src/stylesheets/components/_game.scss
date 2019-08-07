@@ -1,51 +1,22 @@
 // Copyright (C) 2019 Alina Inc. All rights reserved.
 
-.game-backdrop {
-  -webkit-filter: blur(5px);
-  filter: blur(5px);
-  text-align: center;
-}
-
-.game-body {
-  font-size: 200%;
-}
-
-.game-container {
-  text-align: center;
-}
-
-.game-header {
-  font-family: 'Gugi', 'Nanum Gothic', sans-serif;
-  font-size: 400%;
-  margin-block-end: 0.75em;
-}
-
-.sequence-body {
-  font-size: 50%;
-}
-
-.roulette-btn {
-  margin-top: 2%;
-  padding: 5px;
-  width: 30%;
-}
-
-.game-list {
-  vertical-align: center;
-
-  .game-info {
-    position: left;
-    padding-right: 2%;
-  }
-}
-
 .game {
-  border-bottom: 1px solid gray;
-  // text-align: center;
-  padding: 2%;
-  padding-right: 0%;
-}
+  margin: auto;
 
-#game-description {
-  width: 86%;
+  table {
+    margin: 0.5rem;
+    border: 0.15rem solid $primary-yellow;
+    border-radius: 1rem;
+    padding: 0.5rem;
+  }
+
+  button {
+    border-radius: 50%;
+    width: 3.2rem;
+    height: 3.2rem;
+  }
+
+  #game-name {
+    width: 75vw;
+  }
 }

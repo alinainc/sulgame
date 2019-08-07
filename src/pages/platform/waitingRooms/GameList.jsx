@@ -67,6 +67,7 @@ const PlayerList = ({ isHost, roomId, userId }) => {
       title={{ key: waitingRoom.games }}
       rows={[{ host: item => <>{playGame(item.type)}</> }]}
       value={games}
+      className="game"
     />
   );
   return (
