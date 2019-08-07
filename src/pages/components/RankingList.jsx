@@ -1,6 +1,6 @@
 // Copyright (C) 2019 Alina Inc. All rights reserved.
 
-import { get } from 'lodash';
+import { get, remove } from 'lodash';
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Spinner } from 'reactstrap';
@@ -13,7 +13,6 @@ const RankingList = ({ cols, isRank, userId, value }) => {
 
   if (value) {
     if (value.players) {
-      console.log(value.players);
       items = Object.keys(value.players).map((player) => {
         const item = Object.assign({}, value.players[player]);
         item.key = player;
@@ -22,6 +21,7 @@ const RankingList = ({ cols, isRank, userId, value }) => {
         }
         return item;
       });
+      remove(items, player => player.gameData === undefined);
       if (isRank) {
         RankLogic(items);
       }
