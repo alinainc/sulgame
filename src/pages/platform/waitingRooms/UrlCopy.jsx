@@ -12,7 +12,7 @@ const UrlCopy = ({ roomId }) => (
     <div className="bar">{`${waitingRoom.url}`}</div>
     <div className="warper">
       <textarea defaultValue={`${domain.default}/platform/entry/${roomId}`} disabled />
-      <CopyToClipboard text={`${domain.default}/platform/entry/${roomId}`}>
+      <CopyToClipboard text={`http://${domain.default}/platform/entry/${roomId}`}>
         <button type="button" className="contents">
           <span>{button.copy}</span>
         </button>
