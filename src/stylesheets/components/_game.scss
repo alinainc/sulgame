@@ -35,6 +35,10 @@
   button {
     padding: 2rem;
     font-size: 2rem;
+
+    &:hover {
+      background-color: $primary-yellow;
+    }
   }
 
   #verse {
