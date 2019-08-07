@@ -11,7 +11,7 @@ import { FirebaseDatabaseMutation, FirebaseDatabaseNode } from '@react-firebase/
 import { button, games, waitingRoom } from '../../../messages';
 import GameListForm from '../../components/GameListForm';
 
-const PlayerList = ({ roomId, userId }) => {
+const GameList = ({ roomId, userId }) => {
   const updateConnect = async () => {
     const hostConnect = await firebase.database()
       .ref(`/rooms/${roomId}/players/host/connect`)
@@ -86,11 +86,11 @@ const PlayerList = ({ roomId, userId }) => {
   );
 };
 
-PlayerList.propTypes = {
+GameList.propTypes = {
   roomId: PropTypes.string.isRequired,
   userId: PropTypes.string,
 };
-PlayerList.defaultProps = {
+GameList.defaultProps = {
   userId: 'host',
 };
-export default PlayerList;
+export default GameList;
