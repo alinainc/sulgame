@@ -3,13 +3,11 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import domain from '../../../domain.config';
-import { mainPage, waitingRoom } from '../../../messages';
+import { mainPage } from '../../../messages';
 import shapes from '../../../shapes';
 import GameList from './GameList';
+import InviteList from './InviteList';
 import PlayerList from './PlayerList';
-import Qrcode from './Qrcode';
-import UrlCopy from './UrlCopy';
 
 const WaitingRoom = ({ isHost, match: { params: { roomId, userId } } }) => (
   <div className="waiting">
@@ -17,11 +15,7 @@ const WaitingRoom = ({ isHost, match: { params: { roomId, userId } } }) => (
       <span>{mainPage.title}</span>
       <span role="img" aria-label="moon">🌙</span>
     </h1>
-    <div className="section enter">
-      <div className="bar">{waitingRoom.invite}</div>
-      <Qrcode value={`${domain.default}/platform/entry/${roomId}`} />
-      <UrlCopy roomId={roomId} />
-    </div>
+    <InviteList roomId={roomId} />
     <PlayerList roomId={roomId} userId={isHost ? 'host' : userId} />
     {isHost
       ? (<GameList roomId={roomId} isHost={isHost} />)
