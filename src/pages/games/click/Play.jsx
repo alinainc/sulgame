@@ -13,8 +13,8 @@ import Ready from '../../components/Ready';
 
 const Play = ({ match: { params: { roomId, userId } } }) => {
   const [clickCount, setClickCount] = useState(0);
-  const gameSeconds = 10;
-  const totalSeconds = 13;
+  const gameSeconds = 1000;
+  const totalSeconds = 1003;
   const [seconds, setSeconds] = useState(totalSeconds);
   const [buttonState, setButtonState] = useState(false);
   const [gameStart, setGameStart] = useState(false);
@@ -86,19 +86,20 @@ const Play = ({ match: { params: { roomId, userId } } }) => {
         : null
       }
       <h1>{clickGame.title}</h1>
-      <p className="description">
+      <p className="discription">{clickGame.description}</p>
+      <p className="time">
         {`${clickGame.time}: ${seconds > gameSeconds ? gameSeconds : seconds}`}
       </p>
       <p className="time">{`${clickGame.score}: ${clickCount}`}</p>
       <div>
-        <Button
-          className="clickgame button"
+        <button
+          id="clickgame-button"
           type="button"
           onClick={onClickButton}
           disabled={buttonState}
         >
           {clickGame.button}
-        </Button>
+        </button>
       </div>
     </div>
   );
