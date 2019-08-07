@@ -20,20 +20,31 @@
 
   > table {
     margin-top: 0.5em;
-    border: 0.2rem lightslategray solid;
-    border-radius: 0.5rem;
     width: 96vw;
 
     thead {
-      background-color: lightslategray;
       text-align: center;
       color: whitesmoke;
       font-weight: 800;
+
+      tr {
+        td {
+          border: 0.2rem lightslategray solid;
+          border-radius: 0.2rem;
+          background-color: lightslategray;
+        }
+      }
     }
 
-    // td {
-    //   border: 0.1rem wheat solid;
-    // }
+    tbody {
+      tr {
+        td {
+          border: 0.2rem #222 solid;
+          border-radius: 0.5rem;
+          background-color: #222;
+        }
+      }
+    }
 
     .btn-warp {
       text-align: center;

@@ -3,7 +3,7 @@
 import firebase from 'firebase/app';
 import React, { useEffect, useRef, useState } from 'react';
 import { Redirect } from 'react-router-dom';
-import { Button, Spinner } from 'reactstrap';
+import { Spinner } from 'reactstrap';
 
 import { FirebaseDatabaseMutation, FirebaseDatabaseNode } from '@react-firebase/database';
 
@@ -29,7 +29,7 @@ const Play = ({ match: { params: { roomId, userId } } }) => {
         .update({
           choice: choiceRef.current,
           gameData: null,
-          order: resultRef.current,
+          order: choiceRef.current[Math.floor(Math.random() * 2)],
         });
     }
     firebase.database()
@@ -64,7 +64,13 @@ const Play = ({ match: { params: { roomId, userId } } }) => {
         if (!value) {
           return <Spinner color="primary" />;
         }
-        return <h2>{value}</h2>;
+        return (
+          <div>
+            <button type="button" value={value[0]} onClick={onButtonClick}>{value[0]}</button>
+            <p>vs</p>
+            <button type="button" value={value[1]} onClick={onButtonClick}>{value[1]}</button>
+          </div>
+        );
       }}
     </FirebaseDatabaseNode>
   );
@@ -104,27 +110,11 @@ const Play = ({ match: { params: { roomId, userId } } }) => {
         )
         : null
       }
-      <h5 className="game-header">{chooseGame.title}</h5>
-      <div className="game-body">
+      <h1>{chooseGame.title}</h1>
+      <div className="game">
         <p>{chooseGame.description}</p>
         <p>{`${chooseGame.time}: ${seconds > gameSeconds ? gameSeconds : seconds}`}</p>
         {renderChoice()}
-        <Button
-          disabled={buttonState}
-          onClick={onButtonClick}
-          size="lg"
-          value="A"
-        >
-          {button.A}
-        </Button>
-        <Button
-          disabled={buttonState}
-          onClick={onButtonClick}
-          size="lg"
-          value="B"
-        >
-          {button.B}
-        </Button>
       </div>
     </div>
   );

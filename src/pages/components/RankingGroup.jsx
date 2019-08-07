@@ -29,9 +29,9 @@ const RankingGroup = ({ isRank, roomId, value }) => {
     }
 
     items.forEach((item) => {
-      if (item.gameData === 'A') {
+      if (item.gameData === items[0].choice[0]) {
         groupA.push(item.name);
-      } else if (item.gameData === 'B') {
+      } else if (item.gameData === items[0].choice[1]) {
         groupB.push(item.name);
       }
     });
@@ -63,13 +63,13 @@ const RankingGroup = ({ isRank, roomId, value }) => {
   );
 
   return (
-    <div className="section">
+    <div>
       {renderOrder()}
       <table>
         <thead>
           <tr>
-            <th>{chooseGame.A}</th>
-            <th>{chooseGame.B}</th>
+            <th>{items[0].choice[0]}</th>
+            <th>{items[0].choice[1]}</th>
           </tr>
         </thead>
         <tbody>
