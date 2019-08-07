@@ -26,12 +26,12 @@ const PlayerListForm = ({ userId, value }) => {
   return (
     !items
       ? <Spinner color="primary" /> : items.map(item => (
-        <span>
-          <div key={item.key} className="players">
+        <span key={item.key}>
+          <div className="players">
             <div key="img" id={item.key === 'host' ? 'host' : null}>
               <span role="img" aria-label="face" className="face"> 🧞‍</span>
             </div>
-            <div key="name" id={item.isMe ? 'me' : null}>
+            <div id={item.isMe ? 'me' : null}>
               {item.name}
             </div>
           </div>
