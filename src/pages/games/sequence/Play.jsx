@@ -18,6 +18,8 @@ const Play = ({ match: { params: { roomId, userId } } }) => {
   const [loadSeconds, setLoadSeconds] = useState(3);
   const [result, setResult] = useState('');
   const [gameStart, setGameStart] = useState(false);
+  const [gameOver, setGameOver] = useState(false);
+
   useEffect(() => {
     if (userId) {
       firebase.database()
@@ -40,6 +42,11 @@ const Play = ({ match: { params: { roomId, userId } } }) => {
 
       intervalRef.current = intervalId;
     }, 3000);
+
+    setTimeout(() => {
+      setGameOver(true);
+      clearInterval(intervalRef.current);
+    }, 13100);
   }, []);
 
   const onButtonClick = ({ target: { value } }) => {
@@ -100,7 +107,7 @@ const Play = ({ match: { params: { roomId, userId } } }) => {
     return gameBoard;
   };
 
-  if (result === sequenceGame.result.success) {
+  if (result === sequenceGame.result.success || gameOver) {
     return (
       <>
         <FirebaseDatabaseMutation path={`/rooms/${roomId}/players/host/`} type="update">
