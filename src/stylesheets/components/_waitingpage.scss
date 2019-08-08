@@ -83,19 +83,17 @@
 
   .players {
     display: inline-block;
-    margin: 5px;
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
     text-align: center;
 
     .face {
       font-size: 2em;
     }
 
-    #me {
-      color: $primary-yellow;
-    }
-
-    #host {
-      background-color: rgb(53, 80, 121);
+    .me {
+      border-radius: 0.5rem;
+      background-color: rgba(31, 94, 146, 0.5);
     }
   }
 
