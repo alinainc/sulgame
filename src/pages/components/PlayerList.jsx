@@ -18,7 +18,6 @@ const PlayerListForm = ({ userId, value }) => {
         }
         return item;
       });
-      console.log(items);
       remove(items, e => e.name === undefined);
       const host = remove(items, (e => e.key === 'host'));
       items.unshift(host[0]);
