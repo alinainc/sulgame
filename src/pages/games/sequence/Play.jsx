@@ -19,7 +19,7 @@ const Play = ({ match: { params: { roomId, userId } } }) => {
   const [loadSeconds, setLoadSeconds] = useState(3);
   const [result, setResult] = useState('');
   const [gameStart, setGameStart] = useState(false);
-  const [gameOver, setGameOver] = useState(false);
+  const [gameOver, setGameOver] = useState('');
 
   useEffect(() => {
     if (userId) {
@@ -45,8 +45,7 @@ const Play = ({ match: { params: { roomId, userId } } }) => {
     }, 3000);
 
     timeoutRef.current = setTimeout(() => {
-      setMilliseconds(sequenceGame.result.timeOut);
-      setGameOver(true);
+      setGameOver(sequenceGame.result.timeOut);
       clearInterval(intervalRef.current);
     }, 13100);
   }, []);
@@ -121,7 +120,7 @@ const Play = ({ match: { params: { roomId, userId } } }) => {
         </FirebaseDatabaseMutation>
         <FirebaseDatabaseMutation path={`/rooms/${roomId}/players/${userId}`} type="update">
           {({ runMutation }) => {
-            runMutation({ end: 1, gameData: milliseconds });
+            runMutation({ end: 1, gameData: gameOver === '' ? milliseconds : gameOver });
             if (userId === 'host') {
               return <Redirect to={`/platform/ranking/${roomId}/user/host`} />;
             }
