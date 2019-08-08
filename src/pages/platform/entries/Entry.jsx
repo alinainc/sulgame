@@ -28,18 +28,20 @@ const Entry = ({ history, match: { params } }) => {
       toast.error(messages.entry.noinput);
       return null;
     }
-    const users = await firebase.database()
-      .ref(`/rooms/${params.roomId}/players/`)
-      .once('value');
-    Object.values(users.val())
-      .forEach(element => {
+    if (!isHost) {
+      const users = await firebase.database()
+        .ref(`/rooms/${params.roomId}/players/`)
+        .once('value');
+      Object.values(users.val())
+        .forEach(element => {
         if (element.name === inputRef.current.value) {
           exists = true;
         }
       });
-    if (exists) {
-      toast.error('이미 존재하는 이름입니다');
-      return null;
+      if (exists) {
+        toast.error('이미 존재하는 이름입니다');
+        return null;
+      }
     }
     if (isHost) {
       const res = await runMutation({
