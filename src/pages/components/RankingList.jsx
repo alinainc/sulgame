@@ -48,8 +48,9 @@ const RankingList = ({ cols, isRank, userId, value }) => {
     }
     if (gameType === 'sequence' && col.key === 'gameData') {
       const time = get(item, col.key, '');
-      if (time === sequenceGame.result.timeOut) {
-        return time;
+      // FIX ME: temporary fix for sorting logic
+      if (time > 500) {
+        return sequenceGame.result.timeOut;
       }
       return `${time / 10} ${sequenceGame.second}`;
     }
