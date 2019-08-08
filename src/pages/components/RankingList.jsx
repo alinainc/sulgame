@@ -28,6 +28,10 @@ const RankingList = ({ cols, isRank, userId, value }) => {
     }
   }
 
+  let rank = 1;
+  let commonPlace = 1;
+  let prevGameData = 0;
+
   return (
     <table>
       <thead key="head">
@@ -40,18 +44,31 @@ const RankingList = ({ cols, isRank, userId, value }) => {
       <tbody key="body">
         {!items
           ? <Spinner color="primary" />
-          : items.map((item, i) => (
-            <tr key={item.key}>
-              {cols.map(col => (
-                <td id={col.key === 'name' && item.isMe ? 'me' : null} key={col.key}>
-                  {col.key === 'rank'
-                    ? `${i + 1}${ranking.rank.postfix}`
-                    : get(item, col.key, ' ')}
-                </td>
-              ))
+          : items.map((item, i) => {
+            if (i === 0) {
+              prevGameData = item.gameData;
+            } else {
+              if (prevGameData === item.gameData) {
+                commonPlace += 1;
+              } else {
+                rank += commonPlace;
+                commonPlace = 1;
               }
-            </tr>
-          ))
+              prevGameData = item.gameData;
+            }
+            return (
+              <tr key={item.key}>
+                {cols.map(col => (
+                  <td id={col.key === 'name' && item.isMe ? 'me' : null} key={col.key}>
+                    {col.key === 'rank'
+                      ? `${rank}${ranking.rank.postfix}`
+                      : get(item, col.key, ' ')}
+                  </td>
+                ))
+                }
+              </tr>
+            );
+          })
         }
       </tbody>
     </table>
