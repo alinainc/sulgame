@@ -165,7 +165,8 @@ class Roulette extends React.Component {
     return b+c*(tc + -3*ts + 3*t);
   }
   
-  handleOnClick() {
+  handleOnClick(e) {
+    e.preventDefault();
     this.spin();
     firebase.database().ref(`/rooms/${this.props.roomId}/players/host`).update({ gameData: 0 });
   }
