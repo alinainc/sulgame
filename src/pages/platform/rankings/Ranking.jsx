@@ -2,7 +2,7 @@
 
 import firebase from 'firebase/app';
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
 
 import { FirebaseDatabaseNode } from '@react-firebase/database';
@@ -15,6 +15,13 @@ import HostOut from './HostOut';
 import ReplayButton from './ReplayButton';
 
 const Ranking = ({ history, isHost, match: { params: { roomId, userId } } }) => {
+  useEffect(() => {
+    // eslint-disable-next-line no-undef
+    window.onpopstate = () => {
+      history.push('');
+    };
+  });
+
   const toMain = () => {
     if (isHost) {
       firebase.database()
