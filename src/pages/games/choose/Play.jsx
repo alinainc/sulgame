@@ -13,13 +13,16 @@ import Ready from '../../components/Ready';
 import ChoiceList from './ChoiceList';
 
 const Play = ({ match: { params: { roomId, userId } } }) => {
-  const [buttonState, setButtonState] = useState(false);
+  const [gameState, setGameState] = useState(false);
   const choiceRef = useRef(ChoiceList[Math.floor(Math.random() * ChoiceList.length)]);
-  const resultRef = useRef(choiceRef.current[Math.floor(Math.random() * 2)]);
+  const resultRef = useRef(null);
   const gameSeconds = 3;
   const totalSeconds = 6;
   const [seconds, setSeconds] = useState(totalSeconds);
   const [gameStart, setGameStart] = useState(false);
+  const choices = useRef(null);
+
+  const getRandomInt = max => (Math.floor(Math.random() * max));
 
   useEffect(() => {
     if (userId === 'host') {
@@ -48,7 +51,7 @@ const Play = ({ match: { params: { roomId, userId } } }) => {
     }, loadSec);
 
     setTimeout(() => {
-      setButtonState(true);
+      setGameState(true);
       clearInterval(id);
     }, sec);
   }, []);
@@ -63,6 +66,7 @@ const Play = ({ match: { params: { roomId, userId } } }) => {
         if (!value) {
           return <Spinner color="primary" />;
         }
+        choices.current = value[getRandomInt(2)];
         return (
           <div>
             <button type="button" value={value[0]} onClick={onButtonClick} id="choose-button">
@@ -78,7 +82,7 @@ const Play = ({ match: { params: { roomId, userId } } }) => {
     </FirebaseDatabaseNode>
   );
 
-  if (buttonState) {
+  if (gameState) {
     return (
       <>
         <FirebaseDatabaseMutation path={`/rooms/${roomId}/players/host/`} type="update">
@@ -89,7 +93,7 @@ const Play = ({ match: { params: { roomId, userId } } }) => {
         </FirebaseDatabaseMutation>
         <FirebaseDatabaseMutation path={`/rooms/${roomId}/players/${userId}`} type="update">
           {({ runMutation }) => {
-            runMutation({ end: 1, gameData: resultRef.current || 0 });
+            runMutation({ end: 1, gameData: resultRef.current || choices.current });
             if (userId === 'host') {
               return <Redirect to={`/platform/ranking/${roomId}/user/host`} />;
             }
