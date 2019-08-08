@@ -41,7 +41,7 @@ const ReplayButton = ({ history, isHost, roomId }) => {
     </FirebaseDatabaseMutation>
   );
   return (
-    <div>
+    <div id="replay-btn">
       {isHost
         ? (
           <>

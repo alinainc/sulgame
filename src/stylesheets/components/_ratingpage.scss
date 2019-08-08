@@ -11,6 +11,7 @@
 }
 
 .rating {
+  margin-top: 1rem;
   margin-right: auto;
   margin-left: auto;
   width: 85vw;
@@ -27,12 +28,9 @@
     line-height: 1.5rem;
   }
 
-  .feedback {
-    margin-top: 1rem;
-
-    &.description {
-      border-style: solid;
-      border-radius: 1rem;
-    }
+  .description {
+    border-style: solid;
+    border-radius: 1rem;
+    width: 85vw;
   }
 }

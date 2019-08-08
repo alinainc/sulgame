@@ -9,7 +9,7 @@ import Rating from '../../components/Rating';
 
 const RatingPage = ({ history }) => (
   <div className="rating">
-    <div className="feedback description">
+    <div className="description">
       <p>{messages.feedback.title}</p>
       <p>{messages.feedback.contents1}</p>
       <p>{messages.feedback.contents2}</p>

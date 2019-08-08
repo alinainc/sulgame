@@ -136,12 +136,10 @@ const Ranking = ({ history, isHost, match: { params: { roomId, userId } } }) => 
         {button.quit}
       </button>
       {renderRanking()}
-      <footer className="footer">
-        <ReplayButton history={history} roomId={roomId} isHost={isHost} />
-        <button type="button" className="feedback" onClick={onFeedbackClick}>
-          <span role="img" aria-label="feedback">✉️</span>
-        </button>
-      </footer>
+      <ReplayButton history={history} roomId={roomId} isHost={isHost} />
+      <button type="button" className="feedback-button" onClick={onFeedbackClick}>
+        <span role="img" aria-label="feedback">✉️</span>
+      </button>
     </div>
   );
 };

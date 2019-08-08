@@ -29,7 +29,7 @@ const MainPage = ({ history }) => {
         </button>
       </div>
       <div>
-        <button type="button" onClick={onFeedbackClick} id="feedback-button">
+        <button type="button" onClick={onFeedbackClick} className="feedback-button">
           <span role="img" aria-label="feedback">✉️</span>
         </button>
       </div>
