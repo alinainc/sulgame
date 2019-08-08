@@ -81,6 +81,7 @@ const Ranking = ({ history, isHost, match: { params: { roomId, userId } } }) => 
         if (!value) {
           return null;
         }
+        console.log(value);
         if (!value.players.host) {
           return <HostOut history={history} />;
         }
@@ -99,7 +100,7 @@ const Ranking = ({ history, isHost, match: { params: { roomId, userId } } }) => 
             />
           );
         }
-        if (!value.players.host.start) {
+        if (value.players.host.start === 0) {
           updateConnect();
           return <Redirect to={`/platform/waiting_room/${roomId}/user/${userId}`} />;
         }
