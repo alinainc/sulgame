@@ -69,6 +69,12 @@ textarea {
   outline: unset;
   line-height: 1rem;
   font-size: 1rem;
+
+  &:focus {
+    outline: 0;
+    border: unset;
+    box-shadow: 0 0 0.5rem $primary-yellow;
+  }
 }
 
 #root {
