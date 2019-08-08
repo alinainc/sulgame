@@ -21,6 +21,7 @@ const RankingList = ({ cols, isRank, userId, value }) => {
         }
         return item;
       });
+      remove(items, player => player.name === undefined);
       remove(items, player => player.gameData === undefined);
       if (isRank) {
         RankLogic(items);
