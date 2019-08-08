@@ -3,10 +3,6 @@
   margin-right: auto;
   margin-left: auto;
 
-  h1 {
-    text-align: center;
-  }
-
   button {
     display: block;
     margin-top: 10px;
@@ -17,7 +13,8 @@
     padding-bottom: 5px;
   }
 
-  #canvas-container {
+  .roulette-canvas {
+    margin-top: 20px;
     margin-bottom: 30px;
   }
 }
@@ -38,8 +35,4 @@
 
 .vertical-center {
   margin-top: 70%;
-}
-
-.roulette-pending {
-  margin-top: 50%;
 }

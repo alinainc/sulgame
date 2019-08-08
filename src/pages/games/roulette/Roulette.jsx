@@ -174,8 +174,9 @@ class Roulette extends React.Component {
   render() {
     const { baseSize } = this.props;
     return (
-      <div className="roulette-container">
+      <div className="game roulette-container">
         <h1 className="game-header">{rouletteGame.title}</h1>
+        <p className="discription">{rouletteGame.description}</p>
         <canvas
           className="roulette-canvas"
           height={baseSize * 2}

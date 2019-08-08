@@ -96,7 +96,8 @@ const Play = ({ history, match: { params: { roomId, userId } } }) => {
   }
 
   return (
-    <>
+    <div className="game">
+      <h1 className="game-header">{rouletteGame.title}</h1>
       {listenToWaitingRoom()}
       <FirebaseDatabaseNode path={`/rooms/${roomId}/players/host`}>
         {({ value }) => {
@@ -104,18 +105,24 @@ const Play = ({ history, match: { params: { roomId, userId } } }) => {
             return null;
           }
           if (value.gameData === undefined) {
-            return <div className="roulette-pending">{rouletteGame.waiting}</div>;
+            return (
+              <p className="discription">{rouletteGame.waiting}</p>
+            );
           }
           if (value.gameData === 0) {
-            return <div className="roulette-pending">{rouletteGame.spining}</div>;
+            return (
+              <p className="discription">{rouletteGame.spining}</p>
+            );
           }
           if (value.gameData) {
-            return <div className="roulette-result vertical-center">{`결과:${value.gameData}`}</div>;
+            return (
+              <div className="roulette-result vertical-center">{`결과:${value.gameData}`}</div>
+            );
           }
           return null;
         }}
       </FirebaseDatabaseNode>
-    </>
+    </div>
   );
 };
 
