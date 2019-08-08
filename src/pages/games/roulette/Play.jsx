@@ -77,7 +77,9 @@ const Play = ({ history, match: { params: { roomId, userId } } }) => {
                   onComplete={handleOnComplete}
                 />
                 {toWaiting()}
-                {(value.host.gameData !== 0) ? <div className="roulette-result">{value.host.gameData}</div> : null}
+                {(value.host.gameData !== 0)
+                  ? <div className="roulette-result">{value.host.gameData}</div>
+                  : null}
               </>
             );
           }}
