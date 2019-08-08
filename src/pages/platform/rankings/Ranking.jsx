@@ -11,10 +11,23 @@ import { button, ranking } from '../../../messages';
 import shapes from '../../../shapes';
 import RankingGroup from '../../components/RankingGroup';
 import RankingList from '../../components/RankingList';
+import HostOut from './HostOut';
 import ReplayButton from './ReplayButton';
 
 const Ranking = ({ history, isHost, match: { params: { roomId, userId } } }) => {
-  const toMain = () => history.push('/');
+  const toMain = () => {
+    if (isHost) {
+      firebase.database()
+        .ref(`/rooms/${roomId}/players/host`)
+        .set({});
+    }
+    if (userId) {
+      firebase.database()
+        .ref(`/rooms/${roomId}/players/${userId}`)
+        .set({});
+    }
+    history.push('/');
+  };
 
   const onFeedbackClick = () => {
     history.push('/platform/rating');
@@ -60,6 +73,9 @@ const Ranking = ({ history, isHost, match: { params: { roomId, userId } } }) => 
       {({ value }) => {
         if (!value) {
           return null;
+        }
+        if (!value.players.host) {
+          return <HostOut history={history} />;
         }
         if (value.players.host.replay === 1) {
           if (!userId) {
