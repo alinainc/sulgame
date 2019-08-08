@@ -23,7 +23,6 @@ const Rating = ({ history }) => {
       {({ runMutation }) => (
         <button
           type="button"
-          className="rating"
           onClick={
             () => {
               history.goBack();
@@ -35,6 +34,7 @@ const Rating = ({ history }) => {
               return null;
             }
           }
+          id="submit-btn"
         >
           {messages.button.submit}
         </button>
@@ -43,28 +43,30 @@ const Rating = ({ history }) => {
   );
   return (
     <>
-      <Input
+      <textarea
         id="review"
-        innerRef={inputRef}
+        ref={inputRef}
         type="textarea"
       />
-      <Input
+      <textarea
         id="email"
-        innerRef={emailRef}
+        ref={emailRef}
         placeholder={messages.feedback.email}
         type="textarea"
       />
-      <Ratings
-        rating={inputRating.current}
-        widgetRatedColors="blue"
-        changeRating={(value) => { inputRating.current = value; }}
-      >
-        <Ratings.Widget {...options} />
-        <Ratings.Widget {...options} />
-        <Ratings.Widget {...options} />
-        <Ratings.Widget {...options} />
-        <Ratings.Widget {...options} />
-      </Ratings>
+      <div>
+        <Ratings
+          rating={inputRating.current}
+          widgetRatedColors="blue"
+          changeRating={(value) => { inputRating.current = value; }}
+        >
+          <Ratings.Widget {...options} />
+          <Ratings.Widget {...options} />
+          <Ratings.Widget {...options} />
+          <Ratings.Widget {...options} />
+          <Ratings.Widget {...options} />
+        </Ratings>
+      </div>
       {SubmitButton}
     </>
   );
