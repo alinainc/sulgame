@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { Spinner } from 'reactstrap';
 
-import { ranking } from '../../messages';
+import { ranking, sequenceGame } from '../../messages';
 import RankLogic from './RankLogic';
 
 const RankingList = ({ cols, isRank, userId, value }) => {
@@ -42,8 +42,11 @@ const RankingList = ({ cols, isRank, userId, value }) => {
       return `${rank}${ranking.rank.postfix}`;
     }
     if (gameType === 'sequence' && col.key === 'gameData') {
-      const time = get(item, col.key, '') / 10;
-      return `${time} 초`;
+      const time = get(item, col.key, '');
+      if (time === sequenceGame.result.timeOut) {
+        return time;
+      }
+      return `${time / 10} ${sequenceGame.second}`;
     }
     return get(item, col.key, '');
   };
