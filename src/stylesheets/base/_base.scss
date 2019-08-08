@@ -54,6 +54,13 @@ button {
   font-size: 1em;
 
   &:active {
+    outline: 0;
+    background-color: $primary-yellow;
+  }
+
+  &:focus {
+    outline: 0;
+    box-shadow: 0 0 0.5rem $primary-yellow;
     background-color: $primary-yellow;
   }
 }
