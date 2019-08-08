@@ -81,7 +81,6 @@ const Ranking = ({ history, isHost, match: { params: { roomId, userId } } }) => 
         if (!value) {
           return null;
         }
-        console.log(value);
         if (!value.players.host) {
           return <HostOut history={history} />;
         }

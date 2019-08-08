@@ -93,7 +93,7 @@ const Play = ({ match: { params: { roomId, userId } } }) => {
         </FirebaseDatabaseMutation>
         <FirebaseDatabaseMutation path={`/rooms/${roomId}/players/${userId}`} type="update">
           {({ runMutation }) => {
-            runMutation({ end: 1, gameData: resultRef.current || choices.current });
+            runMutation({ gameData: resultRef.current || choices.current });
             if (userId === 'host') {
               return <Redirect to={`/platform/ranking/${roomId}/user/host`} />;
             }
