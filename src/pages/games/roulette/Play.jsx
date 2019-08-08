@@ -54,6 +54,7 @@ const Play = ({ history, match: { params: { roomId, userId } } }) => {
     </FirebaseDatabaseNode>
   );
   const handleOnComplete = async (value) => {
+    console.log(value)
     await firebase.database()
       .ref(`/rooms/${roomId}/players/host`)
       .update({ gameData: value });
