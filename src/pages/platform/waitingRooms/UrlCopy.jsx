@@ -8,27 +8,19 @@ import domain from '../../../domain.config';
 import { button, waitingRoom } from '../../../messages';
 
 const UrlCopy = ({ roomId }) => (
-  <table>
-    <thead>
-      <tr>
-        <td>{waitingRoom.url}</td>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>
-          <textarea defaultValue={`http://${domain.default}/platform/entry/${roomId}`} disabled />
-        </td>
-      </tr>
-      <tr>
-        <td className="btn-warp">
-          <CopyToClipboard text={`http://${domain.default}/platform/entry/${roomId}`}>
-            <button type="button">{button.copy}</button>
-          </CopyToClipboard>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <div>
+    <div>
+      {waitingRoom.url}
+    </div>
+    <div>
+      <textarea defaultValue={`http://${domain.default}/platform/entry/${roomId}`} disabled />
+    </div>
+    <div>
+      <CopyToClipboard text={`http://${domain.default}/platform/entry/${roomId}`}>
+        <button type="button">{button.copy}</button>
+      </CopyToClipboard>
+    </div>
+  </div>
 );
 
 UrlCopy.propTypes = {
