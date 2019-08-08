@@ -30,7 +30,11 @@ const PlayerListForm = ({ userId, value }) => {
         ? <Spinner color="primary" /> : items.map(item => (
           <span key={item.key}>
             <div className="players">
-              <div key="img" id={item.key === 'host' ? 'host' : null} className={item.isMe ? 'me' : null}>
+              <div
+                key="img"
+                id={item.key === 'host' ? 'host' : null}
+                className={item.isMe ? 'me' : null}
+              >
                 <div>
                   {(item.key === 'host')
                     ? (<span role="img" aria-label="face" className="face">👑</span>)
