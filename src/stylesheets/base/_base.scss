@@ -65,6 +65,11 @@ button {
   }
 }
 
+textarea {
+  outline: unset;
+  box-shadow: unset;
+}
+
 #root {
   display: flex;
   position: relative;

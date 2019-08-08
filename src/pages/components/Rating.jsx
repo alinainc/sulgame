@@ -44,7 +44,7 @@ const Rating = ({ history }) => {
   return (
     <div>
       <Input className="textarea" innerRef={inputRef} type="textarea" />
-      <Input className="emailarea" innerRef={emailRef} placeholder={messages.feedback.email} />
+      <Input className="emailarea" innerRef={emailRef} placeholder={messages.feedback.email} type="textarea" />
       <Ratings
         rating={inputRating.current}
         widgetRatedColors="blue"
