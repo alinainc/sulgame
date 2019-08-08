@@ -11,8 +11,9 @@ import shapes from '../../../shapes';
 import Ready from '../../components/Ready';
 
 const Play = ({ match: { params: { roomId, userId } } }) => {
-  const intervalRef = useRef();
   const answerRef = useRef(1);
+  const intervalRef = useRef();
+  const timeoutRef = useRef();
   const [isClicked] = useState(Array(9).fill(false));
   const [milliseconds, setMilliseconds] = useState(0);
   const [loadSeconds, setLoadSeconds] = useState(3);
@@ -43,7 +44,7 @@ const Play = ({ match: { params: { roomId, userId } } }) => {
       intervalRef.current = intervalId;
     }, 3000);
 
-    setTimeout(() => {
+    timeoutRef.current = setTimeout(() => {
       setGameOver(true);
       clearInterval(intervalRef.current);
     }, 13100);
@@ -58,6 +59,7 @@ const Play = ({ match: { params: { roomId, userId } } }) => {
       setResult(sequenceGame.result.fail);
     } else {
       clearInterval(intervalRef.current);
+      clearTimeout(timeoutRef.current);
       isClicked[value - 1] = true;
       setResult(sequenceGame.result.success);
     }
