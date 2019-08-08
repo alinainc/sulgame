@@ -129,12 +129,12 @@ class Roulette extends React.Component {
     } else {
       const spinAngle = spinAngleStart - this.easeOut(this.state.spinTime, 0, spinAngleStart, spinTimeTotal);
       this.setState({
-        startAngle: this.state.startAngle + spinAngle * Math.PI / 180,
-        spinTime: this.state.spinTime + Math.random() * 10 + 30,
+        startAngle: this.state.startAngle + spinAngle * Math.PI / Math.random() * 20 + 170,
+        spinTime: this.state.spinTime + 30,
       }, () => {
         this.drawRouletteWheel();
         clearTimeout(this.spinTimer);
-        this.spinTimer = setTimeout(() => this.rotate(), Math.random() * 10 + 30);
+        this.spinTimer = setTimeout(() => this.rotate(), Math.random() * 20 + 30);
       })
     }
   }
