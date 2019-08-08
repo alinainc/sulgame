@@ -42,9 +42,18 @@ const Rating = ({ history }) => {
     </FirebaseDatabaseMutation>
   );
   return (
-    <div>
-      <Input className="textarea" innerRef={inputRef} type="textarea" />
-      <Input className="emailarea" innerRef={emailRef} placeholder={messages.feedback.email} type="textarea" />
+    <>
+      <Input
+        id="review"
+        innerRef={inputRef}
+        type="textarea"
+      />
+      <Input
+        id="email"
+        innerRef={emailRef}
+        placeholder={messages.feedback.email}
+        type="textarea"
+      />
       <Ratings
         rating={inputRating.current}
         widgetRatedColors="blue"
@@ -57,7 +66,7 @@ const Rating = ({ history }) => {
         <Ratings.Widget {...options} />
       </Ratings>
       {SubmitButton}
-    </div>
+    </>
   );
 };
 
