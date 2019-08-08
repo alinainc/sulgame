@@ -12,24 +12,29 @@ const RankingList = ({ cols, isRank, userId, value }) => {
   let items;
   let gameType;
 
-  if (value) {
-    if (value.players) {
-      items = Object.keys(value.players).map((player) => {
-        const item = Object.assign({}, value.players[player]);
-        item.key = player;
-        if (player === userId) {
-          item.isMe = true;
-        }
-        if (player === 'host') {
-          gameType = item.gametype;
-        }
-        return item;
-      });
-      remove(items, player => player.name === undefined);
-      remove(items, player => player.gameData === undefined);
-      if (isRank) {
-        RankLogic(items);
+  if (value.players) {
+    items = Object.keys(value.players).map((player) => {
+      const item = Object.assign({}, value.players[player]);
+      item.key = player;
+      if (player === userId) {
+        item.isMe = true;
       }
+      if (player === 'host') {
+        gameType = item.gametype;
+      }
+      return item;
+    });
+
+    const gameDataList = items.map(({ gameData }) => gameData);
+
+    if (gameDataList.includes(undefined)) {
+      return 'Please wait...\n';
+    }
+
+    remove(items, player => player.name === undefined);
+    remove(items, player => player.gameData === undefined);
+    if (isRank) {
+      RankLogic(items);
     }
   }
 
