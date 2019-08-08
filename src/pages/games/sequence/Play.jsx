@@ -10,7 +10,7 @@ import { sequenceGame } from '../../../messages';
 import shapes from '../../../shapes';
 import Ready from '../../components/Ready';
 
-const Play = ({ match: { params: { roomId, userId } } }) => {
+const Play = ({ history, match: { params: { roomId, userId } } }) => {
   const answerRef = useRef(1);
   const intervalRef = useRef();
   const timeoutRef = useRef();
@@ -29,6 +29,11 @@ const Play = ({ match: { params: { roomId, userId } } }) => {
     }
   }, [roomId, userId]);
   useEffect(() => {
+    // eslint-disable-next-line no-undef
+    window.onpopstate = () => {
+      history.push('');
+    };
+
     const load = setInterval(() => {
       setLoadSeconds(s => s - 1);
     }, 1000);
@@ -157,6 +162,7 @@ const Play = ({ match: { params: { roomId, userId } } }) => {
 };
 
 Play.propTypes = {
+  history: shapes.history.isRequired,
   match: shapes.match.isRequired,
 };
 

@@ -12,7 +12,7 @@ import shapes from '../../../shapes';
 import Ready from '../../components/Ready';
 import ChoiceList from './ChoiceList';
 
-const Play = ({ match: { params: { roomId, userId } } }) => {
+const Play = ({ history, match: { params: { roomId, userId } } }) => {
   const [gameState, setGameState] = useState(false);
   const choiceRef = useRef(ChoiceList[Math.floor(Math.random() * ChoiceList.length)]);
   const resultRef = useRef(null);
@@ -39,6 +39,11 @@ const Play = ({ match: { params: { roomId, userId } } }) => {
       .update({ gameData: null });
   }, [roomId, userId]);
   useEffect(() => {
+    // eslint-disable-next-line no-undef
+    window.onpopstate = () => {
+      history.push('');
+    };
+
     const id = setInterval(() => {
       setSeconds(s => s - 1);
     }, 1000);
@@ -132,6 +137,7 @@ const Play = ({ match: { params: { roomId, userId } } }) => {
 };
 
 Play.propTypes = {
+  history: shapes.history.isRequired,
   match: shapes.match.isRequired,
 };
 

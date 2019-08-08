@@ -1,7 +1,7 @@
 // Copyright (C) 2019 Alina Inc. All rights reserved.
 
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Spinner } from 'reactstrap';
 
 import { FirebaseDatabaseNode } from '@react-firebase/database';
@@ -12,7 +12,14 @@ import GameList from './GameList';
 import InviteList from './InviteList';
 import PlayerList from './PlayerList';
 
-const WaitingRoom = ({ isHost, match: { params: { roomId, userId } } }) => {
+const WaitingRoom = ({ history, isHost, match: { params: { roomId, userId } } }) => {
+  useEffect(() => {
+    // eslint-disable-next-line no-undef
+    window.onpopstate = () => {
+      history.push('');
+    };
+  });
+
   const renderWaitingRoom = () => (
     <div className="waiting">
       <h1>

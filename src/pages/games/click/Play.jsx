@@ -10,7 +10,7 @@ import clickGame from '../../../messages/clickGame';
 import shapes from '../../../shapes';
 import Ready from '../../components/Ready';
 
-const Play = ({ match: { params: { roomId, userId } } }) => {
+const Play = ({ history, match: { params: { roomId, userId } } }) => {
   const [clickCount, setClickCount] = useState(0);
   const gameSeconds = 5;
   const totalSeconds = 8;
@@ -26,6 +26,11 @@ const Play = ({ match: { params: { roomId, userId } } }) => {
     }
   }, [roomId, userId]);
   useEffect(() => {
+    // eslint-disable-next-line no-undef
+    window.onpopstate = () => {
+      history.push('');
+    };
+
     const id = setInterval(() => {
       setSeconds(s => s - 1);
     }, 1000);
@@ -106,6 +111,7 @@ const Play = ({ match: { params: { roomId, userId } } }) => {
 
 
 Play.propTypes = {
+  history: shapes.history.isRequired,
   match: shapes.match.isRequired,
 };
 

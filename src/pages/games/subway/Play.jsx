@@ -8,7 +8,7 @@ import shapes from '../../../shapes';
 import Ready from '../../components/Ready';
 import Station from './Station';
 
-const Play = ({ match: { params: { lineNum } } }) => {
+const Play = ({ history, match: { params: { lineNum } } }) => {
   const defaultSecond = 10;
   const gameSeconds = 13;
   const inputRef = React.useRef();
@@ -22,6 +22,11 @@ const Play = ({ match: { params: { lineNum } } }) => {
   const [gameStart, setGameStart] = React.useState(false);
 
   React.useEffect(() => {
+    // eslint-disable-next-line no-undef
+    window.onpopstate = () => {
+      history.push('');
+    };
+
     if (!gameStart) {
       const loadSec = (gameSeconds - defaultSecond) * 1000;
       setTimeout(() => {
@@ -126,6 +131,7 @@ const Play = ({ match: { params: { lineNum } } }) => {
 };
 
 Play.propTypes = {
+  history: shapes.history.isRequired,
   match: shapes.match.isRequired,
 };
 

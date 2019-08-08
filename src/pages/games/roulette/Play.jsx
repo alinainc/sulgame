@@ -24,6 +24,11 @@ const Play = ({ history, match: { params: { roomId, userId } } }) => {
   }, [roomId, userId]);
 
   useEffect(() => {
+    // eslint-disable-next-line no-undef
+    window.onpopstate = () => {
+      history.push('');
+    };
+
     setTimeout(() => {
       setGameStart(true);
     }, 1000);
