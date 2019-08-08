@@ -75,7 +75,7 @@ const GameList = ({ roomId, userId }) => {
   return (
     <Fragment>
       {listenStart()}
-      <table className="vertical-scroll">
+      <table id="game-section">
         <thead>
           <tr>
             <td>{waitingRoom.games}</td>
