@@ -10,6 +10,7 @@ import RankLogic from './RankLogic';
 
 const RankingList = ({ cols, isRank, userId, value }) => {
   let items;
+  let gameType;
 
   if (value) {
     if (value.players) {
@@ -18,6 +19,9 @@ const RankingList = ({ cols, isRank, userId, value }) => {
         item.key = player;
         if (player === userId) {
           item.isMe = true;
+        }
+        if (player === 'host') {
+          gameType = item.gametype;
         }
         return item;
       });
@@ -32,6 +36,17 @@ const RankingList = ({ cols, isRank, userId, value }) => {
   let rank = 1;
   let commonPlace = 1;
   let prevGameData = 0;
+
+  const renderRankEntry = (item, col) => {
+    if (col.key === 'rank') {
+      return `${rank}${ranking.rank.postfix}`;
+    }
+    if (gameType === 'sequence' && col.key === 'gameData') {
+      const time = get(item, col.key, '') / 10;
+      return `${time} 초`;
+    }
+    return get(item, col.key, '');
+  };
 
   return (
     <table>
@@ -61,9 +76,7 @@ const RankingList = ({ cols, isRank, userId, value }) => {
               <tr key={item.key}>
                 {cols.map(col => (
                   <td id={col.key === 'name' && item.isMe ? 'me' : null} key={col.key}>
-                    {col.key === 'rank'
-                      ? `${rank}${ranking.rank.postfix}`
-                      : get(item, col.key, ' ')}
+                    {renderRankEntry(item, col)}
                   </td>
                 ))
                 }
