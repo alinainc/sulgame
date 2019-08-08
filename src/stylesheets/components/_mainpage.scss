@@ -1,31 +1,41 @@
 // Copyright (C) 2019 Alina Inc. All rights reserved.
 
+#add-button {
+  position: relative;
+  margin: 5px;
+  border-radius: 1rem;
+  background-color: $primary-dark-grey;
+  padding: 0;
+  padding-bottom: 0.5rem;
+  width: 5rem;
+  height: 5rem;
+  vertical-align: middle;
+  color: #333;
+  font-size: 2em;
+
+  &:hover {
+    background-color: $primary-yellow;
+  }
+}
+
+#feedback-button {
+  position: fixed;
+  right: 4vw;
+  bottom: 5vh;
+  z-index: 100;
+  border-radius: 3rem;
+  background-color: rgba(0, 51, 153, 0.5);
+  padding: 1rem 1.5rem;
+  font-size: 3rem;
+}
+
 .mainpage {
   display: block;
   position: relative;
   right: 0;
   left: 0;
 
-  .add-button {
-    position: relative;
-    height: 45vh;
-  }
-
   button {
-    margin: 5px;
-    border-radius: 1rem;
-    background-color: $primary-dark-grey;
-    padding: 0;
-    width: 10vh;
-    height: 10vh;
-    vertical-align: middle;
-    color: #333;
-    font-size: 2em;
-
-    &:hover {
-      background-color: $primary-yellow;
-    }
-
     &:focus {
       box-shadow: unset;
     }

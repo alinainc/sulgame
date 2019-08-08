@@ -20,20 +20,18 @@ const MainPage = ({ history }) => {
         <div className="moon" />
         <h1 className="title">{mainPage.title}</h1>
       </div>
-      <div className="bottom center add-button">
+      <div>
         <div>
           <div className="msg">{mainPage.button}</div>
         </div>
-        <button type="button" onClick={onClickButton}>
+        <button type="button" onClick={onClickButton} id="add-button">
           <span>+</span>
         </button>
       </div>
       <div>
-        <footer className="footer">
-          <button type="button" className="feedback" onClick={onFeedbackClick}>
-            <span role="img" aria-label="feedback">✉️</span>
-          </button>
-        </footer>
+        <button type="button" onClick={onFeedbackClick} id="feedback-button">
+          <span role="img" aria-label="feedback">✉️</span>
+        </button>
       </div>
     </div>
   );
