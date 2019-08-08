@@ -2,7 +2,6 @@
 
 import React, { useRef } from 'react';
 import Ratings from 'react-ratings-declarative';
-import { Input } from 'reactstrap';
 
 import { FirebaseDatabaseMutation } from '@react-firebase/database';
 
