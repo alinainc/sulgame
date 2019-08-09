@@ -18,7 +18,7 @@ const Entry = ({ history, match: { params } }) => {
   const isHost = isEmpty(params);
   const path = isEmpty(params) ? '/rooms/' : `/rooms/${params.roomId}/players`;
  
-  const makeOrEnterRoom = (runMutation) => async () => {
+  const makeOrEnterRoom = runMutation => async () => {
     let exists = false;
     if (inputRef.current.value.length > 6) {
       toast.warning(messages.entry.overmax);
@@ -33,11 +33,11 @@ const Entry = ({ history, match: { params } }) => {
         .ref(`/rooms/${params.roomId}/players/`)
         .once('value');
       Object.values(users.val())
-        .forEach(element => {
-        if (element.name === inputRef.current.value) {
-          exists = true;
-        }
-      });
+        .forEach((element) => {
+          if (element.name === inputRef.current.value) {
+            exists = true;
+          }
+        });
       if (exists) {
         toast.error('이미 존재하는 이름입니다');
         return null;
