@@ -1,7 +1,7 @@
 // Copyright (C) 2019 Alina Inc. All rights reserved.
 
 import PropTypes from 'prop-types';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Spinner } from 'reactstrap';
 
 import { FirebaseDatabaseNode } from '@react-firebase/database';
@@ -11,7 +11,6 @@ import shapes from '../../../shapes';
 import GameList from './GameList';
 import InviteList from './InviteList';
 import PlayerList from './PlayerList';
-import Ready from '../../components/Ready';
 
 const WaitingRoom = ({ history, isHost, location, match: { params: { roomId, userId } } }) => {
   useEffect(() => {
