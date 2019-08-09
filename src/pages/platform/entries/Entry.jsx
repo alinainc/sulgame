@@ -17,7 +17,7 @@ const Entry = ({ history, match: { params } }) => {
   const inputRef = useRef(null);
   const isHost = isEmpty(params);
   const path = isEmpty(params) ? '/rooms/' : `/rooms/${params.roomId}/players`;
- 
+
   const makeOrEnterRoom = runMutation => async () => {
     let exists = false;
     if (inputRef.current.value.length > 6) {
@@ -46,6 +46,7 @@ const Entry = ({ history, match: { params } }) => {
     if (isHost) {
       const res = await runMutation({
         players: { host: { connect: generateHash(), name: inputRef.current.value, start: 0 } },
+        time: new Date(Date.now()).toString(),
       });
       history.push(`/platform/waiting_room/${res.key}/host`);
     } else {
