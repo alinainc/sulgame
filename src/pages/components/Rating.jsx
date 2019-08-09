@@ -2,6 +2,7 @@
 
 import React, { useRef } from 'react';
 import Ratings from 'react-ratings-declarative';
+import { toast } from 'react-toastify';
 
 import { FirebaseDatabaseMutation } from '@react-firebase/database';
 
@@ -24,6 +25,14 @@ const Rating = ({ history }) => {
           type="button"
           onClick={
             () => {
+              if (!inputRef.current.value) {
+                toast.error(messages.feedback.nocontents);
+                return null;
+              }
+              if (inputRating.current === 0) {
+                toast.error(messages.feedback.norating);
+                return null;
+              }
               history.goBack();
               runMutation({
                 contents: inputRef.current.value,
@@ -46,6 +55,7 @@ const Rating = ({ history }) => {
       <textarea
         id="review"
         ref={inputRef}
+        placeholder={messages.feedback.type}
         type="textarea"
       />
       <textarea
