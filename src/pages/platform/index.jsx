@@ -4,6 +4,7 @@ import React from 'react';
 import { Route, Switch } from 'react-router';
 
 import shapes from '../../shapes';
+import Demo from '../games/sequence/Demo';
 import Entry from './entries';
 import Ranking from './rankings';
 import Rating from './ratings';
@@ -15,6 +16,7 @@ const Platform = ({ match }) => (
     <Route path={`${match.url}/ranking`} component={Ranking} />
     <Route path={`${match.url}/rating`} component={Rating} />
     <Route path={`${match.url}/waiting_room`} component={WaitingRoom} />
+    <Route path={`${match.url}/demo`} component={Demo} />
   </Switch>
 );
 
