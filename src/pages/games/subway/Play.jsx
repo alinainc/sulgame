@@ -20,7 +20,6 @@ const Play = ({ history, match: { params: { lineNum } } }) => {
   const [answers, setAnswers] = React.useState([]);
   const [result, setResult] = React.useState();
   const [gameStart, setGameStart] = React.useState(false);
-
   React.useEffect(() => {
     if (!gameStart) {
       const loadSec = (gameSeconds - defaultSecond) * 1000;

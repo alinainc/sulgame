@@ -22,6 +22,13 @@ const Play = ({ history, location, match: { params: { roomId, userId } } }) => {
   const [gameOver, setGameOver] = useState('');
 
   useEffect(() => {
+    if (userId === 'host') {
+      firebase.database()
+        .ref('/statistics/plays')
+        .push({ gametype: 'sequence', time: new Date(Date.now()).toString() });
+    }
+  }, [userId]);
+  useEffect(() => {
     if (userId) {
       firebase.database()
         .ref(`/rooms/${roomId}/players/${userId}`)

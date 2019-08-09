@@ -12,6 +12,14 @@ import Ready from '../../components/Ready';
 import Roulette from './Roulette';
 
 const Play = ({ history, location, match: { params: { roomId, userId } } }) => {
+  useEffect(() => {
+    if (userId === 'host') {
+      firebase.database()
+        .ref('/statistics/plays')
+        .push({ gametype: 'roulette', time: new Date(Date.now()).toString() });
+    }
+  }, [userId]);
+
   const [gameStart, setGameStart] = useState(false);
   useEffect(() => {
     if (userId === 'host') {
