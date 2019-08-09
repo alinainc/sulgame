@@ -29,11 +29,6 @@ const Play = ({ history, location, match: { params: { roomId, userId } } }) => {
     }
   }, [roomId, userId]);
   useEffect(() => {
-    // eslint-disable-next-line no-undef
-    window.onpopstate = () => {
-      history.push(`${location.pathname}`);
-    };
-
     const load = setInterval(() => {
       setLoadSeconds(s => s - 1);
     }, 1000);

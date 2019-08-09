@@ -22,11 +22,6 @@ const Play = ({ history, match: { params: { lineNum } } }) => {
   const [gameStart, setGameStart] = React.useState(false);
 
   React.useEffect(() => {
-    // eslint-disable-next-line no-undef
-    window.onpopstate = () => {
-      history.push('');
-    };
-
     if (!gameStart) {
       const loadSec = (gameSeconds - defaultSecond) * 1000;
       setTimeout(() => {

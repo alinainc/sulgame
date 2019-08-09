@@ -24,11 +24,6 @@ const Play = ({ history, location, match: { params: { roomId, userId } } }) => {
   }, [roomId, userId]);
 
   useEffect(() => {
-    // eslint-disable-next-line no-undef
-    window.onpopstate = () => {
-      history.push(`${location.pathname}`);
-    };
-
     setTimeout(() => {
       setGameStart(true);
     }, 1000);
