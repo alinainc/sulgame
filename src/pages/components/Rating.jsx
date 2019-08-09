@@ -29,6 +29,7 @@ const Rating = ({ history }) => {
                 contents: inputRef.current.value,
                 email: emailRef.current.value,
                 star: inputRating.current,
+                time: new Date(Date.now()).toString(),
               });
               return null;
             }
