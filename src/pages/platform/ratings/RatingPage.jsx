@@ -9,6 +9,9 @@ import Rating from '../../components/Rating';
 
 const RatingPage = ({ history }) => (
   <div className="rating">
+    <div>
+      <button className="close" onClick={() => history.goBack()} type="button">×</button>
+    </div>
     <div id="description">
       <p>{messages.feedback.title}</p>
       <p>{messages.feedback.contents1}</p>
@@ -24,7 +27,9 @@ const RatingPage = ({ history }) => (
 );
 
 RatingPage.propTypes = {
-  history: PropTypes.shape({}).isRequired,
+  history: PropTypes.shape({
+    goBack: PropTypes.func.isRequired,
+  }).isRequired,
 };
 
 export default RatingPage;
