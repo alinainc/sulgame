@@ -138,7 +138,7 @@ const Play = ({ history, location, match: { params: { roomId, userId } } }) => {
   }
 
   return (
-    <div className={!gameStart ? 'game game-backdrop' : 'game game-container'}>
+    <div className={!gameStart ? 'game game-backdrop' : 'game'}>
       {!gameStart
         ? (
           <Ready
