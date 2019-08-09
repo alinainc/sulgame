@@ -14,11 +14,16 @@ import RankingList from '../../components/RankingList';
 import HostOut from './HostOut';
 import ReplayButton from './ReplayButton';
 
-const Ranking = ({ history, isHost, match: { params: { roomId, userId } } }) => {
+const Ranking = ({ history, isHost, location, match: { params: { roomId, userId } } }) => {
   useEffect(() => {
     // eslint-disable-next-line no-undef
     window.onpopstate = () => {
-      history.push('');
+      // eslint-disable-next-line no-alert
+      if (window.confirm('정맗로 나가시겠습니까?')) {
+        history.push('');
+        return;
+      }
+      history.push(`${location.pathname}`);
     };
   });
 
@@ -154,6 +159,7 @@ const Ranking = ({ history, isHost, match: { params: { roomId, userId } } }) => 
 Ranking.propTypes = {
   history: shapes.history.isRequired,
   isHost: PropTypes.bool,
+  location: shapes.location.isRequired,
   match: shapes.match.isRequired,
 };
 

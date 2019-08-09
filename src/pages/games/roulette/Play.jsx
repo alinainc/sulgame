@@ -11,7 +11,7 @@ import shapes from '../../../shapes';
 import Ready from '../../components/Ready';
 import Roulette from './Roulette';
 
-const Play = ({ history, match: { params: { roomId, userId } } }) => {
+const Play = ({ history, location, match: { params: { roomId, userId } } }) => {
   const [gameStart, setGameStart] = useState(false);
   useEffect(() => {
     if (userId === 'host') {
@@ -26,13 +26,13 @@ const Play = ({ history, match: { params: { roomId, userId } } }) => {
   useEffect(() => {
     // eslint-disable-next-line no-undef
     window.onpopstate = () => {
-      history.push('');
+      history.push(`${location.pathname}`);
     };
 
     setTimeout(() => {
       setGameStart(true);
     }, 1000);
-  }, [gameStart]);
+  }, [gameStart, history, location.pathname]);
 
   const toWaiting = () => (
     <button
@@ -59,7 +59,6 @@ const Play = ({ history, match: { params: { roomId, userId } } }) => {
     </FirebaseDatabaseNode>
   );
   const handleOnComplete = async (value) => {
-    console.log(value)
     await firebase.database()
       .ref(`/rooms/${roomId}/players/host`)
       .update({ gameData: value });
@@ -136,6 +135,7 @@ const Play = ({ history, match: { params: { roomId, userId } } }) => {
 
 Play.propTypes = {
   history: shapes.history.isRequired,
+  location: shapes.location.isRequired,
   match: shapes.match.isRequired,
 };
 

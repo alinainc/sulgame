@@ -1,7 +1,7 @@
 // Copyright (C) 2019 Alina Inc. All rights reserved.
 
 import PropTypes from 'prop-types';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Spinner } from 'reactstrap';
 
 import { FirebaseDatabaseNode } from '@react-firebase/database';
@@ -11,12 +11,18 @@ import shapes from '../../../shapes';
 import GameList from './GameList';
 import InviteList from './InviteList';
 import PlayerList from './PlayerList';
+import Ready from '../../components/Ready';
 
-const WaitingRoom = ({ history, isHost, match: { params: { roomId, userId } } }) => {
+const WaitingRoom = ({ history, isHost, location, match: { params: { roomId, userId } } }) => {
   useEffect(() => {
     // eslint-disable-next-line no-undef
     window.onpopstate = () => {
-      history.push('');
+      // eslint-disable-next-line no-alert
+      if (window.confirm('정맗로 나가시겠습니까?')) {
+        history.push('');
+        return;
+      }
+      history.push(`${location.pathname}`);
     };
   });
 
@@ -54,6 +60,7 @@ const WaitingRoom = ({ history, isHost, match: { params: { roomId, userId } } })
 
 WaitingRoom.propTypes = {
   isHost: PropTypes.bool,
+  location: shapes.location.isRequired,
   match: shapes.match.isRequired,
 };
 

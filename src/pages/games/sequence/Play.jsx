@@ -10,7 +10,7 @@ import { sequenceGame } from '../../../messages';
 import shapes from '../../../shapes';
 import Ready from '../../components/Ready';
 
-const Play = ({ history, match: { params: { roomId, userId } } }) => {
+const Play = ({ history, location, match: { params: { roomId, userId } } }) => {
   const answerRef = useRef(1);
   const intervalRef = useRef();
   const timeoutRef = useRef();
@@ -31,7 +31,7 @@ const Play = ({ history, match: { params: { roomId, userId } } }) => {
   useEffect(() => {
     // eslint-disable-next-line no-undef
     window.onpopstate = () => {
-      history.push('');
+      history.push(`${location.pathname}`);
     };
 
     const load = setInterval(() => {
@@ -53,7 +53,7 @@ const Play = ({ history, match: { params: { roomId, userId } } }) => {
       setGameOver(sequenceGame.result.timeOut);
       clearInterval(intervalRef.current);
     }, 13100);
-  }, []);
+  }, [history, location.pathname]);
 
   const onButtonClick = ({ target: { value } }) => {
     if (Number(value) === answerRef.current && answerRef.current < 9) {
@@ -163,6 +163,7 @@ const Play = ({ history, match: { params: { roomId, userId } } }) => {
 
 Play.propTypes = {
   history: shapes.history.isRequired,
+  location: shapes.location.isRequired,
   match: shapes.match.isRequired,
 };
 

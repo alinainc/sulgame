@@ -50,7 +50,7 @@ const Play = ({ history, match: { params: { lineNum } } }) => {
         clearInterval(intervalRef.current);
       }, sec);
     }
-  }, [defaultSecond, gameSeconds, answers, gameStart]);
+  }, [defaultSecond, history, gameSeconds, answers, gameStart]);
 
   const stop = (disabledButton, resultText, initSeconds) => {
     if (disabledButton) {
