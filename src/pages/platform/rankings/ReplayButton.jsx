@@ -3,13 +3,15 @@
 import PropTypes from 'prop-types';
 import generateHash from 'random-hash';
 import React from 'react';
+import { useIntl } from 'react-intl';
 
 import { FirebaseDatabaseMutation } from '@react-firebase/database';
 
-import { button } from '../../../i18n/messages';
+import { messages, t } from '../../../i18n';
 import shapes from '../../../shapes';
 
 const ReplayButton = ({ history, isHost, roomId }) => {
+  const intl = useIntl();
   const toWaiting = () => (
     <FirebaseDatabaseMutation path={`/rooms/${roomId}/players/host`} type="update">
       {({ runMutation }) => (
@@ -20,7 +22,7 @@ const ReplayButton = ({ history, isHost, roomId }) => {
           }}
           type="button"
         >
-          {button.retry.othergame}
+          {t(intl, messages.button.retry.othergame)}
         </button>
       )}
     </FirebaseDatabaseMutation>
@@ -35,7 +37,7 @@ const ReplayButton = ({ history, isHost, roomId }) => {
           }}
           type="button"
         >
-          {button.retry.thisgame}
+          {t(intl, messages.button.retry.thisgame)}
         </button>
       )}
     </FirebaseDatabaseMutation>

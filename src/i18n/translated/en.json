@@ -1,5 +1,7 @@
 {
  "button.copy": "Copy URL",
+ "button.english": "English",
+ "button.korean": "한국어",
  "button.prepare": "준비중",
  "button.quit": "나가기",
  "button.retry.othergame": "게임고르기",
@@ -90,7 +92,7 @@
  "games.subwayGame.selectLine.line.line9": "9호선",
  "games.subwayGame.selectLine.title": "몇호선?",
  "games.subwayGame.type": "subway",
- "mainPage.button": "방 만들기",
+ "mainPage.button": "Create Room",
  "mainPage.title": "술 게임",
  "ranking.hostout": "방장이 방을 나갔습니다",
  "ranking.name": "닉네임",

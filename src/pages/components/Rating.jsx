@@ -1,15 +1,17 @@
 // Copyright (C) 2019 Alina Inc. All rights reserved.
 
 import React, { useRef } from 'react';
+import { useIntl } from 'react-intl';
 import Ratings from 'react-ratings-declarative';
 import { toast } from 'react-toastify';
 
 import { FirebaseDatabaseMutation } from '@react-firebase/database';
 
-import messages from '../../i18n/messages';
+import { messages, t } from '../../i18n';
 import shapes from '../../shapes';
 
 const Rating = ({ history }) => {
+  const intl = useIntl();
   const inputRating = useRef(0);
   const inputRef = useRef(null);
   const emailRef = useRef(null);
@@ -26,11 +28,11 @@ const Rating = ({ history }) => {
           onClick={
             () => {
               if (!inputRef.current.value) {
-                toast.error(messages.feedback.nocontents);
+                toast.error(t(intl, messages.feedback.nocontents));
                 return null;
               }
               if (inputRating.current === 0) {
-                toast.error(messages.feedback.norating);
+                toast.error(t(intl, messages.feedback.norating));
                 return null;
               }
               history.goBack();
@@ -45,7 +47,7 @@ const Rating = ({ history }) => {
           }
           id="submit-btn"
         >
-          {messages.button.submit}
+          {t(intl, messages.button.submit)}
         </button>
       )}
     </FirebaseDatabaseMutation>
@@ -55,13 +57,13 @@ const Rating = ({ history }) => {
       <textarea
         id="review"
         ref={inputRef}
-        placeholder={messages.feedback.type}
+        placeholder={t(intl, messages.feedback.type)}
         type="textarea"
       />
       <textarea
         id="email"
         ref={emailRef}
-        placeholder={messages.feedback.email}
+        placeholder={t(intl, messages.feedback.email)}
         type="textarea"
       />
       <div>

@@ -2,15 +2,17 @@
 
 import firebase from 'firebase/app';
 import React, { useEffect, useRef, useState } from 'react';
+import { useIntl } from 'react-intl';
 import { Redirect } from 'react-router-dom';
 
 import { FirebaseDatabaseMutation } from '@react-firebase/database';
 
-import { sequenceGame } from '../../../i18n/messages';
+import { messages, t } from '../../../i18n';
 import shapes from '../../../shapes';
 import Ready from '../../components/Ready';
 
 const Play = ({ history, location, match: { params: { roomId, userId } } }) => {
+  const intl = useIntl();
   const answerRef = useRef(1);
   const intervalRef = useRef();
   const timeoutRef = useRef();
@@ -52,23 +54,24 @@ const Play = ({ history, location, match: { params: { roomId, userId } } }) => {
     }, 3000);
 
     timeoutRef.current = setTimeout(() => {
-      setGameOver(sequenceGame.result.timeOut);
+      setGameOver(t(intl, messages.sequenceGame.result.timeOut));
       clearInterval(intervalRef.current);
     }, 13100);
-  }, [history, location.pathname]);
+  }, [history, intl, location.pathname]);
 
   const onButtonClick = ({ target: { value } }) => {
     if (Number(value) === answerRef.current && answerRef.current < 9) {
       answerRef.current += 1;
       isClicked[value - 1] = true;
-      setResult(sequenceGame.result.playing);
+      setResult(t(intl, messages.sequenceGame.result.playing));
     } else if (Number(value) !== answerRef.current) {
-      setResult(sequenceGame.result.fail);
+      setResult(t(intl, messages.sequenceGame.result.fail));
     } else {
       isClicked[value - 1] = true;
       clearInterval(intervalRef.current);
       clearTimeout(timeoutRef.current);
-      setResult(sequenceGame.result.success);
+      setResult(t(intl, messages.sequenceGame.result.success));
+      isClicked[value - 1] = true;
     }
   };
 
@@ -116,7 +119,7 @@ const Play = ({ history, location, match: { params: { roomId, userId } } }) => {
     return gameBoard;
   };
 
-  if (result === sequenceGame.result.success || gameOver) {
+  if (result === t(intl, messages.sequenceGame.result.success) || gameOver) {
     return (
       <>
         <FirebaseDatabaseMutation path={`/rooms/${roomId}/players/host/`} type="update">
@@ -144,18 +147,18 @@ const Play = ({ history, location, match: { params: { roomId, userId } } }) => {
       {!gameStart
         ? (
           <Ready
-            description={sequenceGame.description}
+            description={t(intl, messages.sequenceGame.description)}
             gameStart={gameStart}
             seconds={loadSeconds}
-            title={sequenceGame.title}
+            title={t(intl, messages.sequenceGame.title)}
           />
         )
         : null
       }
-      <h1>{sequenceGame.title}</h1>
-      <p className="description">{sequenceGame.description}</p>
-      <p className="time">{`${sequenceGame.time}: ${milliseconds}`}</p>
-      <p className="time">{`${sequenceGame.result.title}: ${result}`}</p>
+      <h1>{t(intl, messages.sequenceGame.title)}</h1>
+      <p className="description">{t(intl, messages.sequenceGame.description)}</p>
+      <p className="time">{`${t(intl, messages.sequenceGame.time)}: ${milliseconds}`}</p>
+      <p className="time">{`${t(intl, messages.sequenceGame.result.title)}: ${result}`}</p>
       <div>
         {createGameBoard()}
       </div>

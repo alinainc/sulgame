@@ -2,26 +2,30 @@
 
 import PropTypes from 'prop-types';
 import React from 'react';
+import { useIntl } from 'react-intl';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 import domain from '../../../domain.config';
-import { button, waitingRoom } from '../../../i18n/messages';
+import { messages, t } from '../../../i18n';
 
-const UrlCopy = ({ roomId }) => (
-  <div>
+const UrlCopy = ({ roomId }) => {
+  const intl = useIntl();
+  return (
     <div>
-      {waitingRoom.url}
+      <div>
+        {t(intl, messages.waitingRoom.url)}
+      </div>
+      <div>
+        <textarea defaultValue={`http://${domain.default}/platform/entry/${roomId}`} disabled />
+      </div>
+      <div>
+        <CopyToClipboard text={`http://${domain.default}/platform/entry/${roomId}`}>
+          <button type="button">{t(intl, messages.button.copy)}</button>
+        </CopyToClipboard>
+      </div>
     </div>
-    <div>
-      <textarea defaultValue={`http://${domain.default}/platform/entry/${roomId}`} disabled />
-    </div>
-    <div>
-      <CopyToClipboard text={`http://${domain.default}/platform/entry/${roomId}`}>
-        <button type="button">{button.copy}</button>
-      </CopyToClipboard>
-    </div>
-  </div>
-);
+  );
+};
 
 UrlCopy.propTypes = {
   roomId: PropTypes.string,

@@ -2,17 +2,19 @@
 
 import firebase from 'firebase/app';
 import React, { useEffect, useRef, useState } from 'react';
+import { useIntl } from 'react-intl';
 import { Redirect } from 'react-router-dom';
 import { Spinner } from 'reactstrap';
 
 import { FirebaseDatabaseMutation, FirebaseDatabaseNode } from '@react-firebase/database';
 
-import { chooseGame } from '../../../i18n/messages';
+import { messages, t } from '../../../i18n';
 import shapes from '../../../shapes';
 import Ready from '../../components/Ready';
 import ChoiceList from './ChoiceList';
 
 const Play = ({ history, location, match: { params: { roomId, userId } } }) => {
+  const intl = useIntl();
   const [gameState, setGameState] = useState(false);
   const choiceRef = useRef(ChoiceList[Math.floor(Math.random() * ChoiceList.length)]);
   const resultRef = useRef(null);
@@ -117,19 +119,19 @@ const Play = ({ history, location, match: { params: { roomId, userId } } }) => {
       {!gameStart
         ? (
           <Ready
-            description={chooseGame.description}
+            description={t(intl, messages.chooseGame.description)}
             gameStart={gameStart}
             seconds={seconds - gameSeconds}
-            title={chooseGame.title}
+            title={t(intl, messages.chooseGame.title)}
           />
         )
         : null
       }
       <div className="game">
-        <h1>{chooseGame.title}</h1>
-        <p className="description">{chooseGame.description}</p>
+        <h1>{t(intl, messages.chooseGame.title)}</h1>
+        <p className="description">{t(intl, messages.chooseGame.description)}</p>
         <p className="time">
-          {`${chooseGame.time}: ${seconds > gameSeconds ? gameSeconds : seconds}`}
+          {`${t(intl, messages.chooseGame.time)}: ${seconds > gameSeconds ? gameSeconds : seconds}`}
         </p>
         <div>
           {renderChoice()}

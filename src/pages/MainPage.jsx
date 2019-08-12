@@ -2,11 +2,13 @@
 
 import PropTypes from 'prop-types';
 import React from 'react';
+import { useIntl } from 'react-intl';
 
-import mainPage from '../i18n/messages/mainPage';
+import { messages, t } from '../i18n';
 import shapes from '../shapes';
 
 const MainPage = ({ history, localeCallback }) => {
+  const intl = useIntl();
   const onClickButton = () => {
     history.push('/platform/entry');
   };
@@ -27,11 +29,11 @@ const MainPage = ({ history, localeCallback }) => {
     <div className="mainpage">
       <div>
         <div className="moon" />
-        <h1 className="title">{mainPage.title}</h1>
+        <h1 className="title">{t(intl, messages.mainPage.title)}</h1>
       </div>
       <div>
         <div>
-          <div className="msg">{mainPage.button}</div>
+          <div className="msg">{t(intl, messages.mainPage.button)}</div>
         </div>
         <button type="button" onClick={onClickButton} id="add-button">
           <span>+</span>
@@ -44,10 +46,10 @@ const MainPage = ({ history, localeCallback }) => {
       </div>
       <div>
         <button type="button" onClick={onEnglishClick}>
-          English
+          {t(intl, messages.button.english)}
         </button>
         <button type="button" onClick={onKoreanClick}>
-          Korean
+          {t(intl, messages.button.korean)}
         </button>
       </div>
     </div>

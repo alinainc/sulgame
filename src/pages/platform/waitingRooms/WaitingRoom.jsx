@@ -2,21 +2,23 @@
 
 import PropTypes from 'prop-types';
 import React from 'react';
+import { useIntl } from 'react-intl';
 import { Spinner } from 'reactstrap';
 
 import { FirebaseDatabaseNode } from '@react-firebase/database';
 
-import { mainPage, waitingRoom } from '../../../i18n/messages';
+import { messages, t } from '../../../i18n';
 import shapes from '../../../shapes';
 import GameList from './GameList';
 import InviteList from './InviteList';
 import PlayerList from './PlayerList';
 
 const WaitingRoom = ({ isHost, match: { params: { roomId, userId } } }) => {
+  const intl = useIntl();
   const renderWaitingRoom = () => (
     <div className="waiting">
       <h1>
-        <span>{mainPage.title}</span>
+        <span>{t(intl, messages.mainPage.title)}</span>
         <span role="img" aria-label="moon">🌙</span>
       </h1>
       <InviteList roomId={roomId} />
@@ -35,7 +37,7 @@ const WaitingRoom = ({ isHost, match: { params: { roomId, userId } } }) => {
         }
         const ids = Object.keys(value);
         if (!isHost && !ids.includes(userId)) {
-          return <div>{waitingRoom.nouser}</div>;
+          return <div>{t(intl, messages.waitingRoom.nouser)}</div>;
         }
         return renderWaitingRoom();
       }}

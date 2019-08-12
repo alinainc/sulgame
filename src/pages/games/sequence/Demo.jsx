@@ -1,13 +1,14 @@
 // Copyright (C) 2019 Alina Inc. All rights reserved.
 
 import React, { useEffect, useRef, useState } from 'react';
+import { useIntl } from 'react-intl';
 
-
-import { button, ranking, sequenceGame } from '../../../i18n/messages';
+import { messages, t } from '../../../i18n';
 import shapes from '../../../shapes';
 import Ready from '../../components/Ready';
 
 const Demo = ({ history }) => {
+  const intl = useIntl();
   const answerRef = useRef(1);
   const intervalRef = useRef();
   const timeoutRef = useRef();
@@ -35,23 +36,23 @@ const Demo = ({ history }) => {
     }, 3000);
 
     timeoutRef.current = setTimeout(() => {
-      setGameOver(sequenceGame.result.timeOut);
+      setGameOver(t(intl, messages.sequenceGame.result.timeOut));
       clearInterval(intervalRef.current);
     }, 13100);
-  }, []);
+  }, [intl]);
 
   const onButtonClick = ({ target: { value } }) => {
     if (Number(value) === answerRef.current && answerRef.current < 9) {
       answerRef.current += 1;
       isClicked[value - 1] = true;
-      setResult(sequenceGame.result.playing);
+      setResult(t(intl, messages.sequenceGame.result.playing));
     } else if (Number(value) !== answerRef.current) {
-      setResult(sequenceGame.result.fail);
+      setResult(t(intl, messages.sequenceGame.result.fail));
     } else {
       clearInterval(intervalRef.current);
       clearTimeout(timeoutRef.current);
       isClicked[value - 1] = true;
-      setResult(sequenceGame.result.success);
+      setResult(t(intl, messages.sequenceGame.result.success));
     }
   };
 
@@ -99,10 +100,10 @@ const Demo = ({ history }) => {
     return gameBoard;
   };
 
-  if (result === sequenceGame.result.success || gameOver) {
+  if (result === t(intl, messages.sequenceGame.result.success) || gameOver) {
     return (
       <div className="ranking">
-        <h1>{ranking.title}</h1>
+        <h1>{t(intl, messages.ranking.title)}</h1>
         <button id="replay-btn" type="button" onClick={() => history.push('/')}>
           게임하러 가기
         </button>
@@ -117,18 +118,18 @@ const Demo = ({ history }) => {
       {!gameStart
         ? (
           <Ready
-            description={sequenceGame.description}
+            description={t(intl, messages.sequenceGame.description)}
             gameStart={gameStart}
             seconds={loadSeconds}
-            title={sequenceGame.title}
+            title={t(intl, messages.sequenceGame.title)}
           />
         )
         : null
       }
-      <h1>{sequenceGame.title}</h1>
-      <p className="description">{sequenceGame.description}</p>
-      <p className="time">{`${sequenceGame.time}: ${milliseconds}`}</p>
-      <p className="time">{`${sequenceGame.result.title}: ${result}`}</p>
+      <h1>{t(intl, messages.sequenceGame.title)}</h1>
+      <p className="description">{t(intl, messages.sequenceGame.description)}</p>
+      <p className="time">{`${t(intl, messages.sequenceGame.time)}: ${milliseconds}`}</p>
+      <p className="time">{`${t(intl, messages.sequenceGame.result.title)}: ${result}`}</p>
       <div>
         {createGameBoard()}
       </div>

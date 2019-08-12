@@ -3,12 +3,14 @@
 import { get, remove } from 'lodash';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { useIntl } from 'react-intl';
 import { Spinner } from 'reactstrap';
 
-import { ranking, sequenceGame } from '../../i18n/messages';
+import { messages, t } from '../../i18n';
 import RankLogic from './RankLogic';
 
 const RankingList = ({ cols, isRank, userId, value }) => {
+  const intl = useIntl();
   let items;
   let gameType;
 
@@ -44,15 +46,15 @@ const RankingList = ({ cols, isRank, userId, value }) => {
 
   const renderRankEntry = (item, col) => {
     if (col.key === 'rank') {
-      return `${rank}${ranking.rank.postfix}`;
+      return `${rank}${t(intl, messages.ranking.rank.postfix)}`;
     }
     if (gameType === 'sequence' && col.key === 'gameData') {
       const time = get(item, col.key, '');
       // FIX ME: temporary fix for sorting logic
       if (time > 500) {
-        return sequenceGame.result.timeOut;
+        return t(intl, messages.sequenceGame.result.timeOut);
       }
-      return `${time / 10} ${sequenceGame.second}`;
+      return `${time / 10} ${t(intl, messages.sequenceGame.second)}`;
     }
     return get(item, col.key, '');
   };
@@ -61,9 +63,9 @@ const RankingList = ({ cols, isRank, userId, value }) => {
     <table>
       <thead key="head">
         <tr>
-          <th>{ranking.rank.title}</th>
-          <th>{ranking.name}</th>
-          <th>{ranking.score}</th>
+          <th>{t(intl, messages.ranking.rank.title)}</th>
+          <th>{t(intl, messages.ranking.name)}</th>
+          <th>{t(intl, messages.ranking.score)}</th>
         </tr>
       </thead>
       <tbody key="body">

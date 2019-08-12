@@ -2,15 +2,17 @@
 
 import firebase from 'firebase/app';
 import React, { useEffect, useState } from 'react';
+import { useIntl } from 'react-intl';
 import { Redirect } from 'react-router-dom';
 
 import { FirebaseDatabaseMutation } from '@react-firebase/database';
 
-import clickGame from '../../../i18n/messages/clickGame';
+import { messages, t } from '../../../i18n';
 import shapes from '../../../shapes';
 import Ready from '../../components/Ready';
 
 const Play = ({ history, location, match: { params: { roomId, userId } } }) => {
+  const intl = useIntl();
   const [clickCount, setClickCount] = useState(0);
   const gameSeconds = 5;
   const totalSeconds = 8;
@@ -82,20 +84,20 @@ const Play = ({ history, location, match: { params: { roomId, userId } } }) => {
       {!gameStart
         ? (
           <Ready
-            description={clickGame.description}
+            description={t(intl, messages.clickGame.description)}
             gameStart={gameStart}
             seconds={seconds - gameSeconds}
-            title={clickGame.title}
+            title={t(intl, messages.clickGame.title)}
           />
         )
         : null
       }
-      <h1>{clickGame.title}</h1>
-      <p className="discription">{clickGame.description}</p>
+      <h1>{t(intl, messages.clickGame.title)}</h1>
+      <p className="discription">{t(intl, messages.clickGame.description)}</p>
       <p className="time">
-        {`${clickGame.time}: ${seconds > gameSeconds ? gameSeconds : seconds}`}
+        {`${t(intl, messages.clickGame.time)}: ${seconds > gameSeconds ? gameSeconds : seconds}`}
       </p>
-      <p className="time">{`${clickGame.score}: ${clickCount}`}</p>
+      <p className="time">{`${t(intl, messages.clickGame.score)}: ${clickCount}`}</p>
       <div>
         <button
           id="clickgame-button"
@@ -103,7 +105,7 @@ const Play = ({ history, location, match: { params: { roomId, userId } } }) => {
           onClick={onClickButton}
           disabled={buttonState}
         >
-          {clickGame.button}
+          {t(intl, messages.clickGame.button)}
         </button>
       </div>
     </div>

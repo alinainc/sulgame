@@ -2,17 +2,19 @@
 
 import firebase from 'firebase/app';
 import React, { useEffect, useRef, useState } from 'react';
+import { useIntl } from 'react-intl';
 import { Redirect } from 'react-router-dom';
 import { Button, Col, Input, Row, Spinner } from 'reactstrap';
 
 import { FirebaseDatabaseNode } from '@react-firebase/database';
 
-import { subwayGame } from '../../../i18n/messages';
+import { messages, t } from '../../../i18n';
 import shapes from '../../../shapes';
 import Ready from '../../components/Ready';
 import Station from './Station';
 
 const Play = ({ match: { params: { lineNum, roomId, userId } } }) => {
+  const intl = useIntl();
   const defaultSecond = 10;
   const gameSeconds = 13;
   const inputRef = useRef();
@@ -66,7 +68,7 @@ const Play = ({ match: { params: { lineNum, roomId, userId } } }) => {
     }
     if (stationRef.current.length < 1) {
       setDisabled(true);
-      setResult(subwayGame.play.result.finish);
+      setResult(t(intl, messages.subwayGame.play.result.finish));
       clearInterval(intervalRef.current);
       clearTimeout(timeoutRef.current);
     } else {
@@ -76,7 +78,7 @@ const Play = ({ match: { params: { lineNum, roomId, userId } } }) => {
       const sec = (answers.length ? defaultSecond : gameSeconds) * 1000;
       timeoutRef.current = setTimeout(() => {
         setDisabled(true);
-        setResult(subwayGame.play.result.timeout);
+        setResult(t(intl, messages.subwayGame.play.result.timeout));
         clearInterval(intervalRef.current);
       }, sec);
     }
@@ -110,7 +112,7 @@ const Play = ({ match: { params: { lineNum, roomId, userId } } }) => {
         .ref(`rooms/${roomId}/players/host/gameData`)
         .push({ input, isWrong: false, userId });
       setTurnCount(turnCount + 1);
-      stop(false, subwayGame.play.result.correct, 10);
+      stop(false, t(intl, messages.subwayGame.play.result.correct, 10));
     } else {
       firebase.database()
         .ref(`rooms/${roomId}/players/host/gameData`)
@@ -118,7 +120,7 @@ const Play = ({ match: { params: { lineNum, roomId, userId } } }) => {
       firebase.database()
         .ref(`rooms/${roomId}/players/host`)
         .update({ start: 3 });
-      stop(true, subwayGame.play.result.wrong);
+      stop(true, t(intl, messages.subwayGame.play.result.wrong));
     }
     inputRef.current.scrollIntoView({
       behavior: 'smooth',
@@ -187,19 +189,19 @@ const Play = ({ match: { params: { lineNum, roomId, userId } } }) => {
       {!gameStart
         && (
           <Ready
-            description={subwayGame.description}
+            description={t(intl, messages.subwayGame.description)}
             seconds={seconds - defaultSecond}
-            title={subwayGame.play.title}
+            title={t(intl, messages.subwayGame.play.title)}
           />
         )}
-      <h1>{subwayGame.play.title}</h1>
-      <h3>{`${subwayGame.selectLine.line[lineNum]}`}</h3>
+      <h1>{t(intl, messages.subwayGame.play.title)}</h1>
+      <h3>{`${t(intl, messages.subwayGame.selectLine.line[lineNum])}`}</h3>
       {renderAnswer()}
       <p>{`time: ${seconds}`}</p>
       <Row>
         <Col>
           <Input
-            placeholder={subwayGame.play.input}
+            placeholder={t(intl, messages.subwayGame.play.input)}
             innerRef={inputRef}
             onKeyPress={onInputPress}
             disabled={disabled}
@@ -207,7 +209,7 @@ const Play = ({ match: { params: { lineNum, roomId, userId } } }) => {
         </Col>
         <Col>
           <Button type="button" onClick={onClickButton} disabled={disabled}>
-            {subwayGame.play.button}
+            {t(intl, messages.subwayGame.play.button)}
           </Button>
         </Col>
       </Row>

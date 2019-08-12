@@ -4,14 +4,17 @@ import firebase from 'firebase/app';
 import PropTypes from 'prop-types';
 import generateHash from 'random-hash';
 import React, { Fragment } from 'react';
+import { useIntl } from 'react-intl';
 import { Redirect } from 'react-router-dom';
 
 import { FirebaseDatabaseMutation, FirebaseDatabaseNode } from '@react-firebase/database';
 
-import { button, games, waitingRoom } from '../../../i18n/messages';
+import { messages, t } from '../../../i18n';
+import { games } from '../../../i18n/messages';
 import GameListForm from '../../components/GameListForm';
 
 const GameList = ({ roomId, userId }) => {
+  const intl = useIntl();
   const updateConnect = async () => {
     const hostConnect = await firebase.database()
       .ref(`/rooms/${roomId}/players/host/connect`)
@@ -55,7 +58,7 @@ const GameList = ({ roomId, userId }) => {
               runMutation({ connect: generateHash(), gametype, start: 1 });
             }}
           >
-            {button.start}
+            {t(intl, messages.button.start)}
           </button>
         );
       }}
@@ -75,7 +78,7 @@ const GameList = ({ roomId, userId }) => {
       <table id="game-section">
         <thead>
           <tr>
-            <td>{waitingRoom.games}</td>
+            <td>{t(intl, messages.waitingRoom.games)}</td>
           </tr>
         </thead>
         <tbody>

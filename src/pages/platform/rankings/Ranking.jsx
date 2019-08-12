@@ -3,11 +3,12 @@
 import firebase from 'firebase/app';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { useIntl } from 'react-intl';
 import { Redirect } from 'react-router-dom';
 
 import { FirebaseDatabaseNode } from '@react-firebase/database';
 
-import { button, ranking } from '../../../i18n/messages';
+import { messages, t } from '../../../i18n';
 import shapes from '../../../shapes';
 import RankingGroup from '../../components/RankingGroup';
 import RankingList from '../../components/RankingList';
@@ -15,6 +16,7 @@ import HostOut from './HostOut';
 import ReplayButton from './ReplayButton';
 
 const Ranking = ({ history, isHost, match: { params: { roomId, userId } } }) => {
+  const intl = useIntl();
   const toMain = () => {
     if (isHost) {
       firebase.database()
@@ -107,13 +109,13 @@ const Ranking = ({ history, isHost, match: { params: { roomId, userId } } }) => 
           <RankingList
             cols={[{
               key: 'rank',
-              name: ranking.rank.title,
+              name: t(intl, messages.ranking.rank.title),
             }, {
               key: 'name',
-              name: ranking.name,
+              name: t(intl, messages.ranking.name),
             }, {
               key: 'gameData',
-              name: ranking.score,
+              name: t(intl, messages.ranking.score),
             }]}
             isRank
             userId={isHost ? 'host' : userId}
@@ -127,13 +129,13 @@ const Ranking = ({ history, isHost, match: { params: { roomId, userId } } }) => 
 
   return (
     <div className="ranking">
-      <h1>{ranking.title}</h1>
+      <h1>{t(intl, messages.ranking.title)}</h1>
       <button
         type="button"
         onClick={toMain}
         className="quit"
       >
-        {button.quit}
+        {t(intl, messages.button.quit)}
       </button>
       {renderRanking()}
       <ReplayButton history={history} roomId={roomId} isHost={isHost} />

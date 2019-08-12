@@ -1,15 +1,19 @@
 // Copyright (C) 2019 Alina Inc. All rights reserved.
 
 import React from 'react';
+import { useIntl } from 'react-intl';
 
-import { ranking } from '../../../i18n/messages';
+import { messages, t } from '../../../i18n';
 
-const HostOut = () => (
-  <div>
+const HostOut = () => {
+  const intl = useIntl();
+  return (
     <div>
-      {ranking.hostout}
+      <div>
+        {t(intl, messages.ranking.hostout)}
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default HostOut;

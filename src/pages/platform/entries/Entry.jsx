@@ -4,16 +4,18 @@ import firebase from 'firebase/app';
 import { isEmpty } from 'lodash';
 import generateHash from 'random-hash';
 import React, { useRef } from 'react';
+import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
 import { Input, Spinner } from 'reactstrap';
 
 import 'react-toastify/dist/ReactToastify.css';
 import { FirebaseDatabaseMutation, FirebaseDatabaseNode } from '@react-firebase/database';
 
-import messages, { entry } from '../../../i18n/messages';
+import { messages, t } from '../../../i18n';
 import shapes from '../../../shapes';
 
 const Entry = ({ history, match: { params } }) => {
+  const intl = useIntl();
   const inputRef = useRef(null);
   const isHost = isEmpty(params);
   const path = isEmpty(params) ? '/rooms/' : `/rooms/${params.roomId}/players`;
@@ -21,11 +23,11 @@ const Entry = ({ history, match: { params } }) => {
   const makeOrEnterRoom = runMutation => async () => {
     let exists = false;
     if (inputRef.current.value.length > 6) {
-      toast.warning(messages.entry.overmax);
+      toast.warning(t(intl, messages.entry.overmax));
       return null;
     }
     if (!inputRef.current.value) {
-      toast.error(messages.entry.noinput);
+      toast.error(t(intl, messages.entry.noinput));
       return null;
     }
     if (!isHost) {
@@ -65,7 +67,7 @@ const Entry = ({ history, match: { params } }) => {
         <>
           <Input
             innerRef={inputRef}
-            placeholder={entry.nickName}
+            placeholder={t(intl, messages.entry.nickName)}
             id="input"
             onKeyPress={e => (e.key === 'Enter') && makeOrEnterRoom(runMutation)()}
           />
@@ -74,7 +76,7 @@ const Entry = ({ history, match: { params } }) => {
             id="button"
             onClick={makeOrEnterRoom(runMutation)}
           >
-            {entry.enter}
+            {t(intl, messages.entry.enter)}
           </button>
         </>
       )}
@@ -87,12 +89,12 @@ const Entry = ({ history, match: { params } }) => {
           return <Spinner color="primary" />;
         }
         if (!isEmpty(params) && !value[params.roomId]) {
-          return <div>{entry.room.not}</div>;
+          return <div>{t(intl, messages.entry.room.not)}</div>;
         }
         return (
           <div className="entry">
             <div>
-              <h2 id="header">{entry.ask.name}</h2>
+              <h2 id="header">{t(intl, messages.entry.ask.name)}</h2>
             </div>
             <div>
               {enter()}

@@ -2,16 +2,18 @@
 
 import firebase from 'firebase/app';
 import React, { useEffect, useState } from 'react';
+import { useIntl } from 'react-intl';
 import { Redirect } from 'react-router-dom';
 
 import { FirebaseDatabaseNode } from '@react-firebase/database';
 
-import { button, rouletteGame } from '../../../i18n/messages';
+import { messages, t } from '../../../i18n';
 import shapes from '../../../shapes';
 import Ready from '../../components/Ready';
 import Roulette from './Roulette';
 
 const Play = ({ history, location, match: { params: { roomId, userId } } }) => {
+  const intl = useIntl();
   useEffect(() => {
     if (userId === 'host') {
       firebase.database()
@@ -45,7 +47,7 @@ const Play = ({ history, location, match: { params: { roomId, userId } } }) => {
         history.push(`/platform/waiting_room/${roomId}/host`);
       }}
     >
-      {button.retry.othergame}
+      {t(intl, messages.button.retry.othergame)}
     </button>
   );
   const listenToWaitingRoom = () => (
@@ -95,8 +97,8 @@ const Play = ({ history, location, match: { params: { roomId, userId } } }) => {
         {!gameStart
           ? (
             <Ready
-              description={rouletteGame.description}
-              title={rouletteGame.title}
+              description={t(intl, messages.rouletteGame.description)}
+              title={t(intl, messages.rouletteGame.title)}
             />
           )
           : null
@@ -107,7 +109,7 @@ const Play = ({ history, location, match: { params: { roomId, userId } } }) => {
 
   return (
     <div className="game">
-      <h1 className="game-header">{rouletteGame.title}</h1>
+      <h1 className="game-header">{t(intl, messages.rouletteGame.title)}</h1>
       {listenToWaitingRoom()}
       <FirebaseDatabaseNode path={`/rooms/${roomId}/players/host`}>
         {({ value }) => {
@@ -116,12 +118,12 @@ const Play = ({ history, location, match: { params: { roomId, userId } } }) => {
           }
           if (value.gameData === undefined) {
             return (
-              <p className="discription">{rouletteGame.waiting}</p>
+              <p className="discription">{t(intl, messages.rouletteGame.waiting)}</p>
             );
           }
           if (value.gameData === 0) {
             return (
-              <p className="discription">{rouletteGame.spining}</p>
+              <p className="discription">{t(intl, messages.rouletteGame.spining)}</p>
             );
           }
           if (value.gameData) {

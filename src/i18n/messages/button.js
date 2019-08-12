@@ -2,6 +2,8 @@
 
 export default {
   copy: 'URL 복사',
+  english: 'English',
+  korean: '한국어',
   prepare: '준비중',
   quit: '나가기',
   retry: {

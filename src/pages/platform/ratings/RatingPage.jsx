@@ -2,29 +2,33 @@
 
 import PropTypes from 'prop-types';
 import React from 'react';
+import { useIntl } from 'react-intl';
 
-import messages from '../../../i18n/messages';
+import { messages, t } from '../../../i18n';
 import Footer from '../../components/Footer';
 import Rating from '../../components/Rating';
 
-const RatingPage = ({ history }) => (
-  <div className="rating">
-    <div>
-      <button className="close" onClick={() => history.goBack()} type="button">×</button>
+const RatingPage = ({ history }) => {
+  const intl = useIntl();
+  return (
+    <div className="rating">
+      <div>
+        <button className="close" onClick={() => history.goBack()} type="button">×</button>
+      </div>
+      <div id="description">
+        <p>{t(intl, messages.feedback.title)}</p>
+        <p>{t(intl, messages.feedback.contents1)}</p>
+        <p>{t(intl, messages.feedback.contents2)}</p>
+        <p>{t(intl, messages.feedback.contents3)}</p>
+        <p>{t(intl, messages.feedback.end)}</p>
+      </div>
+      <div>
+        <Rating history={history} />
+      </div>
+      <Footer />
     </div>
-    <div id="description">
-      <p>{messages.feedback.title}</p>
-      <p>{messages.feedback.contents1}</p>
-      <p>{messages.feedback.contents2}</p>
-      <p>{messages.feedback.contents3}</p>
-      <p>{messages.feedback.end}</p>
-    </div>
-    <div>
-      <Rating history={history} />
-    </div>
-    <Footer />
-  </div>
-);
+  );
+};
 
 RatingPage.propTypes = {
   history: PropTypes.shape({
