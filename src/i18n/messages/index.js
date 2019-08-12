@@ -1,4 +1,5 @@
 // Copyright (C) 2019 Alina Inc. All rights reserved.
+import flatten from 'flat';
 
 import button from './button';
 import chooseGame from './chooseGame';
@@ -29,7 +30,7 @@ export {
   waitingRoom,
 };
 
-export default {
+export default flatten({
   button,
   chooseGame,
   clickGame,
@@ -42,4 +43,4 @@ export default {
   sequenceGame,
   subwayGame,
   waitingRoom,
-};
+});
