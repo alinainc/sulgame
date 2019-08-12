@@ -82,7 +82,7 @@ const Play = ({ match: { params: { lineNum, roomId, userId } } }) => {
         clearInterval(intervalRef.current);
       }, sec);
     }
-  }, [defaultSecond, gameSeconds, answers]);
+  }, [defaultSecond, gameSeconds, answers, intl]);
 
   const stop = (disabledButton, resultText, initSeconds) => {
     if (disabledButton) {

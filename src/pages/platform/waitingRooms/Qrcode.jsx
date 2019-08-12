@@ -3,20 +3,24 @@
 import PropTypes from 'prop-types';
 import QRCode from 'qrcode.react';
 import React from 'react';
+import { useIntl } from 'react-intl';
 
 import domain from '../../../domain.config';
-import messages from '../../../messages';
+import { messages, t } from '../../../i18n';
 
-const Qrcode = ({ roomId }) => (
-  <div>
+const Qrcode = ({ roomId }) => {
+  const intl = useIntl();
+  return (
     <div>
-      <QRCode value={`http://${domain.default}/platform/entry/${roomId}`} id="qr" />
+      <div>
+        <QRCode value={`http://${domain.default}/platform/entry/${roomId}`} id="qr" />
+      </div>
+      <div>
+        {t(intl, messages.waitingRoom.qrcode)}
+      </div>
     </div>
-    <div>
-      {messages.waitingRoom.qrcode}
-    </div>
-  </div>
-);
+  );
+};
 
 Qrcode.propTypes = {
   roomId: PropTypes.string,
