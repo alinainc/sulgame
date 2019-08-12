@@ -2,6 +2,7 @@
 
 import PropTypes from 'prop-types';
 import React from 'react';
+import { Spinner } from 'reactstrap';
 
 import { FirebaseDatabaseNode } from '@react-firebase/database';
 
@@ -9,27 +10,35 @@ import { waitingRoom } from '../../../messages';
 import PlayerListForm from '../../components/PlayerList';
 
 const PlayerList = ({ roomId, userId }) => (
-  <table>
-    <thead>
-      <tr>
-        <td>{waitingRoom.players}</td>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>
-          <FirebaseDatabaseNode path={`/rooms/${roomId}/`}>
-            {({ value }) => (
-              <PlayerListForm
-                value={value}
-                userId={userId}
-              />
-            )}
-          </FirebaseDatabaseNode>
-        </td>
-      </tr>
-    </tbody>
-  </table>
+  <FirebaseDatabaseNode path={`/rooms/${roomId}/`}>
+    {({ value }) => {
+      if (!value) {
+        return <Spinner color="primary" />;
+      }
+      return (
+        <table>
+          <thead>
+            <tr>
+              <td>
+                {waitingRoom.players}
+                {` (${Object.values(value.players).length}명)`}
+              </td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <PlayerListForm
+                  value={value}
+                  userId={userId}
+                />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      );
+    }}
+  </FirebaseDatabaseNode>
 );
 
 PlayerList.propTypes = {
