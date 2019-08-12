@@ -42,8 +42,16 @@ class Roulette extends React.Component {
   }
 
   getColor(item, maxitem) {
-    const colors = ['#293c45','#486573', '#6d8e9c', '#cccccc']
-    return (maxitem > 4) && (item === maxitem-1) ? colors[(item % 4) + (item/3-1)] : colors[item % 4]
+    const darkGreen = '#293c45';
+    const darkBlue = '#2d3f4f'
+    const midBlue = '#486573';
+    const lightBlue = '#6d8e9c';
+    const lightGrey = '#cccccc';
+    const colors = [darkGreen, midBlue, lightBlue, lightGrey];
+
+    if ((((maxitem - 1) % 4) === 0) && (item === maxitem - 1))
+      return darkBlue;
+    return colors[item % 4];
   }
   
   drawRouletteWheel() {
@@ -63,12 +71,11 @@ class Roulette extends React.Component {
       ctx.strokeStyle = 'white';
       ctx.lineWidth = 2;
       ctx.font = '30px Helvetica, Arial';
-      
+
       for (let i = 0; i < options.length; i++) {
         const angle = startAngle + i * arc;
-        
         ctx.fillStyle = this.getColor(i, options.length);
-         
+        
         ctx.beginPath();
         // ctc.arc(x좌표, y좌표, 반지름, 시작각도, 끝각도, 그리는 방향)
         // 그리는 방향 false: 시계 방향, true: 반시계 방향
