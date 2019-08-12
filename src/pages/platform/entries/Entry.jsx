@@ -82,8 +82,8 @@ const Entry = ({ history, match: { params } }) => {
   );
   const checkRoomExists = () => (
     <FirebaseDatabaseNode path="/rooms/">
-      {({ value }) => {
-        if (!value) {
+      {({ isLoading, value }) => {
+        if (isLoading) {
           return <Spinner color="primary" />;
         }
         if (!isEmpty(params) && !value[params.roomId]) {

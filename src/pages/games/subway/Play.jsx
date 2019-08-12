@@ -97,7 +97,6 @@ const Play = ({ match: { params: { lineNum, roomId, userId } } }) => {
   const onClickButton = () => {
     const input = inputRef.current.value;
     const isExist = stationRef.current.indexOf(input);
-
     if ((isExist !== -1)) {
       stationRef.current.splice(isExist, 1);
       setAnswers([
