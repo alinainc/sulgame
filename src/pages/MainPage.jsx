@@ -1,17 +1,26 @@
 // Copyright (C) 2019 Alina Inc. All rights reserved.
 
+import PropTypes from 'prop-types';
 import React from 'react';
 
 import mainPage from '../messages/mainPage';
 import shapes from '../shapes';
 
-const MainPage = ({ history }) => {
+const MainPage = ({ history, localeCallback }) => {
   const onClickButton = () => {
     history.push('/platform/entry');
   };
 
   const onFeedbackClick = () => {
     history.push('/platform/rating');
+  };
+
+  const onEnglishClick = () => {
+    localeCallback('en');
+  };
+
+  const onKoreanClick = () => {
+    localeCallback('ko');
   };
 
   return (
@@ -33,12 +42,21 @@ const MainPage = ({ history }) => {
           <span role="img" aria-label="feedback">✉️</span>
         </button>
       </div>
+      <div>
+        <button type="button" onClick={onEnglishClick}>
+          English
+        </button>
+        <button type="button" onClick={onKoreanClick}>
+          Korean
+        </button>
+      </div>
     </div>
   );
 };
 
 MainPage.propTypes = {
   history: shapes.history.isRequired,
+  localeCallback: PropTypes.func.isRequired,
 };
 
 export default MainPage;

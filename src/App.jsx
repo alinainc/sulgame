@@ -2,7 +2,8 @@
 
 import firebase from 'firebase/app';
 import 'firebase/database';
-import React from 'react';
+import React, { useState } from 'react';
+import { IntlProvider } from 'react-intl';
 import { Route, Switch } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
@@ -17,17 +18,33 @@ import Platform from './pages/platform';
 import './stylesheets/main.scss';
 // import 'bootstrap/dist/css/bootstrap.min.css';
 
-const App = () => (
-  <FirebaseDatabaseProvider firebase={firebase} {...test}>
-    <ToastContainer />
-    <BrowserRouter>
-      <Switch>
-        <Route path="/games" component={Game} />
-        <Route path="/platform" component={Platform} />
-        <Route component={MainPage} />
-      </Switch>
-    </BrowserRouter>
-  </FirebaseDatabaseProvider>
-);
+const App = () => {
+  const [locale, setLocale] = useState('ko');
+  const localeCallback = (localeFromChild) => {
+    setLocale(localeFromChild);
+  };
+  return (
+    <FirebaseDatabaseProvider firebase={firebase} {...test}>
+      <ToastContainer />
+      <IntlProvider locale={locale}>
+        <BrowserRouter>
+          <Switch>
+            <Route path="/games" component={Game} />
+            <Route path="/platform" component={Platform} />
+            <Route
+              render={props => (
+                <MainPage
+                  {...props}
+                  localeCallback={localeCallback}
+                  key="MainPage"
+                />
+              )}
+            />
+          </Switch>
+        </BrowserRouter>
+      </IntlProvider>
+    </FirebaseDatabaseProvider>
+  );
+};
 
 export default App;
