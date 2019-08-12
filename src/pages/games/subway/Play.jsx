@@ -1,27 +1,53 @@
 // Copyright (C) 2019 Alina Inc. All rights reserved.
 
-import React from 'react';
-import { Button, Col, Input, Row } from 'reactstrap';
+import firebase from 'firebase/app';
+import React, { useEffect, useRef, useState } from 'react';
+import { Redirect } from 'react-router-dom';
+import { Button, Col, Input, Row, Spinner } from 'reactstrap';
+
+import { FirebaseDatabaseNode } from '@react-firebase/database';
 
 import { subwayGame } from '../../../messages';
 import shapes from '../../../shapes';
 import Ready from '../../components/Ready';
 import Station from './Station';
 
-const Play = ({ history, match: { params: { lineNum } } }) => {
+const Play = ({ history, match: { params: { lineNum, roomId, userId } } }) => {
   const defaultSecond = 10;
   const gameSeconds = 13;
-  const inputRef = React.useRef();
-  const intervalRef = React.useRef();
-  const timeoutRef = React.useRef();
-  const stationRef = React.useRef(Station[lineNum]);
-  const [seconds, setSeconds] = React.useState(gameSeconds);
-  const [disabled, setDisabled] = React.useState(false);
-  const [answers, setAnswers] = React.useState([]);
-  const [result, setResult] = React.useState();
-  const [gameStart, setGameStart] = React.useState(false);
-
-  React.useEffect(() => {
+  const inputRef = useRef();
+  const intervalRef = useRef();
+  const timeoutRef = useRef();
+  const stationRef = useRef(Station[lineNum]);
+  const [seconds, setSeconds] = useState(gameSeconds);
+  const [disabled, setDisabled] = useState(false);
+  const [answers, setAnswers] = useState([]);
+  const [result, setResult] = useState();
+  const [gameStart, setGameStart] = useState(false);
+  const [turnCount, setTurnCount] = useState(0);
+  useEffect(() => {
+    if (userId === 'host') {
+      firebase.database()
+        .ref(`rooms/${roomId}/players/host/gameData`)
+        .set({});
+      firebase.database()
+        .ref(`rooms/${roomId}/players/host/turn`)
+        .set({});
+    }
+  }, [roomId, userId]);
+  useEffect(() => {
+    firebase.database()
+      .ref(`rooms/${roomId}/players/`)
+      .once('value')
+      .then((players) => {
+        const keys = Object.keys(players.val());
+        firebase.database()
+          .ref(`rooms/${roomId}/players/host`)
+          .update({ turn: keys[turnCount % keys.length] });
+        return null;
+      });
+  }, [roomId, turnCount]);
+  useEffect(() => {
     if (!answers.length) {
       const loadSec = (gameSeconds - defaultSecond) * 1000;
       setTimeout(() => {
@@ -71,8 +97,15 @@ const Play = ({ history, match: { params: { lineNum } } }) => {
           value: input,
         },
       ]);
+      firebase.database()
+        .ref(`rooms/${roomId}/players/host/gameData`)
+        .push({ input, isWrong: false, userId });
+      setTurnCount(turnCount + 1);
       stop(false, subwayGame.play.result.correct, 10);
     } else {
+      firebase.database()
+        .ref(`rooms/${roomId}/players/host/gameData`)
+        .push({ input, isWrong: true, userId });
       stop(true, subwayGame.play.result.wrong);
     }
 
@@ -88,6 +121,25 @@ const Play = ({ history, match: { params: { lineNum } } }) => {
       onClickButton();
     }
   };
+
+  const renderAnswer = () => (
+    <FirebaseDatabaseNode path={`rooms/${roomId}/players/host/gameData`}>
+      {({ value }) => {
+        if (!value) {
+          return <Spinner color="primary" />;
+        }
+        const keys = Object.keys(value);
+        const inputs = keys
+          .map(key => Object.assign(value[key], { key }));
+        return (
+          <ul>
+            {inputs.map(answer => (<li key={answer.key}>{answer.input}</li>))}
+          </ul>
+        );
+      }}
+    </FirebaseDatabaseNode>
+  );
+
   return (
     <div className={!gameStart ? 'game-backdrop' : null}>
       {!gameStart
@@ -100,9 +152,7 @@ const Play = ({ history, match: { params: { lineNum } } }) => {
         )}
       <h1>{subwayGame.play.title}</h1>
       <h3>{`${subwayGame.selectLine.line[lineNum]}`}</h3>
-      <ul>
-        { answers.map(answer => (<li key={answer.id}>{answer.value}</li>))}
-      </ul>
+      {renderAnswer()}
       <p>{`time: ${seconds}`}</p>
       <Row>
         <Col>
