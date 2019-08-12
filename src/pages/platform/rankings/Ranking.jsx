@@ -136,7 +136,7 @@ const Ranking = ({ history, isHost, match: { params: { roomId, userId } } }) => 
         {button.quit}
       </button>
       {renderRanking()}
-      <ReplayButton history={history} roomId={roomId} isHost={isHost}/>
+      <ReplayButton history={history} roomId={roomId} isHost={isHost} />
       <button type="button" className="feedback-button" onClick={onFeedbackClick}>
         <span role="img" aria-label="feedback">✉️</span>
       </button>

@@ -58,6 +58,7 @@ const Play = ({ history, location, match: { params: { roomId, userId } } }) => {
   }, [history, location.pathname]);
 
   const onButtonClick = ({ target: { value } }) => {
+    console.log(value);
     if (Number(value) === answerRef.current && answerRef.current < 9) {
       answerRef.current += 1;
       isClicked[value - 1] = true;
@@ -65,9 +66,9 @@ const Play = ({ history, location, match: { params: { roomId, userId } } }) => {
     } else if (Number(value) !== answerRef.current) {
       setResult(sequenceGame.result.fail);
     } else {
+      isClicked[value - 1] = true;
       clearInterval(intervalRef.current);
       clearTimeout(timeoutRef.current);
-      isClicked[value - 1] = true;
       setResult(sequenceGame.result.success);
     }
   };
@@ -94,7 +95,7 @@ const Play = ({ history, location, match: { params: { roomId, userId } } }) => {
           id="sequence-button"
           disabled={isClicked[index[i] - 1]}
           key={index[i]}
-          onClick={onButtonClick}
+          onPointerDown={onButtonClick}
           value={index[i]}
         >
           {index[i]}
