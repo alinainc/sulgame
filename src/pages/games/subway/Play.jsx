@@ -12,7 +12,7 @@ import shapes from '../../../shapes';
 import Ready from '../../components/Ready';
 import Station from './Station';
 
-const Play = ({ history, match: { params: { lineNum, roomId, userId } } }) => {
+const Play = ({ match: { params: { lineNum, roomId, userId } } }) => {
   const defaultSecond = 10;
   const gameSeconds = 13;
   const inputRef = useRef();
@@ -36,17 +36,27 @@ const Play = ({ history, match: { params: { lineNum, roomId, userId } } }) => {
     }
   }, [roomId, userId]);
   useEffect(() => {
-    firebase.database()
-      .ref(`rooms/${roomId}/players/`)
-      .once('value')
-      .then((players) => {
-        const keys = Object.keys(players.val());
-        firebase.database()
-          .ref(`rooms/${roomId}/players/host`)
-          .update({ turn: keys[turnCount % keys.length] });
-        return null;
-      });
-  }, [roomId, turnCount]);
+    (async () => {
+      const players = await firebase.database()
+        .ref(`rooms/${roomId}/players/`)
+        .once('value');
+      const keys = Object.keys(players.val());
+      const cnt = await firebase.database()
+        .ref(`rooms/${roomId}/players/host/gameData`)
+        .once('value');
+      let count;
+      if (cnt.val() !== null && cnt.val() !== undefined) {
+        count = Object.values(cnt.val()).length;
+      } else {
+        count = 0;
+      }
+      const userKey = keys[count % keys.length];
+      await firebase.database()
+        .ref(`rooms/${roomId}/players/host`)
+        .update({ turn: userKey });
+      return null;
+    })();
+  }, [roomId, turnCount, userId]);
   useEffect(() => {
     if (!answers.length) {
       const loadSec = (gameSeconds - defaultSecond) * 1000;
@@ -106,9 +116,11 @@ const Play = ({ history, match: { params: { lineNum, roomId, userId } } }) => {
       firebase.database()
         .ref(`rooms/${roomId}/players/host/gameData`)
         .push({ input, isWrong: true, userId });
+      firebase.database()
+        .ref(`rooms/${roomId}/players/host`)
+        .update({ start: 3 });
       stop(true, subwayGame.play.result.wrong);
     }
-
     inputRef.current.scrollIntoView({
       behavior: 'smooth',
       block: 'center',
@@ -139,9 +151,40 @@ const Play = ({ history, match: { params: { lineNum, roomId, userId } } }) => {
       }}
     </FirebaseDatabaseNode>
   );
-
+  const listenGameover = () => (
+    <FirebaseDatabaseNode path={`rooms/${roomId}/players/host/start`}>
+      {({ value }) => {
+        if (value === 3) {
+          if (userId === 'host') {
+            return <Redirect to={`/platform/waiting_room/${roomId}/host`} />;
+          }
+          return <Redirect to={`/platform/waiting_room/${roomId}/user/${userId}`} />;
+        }
+        return null;
+      }}
+    </FirebaseDatabaseNode>
+  );
+  const listenTurn = () => (
+    <FirebaseDatabaseNode path={`rooms/${roomId}/players/host/turn`}>
+      {({ value }) => {
+        if (value !== null) {
+          if (value !== userId) {
+            setDisabled(true);
+            setSeconds(13);
+            return null;
+          }
+          setDisabled(false);
+          setSeconds(13);
+          return null;
+        }
+        return null;
+      }}
+    </FirebaseDatabaseNode>
+  );
   return (
     <div className={!gameStart ? 'game-backdrop' : null}>
+      {listenGameover()}
+      {listenTurn()}
       {!gameStart
         && (
           <Ready
