@@ -39,7 +39,7 @@ const Entry = ({ history, match: { params } }) => {
           }
         });
       if (exists) {
-        toast.error('이미 존재하는 이름입니다');
+        toast.error(messages.entry.exist);
         return null;
       }
     }
@@ -82,8 +82,8 @@ const Entry = ({ history, match: { params } }) => {
   );
   const checkRoomExists = () => (
     <FirebaseDatabaseNode path="/rooms/">
-      {({ isLoading, value }) => {
-        if (isLoading) {
+      {({ value }) => {
+        if (!value) {
           return <Spinner color="primary" />;
         }
         if (!isEmpty(params) && !value[params.roomId]) {

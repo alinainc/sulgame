@@ -5,6 +5,7 @@ import QRCode from 'qrcode.react';
 import React from 'react';
 
 import domain from '../../../domain.config';
+import messages from '../../../messages';
 
 const Qrcode = ({ roomId }) => (
   <div>
@@ -12,7 +13,7 @@ const Qrcode = ({ roomId }) => (
       <QRCode value={`http://${domain.default}/platform/entry/${roomId}`} id="qr" />
     </div>
     <div>
-      QR code
+      {messages.waitingRoom.qrcode}
     </div>
   </div>
 );

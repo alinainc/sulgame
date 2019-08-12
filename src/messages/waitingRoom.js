@@ -5,6 +5,7 @@ export default {
   invite: '초대하기',
   nouser: '해당 유저가 존재하지 않습니다.',
   players: '플레이어',
+  qrcode: 'QR Code',
   title: '대기 방',
   url: 'URL',
 };
