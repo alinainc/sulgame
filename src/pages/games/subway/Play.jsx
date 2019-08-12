@@ -20,8 +20,9 @@ const Play = ({ history, match: { params: { lineNum } } }) => {
   const [answers, setAnswers] = React.useState([]);
   const [result, setResult] = React.useState();
   const [gameStart, setGameStart] = React.useState(false);
+
   React.useEffect(() => {
-    if (!gameStart) {
+    if (!answers.length) {
       const loadSec = (gameSeconds - defaultSecond) * 1000;
       setTimeout(() => {
         setGameStart(true);
@@ -36,15 +37,14 @@ const Play = ({ history, match: { params: { lineNum } } }) => {
       intervalRef.current = setInterval(() => {
         setSeconds(s => s - 1);
       }, 1000);
-
-      const sec = defaultSecond * 1000;
+      const sec = (answers.length ? defaultSecond : gameSeconds) * 1000;
       timeoutRef.current = setTimeout(() => {
         setDisabled(true);
         setResult(subwayGame.play.result.timeout);
         clearInterval(intervalRef.current);
       }, sec);
     }
-  }, [defaultSecond, history, gameSeconds, answers, gameStart]);
+  }, [defaultSecond, gameSeconds, answers]);
 
   const stop = (disabledButton, resultText, initSeconds) => {
     if (disabledButton) {
@@ -95,7 +95,7 @@ const Play = ({ history, match: { params: { lineNum } } }) => {
           <Ready
             description={subwayGame.description}
             seconds={seconds - defaultSecond}
-            title={subwayGame.selectLine.title}
+            title={subwayGame.play.title}
           />
         )}
       <h1>{subwayGame.play.title}</h1>
