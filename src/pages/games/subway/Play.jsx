@@ -95,7 +95,7 @@ const Play = ({ history, match: { params: { lineNum } } }) => {
           <Ready
             description={subwayGame.description}
             seconds={seconds - defaultSecond}
-            title={subwayGame.title}
+            title={subwayGame.selectLine.title}
           />
         )}
       <h1>{subwayGame.play.title}</h1>
