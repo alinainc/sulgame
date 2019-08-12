@@ -2,9 +2,11 @@
 
 import React from 'react';
 
+import messages from '../../messages';
+
 const Footer = () => (
   <div id="footer-rating">
-    <span>Copyright (C) 2019 Alina Inc. All rights reserved.</span>
+    <span>{messages.feedback.copyright}</span>
   </div>
 );
 
