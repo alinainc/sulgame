@@ -58,7 +58,6 @@ const Play = ({ history, location, match: { params: { roomId, userId } } }) => {
   }, [history, location.pathname]);
 
   const onButtonClick = ({ target: { value } }) => {
-    console.log(value);
     if (Number(value) === answerRef.current && answerRef.current < 9) {
       answerRef.current += 1;
       isClicked[value - 1] = true;

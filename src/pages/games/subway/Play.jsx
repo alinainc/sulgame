@@ -217,7 +217,6 @@ const Play = ({ match: { params: { lineNum, roomId, userId } } }) => {
 };
 
 Play.propTypes = {
-  history: shapes.history.isRequired,
   match: shapes.match.isRequired,
 };
 
