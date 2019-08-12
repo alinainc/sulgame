@@ -6,7 +6,7 @@ import React from 'react';
 
 import { FirebaseDatabaseMutation } from '@react-firebase/database';
 
-import { button } from '../../../messages';
+import { button } from '../../../i18n/messages';
 import shapes from '../../../shapes';
 
 const ReplayButton = ({ history, isHost, roomId }) => {

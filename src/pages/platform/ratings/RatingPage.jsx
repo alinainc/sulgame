@@ -3,7 +3,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import messages from '../../../messages';
+import messages from '../../../i18n/messages';
 import Footer from '../../components/Footer';
 import Rating from '../../components/Rating';
 

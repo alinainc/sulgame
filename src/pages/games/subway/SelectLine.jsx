@@ -7,7 +7,7 @@ import { Button } from 'reactstrap';
 
 import { FirebaseDatabaseNode } from '@react-firebase/database';
 
-import subwayGame from '../../../messages/subwayGame';
+import subwayGame from '../../../i18n/messages/subwayGame';
 import shapes from '../../../shapes';
 
 const SelectLine = ({ history, match: { params: { roomId, userId } } }) => {

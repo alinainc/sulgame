@@ -7,7 +7,7 @@ import { Button, Col, Input, Row, Spinner } from 'reactstrap';
 
 import { FirebaseDatabaseNode } from '@react-firebase/database';
 
-import { subwayGame } from '../../../messages';
+import { subwayGame } from '../../../i18n/messages';
 import shapes from '../../../shapes';
 import Ready from '../../components/Ready';
 import Station from './Station';

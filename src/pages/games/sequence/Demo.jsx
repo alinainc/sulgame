@@ -3,7 +3,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 
 
-import { button, ranking, sequenceGame } from '../../../messages';
+import { button, ranking, sequenceGame } from '../../../i18n/messages';
 import shapes from '../../../shapes';
 import Ready from '../../components/Ready';
 

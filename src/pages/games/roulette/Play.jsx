@@ -6,7 +6,7 @@ import { Redirect } from 'react-router-dom';
 
 import { FirebaseDatabaseNode } from '@react-firebase/database';
 
-import { button, rouletteGame } from '../../../messages';
+import { button, rouletteGame } from '../../../i18n/messages';
 import shapes from '../../../shapes';
 import Ready from '../../components/Ready';
 import Roulette from './Roulette';

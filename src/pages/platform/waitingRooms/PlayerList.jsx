@@ -6,7 +6,7 @@ import { Spinner } from 'reactstrap';
 
 import { FirebaseDatabaseNode } from '@react-firebase/database';
 
-import { waitingRoom } from '../../../messages';
+import { waitingRoom } from '../../../i18n/messages';
 import PlayerListForm from '../../components/PlayerList';
 
 const PlayerList = ({ roomId, userId }) => (

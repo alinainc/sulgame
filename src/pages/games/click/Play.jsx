@@ -6,7 +6,7 @@ import { Redirect } from 'react-router-dom';
 
 import { FirebaseDatabaseMutation } from '@react-firebase/database';
 
-import clickGame from '../../../messages/clickGame';
+import clickGame from '../../../i18n/messages/clickGame';
 import shapes from '../../../shapes';
 import Ready from '../../components/Ready';
 

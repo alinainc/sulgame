@@ -4,7 +4,7 @@ import firebase from 'firebase/app';
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import { rouletteGame } from '../../../messages';
+import { rouletteGame } from '../../../i18n/messages';
 
 class Roulette extends React.Component {
   constructor(props) {

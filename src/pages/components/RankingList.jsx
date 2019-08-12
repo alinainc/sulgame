@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { Spinner } from 'reactstrap';
 
-import { ranking, sequenceGame } from '../../messages';
+import { ranking, sequenceGame } from '../../i18n/messages';
 import RankLogic from './RankLogic';
 
 const RankingList = ({ cols, isRank, userId, value }) => {

@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import { ranking } from '../../../messages';
+import { ranking } from '../../../i18n/messages';
 
 const HostOut = () => (
   <div>

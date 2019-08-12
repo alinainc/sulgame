@@ -3,7 +3,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 
-import mainPage from '../messages/mainPage';
+import mainPage from '../i18n/messages/mainPage';
 import shapes from '../shapes';
 
 const MainPage = ({ history, localeCallback }) => {

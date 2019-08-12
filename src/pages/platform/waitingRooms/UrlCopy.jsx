@@ -5,7 +5,7 @@ import React from 'react';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 import domain from '../../../domain.config';
-import { button, waitingRoom } from '../../../messages';
+import { button, waitingRoom } from '../../../i18n/messages';
 
 const UrlCopy = ({ roomId }) => (
   <div>

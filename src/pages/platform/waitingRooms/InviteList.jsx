@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 
 import domain from '../../../domain.config';
-import { waitingRoom } from '../../../messages';
+import { waitingRoom } from '../../../i18n/messages';
 import Qrcode from './Qrcode';
 import UrlCopy from './UrlCopy';
 

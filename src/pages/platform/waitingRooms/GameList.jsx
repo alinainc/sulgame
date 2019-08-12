@@ -8,7 +8,7 @@ import { Redirect } from 'react-router-dom';
 
 import { FirebaseDatabaseMutation, FirebaseDatabaseNode } from '@react-firebase/database';
 
-import { button, games, waitingRoom } from '../../../messages';
+import { button, games, waitingRoom } from '../../../i18n/messages';
 import GameListForm from '../../components/GameListForm';
 
 const GameList = ({ roomId, userId }) => {

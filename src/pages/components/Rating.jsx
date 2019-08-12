@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 
 import { FirebaseDatabaseMutation } from '@react-firebase/database';
 
-import messages from '../../messages';
+import messages from '../../i18n/messages';
 import shapes from '../../shapes';
 
 const Rating = ({ history }) => {

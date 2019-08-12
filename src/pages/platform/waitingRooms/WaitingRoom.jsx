@@ -6,7 +6,7 @@ import { Spinner } from 'reactstrap';
 
 import { FirebaseDatabaseNode } from '@react-firebase/database';
 
-import { mainPage, waitingRoom } from '../../../messages';
+import { mainPage, waitingRoom } from '../../../i18n/messages';
 import shapes from '../../../shapes';
 import GameList from './GameList';
 import InviteList from './InviteList';

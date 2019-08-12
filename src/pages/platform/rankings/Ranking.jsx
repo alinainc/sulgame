@@ -7,7 +7,7 @@ import { Redirect } from 'react-router-dom';
 
 import { FirebaseDatabaseNode } from '@react-firebase/database';
 
-import { button, ranking } from '../../../messages';
+import { button, ranking } from '../../../i18n/messages';
 import shapes from '../../../shapes';
 import RankingGroup from '../../components/RankingGroup';
 import RankingList from '../../components/RankingList';

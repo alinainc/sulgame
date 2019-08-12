@@ -10,7 +10,7 @@ import { Input, Spinner } from 'reactstrap';
 import 'react-toastify/dist/ReactToastify.css';
 import { FirebaseDatabaseMutation, FirebaseDatabaseNode } from '@react-firebase/database';
 
-import messages, { entry } from '../../../messages';
+import messages, { entry } from '../../../i18n/messages';
 import shapes from '../../../shapes';
 
 const Entry = ({ history, match: { params } }) => {
