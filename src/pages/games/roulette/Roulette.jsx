@@ -41,26 +41,9 @@ class Roulette extends React.Component {
     this.drawRouletteWheel();
   }
 
-  byte2Hex(n) {
-    const nybHexString = '0123456789ABCDEF';
-    return String(nybHexString.substr((n >> 4) & 0x0F,1)) + nybHexString.substr(n & 0x0F,1);
-  }
-  
-  RGB2Color(r,g,b) {
-    return '#' + this.byte2Hex(r) + this.byte2Hex(g) + this.byte2Hex(b);
-  }
-
   getColor(item, maxitem) {
-    const phase = 0;
-    const center = 128;
-    const width = 128;
-    const frequency = Math.PI*2/maxitem;
-    
-    const red   = Math.sin(frequency*item+2+phase) * width + center;
-    const green = Math.sin(frequency*item+0+phase) * width + center;
-    const blue  = Math.sin(frequency*item+4+phase) * width + center;
-    
-    return this.RGB2Color(red,green,blue);
+    const colors = ['#293c45','#486573', '#6d8e9c', '#cccccc']
+    return (maxitem > 4) && (item === maxitem-1) ? colors[(item % 4) + (item/3-1)] : colors[item % 4]
   }
   
   drawRouletteWheel() {
@@ -106,7 +89,7 @@ class Roulette extends React.Component {
       }
       
       // 화살표
-      ctx.fillStyle = 'red';
+      ctx.fillStyle = '#edd085';
       ctx.beginPath();
       ctx.lineTo(baseSize + 10, baseSize - (outsideRadius + 20));
       ctx.lineTo(baseSize + 0, baseSize - (outsideRadius - 20));
