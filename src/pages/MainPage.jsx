@@ -44,7 +44,7 @@ const MainPage = ({ history, localeCallback }) => {
           <span role="img" aria-label="feedback">✉️</span>
         </button>
       </div>
-      <div>
+      <div id="lang-btn-group">
         <button type="button" onClick={onEnglishClick}>
           {t(intl, messages.button.english)}
         </button>
