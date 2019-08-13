@@ -24,7 +24,6 @@ const GameList = ({ roomId, userId }) => {
       .update({ connect: hostConnect.val() });
   };
 
-
   const listenStart = () => (
     <FirebaseDatabaseNode path={`/rooms/${roomId}/players/host`}>
       {({ value }) => {

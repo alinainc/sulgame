@@ -1,27 +1,25 @@
 // Copyright (C) 2019 Alina Inc. All rights reserved.
 
-import { get } from 'lodash';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { useIntl } from 'react-intl';
+
+import { messages, t } from '../../i18n';
 
 const GameListForm = ({ rows, value }) => {
-  const items = Object.keys(value).map((game) => {
-    const item = Object.assign({}, value[game]);
-    item.key = game;
-    return item;
-  });
+  const intl = useIntl();
 
   return (
-    items.map(item => (
+    Object.keys(value).map(game => (
       rows.map(row => (
-        <table key={get(item, 'key', '')} className="game-list">
+        <table key={game} className="game-list">
           <tbody>
             <tr>
-              <td id="game-name">{get(item, 'name', '')}</td>
-              <td rowSpan="2">{row.host ? row.host(item) : null}</td>
+              <td id="game-name">{t(intl, messages[game].name)}</td>
+              <td rowSpan="2">{row.host ? row.host(value[game]) : null}</td>
             </tr>
             <tr>
-              <td>{get(item, 'description', '')}</td>
+              <td>{t(intl, messages[game].description)}</td>
             </tr>
           </tbody>
         </table>
