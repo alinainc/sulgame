@@ -41,7 +41,7 @@
  "feedback.title": "Did you enjoy the drink game?",
  "feedback.type": "Enter your feedback",
  "mainPage.button": "Create Room",
- "mainPage.title": "술 게임",
+ "mainPage.title": "Sul Game",
  "ranking.hostout": "Host exited the room",
  "ranking.name": "Name",
  "ranking.rank.postfix": " ",
@@ -91,7 +91,8 @@
  "waitingRoom.games": "Games",
  "waitingRoom.invite": "Invite",
  "waitingRoom.nouser": "This player does not exist.",
- "waitingRoom.players": "Players",
+ "waitingRoom.players.count": " ",
+ "waitingRoom.players.title": "players",
  "waitingRoom.qrcode": "QR Code",
  "waitingRoom.title": "Waiting Room",
  "waitingRoom.url": "URL"

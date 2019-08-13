@@ -91,7 +91,8 @@
  "waitingRoom.games": "게임 목록",
  "waitingRoom.invite": "초대하기",
  "waitingRoom.nouser": "해당 유저가 존재하지 않습니다.",
- "waitingRoom.players": "플레이어",
+ "waitingRoom.players.count": "명",
+ "waitingRoom.players.title": "플레이어",
  "waitingRoom.qrcode": "QR Code",
  "waitingRoom.title": "대기 방",
  "waitingRoom.url": "URL"

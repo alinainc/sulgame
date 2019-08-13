@@ -23,8 +23,8 @@ const PlayerList = ({ roomId, userId }) => {
             <thead>
               <tr>
                 <td>
-                  {t(intl, messages.waitingRoom.players)}
-                  {` (${Object.values(value.players).length}명)`}
+                  {t(intl, messages.waitingRoom.players.title)}
+                  {` (${Object.values(value.players).length}${t(intl, messages.waitingRoom.players.count)})`}
                 </td>
               </tr>
             </thead>
