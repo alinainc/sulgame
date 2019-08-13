@@ -4,10 +4,43 @@
   border: 0.2rem whitesmoke solid;
 }
 
-.enter {
+#modal-invite {
+  margin-top: 20vh;
   margin-right: auto;
   margin-left: auto;
+  background-color: $primary-dark-grey;
+  padding: 5vh 5vw;
+  width: 90vw;
+  height: 60vh;
   text-align: center;
+
+  textarea {
+    margin: auto;
+    width: 50vw;
+  }
+
+  .close-btn {
+    float: left;
+  }
+}
+
+.display-block {
+  display: block;
+}
+
+.display-none {
+  display: none;
+}
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  background-color: rgba(20, 20, 20, 0.5);
+  width: 100vw;
+  height: 100vh;
+  overflow: auto;
 }
 
 .waiting {
@@ -67,8 +100,6 @@
 
   .urlcopy {
     display: inline-block;
-    margin: 5px;
-    width: 48vw;
 
     > .bar {
       background-color: transparent;
@@ -135,9 +166,4 @@
       width: 75vw;
     }
   }
-}
-
-#game-section {
-  // min-height: 10vh;
-  // max-height: 10vh;
 }

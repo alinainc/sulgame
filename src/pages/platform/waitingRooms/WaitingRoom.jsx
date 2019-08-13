@@ -1,7 +1,7 @@
 // Copyright (C) 2019 Alina Inc. All rights reserved.
 
 import PropTypes from 'prop-types';
-import React from 'react';
+import React, { useState } from 'react';
 import { useIntl } from 'react-intl';
 import { Spinner } from 'reactstrap';
 
@@ -15,13 +15,26 @@ import PlayerList from './PlayerList';
 
 const WaitingRoom = ({ isHost, match: { params: { roomId, userId } } }) => {
   const intl = useIntl();
+
+  const [state, setState] = useState({ show: false });
+
+  const showModal = () => {
+    setState({ show: true });
+  };
+
+  const hideModal = () => {
+    setState({ show: false });
+  };
+
   const renderWaitingRoom = () => (
     <div className="waiting">
       <h1>
         <span>{t(intl, messages.mainPage.title)}</span>
         <span role="img" aria-label="moon">🌙</span>
       </h1>
-      <InviteList roomId={roomId} />
+      <button type="button" onClick={showModal}>
+        {t(intl, messages.waitingRoom.invite)}
+      </button>
       <PlayerList roomId={roomId} userId={isHost ? 'host' : userId} />
       {isHost
         ? (<GameList roomId={roomId} isHost={isHost} />)
@@ -44,12 +57,16 @@ const WaitingRoom = ({ isHost, match: { params: { roomId, userId } } }) => {
     </FirebaseDatabaseNode>
   );
 
-  return checkUserExists();
+  return (
+    <div>
+      <InviteList handleClose={hideModal} roomId={roomId} show={state.show} />
+      {checkUserExists()}
+    </div>
+  );
 };
 
 WaitingRoom.propTypes = {
   isHost: PropTypes.bool,
-  location: shapes.location.isRequired,
   match: shapes.match.isRequired,
 };
 

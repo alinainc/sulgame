@@ -9,27 +9,32 @@ import { messages, t } from '../../../i18n';
 import Qrcode from './Qrcode';
 import UrlCopy from './UrlCopy';
 
-const InviteList = ({ roomId }) => {
+const InviteList = ({ handleClose, roomId, show }) => {
   const intl = useIntl();
+  const showHideClassName = show ? 'modal display-block' : 'modal display-none';
+
   return (
-    <table className="enter">
-      <thead>
-        <tr>
-          <td colSpan="2">{t(intl, messages.waitingRoom.invite)}</td>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><Qrcode roomId={roomId} value={`${domain.default}/platform/entry/${roomId}`} /></td>
-          <td><UrlCopy roomId={roomId} /></td>
-        </tr>
-      </tbody>
-    </table>
+    <div className={showHideClassName}>
+      <div id="modal-invite">
+        <div>
+          <button className="close-btn" onClick={handleClose} type="button">×</button>
+        </div>
+        <h1>
+          {t(intl, messages.waitingRoom.invite)}
+        </h1>
+        <div>
+          <Qrcode roomId={roomId} value={`${domain.default}/platform/entry/${roomId}`} />
+          <UrlCopy roomId={roomId} />
+        </div>
+      </div>
+    </div>
   );
 };
 
 InviteList.propTypes = {
+  handleClose: PropTypes.func.isRequired,
   roomId: PropTypes.string.isRequired,
+  show: PropTypes.bool.isRequired,
 };
 
 export default InviteList;
