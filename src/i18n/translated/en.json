@@ -95,7 +95,7 @@
  "waitingRoom.nouser": "This player does not exist.",
  "waitingRoom.option.one": "option 1",
  "waitingRoom.option.two": "option 2",
- "waitingRoom.players.count": "",
+ "waitingRoom.players.count": " ",
  "waitingRoom.players.title": "players",
  "waitingRoom.qrcode": "QR Code",
  "waitingRoom.title": "Waiting Room",

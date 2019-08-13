@@ -13,7 +13,7 @@ export default {
     two: '방법 2',
   },
   players: {
-    count: '명',
+    count: '명 ',
     title: '플레이어',
   },
   qrcode: 'QR Code',
