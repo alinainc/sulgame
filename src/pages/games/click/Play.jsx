@@ -81,7 +81,6 @@ const Play = ({ history, location, match: { params: { roomId, userId } } }) => {
     if (!isMobile || !isIOS) {
       clickSound.play();
     }
-    clickSound.play();
     e.preventDefault();
     const click = clickCount + 1;
     setClickCount(click);

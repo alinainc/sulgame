@@ -10,6 +10,8 @@ const Footer = () => {
   return (
     <div id="footer-rating">
       <span>{t(intl, messages.feedback.copyright)}</span>
+      <br />
+      <span>{t(intl, messages.feedback.intern)}</span>
     </div>
   );
 };

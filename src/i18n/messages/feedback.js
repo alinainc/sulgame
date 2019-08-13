@@ -7,6 +7,7 @@ export default {
   copyright: 'Copyright (C) 2019 Alina Inc. All rights reserved.',
   email: 'email을 입력해 주세요 (선택)',
   end: '더 나은 술 게임이 되도록 만들겠습니다!',
+  intern: '* 인턴들의 2주 프로젝트 입니다.',
   nocontents: '내용을 입력해주세요',
   norating: '별점을 선택해주세요',
   title: '술 게임 재미있게 즐기셨나요?',
