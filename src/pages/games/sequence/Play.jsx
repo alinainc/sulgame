@@ -97,7 +97,7 @@ const Play = ({ history, location, match: { params: { roomId, userId } } }) => {
           id="sequence-button"
           disabled={isClicked[index[i] - 1]}
           key={index[i]}
-          onPointerDown={onButtonClick}
+          onMouseDown={onButtonClick}
           value={index[i]}
         >
           {index[i]}
