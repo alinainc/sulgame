@@ -74,7 +74,7 @@ const GameList = ({ roomId, userId }) => {
   return (
     <Fragment>
       {listenStart()}
-      <table id="game-section">
+      <table>
         <thead>
           <tr>
             <td>{t(intl, messages.waitingRoom.games)}</td>
