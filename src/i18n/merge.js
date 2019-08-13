@@ -7,7 +7,6 @@ export default (...args) => {
   const translated = merge({}, ...args);
   const messages = unflatten(mapValues(translated.en, (value, key) => ({
     id: key,
-    temp: value,
   })));
   return {
     messages,
