@@ -2,8 +2,8 @@
 
 import PropTypes from 'prop-types';
 import React from 'react';
-import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { useIntl } from 'react-intl';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 import domain from '../../../domain.config';
 import { messages, t } from '../../../i18n';
@@ -20,7 +20,7 @@ const UrlCopy = ({ roomId }) => {
       </div>
       <div>
         <CopyToClipboard text={`http://${domain.default}/platform/entry/${roomId}`}>
-          <button type="button">{t(intl, messages.button.copy)}</button>
+          <button type="button" id="copy-btn">{t(intl, messages.button.copy)}</button>
         </CopyToClipboard>
       </div>
     </div>
