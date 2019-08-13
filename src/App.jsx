@@ -1,5 +1,7 @@
 // Copyright (C) 2019 Alina Inc. All rights reserved.
 
+/* eslint-disable no-undef */
+
 import firebase from 'firebase/app';
 import 'firebase/database';
 import React, { useState } from 'react';
@@ -17,14 +19,25 @@ import Game from './pages/games';
 import Platform from './pages/platform';
 
 import './stylesheets/main.scss';
-// import 'bootstrap/dist/css/bootstrap.min.css';
 
 const App = () => {
-  const [locale, setLocale] = useState('ko');
+  let init = 'ko';
+  if (document.cookie.indexOf('language=') < 0) {
+    document.cookie = `language=${init}`;
+  } else {
+    document.cookie.split('; ').forEach((item) => {
+      const parts = item.split('=');
+      if (parts[0] === 'language') {
+        [, init] = parts;
+      }
+    });
+  }
+  const [locale, setLocale] = useState(init);
   const localeCallback = (localeFromChild) => {
     setLocale(localeFromChild);
   };
   const messages = translated[locale];
+  document.cookie = `language=${locale}`;
   return (
     <FirebaseDatabaseProvider firebase={firebase} {...test}>
       <ToastContainer />
