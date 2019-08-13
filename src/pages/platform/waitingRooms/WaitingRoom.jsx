@@ -48,7 +48,7 @@ const WaitingRoom = ({ isHost, match: { params: { roomId, userId } } }) => {
     <FirebaseDatabaseNode path={`/rooms/${roomId}/players`}>
       {({ value }) => {
         if (!value) {
-          return <Spinner color="primary" />;
+          return <div className="loader" />;
         }
         const ids = Object.keys(value);
         if (!isHost && !ids.includes(userId)) {

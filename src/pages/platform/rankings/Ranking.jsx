@@ -74,7 +74,7 @@ const Ranking = ({ history, isHost, match: { params: { roomId, userId } } }) => 
     <FirebaseDatabaseNode path={`/rooms/${roomId}`}>
       {({ value }) => {
         if (!value) {
-          return null;
+          return <div className="loader" />;
         }
         if (!value.players.host) {
           return <HostOut history={history} />;

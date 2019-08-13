@@ -6,7 +6,7 @@ import generateHash from 'random-hash';
 import React, { useRef } from 'react';
 import { useIntl } from 'react-intl';
 import { toast } from 'react-toastify';
-import { Input, Spinner } from 'reactstrap';
+import { Input } from 'reactstrap';
 
 import 'react-toastify/dist/ReactToastify.css';
 import { FirebaseDatabaseMutation, FirebaseDatabaseNode } from '@react-firebase/database';
@@ -86,7 +86,7 @@ const Entry = ({ history, match: { params } }) => {
     <FirebaseDatabaseNode path="/rooms/">
       {({ value }) => {
         if (!value) {
-          return <Spinner color="primary" />;
+          return <div className="loader" color="primary" />;
         }
         if (!isEmpty(params) && !value[params.roomId]) {
           return <div>{t(intl, messages.entry.room.not)}</div>;
