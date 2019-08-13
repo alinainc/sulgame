@@ -2,6 +2,7 @@
 
 import firebase from 'firebase/app';
 import React, { useEffect, useState } from 'react';
+import { isIOS, isMobile } from 'react-device-detect';
 import { useIntl } from 'react-intl';
 import { Redirect } from 'react-router-dom';
 
@@ -13,6 +14,9 @@ import Ready from '../../components/Ready';
 
 const Play = ({ history, location, match: { params: { roomId, userId } } }) => {
   const intl = useIntl();
+  const audioUrl = 'https://s0.vocaroo.com/media/download_temp/Vocaroo_s0S1F1rL5xH3.mp3';
+  /* eslint-disable-next-line no-undef */
+  const clickSound = new Audio(audioUrl);
   const [clickCount, setClickCount] = useState(0);
   const gameSeconds = 5;
   const totalSeconds = 8;
@@ -74,6 +78,10 @@ const Play = ({ history, location, match: { params: { roomId, userId } } }) => {
   }
 
   const onClickButton = (e) => {
+    if (!isMobile || !isIOS) {
+      clickSound.play();
+    }
+    clickSound.play();
     e.preventDefault();
     const click = clickCount + 1;
     setClickCount(click);

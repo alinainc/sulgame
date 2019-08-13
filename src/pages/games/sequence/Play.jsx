@@ -2,6 +2,7 @@
 
 import firebase from 'firebase/app';
 import React, { useEffect, useRef, useState } from 'react';
+import { isIOS, isMobile } from 'react-device-detect';
 import { useIntl } from 'react-intl';
 import { Redirect } from 'react-router-dom';
 
@@ -13,6 +14,10 @@ import Ready from '../../components/Ready';
 
 const Play = ({ history, location, match: { params: { roomId, userId } } }) => {
   const intl = useIntl();
+  const audioUrl = 'https://s1.vocaroo.com/media/download_temp/Vocaroo_s1XlRUvymRaF.mp3';
+  /* eslint-disable-next-line no-undef */
+  const touchSound = new Audio(audioUrl);
+  touchSound.preload = 'auto';
   const answerRef = useRef(1);
   const intervalRef = useRef();
   const timeoutRef = useRef();
@@ -59,14 +64,20 @@ const Play = ({ history, location, match: { params: { roomId, userId } } }) => {
     }, 13100);
   }, [history, intl, location.pathname]);
 
-  const onButtonClick = ({ target: { value } }) => {
+  const onButtonDown = ({ target: { value } }) => {
     if (Number(value) === answerRef.current && answerRef.current < 9) {
+      if (!isMobile || !isIOS) {
+        touchSound.play();
+      }
       answerRef.current += 1;
       isClicked[value - 1] = true;
       setResult(t(intl, messages.sequenceGame.result.playing));
     } else if (Number(value) !== answerRef.current) {
       setResult(t(intl, messages.sequenceGame.result.fail));
     } else {
+      if (!isMobile || !isIOS) {
+        touchSound.play();
+      }
       isClicked[value - 1] = true;
       clearInterval(intervalRef.current);
       clearTimeout(timeoutRef.current);
@@ -97,7 +108,7 @@ const Play = ({ history, location, match: { params: { roomId, userId } } }) => {
           id="sequence-button"
           disabled={isClicked[index[i] - 1]}
           key={index[i]}
-          onMouseDown={onButtonClick}
+          onMouseDown={onButtonDown}
           value={index[i]}
         >
           {index[i]}
