@@ -59,7 +59,7 @@ const WaitingRoom = ({ isHost, match: { params: { roomId, userId } } }) => {
   );
 
   return (
-    <div>
+    <div className="waiting">
       <InviteList handleClose={hideModal} roomId={roomId} show={state.show} />
       {checkUserExists()}
     </div>
