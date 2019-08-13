@@ -1,7 +1,7 @@
 // Copyright (C) 2019 Alina Inc. All rights reserved.
 
 export default {
-  copy: 'URL 복사',
+  copy: '복사',
   english: 'English',
   korean: '한국어',
   prepare: '준비중',
