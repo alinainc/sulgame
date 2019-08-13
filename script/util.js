@@ -6,6 +6,7 @@ export const wrap = fn => (argv) => {
   const start = Date.now();
   argv.promise = Promise.resolve(fn(argv)) // eslint-disable-line no-param-reassign
     .then(() => {
+      // eslint-disable-next-line no-console
       console.log('time elapsed: ', Date.now() - start, '(ms)');
     });
 };
