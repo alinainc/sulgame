@@ -3,8 +3,9 @@
 import firebase from 'firebase/app';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { injectIntl } from 'react-intl';
 
-import { rouletteGame } from '../../../i18n/messages';
+import { messages } from '../../../i18n';
 
 class Roulette extends React.Component {
   constructor(props) {
@@ -162,21 +163,21 @@ class Roulette extends React.Component {
   }
 
   render() {
-    const { baseSize } = this.props;
+    const { baseSize, intl } = this.props;
     return (
       <div className="game roulette-container">
-        <h1 className="game-header">{rouletteGame.title}</h1>
-        <p className="discription">{rouletteGame.description}</p>
+        <h1 className="game-header">{intl.formatMessage(messages.rouletteGame.title)}</h1>
+        <p className="discription">{intl.formatMessage(messages.rouletteGame.description)}</p>
         <canvas
           className="roulette-canvas"
           height={baseSize * 2}
           ref="canvas"
           width={baseSize * 2}
         />
-        <button onClick={this.handleOnClick}>{rouletteGame.spin}</button>
+        <button onClick={this.handleOnClick}>{intl.formatMessage(messages.rouletteGame.spin)}</button>
       </div>
     );
   }
 }
 
-export default Roulette;
+export default injectIntl(Roulette);
