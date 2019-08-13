@@ -17,7 +17,7 @@ const InviteList = ({ handleClose, roomId, show }) => {
     <div className={showHideClassName}>
       <div id="modal-invite">
         <div>
-          <button className="close-btn" onClick={handleClose} type="button">×</button>
+          <button id="invite-close-btn" onClick={handleClose} type="button">×</button>
         </div>
         <h1>
           {t(intl, messages.waitingRoom.invite)}

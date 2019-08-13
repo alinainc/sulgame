@@ -12,11 +12,11 @@ const Qrcode = ({ roomId }) => {
   const intl = useIntl();
   return (
     <div>
+      <h3>
+        {t(intl, messages.waitingRoom.qrcode)}
+      </h3>
       <div>
         <QRCode value={`http://${domain.default}/platform/entry/${roomId}`} id="qr" />
-      </div>
-      <div>
-        {t(intl, messages.waitingRoom.qrcode)}
       </div>
     </div>
   );
