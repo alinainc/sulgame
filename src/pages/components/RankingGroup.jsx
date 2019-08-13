@@ -3,13 +3,16 @@
 import { remove } from 'lodash';
 import PropTypes from 'prop-types';
 import React from 'react';
+import { useIntl } from 'react-intl';
 import { Spinner } from 'reactstrap';
 
 import { FirebaseDatabaseNode } from '@react-firebase/database';
 
 import RankLogic from './RankLogic';
+import { t, messages } from '../../i18n';
 
 const RankingGroup = ({ isRank, roomId, value }) => {
+  const intl = useIntl();
   const groupA = [];
   const groupB = [];
   let hostItem = {};
@@ -63,7 +66,7 @@ const RankingGroup = ({ isRank, roomId, value }) => {
         if (!order) {
           return <Spinner color="primary" />;
         }
-        return <h3>{`${order.value} 마셔라!`}</h3>;
+        return <h3>{`${order.value} ${t(intl, messages.chooseGame.drink)}`}</h3>;
       }}
     </FirebaseDatabaseNode>
   );

@@ -1,5 +1,7 @@
 // Copyright (C) 2019 Alina Inc. All rights reserved.
 
+/* eslint-disable no-undef */
+
 import firebase from 'firebase/app';
 import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
@@ -11,9 +13,16 @@ import { FirebaseDatabaseMutation, FirebaseDatabaseNode } from '@react-firebase/
 import { messages, t } from '../../../i18n';
 import shapes from '../../../shapes';
 import Ready from '../../components/Ready';
-import ChoiceList from './ChoiceList';
+import ChoiceObject from './ChoiceList';
 
 const Play = ({ history, location, match: { params: { roomId, userId } } }) => {
+  let ChoiceList;
+  document.cookie.split('; ').forEach((item) => {
+    const parts = item.split('=');
+    if (parts[0] === 'language') {
+      ChoiceList = ChoiceObject[parts[1]];
+    }
+  });
   const intl = useIntl();
   const [gameState, setGameState] = useState(false);
   const choiceRef = useRef(ChoiceList[Math.floor(Math.random() * ChoiceList.length)]);
