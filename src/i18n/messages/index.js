@@ -36,7 +36,6 @@ export default flatten({
   clickGame,
   entry,
   feedback,
-  games,
   mainPage,
   ranking,
   rouletteGame,
