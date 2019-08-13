@@ -13,9 +13,10 @@ const UrlCopy = ({ roomId }) => {
 
   return (
     <div>
-      <h3>
-        {t(intl, messages.waitingRoom.url)}
-      </h3>
+      <h4>
+        {`${t(intl, messages.waitingRoom.option.two)}. `}
+        {t(intl, messages.waitingRoom.description.two)}
+      </h4>
       <div>
         <textarea defaultValue={`http://${domain.default}/platform/entry/${roomId}`} disabled />
       </div>
