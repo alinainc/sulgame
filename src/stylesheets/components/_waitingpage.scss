@@ -16,12 +16,23 @@
 
   textarea {
     margin: auto;
+    border-radius: 10%;
     width: 50vw;
+    font-size: 1rem;
   }
 
   .close-btn {
     float: left;
   }
+}
+
+#invite-btn {
+  background-color: whitesmoke;
+  padding-top: 1vh;
+  padding-bottom: 1vh;
+  width: 95vw;
+  color: #333;
+  font-size: 1.1rem;
 }
 
 .display-block {
@@ -30,6 +41,7 @@
 
 .display-none {
   display: none;
+  z-index: 0;
 }
 
 .modal {
@@ -45,20 +57,17 @@
 
 .waiting {
   margin: auto;
+  text-align: center;
 
   > h1 {
-    margin: 0;
+    margin-top: 3vh;
     text-align: center;
     font-size: 1.5em;
   }
 
-  > div {
-    margin-top: 5px;
-    border: 1px gray solid;
-  }
-
   > table {
-    margin-top: 0.5em;
+    margin-top: 3vh;
+    margin-bottom: 1vh;
     width: 96vw;
 
     thead {
@@ -81,6 +90,7 @@
           border: 0.2rem #222 solid;
           border-radius: 0.5rem;
           background-color: #222;
+          text-align: left;
         }
       }
     }
@@ -106,11 +116,6 @@
       margin: auto;
       width: 40vw;
       text-align: center;
-
-      textarea {
-        border-radius: 10%;
-        font-size: 1rem;
-      }
     }
 
     .contents {
@@ -141,12 +146,13 @@
   }
 
   .vertical-scroll {
-    max-height: 60vh;
+    max-height: 50vh;
     overflow: auto;
   }
 
   .game-list {
-    margin: auto;
+    margin-right: auto;
+    margin-left: auto;
     border: 0.15rem lightslategray solid;
     border-radius: 0.5rem;
     padding: 0.5rem;

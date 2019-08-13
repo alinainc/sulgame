@@ -32,10 +32,12 @@ const WaitingRoom = ({ isHost, match: { params: { roomId, userId } } }) => {
         <span>{t(intl, messages.mainPage.title)}</span>
         <span role="img" aria-label="moon">🌙</span>
       </h1>
-      <button type="button" onClick={showModal}>
-        {t(intl, messages.waitingRoom.invite)}
-      </button>
       <PlayerList roomId={roomId} userId={isHost ? 'host' : userId} />
+      <button type="button" onClick={showModal} id="invite-btn">
+        {'👭'}
+        {t(intl, messages.waitingRoom.invite)}
+        {'👬'}
+      </button>
       {isHost
         ? (<GameList roomId={roomId} isHost={isHost} />)
         : (<GameList userId={userId} roomId={roomId} isHost={isHost} />)}
