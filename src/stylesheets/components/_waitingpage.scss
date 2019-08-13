@@ -154,8 +154,14 @@
       height: 3.2rem;
     }
 
+    #game-description {
+      color: lightgray;
+    }
+
     #game-name {
       width: 75vw;
+      color: whitesmoke;
+      font-family: 'Gugi', 'Nanum Gothic', sans-serif;
     }
   }
 }

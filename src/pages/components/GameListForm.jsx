@@ -19,7 +19,7 @@ const GameListForm = ({ rows, value }) => {
               <td rowSpan="2">{row.host ? row.host(value[game]) : null}</td>
             </tr>
             <tr>
-              <td>{t(intl, messages[game].description)}</td>
+              <td id="game-description">{t(intl, messages[game].description)}</td>
             </tr>
           </tbody>
         </table>
