@@ -109,25 +109,6 @@
     overflow: auto;
   }
 
-  .urlcopy {
-    display: inline-block;
-
-    > .bar {
-      background-color: transparent;
-    }
-
-    .warper {
-      display: relative;
-      margin: auto;
-      width: 40vw;
-      text-align: center;
-    }
-
-    .contents {
-      max-width: 38vw;
-    }
-  }
-
   .players {
     display: inline-block;
     padding-right: 0.5rem;
