@@ -45,7 +45,16 @@ const App = () => {
         <BrowserRouter>
           <Switch>
             <Route path="/games" component={Game} />
-            <Route path="/platform" component={Platform} />
+            <Route
+              path="/platform"
+              component={props => (
+                <Platform
+                  {...props}
+                  localeCallback={localeCallback}
+                  key="Platform"
+                />
+              )}
+            />
             <Route
               render={props => (
                 <MainPage

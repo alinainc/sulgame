@@ -2,6 +2,7 @@
 
 import firebase from 'firebase/app';
 import { isEmpty } from 'lodash';
+import PropTypes from 'prop-types';
 import generateHash from 'random-hash';
 import React, { useRef } from 'react';
 import { useIntl } from 'react-intl';
@@ -14,11 +15,18 @@ import { FirebaseDatabaseMutation, FirebaseDatabaseNode } from '@react-firebase/
 import { messages, t } from '../../../i18n';
 import shapes from '../../../shapes';
 
-const Entry = ({ history, match: { params } }) => {
+const Entry = ({ history, localeCallback, match: { params } }) => {
   const intl = useIntl();
   const inputRef = useRef(null);
   const isHost = isEmpty(params);
   const path = isEmpty(params) ? '/rooms/' : `/rooms/${params.roomId}/players`;
+  const onEnglishClick = () => {
+    localeCallback('en');
+  };
+
+  const onKoreanClick = () => {
+    localeCallback('ko');
+  };
 
   const makeOrEnterRoom = runMutation => async () => {
     let exists = false;
@@ -107,6 +115,14 @@ const Entry = ({ history, match: { params } }) => {
 
   return (
     <div>
+      <div id="lang-btn-group">
+        <button type="button" onClick={onEnglishClick}>
+          {t(intl, messages.button.english)}
+        </button>
+        <button type="button" onClick={onKoreanClick}>
+          {t(intl, messages.button.korean)}
+        </button>
+      </div>
       {checkRoomExists()}
     </div>
   );
@@ -114,6 +130,7 @@ const Entry = ({ history, match: { params } }) => {
 
 Entry.propTypes = {
   history: shapes.history.isRequired,
+  localeCallback: PropTypes.func.isRequired,
   match: shapes.match.isRequired,
 };
 
