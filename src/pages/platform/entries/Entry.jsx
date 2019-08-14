@@ -10,10 +10,9 @@ import { toast } from 'react-toastify';
 import { Input } from 'reactstrap';
 
 import 'react-toastify/dist/ReactToastify.css';
+import { messages, t } from '@frontend/i18n';
+import shapes from '@frontend/shapes';
 import { FirebaseDatabaseMutation, FirebaseDatabaseNode } from '@react-firebase/database';
-
-import { messages, t } from '../../../i18n';
-import shapes from '../../../shapes';
 
 const Entry = ({ history, localeCallback, match: { params } }) => {
   const intl = useIntl();

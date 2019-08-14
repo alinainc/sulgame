@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { Route, Switch } from 'react-router';
 
-import shapes from '../../../shapes';
+import shapes from '@frontend/shapes';
+
 import Entry from './Entry';
 
 const UserEntry = ({ localeCallback, match }) => (

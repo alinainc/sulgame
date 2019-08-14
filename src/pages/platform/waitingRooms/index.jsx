@@ -3,7 +3,7 @@
 import React from 'react';
 import { Route, Switch } from 'react-router';
 
-import shapes from '../../../shapes';
+import shapes from '@frontend/shapes';
 import MainWaitingRoom from './WaitingRoom';
 
 const WaitingRoom = ({ match }) => (

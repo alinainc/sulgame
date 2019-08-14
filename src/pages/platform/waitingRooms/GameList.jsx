@@ -7,11 +7,10 @@ import React, { Fragment } from 'react';
 import { useIntl } from 'react-intl';
 import { Redirect } from 'react-router-dom';
 
+import { messages, t } from '@frontend/i18n';
+import { games } from '@frontend/i18n/messages';
 import { FirebaseDatabaseMutation, FirebaseDatabaseNode } from '@react-firebase/database';
-
-import { messages, t } from '../../../i18n';
-import { games } from '../../../i18n/messages';
-import GameListForm from '../../components/GameListForm';
+import GameListForm from 'components/GameListForm';
 
 const GameList = ({ roomId, userId }) => {
   const intl = useIntl();

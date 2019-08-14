@@ -5,8 +5,8 @@ import QRCode from 'qrcode.react';
 import React from 'react';
 import { useIntl } from 'react-intl';
 
-import domain from '../../../domain.config';
-import { messages, t } from '../../../i18n';
+import domain from '@frontend/domain.config';
+import { messages, t } from '@frontend/i18n';
 
 const Qrcode = ({ roomId }) => {
   const intl = useIntl();

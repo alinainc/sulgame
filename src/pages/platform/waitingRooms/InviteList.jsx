@@ -4,8 +4,9 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { useIntl } from 'react-intl';
 
-import domain from '../../../domain.config';
-import { messages, t } from '../../../i18n';
+import domain from '@frontend/domain.config';
+import { messages, t } from '@frontend/i18n';
+
 import Qrcode from './Qrcode';
 import UrlCopy from './UrlCopy';
 

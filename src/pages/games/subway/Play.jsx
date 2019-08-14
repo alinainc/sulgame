@@ -6,11 +6,11 @@ import { useIntl } from 'react-intl';
 import { Redirect } from 'react-router-dom';
 import { Button, Col, Input, Row, Spinner } from 'reactstrap';
 
+import { messages, t } from '@frontend/i18n';
+import shapes from '@frontend/shapes';
 import { FirebaseDatabaseNode } from '@react-firebase/database';
+import Ready from 'components/Ready';
 
-import { messages, t } from '../../../i18n';
-import shapes from '../../../shapes';
-import Ready from '../../components/Ready';
 import Station from './Station';
 
 const Play = ({ match: { params: { lineNum, roomId, userId } } }) => {

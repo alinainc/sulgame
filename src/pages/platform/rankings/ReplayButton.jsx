@@ -5,10 +5,9 @@ import generateHash from 'random-hash';
 import React from 'react';
 import { useIntl } from 'react-intl';
 
+import { messages, t } from '@frontend/i18n';
+import shapes from '@frontend/shapes';
 import { FirebaseDatabaseMutation } from '@react-firebase/database';
-
-import { messages, t } from '../../../i18n';
-import shapes from '../../../shapes';
 
 const ReplayButton = ({ history, isHost, roomId }) => {
   const intl = useIntl();

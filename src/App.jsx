@@ -10,13 +10,12 @@ import { Route, Switch } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 
+import { test } from '@frontend/firebase.config';
+import { translated } from '@frontend/i18n';
 import { FirebaseDatabaseProvider } from '@react-firebase/database';
-
-import { test } from './firebase.config';
-import { translated } from './i18n';
-import MainPage from './pages/MainPage';
-import Game from './pages/games';
-import Platform from './pages/platform';
+import MainPage from 'pages/MainPage';
+import Game from 'pages/games';
+import Platform from 'pages/platform';
 
 import './stylesheets/main.scss';
 

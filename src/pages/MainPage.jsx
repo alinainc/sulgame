@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { useIntl } from 'react-intl';
 
-import { messages, t } from '../i18n';
-import shapes from '../shapes';
+import { messages, t } from '@frontend/i18n';
+import shapes from '@frontend/shapes';
 
 const MainPage = ({ history, localeCallback }) => {
   const intl = useIntl();

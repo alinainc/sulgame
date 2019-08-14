@@ -6,8 +6,8 @@ import { useIntl } from 'react-intl';
 
 import { FirebaseDatabaseNode } from '@react-firebase/database';
 
-import { messages, t } from '../../../i18n';
-import shapes from '../../../shapes';
+import { messages, t } from '@frontend/i18n';
+import shapes from '@frontend/shapes';
 import GameList from './GameList';
 import InviteList from './InviteList';
 import PlayerList from './PlayerList';
