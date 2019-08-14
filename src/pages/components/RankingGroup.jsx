@@ -66,7 +66,7 @@ const RankingGroup = ({ isRank, roomId, value }) => {
         if (!order) {
           return <Spinner color="primary" />;
         }
-        return <h3>{`${order.value} ${t(intl, messages.chooseGame.drink)}`}</h3>;
+        return <h3 id="drink-order">{`${order.value} ${t(intl, messages.chooseGame.drink)}`}</h3>;
       }}
     </FirebaseDatabaseNode>
   );
