@@ -86,7 +86,10 @@ const Play = ({ match: { params: { lineNum, roomId, userId } } }) => {
   }
 
   const onClickButton = () => {
-    const input = inputRef.current.value;
+    let input = inputRef.current.value.trim();
+    if (input !== '서울역' && input.slice(-1) === '역') {
+      input = input.substring(0, input.length - 1);
+    }
     const isExist = stationRef.current.indexOf(input);
     if ((isExist !== -1)) {
       stationRef.current.splice(isExist, 1);
