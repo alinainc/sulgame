@@ -1,7 +1,7 @@
 // Copyright (C) 2019 Alina Inc. All rights reserved.
 
 import firebase from 'firebase/app';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useIntl } from 'react-intl';
 import { Redirect } from 'react-router-dom';
 import { Button } from 'reactstrap';
@@ -16,6 +16,13 @@ const SelectLine = ({ history, match: { params: { roomId, userId } } }) => {
     'line1', 'line2', 'line3', 'line4', 'line5',
     'line6', 'line7', 'line8', 'line9',
   ];
+  useEffect(() => {
+    if (userId === 'host') {
+      firebase.database()
+        .ref(`rooms/${roomId}/players/host/`)
+        .update({ gameData: null, turn: null, start: 1, replay: 0 });
+    }
+  }, [roomId]);
 
   const onClickButton = (e) => {
     firebase.database()

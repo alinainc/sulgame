@@ -48,13 +48,13 @@ const GameList = ({ roomId, userId }) => {
         if (userId !== 'host') {
           return null;
         }
-        if (gametype === 'subway') {
-          return (
-            <button className="game-prepare" disabled type="button" >
-              {t(intl, messages.button.prepare)}
-            </button>
-          );
-        }
+        // if (gametype === 'subway') {
+        //   return (
+        //     <button className="game-prepare" disabled type="button" >
+        //       {t(intl, messages.button.prepare)}
+        //     </button>
+        //   );
+        // }
         return (
           <button
             className="game-start"

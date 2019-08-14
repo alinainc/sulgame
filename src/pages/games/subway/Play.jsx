@@ -15,6 +15,7 @@ import Station from './Station';
 
 const Play = ({ match: { params: { lineNum, roomId, userId } } }) => {
   const intl = useIntl();
+  
   const defaultSecond = 10;
   const [countSecond, setCountSecond] = React.useState(3);
   const inputRef = useRef();
@@ -117,6 +118,7 @@ const Play = ({ match: { params: { lineNum, roomId, userId } } }) => {
   };
 
   const renderAnswer = () => (
+    <>
     <FirebaseDatabaseNode path={`rooms/${roomId}/players/host/gameData`}>
       {({ value }) => {
         stop(true, '');
@@ -133,6 +135,13 @@ const Play = ({ match: { params: { lineNum, roomId, userId } } }) => {
         );
       }}
     </FirebaseDatabaseNode>
+    <FirebaseDatabaseNode path={`rooms/${roomId}/players/host`}>
+      {({ value }) => {
+        console.log(value);
+        return null;
+      }}
+    </FirebaseDatabaseNode>
+    </>
   );
 
   const listenGameover = () => (
