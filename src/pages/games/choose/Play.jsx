@@ -10,7 +10,7 @@ import { Spinner } from 'reactstrap';
 
 import { FirebaseDatabaseMutation, FirebaseDatabaseNode } from '@react-firebase/database';
 
-import { messages, t } from '../../../i18n';
+import { messages, t } from '../../../@bo/i18n';
 import shapes from '../../../shapes';
 import Ready from '../../components/Ready';
 import ChoiceObject from './ChoiceList';

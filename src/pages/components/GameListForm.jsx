@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { useIntl } from 'react-intl';
 
-import { messages, t } from '../../i18n';
+import { messages, t } from '@frontend/i18n';
 
 const GameListForm = ({ rows, value }) => {
   const intl = useIntl();

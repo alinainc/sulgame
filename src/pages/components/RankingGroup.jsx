@@ -8,8 +8,8 @@ import { Spinner } from 'reactstrap';
 
 import { FirebaseDatabaseNode } from '@react-firebase/database';
 
+import { messages, t } from '../../i18n';
 import RankLogic from './RankLogic';
-import { t, messages } from '../../i18n';
 
 const RankingGroup = ({ isRank, roomId, value }) => {
   const intl = useIntl();
