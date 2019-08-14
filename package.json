@@ -4,7 +4,9 @@
   "private": true,
   "dependencies": {
     "@react-firebase/database": "^0.3.10",
+    "babel-loader": "^8.0.6",
     "bootstrap": "^4.3.1",
+    "css-loader": "^3.2.0",
     "firebase": "^6.3.3",
     "flat": "^4.1.0",
     "glob": "^7.1.4",
@@ -27,6 +29,7 @@
     "react-scripts": "3.0.1",
     "react-toastify": "^5.3.2",
     "reactstrap": "^8.0.1",
+    "style-loader": "^1.0.0",
     "yargs": "^13.3.0"
   },
   "scripts": {
@@ -57,6 +60,8 @@
     "@babel/core": "^7.5.5",
     "@babel/node": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/register": "^7.5.5",
     "eslint": "^5.16.0",
     "eslint-config-airbnb": "^17.1.1",
     "eslint-import-resolver-babel-module": "^5.1.0",
