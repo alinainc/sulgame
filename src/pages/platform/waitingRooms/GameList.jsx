@@ -51,7 +51,7 @@ const GameList = ({ roomId, userId }) => {
         }
         if (gametype === 'subway') {
           return (
-            <button className="game-prepare" disabled type="button">
+            <button className="game-prepare" disabled type="button" >
               {t(intl, messages.button.prepare)}
             </button>
           );
