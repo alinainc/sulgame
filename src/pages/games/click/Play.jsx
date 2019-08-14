@@ -6,10 +6,11 @@ import { isIOS, isMobile } from 'react-device-detect';
 import { useIntl } from 'react-intl';
 import { Redirect } from 'react-router-dom';
 
-import { messages, t } from '@frontend/i18n';
-import shapes from '@frontend/shapes';
 import { FirebaseDatabaseMutation } from '@react-firebase/database';
-import Ready from 'components/Ready';
+
+import { messages, t } from '../../../i18n';
+import shapes from '../../../shapes';
+import Ready from '../../components/Ready';
 
 const Play = ({ history, location, match: { params: { roomId, userId } } }) => {
   const intl = useIntl();

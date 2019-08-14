@@ -6,7 +6,6 @@ import React from 'react';
 import { useIntl } from 'react-intl';
 import { Spinner } from 'reactstrap';
 
-import { messages, t } from '@frontend/i18n';
 import { FirebaseDatabaseNode } from '@react-firebase/database';
 
 import { messages, t } from '../../i18n';

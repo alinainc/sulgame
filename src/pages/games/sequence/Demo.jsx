@@ -3,9 +3,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 
-import { messages, t } from '@frontend/i18n';
-import shapes from '@frontend/shapes';
-import Ready from 'components/Ready';
+import { messages, t } from '../../../i18n';
+import shapes from '../../../shapes';
+import Ready from '../../components/Ready';
 
 const Demo = ({ history }) => {
   const intl = useIntl();

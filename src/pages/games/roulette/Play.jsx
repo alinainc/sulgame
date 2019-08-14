@@ -5,11 +5,11 @@ import React, { useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 import { Redirect } from 'react-router-dom';
 
-import { messages, t } from '@frontend/i18n';
-import shapes from '@frontend/shapes';
 import { FirebaseDatabaseNode } from '@react-firebase/database';
-import Ready from 'components/Ready';
 
+import { messages, t } from '../../../i18n';
+import shapes from '../../../shapes';
+import Ready from '../../components/Ready';
 import Roulette from './Roulette';
 
 const Play = ({ history, location, match: { params: { roomId, userId } } }) => {

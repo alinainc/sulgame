@@ -6,13 +6,13 @@ import React from 'react';
 import { useIntl } from 'react-intl';
 import { Redirect } from 'react-router-dom';
 
-import { messages, t } from '@frontend/i18n';
-import shapes from '@frontend/shapes';
 import { FirebaseDatabaseNode } from '@react-firebase/database';
-import RankingGroup from 'components/RankingGroup';
-import RankingList from 'components/RankingList';
-import RankingSubway from 'components/RankingSubway';
 
+import { messages, t } from '../../../i18n';
+import shapes from '../../../shapes';
+import RankingGroup from '../../components/RankingGroup';
+import RankingSubway from '../../components/RankingSubway';
+import RankingList from '../../components/RankingList';
 import HostOut from './HostOut';
 import ReplayButton from './ReplayButton';
 

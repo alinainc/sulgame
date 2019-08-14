@@ -6,9 +6,10 @@ import { useIntl } from 'react-intl';
 import { Redirect } from 'react-router-dom';
 import { Button } from 'reactstrap';
 
-import { messages, t } from '@frontend/i18n';
-import shapes from '@frontend/shapes';
 import { FirebaseDatabaseNode } from '@react-firebase/database';
+
+import { messages, t } from '../../../i18n';
+import shapes from '../../../shapes';
 
 const SelectLine = ({ history, match: { params: { roomId, userId } } }) => {
   const intl = useIntl();

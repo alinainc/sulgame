@@ -8,11 +8,11 @@ import { useIntl } from 'react-intl';
 import { Redirect } from 'react-router-dom';
 import { Spinner } from 'reactstrap';
 
-import { messages, t } from '@frontend/i18n';
-import shapes from '@frontend/shapes';
 import { FirebaseDatabaseMutation, FirebaseDatabaseNode } from '@react-firebase/database';
-import Ready from 'components/Ready';
 
+import { messages, t } from '../../../@bo/i18n';
+import shapes from '../../../shapes';
+import Ready from '../../components/Ready';
 import ChoiceObject from './ChoiceList';
 
 const Play = ({ history, location, match: { params: { roomId, userId } } }) => {
