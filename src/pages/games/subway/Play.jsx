@@ -1,6 +1,7 @@
 // Copyright (C) 2019 Alina Inc. All rights reserved.
 
 import firebase from 'firebase/app';
+import { difference } from 'lodash';
 import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 import { Redirect } from 'react-router-dom';
@@ -107,9 +108,14 @@ const Play = ({ match: { params: { lineNum, roomId, userId } } }) => {
     if (input !== '서울역' && input.slice(-1) === '역') {
       input = input.substring(0, input.length - 1);
     }
-    const isExist = stationRef.current.indexOf(input);
+    const answers = await firebase.database()
+      .ref(`rooms/${roomId}/players/host/gameData`)
+      .once('value');
+    const arrAnswers = answers.val() ? Object.values(answers.val()).map(e => e.input) : null;
+    const remainedStations = difference(stationRef.current, arrAnswers);
+    const isExist = remainedStations.indexOf(input);
+    inputRef.current.value = '';
     if ((isExist !== -1)) {
-      stationRef.current.splice(isExist, 1);
       await firebase.database()
         .ref(`rooms/${roomId}/players/host/gameData`)
         .push({ input, isWrong: false, userId });
@@ -131,7 +137,6 @@ const Play = ({ match: { params: { lineNum, roomId, userId } } }) => {
         .update({ start: 3 });
       stop(true, t(intl, messages.subwayGame.play.result.wrong));
     }
-    inputRef.current.value = '';
   };
 
   const onInputPress = (e) => {
