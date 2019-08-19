@@ -2,6 +2,7 @@
 
 export default {
   description: '제시된 호선에 포함되는 정거장을 입력하세요',
+  drink: '마셔라!',
   name: '지하철!',
   play: {
     button: '제출',
@@ -15,6 +16,7 @@ export default {
     },
     title: '지하철!',
   },
+  result: '총 #1 개 중 #2 개 정답!',
   selectLine: {
     line: {
       line1: '1호선',
@@ -29,5 +31,8 @@ export default {
     },
     title: '몇호선?',
   },
+  subway: '지하철',
+  timeout: '시간초과',
   type: 'subway',
+  wrongAnswer: '입력한 답',
 };
