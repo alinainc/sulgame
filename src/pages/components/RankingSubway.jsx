@@ -28,7 +28,7 @@ const RankingSubway = ({ roomId }) => {
           ? filteredAnswer[0].input : t(intl, messages.subwayGame.timeout);
         const { host: { line } } = value;
         const rightAnswers = answers.length - filteredAnswer.length;
-
+        const isOverlapped = Station[line].includes(wrongAnswer);
         const i18nObject = {
           '#1': Station[line].length,
           '#2': rightAnswers,
@@ -45,7 +45,10 @@ const RankingSubway = ({ roomId }) => {
                 /#1|#2/gi,
                 matched => i18nObject[matched])}
             </h3>
-            <h3>{`${t(intl, messages.subwayGame.wrongAnswer)}: ${wrongAnswer}`}</h3>
+            <h3>
+              {`${t(intl, messages.subwayGame.wrongAnswer)}:
+            ${wrongAnswer} ${isOverlapped ? t(intl, messages.subwayGame.duplication) : ''}`}
+            </h3>
           </div>
         );
       }}
