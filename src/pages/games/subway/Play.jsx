@@ -1,7 +1,7 @@
 // Copyright (C) 2019 Alina Inc. All rights reserved.
 
 import firebase from 'firebase/app';
-import { difference } from 'lodash';
+import { difference, remove } from 'lodash';
 import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 import { Redirect } from 'react-router-dom';
@@ -53,6 +53,8 @@ const Play = ({ match: { params: { lineNum, roomId, userId } } }) => {
         .ref(`rooms/${roomId}/players/`)
         .once('value');
       const keys = Object.keys(players.val());
+      const host = remove(keys, key => key === 'host')[0];
+      keys.unshift(host);
       const cnt = await firebase.database()
         .ref(`rooms/${roomId}/players/host/gameData`)
         .once('value');
