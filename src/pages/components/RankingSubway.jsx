@@ -1,6 +1,5 @@
 // Copyright (C) 2019 Alina Inc. All rights reserved.
 
-import firebase from 'firebase/app';
 import { replace } from 'lodash';
 import PropTypes from 'prop-types';
 import React from 'react';
@@ -12,7 +11,7 @@ import { FirebaseDatabaseNode } from '@react-firebase/database';
 import { messages, t } from '../../i18n';
 import Station from '../games/subway/Station';
 
-const RankingSubway = ({ roomId, userId }) => {
+const RankingSubway = ({ roomId }) => {
   const intl = useIntl();
 
   const renderResult = () => (
