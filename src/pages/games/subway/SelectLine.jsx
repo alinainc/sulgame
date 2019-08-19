@@ -21,9 +21,9 @@ const SelectLine = ({ history, match: { params: { roomId, userId } } }) => {
     if (userId === 'host') {
       firebase.database()
         .ref(`rooms/${roomId}/players/host/`)
-        .update({ gameData: null, turn: null, start: 1, replay: 0 });
+        .update({ gameData: null, replay: 0, start: 1, turn: null });
     }
-  }, [roomId]);
+  }, [roomId, userId]);
 
   const onClickButton = (e) => {
     firebase.database()
@@ -46,14 +46,19 @@ const SelectLine = ({ history, match: { params: { roomId, userId } } }) => {
       <FirebaseDatabaseNode path={`rooms/${roomId}/players/host`}>
         {({ value }) => {
           if (!value) {
-            return null;
+            return <div className="loader" />;
           }
           if (value.start === 2) {
             return (
               <Redirect to={`/games/subway/play/${value.line}/${roomId}/user/${userId}`} />
             );
           }
-          return null;
+          return (
+            <div>
+              <div className="loader" />
+              <h3 id="waiting">방장이 호선을 선택하고 있습니다</h3>
+            </div>
+          );
         }}
       </FirebaseDatabaseNode>
     </div>

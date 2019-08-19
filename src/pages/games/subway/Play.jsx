@@ -15,7 +15,7 @@ import Station from './Station';
 
 const Play = ({ match: { params: { lineNum, roomId, userId } } }) => {
   const intl = useIntl();
-  
+
   const defaultSecond = 10;
   const [countSecond, setCountSecond] = React.useState(3);
   const inputRef = useRef();
@@ -63,8 +63,8 @@ const Play = ({ match: { params: { lineNum, roomId, userId } } }) => {
       }
       const userKey = keys[count % keys.length];
       await firebase.database()
-        .ref(`rooms/${roomId}/players/host`)
-        .update({ turn: userKey });
+        .ref(`rooms/${roomId}/players/host/turn`)
+        .set(userKey);
       return null;
     })();
   }, [roomId, turnCount, userId]);
@@ -85,7 +85,24 @@ const Play = ({ match: { params: { lineNum, roomId, userId } } }) => {
     stop(true, t(intl, messages.subwayGame.play.result.finish));
   }
 
-  const onClickButton = () => {
+  const resetTime = (singlePlay) => {
+    if (singlePlay) {
+      setSeconds(10);
+      setCountSecond(10);
+    }
+    const sec = (gameStart ? defaultSecond : 13) * 1000;
+    clearTimeout(timeoutRef.current);
+    timeoutRef.current = setTimeout(() => {
+      setDisabled(true);
+      setResult(t(intl, messages.subwayGame.play.result.timeout));
+      firebase.database()
+        .ref(`rooms/${roomId}/players/host`)
+        .update({ start: 3 });
+      clearInterval(intervalRef.current);
+    }, sec);
+  };
+
+  const onClickButton = async () => {
     let input = inputRef.current.value.trim();
     if (input !== '서울역' && input.slice(-1) === '역') {
       input = input.substring(0, input.length - 1);
@@ -93,11 +110,18 @@ const Play = ({ match: { params: { lineNum, roomId, userId } } }) => {
     const isExist = stationRef.current.indexOf(input);
     if ((isExist !== -1)) {
       stationRef.current.splice(isExist, 1);
-      firebase.database()
+      await firebase.database()
         .ref(`rooms/${roomId}/players/host/gameData`)
         .push({ input, isWrong: false, userId });
-      stop(false, t(intl, messages.subwayGame.play.result.correct), 10);
-      setTurnCount(turnCount + 1);
+      const users = await firebase.database()
+        .ref(`rooms/${roomId}/players`)
+        .once('value');
+      if (Object.values(users.val()).length) {
+        resetTime(true);
+      } else {
+        await stop(false, t(intl, messages.subwayGame.play.result.correct), 10);
+      }
+      await setTurnCount(turnCount + 1);
     } else {
       firebase.database()
         .ref(`rooms/${roomId}/players/host/gameData`)
@@ -107,10 +131,6 @@ const Play = ({ match: { params: { lineNum, roomId, userId } } }) => {
         .update({ start: 3 });
       stop(true, t(intl, messages.subwayGame.play.result.wrong));
     }
-    inputRef.current.scrollIntoView({
-      behavior: 'smooth',
-      block: 'center',
-    });
     inputRef.current.value = '';
   };
 
@@ -122,28 +142,27 @@ const Play = ({ match: { params: { lineNum, roomId, userId } } }) => {
 
   const renderAnswer = () => (
     <>
-    <FirebaseDatabaseNode path={`rooms/${roomId}/players/host/gameData`}>
-      {({ value }) => {
-        stop(true, '');
-        if (!value) {
-          return <Spinner color="primary" />;
-        }
-        const keys = Object.keys(value);
-        const inputs = keys
-          .map(key => Object.assign(value[key], { key }));
-        return (
-          <ul>
-            {inputs.map(answer => (<li key={answer.key}>{answer.input}</li>))}
-          </ul>
-        );
-      }}
-    </FirebaseDatabaseNode>
-    <FirebaseDatabaseNode path={`rooms/${roomId}/players/host`}>
-      {({ value }) => {
-        console.log(value);
-        return null;
-      }}
-    </FirebaseDatabaseNode>
+      <FirebaseDatabaseNode path={`rooms/${roomId}/players/host`}>
+        {({ value }) => {
+          if (!value) {
+            return <Spinner color="primary" />;
+          }
+          if (value.turn !== userId) {
+            stop(true, '');
+          }
+          if (value.gameData) {
+            const keys = Object.keys(value.gameData);
+            const inputs = keys
+              .map(key => Object.assign(value.gameData[key], { key }));
+            return (
+              <ul>
+                {inputs.map(answer => (<li key={answer.key}>{answer.input}</li>))}
+              </ul>
+            );
+          }
+          return null;
+        }}
+      </FirebaseDatabaseNode>
     </>
   );
 
@@ -178,15 +197,7 @@ const Play = ({ match: { params: { lineNum, roomId, userId } } }) => {
           intervalRef.current = setInterval(() => {
             setSeconds(s => s - 1);
           }, 1000);
-          const sec = (gameStart ? defaultSecond : 13) * 1000;
-          timeoutRef.current = setTimeout(() => {
-            setDisabled(true);
-            setResult(t(intl, messages.subwayGame.play.result.timeout));
-            firebase.database()
-              .ref(`rooms/${roomId}/players/host`)
-              .update({ start: 3 });
-            clearInterval(intervalRef.current);
-          }, sec);
+          resetTime(false);
           return null;
         }
         return null;
