@@ -22,7 +22,7 @@ const RankingSubway = ({ roomId, userId }) => {
           return <Spinner color="primary" />;
         }
         const { name } = value[value.host.turn];
-        const answers = Object.values(value.host.gameData);
+        const answers = value.host.gameData ? Object.values(value.host.gameData) : [];
         const filteredAnswer = answers
           .filter(({ isWrong }) => isWrong);
         const wrongAnswer = filteredAnswer.length
