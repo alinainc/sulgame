@@ -3,6 +3,7 @@
 export default {
   description: '제시된 호선에 포함되는 정거장을 입력하세요',
   drink: '마셔라!',
+  duplication: '(중복값)',
   name: '지하철!',
   play: {
     button: '제출',

@@ -71,6 +71,7 @@
  "sequenceGame.type": "sequence",
  "subwayGame.description": "[Seoul] Type a subway station for the given line",
  "subwayGame.drink": "Take A Shot!",
+ "subwayGame.duplication": "(Duplicated Value)",
  "subwayGame.name": "Subway!",
  "subwayGame.play.button": "Submit",
  "subwayGame.play.input": "Submit",
