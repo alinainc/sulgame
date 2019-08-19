@@ -11,8 +11,8 @@ import { FirebaseDatabaseNode } from '@react-firebase/database';
 import { messages, t } from '../../../i18n';
 import shapes from '../../../shapes';
 import RankingGroup from '../../components/RankingGroup';
-import RankingSubway from '../../components/RankingSubway';
 import RankingList from '../../components/RankingList';
+import RankingSubway from '../../components/RankingSubway';
 import HostOut from './HostOut';
 import ReplayButton from './ReplayButton';
 
