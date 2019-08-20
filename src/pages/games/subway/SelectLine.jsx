@@ -35,9 +35,9 @@ const SelectLine = ({ history, match: { params: { roomId, userId } } }) => {
     <div>
       <h2>{t(intl, messages.subwayGame.selectLine.title)}</h2>
       {lines.map(line => (
-        <Button key={line} value={line} onClick={onClickButton}>
+        <button id={line} type="button" key={line} value={line} onClick={onClickButton}>
           {t(intl, messages.subwayGame.selectLine.line[line])}
-        </Button>
+        </button>
       ))}
     </div>
   );
