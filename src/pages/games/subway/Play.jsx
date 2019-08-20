@@ -166,7 +166,16 @@ const Play = ({ match: { params: { lineNum, roomId, userId } } }) => {
               .map(key => Object.assign(value.gameData[key], { key }));
             return (
               <>
-                {inputs.map(answer => (<button disabled type="button" id={lineNum.concat('-game')} key={answer.key}>{answer.input}</button>))}
+                {inputs.map(answer => (
+                  <button
+                    disabled
+                    type="button"
+                    id={lineNum.concat('-game')}
+                    key={answer.key}
+                  >
+                    {answer.input}
+                  </button>
+                ))}
               </>
             );
           }
@@ -199,7 +208,7 @@ const Play = ({ match: { params: { lineNum, roomId, userId } } }) => {
             setSeconds(10);
             if (gameStart) {
               toast.warning(
-                playerList[value].name.concat(t(intl, messages.subwayGame.turn.players))
+                playerList[value].name.concat(t(intl, messages.subwayGame.turn.players)),
               );
               stop(true, '');
             }
@@ -232,19 +241,24 @@ const Play = ({ match: { params: { lineNum, roomId, userId } } }) => {
           />
         )}
       <div className="game">
-        <h1>{t(intl, messages.subwayGame.play.title)}</h1>
-        <h3>{`${t(intl, messages.subwayGame.selectLine.line[lineNum])}`}</h3>
-        {renderAnswer()}
-        <h4>{`time: ${seconds}`}</h4>
-        <input
-          placeholder={t(intl, messages.subwayGame.play.input)}
-          ref={inputRef}
-          onKeyPress={onInputPress}
-          disabled={disabled}
-        />
-        <button type="button" onClick={onClickButton} disabled={disabled}>
-          {t(intl, messages.subwayGame.play.button)}
+        <h1 id="subway-title">{t(intl, messages.subwayGame.play.title)}</h1>
+        <h3>{`🕐 ${seconds}`}</h3>
+        <button id={lineNum.concat('-game')} disabled type="button">
+          {t(intl, messages.subwayGame.selectLine.line[lineNum])}
         </button>
+        {renderAnswer()}
+        <div id="subway-label">
+          <input
+            id="subway-input"
+            placeholder={t(intl, messages.subwayGame.play.input)}
+            ref={inputRef}
+            onKeyPress={onInputPress}
+            disabled={disabled}
+          />
+          <button id="submit-button" type="button" onClick={onClickButton} disabled={disabled}>
+            {t(intl, messages.subwayGame.play.button)}
+          </button>
+        </div>
         <p>{result}</p>
       </div>
     </div>

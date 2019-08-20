@@ -9,7 +9,7 @@ $line-font-weight: bold;
 
 $line-game-font-size:14px;
 $line-game-padding: 2% 3%;
-$line-game-margin: 1%;
+$line-game-margin: 1% 0%;
 
 $line-colors: (
   "line1": #234baa,
@@ -61,27 +61,21 @@ $line-colors: (
 }
 
 #line2 {
-  margin: $line-margin;
-  border-width: $line-border-width;
+  @include line-properties($game-play: true);
+
   border-color: map-get($line-colors, "line2");
-  background-color: $line-background-color;
-  padding: $line-padding;
-  line-height: $line-height;
-  color: $line-color;
-  font-size: $line-font-size;
-  font-weight: $line-font-weight;
+}
+
+#line2-game {
+  @include line-properties($game-play: false);
+
+  border-color: map-get($line-colors, "line2");
 }
 
 #line3 {
-  margin: $line-margin;
-  border-width: $line-border-width;
+  @include line-properties($game-play: true);
+
   border-color: map-get($line-colors, "line3");
-  background-color: $line-background-color;
-  padding: $line-padding;
-  line-height: $line-height;
-  color: $line-color;
-  font-size: $line-font-size;
-  font-weight: $line-font-weight;
 }
 
 #line3-game {
@@ -91,87 +85,87 @@ $line-colors: (
 }
 
 #line4 {
-  margin: $line-margin;
-  border-width: $line-border-width;
+  @include line-properties($game-play: true);
+
   border-color: map-get($line-colors, "line4");
-  background-color: $line-background-color;
-  padding: $line-padding;
-  line-height: $line-height;
-  color: $line-color;
-  font-size: $line-font-size;
-  font-weight: $line-font-weight;
+}
+
+#line4-game {
+  @include line-properties($game-play: false);
+
+  border-color: map-get($line-colors, "line4");
 }
 
 #line5 {
-  margin: $line-margin;
-  border-width: $line-border-width;
+  @include line-properties($game-play: true);
+
   border-color: map-get($line-colors, "line5");
-  background-color: $line-background-color;
-  padding: $line-padding;
-  line-height: $line-height;
-  color: $line-color;
-  font-size: $line-font-size;
-  font-weight: $line-font-weight;
+}
+
+#line5-game {
+  @include line-properties($game-play: false);
+
+  border-color: map-get($line-colors, "line5");
 }
 
 #line6 {
-  margin: $line-margin;
-  border-width: $line-border-width;
+  @include line-properties($game-play: true);
+
   border-color: map-get($line-colors, "line6");
-  background-color: $line-background-color;
-  padding: $line-padding;
-  line-height: $line-height;
-  color: $line-color;
-  font-size: $line-font-size;
-  font-weight: $line-font-weight;
+}
+
+#line6-game {
+  @include line-properties($game-play: false);
+
+  border-color: map-get($line-colors, "line6");
 }
 
 #line7 {
-  margin: $line-margin;
-  border-width: $line-border-width;
+  @include line-properties($game-play: true);
+
   border-color: map-get($line-colors, "line7");
-  background-color: $line-background-color;
-  padding: $line-padding;
-  line-height: $line-height;
-  color: $line-color;
-  font-size: $line-font-size;
-  font-weight: $line-font-weight;
+}
+
+#line7-game {
+  @include line-properties($game-play: false);
+
+  border-color: map-get($line-colors, "line7");
 }
 
 #line8 {
-  margin: $line-margin;
-  border-width: $line-border-width;
+  @include line-properties($game-play: true);
+
   border-color: map-get($line-colors, "line8");
-  background-color: $line-background-color;
-  padding: $line-padding;
-  line-height: $line-height;
-  color: $line-color;
-  font-size: $line-font-size;
-  font-weight: $line-font-weight;
+}
+
+#line8-game {
+  @include line-properties($game-play: false);
+
+  border-color: map-get($line-colors, "line8");
 }
 
 #line9 {
-  margin: $line-margin;
-  border-width: $line-border-width;
+  @include line-properties($game-play: true);
+
   border-color: map-get($line-colors, "line9");
-  background-color: $line-background-color;
-  padding: $line-padding;
-  line-height: $line-height;
-  color: $line-color;
-  font-size: $line-font-size;
-  font-weight: $line-font-weight;
+}
+
+#line9-game {
+  @include line-properties($game-play: false);
+
+  border-color: map-get($line-colors, "line9");
 }
 
 #gyeongui {
-  margin: $line-margin;
-  border-width: $line-border-width;
+  @include line-properties($game-play: true);
+
   border-color: map-get($line-colors, "gyeongui");
-  background-color: $line-background-color;
-  padding: $line-padding;
-  line-height: $line-height;
-  color: $line-color;
-  font-size: $line-font-size;
-  font-weight: $line-font-weight;
+}
+
+#gyeongui-game {
+  @include line-properties($game-play: false);
+
+  border-color: map-get($line-colors, "gyeongui");
 }
 
 #line-buttons {
@@ -187,4 +181,23 @@ $line-colors: (
 #waiting {
   display: relative;
   text-align: center;
+}
+
+#submit-label {
+  margin-top: 10%;
+}
+
+#submit-button {
+  padding: 0.5rem;
+}
+
+#subway-title {
+  margin-bottom: 5%;
+}
+
+#subway-input {
+  outline: 0;
+  border-radius: 1rem;
+  padding: 2%;
+  font-size: 10pt;
 }
