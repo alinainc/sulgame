@@ -1,111 +1,187 @@
+$line-margin: 1.5%;
+$line-border-width: 0.5rem;
+$line-background-color: #fff;
+$line-padding: 5% 6%;
+$line-height: 10px;
+$line-color: #000;
+$line-font-size: 24px;
+$line-font-weight: bold;
+
+$line-game-font-size:14px;
+$line-game-padding: 2% 3%;
+$line-game-margin: 1%;
+
+$line-colors: (
+  "line1": #234baa,
+  "line2": #10a643,
+  "line3": #ea8406,
+  "line4": #01a4df,
+  "line5": #a1499b,
+  "line6": #d08f12,
+  "line7": #627535,
+  "line8": #e84e72,
+  "line9": #be941c,
+  "gyeongui": #79c0a0,
+);
+
+@mixin line-properties($game-play: true) {
+  @if $game-play {
+    margin: $line-margin;
+    border-width: $line-border-width;
+    background-color: $line-background-color;
+    padding: $line-padding;
+    line-height: $line-height;
+    color: $line-color;
+    font-size: $line-font-size;
+    font-weight: $line-font-weight;
+  }
+
+  @else {
+    margin: $line-margin;
+    border-width: $line-border-width;
+    background-color: $line-background-color;
+    padding: $line-game-padding;
+    line-height: $line-height;
+    color: $line-color;
+    font-size: $line-game-font-size;
+    font-weight: $line-font-weight;
+  }
+}
+
 #line1 {
-  border-width: 0.5rem;
-  border-color: #07308f;
-  background-color: #fff;
-  padding: 2% 4%;
-  line-height: 10px;
-  color: #000;
-  font-size: 14px;
-  font-weight: bold;
+  @include line-properties($game-play: true);
+
+  border-color: map-get($line-colors, "line1");
+}
+
+#line1-game {
+  @include line-properties($game-play: false);
+
+  border-color: map-get($line-colors, "line1");
 }
 
 #line2 {
-  border-width: 0.5rem;
-  border-color: #10a643;
-  background-color: #fff;
-  padding: 2% 4%;
-  line-height: 10px;
-  color: #000;
-  font-size: 14px;
-  font-weight: bold;
+  margin: $line-margin;
+  border-width: $line-border-width;
+  border-color: map-get($line-colors, "line2");
+  background-color: $line-background-color;
+  padding: $line-padding;
+  line-height: $line-height;
+  color: $line-color;
+  font-size: $line-font-size;
+  font-weight: $line-font-weight;
 }
 
 #line3 {
-  border-width: 0.5rem;
-  border-color: #ea8406;
-  background-color: #fff;
-  padding: 2% 4%;
-  line-height: 10px;
-  color: #000;
-  font-size: 14px;
-  font-weight: bold;
+  margin: $line-margin;
+  border-width: $line-border-width;
+  border-color: map-get($line-colors, "line3");
+  background-color: $line-background-color;
+  padding: $line-padding;
+  line-height: $line-height;
+  color: $line-color;
+  font-size: $line-font-size;
+  font-weight: $line-font-weight;
+}
+
+#line3-game {
+  @include line-properties($game-play: false);
+
+  border-color: map-get($line-colors, "line3");
 }
 
 #line4 {
-  border-width: 0.5rem;
-  border-color: #01a4df;
-  background-color: #fff;
-  padding: 2% 4%;
-  line-height: 10px;
-  color: #000;
-  font-size: 14px;
-  font-weight: bold;
+  margin: $line-margin;
+  border-width: $line-border-width;
+  border-color: map-get($line-colors, "line4");
+  background-color: $line-background-color;
+  padding: $line-padding;
+  line-height: $line-height;
+  color: $line-color;
+  font-size: $line-font-size;
+  font-weight: $line-font-weight;
 }
 
 #line5 {
-  border-width: 0.5rem;
-  border-color: #a1499b;
-  background-color: #fff;
-  padding: 2% 4%;
-  line-height: 10px;
-  color: #000;
-  font-size: 14px;
-  font-weight: bold;
+  margin: $line-margin;
+  border-width: $line-border-width;
+  border-color: map-get($line-colors, "line5");
+  background-color: $line-background-color;
+  padding: $line-padding;
+  line-height: $line-height;
+  color: $line-color;
+  font-size: $line-font-size;
+  font-weight: $line-font-weight;
 }
 
 #line6 {
-  border-width: 0.5rem;
-  border-color: #d08f12;
-  background-color: #fff;
-  padding: 2% 4%;
-  line-height: 10px;
-  color: #000;
-  font-size: 14px;
-  font-weight: bold;
+  margin: $line-margin;
+  border-width: $line-border-width;
+  border-color: map-get($line-colors, "line6");
+  background-color: $line-background-color;
+  padding: $line-padding;
+  line-height: $line-height;
+  color: $line-color;
+  font-size: $line-font-size;
+  font-weight: $line-font-weight;
 }
 
 #line7 {
-  border-width: 0.5rem;
-  border-color: #627535;
-  background-color: #fff;
-  padding: 2% 4%;
-  line-height: 10px;
-  color: #000;
-  font-size: 14px;
-  font-weight: bold;
+  margin: $line-margin;
+  border-width: $line-border-width;
+  border-color: map-get($line-colors, "line7");
+  background-color: $line-background-color;
+  padding: $line-padding;
+  line-height: $line-height;
+  color: $line-color;
+  font-size: $line-font-size;
+  font-weight: $line-font-weight;
 }
 
 #line8 {
-  border-width: 0.5rem;
-  border-color: #e84e72;
-  background-color: #fff;
-  padding: 2% 4%;
-  line-height: 10px;
-  color: #000;
-  font-size: 14px;
-  font-weight: bold;
+  margin: $line-margin;
+  border-width: $line-border-width;
+  border-color: map-get($line-colors, "line8");
+  background-color: $line-background-color;
+  padding: $line-padding;
+  line-height: $line-height;
+  color: $line-color;
+  font-size: $line-font-size;
+  font-weight: $line-font-weight;
 }
 
 #line9 {
-  border-width: 0.5rem;
-  border-color: #be941c;
-  background-color: #fff;
-  padding: 2% 4%;
-  line-height: 10px;
-  color: #000;
-  font-size: 14px;
-  font-weight: bold;
+  margin: $line-margin;
+  border-width: $line-border-width;
+  border-color: map-get($line-colors, "line9");
+  background-color: $line-background-color;
+  padding: $line-padding;
+  line-height: $line-height;
+  color: $line-color;
+  font-size: $line-font-size;
+  font-weight: $line-font-weight;
 }
 
 #gyeongui {
-  border-width: 0.5rem;
-  border-color: #79c0a0;
-  background-color: #fff;
-  padding: 2% 4%;
-  line-height: 10px;
-  color: #000;
-  font-size: 14px;
-  font-weight: bold;
+  margin: $line-margin;
+  border-width: $line-border-width;
+  border-color: map-get($line-colors, "gyeongui");
+  background-color: $line-background-color;
+  padding: $line-padding;
+  line-height: $line-height;
+  color: $line-color;
+  font-size: $line-font-size;
+  font-weight: $line-font-weight;
+}
+
+#line-buttons {
+  margin-top: 10%;
+  text-align: center;
+}
+
+#main-title {
+  margin-top: 7%;
+  text-align: center;
 }
 
 #waiting {
