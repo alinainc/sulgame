@@ -249,6 +249,7 @@ const Play = ({ match: { params: { lineNum, roomId, userId } } }) => {
         {renderAnswer()}
         <div id="subway-label">
           <input
+            autoComplete="off"
             id="subway-input"
             placeholder={t(intl, messages.subwayGame.play.input)}
             ref={inputRef}
