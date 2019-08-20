@@ -28,6 +28,7 @@ $line-colors: (
   @if $game-play {
     margin: $line-margin;
     border-width: $line-border-width;
+    border-style: solid;
     background-color: $line-background-color;
     padding: $line-padding;
     line-height: $line-height;
@@ -39,6 +40,7 @@ $line-colors: (
   @else {
     margin: $line-margin;
     border-width: $line-border-width;
+    border-style: solid;
     background-color: $line-background-color;
     padding: $line-game-padding;
     line-height: $line-height;
@@ -188,7 +190,7 @@ $line-colors: (
 }
 
 #submit-button {
-  padding: 0.5rem;
+  padding: 0.7rem;
 }
 
 #subway-title {
