@@ -20,6 +20,7 @@ export default {
   result: '총 #1 개 중 #2 개 정답!',
   selectLine: {
     line: {
+      gyeongui: '경의선',
       line1: '1호선',
       line2: '2호선',
       line3: '3호선',
