@@ -6,7 +6,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 import { Redirect } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import { Button, Col, Input, Row, Spinner } from 'reactstrap';
+import { Spinner } from 'reactstrap';
 
 import { FirebaseDatabaseNode } from '@react-firebase/database';
 
@@ -165,9 +165,9 @@ const Play = ({ match: { params: { lineNum, roomId, userId } } }) => {
             const inputs = keys
               .map(key => Object.assign(value.gameData[key], { key }));
             return (
-              <ul>
-                {inputs.map(answer => (<li key={answer.key}>{answer.input}</li>))}
-              </ul>
+              <>
+                {inputs.map(answer => (<button disabled type="button" id={lineNum.concat('-game')} key={answer.key}>{answer.input}</button>))}
+              </>
             );
           }
           return null;
@@ -231,26 +231,22 @@ const Play = ({ match: { params: { lineNum, roomId, userId } } }) => {
             title={t(intl, messages.subwayGame.play.title)}
           />
         )}
-      <h1>{t(intl, messages.subwayGame.play.title)}</h1>
-      <h3>{`${t(intl, messages.subwayGame.selectLine.line[lineNum])}`}</h3>
-      {renderAnswer()}
-      <p>{`time: ${seconds}`}</p>
-      <Row>
-        <Col>
-          <Input
-            placeholder={t(intl, messages.subwayGame.play.input)}
-            innerRef={inputRef}
-            onKeyPress={onInputPress}
-            disabled={disabled}
-          />
-        </Col>
-        <Col>
-          <Button type="button" onClick={onClickButton} disabled={disabled}>
-            {t(intl, messages.subwayGame.play.button)}
-          </Button>
-        </Col>
-      </Row>
-      <p>{result}</p>
+      <div className="game">
+        <h1>{t(intl, messages.subwayGame.play.title)}</h1>
+        <h3>{`${t(intl, messages.subwayGame.selectLine.line[lineNum])}`}</h3>
+        {renderAnswer()}
+        <h4>{`time: ${seconds}`}</h4>
+        <input
+          placeholder={t(intl, messages.subwayGame.play.input)}
+          ref={inputRef}
+          onKeyPress={onInputPress}
+          disabled={disabled}
+        />
+        <button type="button" onClick={onClickButton} disabled={disabled}>
+          {t(intl, messages.subwayGame.play.button)}
+        </button>
+        <p>{result}</p>
+      </div>
     </div>
   );
 };
