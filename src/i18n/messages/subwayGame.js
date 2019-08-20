@@ -35,6 +35,10 @@ export default {
   },
   subway: '지하철',
   timeout: '시간초과',
+  turn: {
+    players: '님의 턴!',
+    yours: '당신의 턴!',
+  },
   type: 'subway',
   wrongAnswer: '입력한 답',
 };

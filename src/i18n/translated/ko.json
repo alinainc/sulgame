@@ -95,6 +95,8 @@
  "subwayGame.selectLine.title": "몇호선?",
  "subwayGame.subway": "지하철",
  "subwayGame.timeout": "시간초과",
+ "subwayGame.turn.players": "님의 턴!",
+ "subwayGame.turn.yours": "당신의 턴!",
  "subwayGame.type": "subway",
  "subwayGame.wrongAnswer": "입력한 답",
  "waitingRoom.description.one": "QR Code를 공유해서 다른 플레이어를 초대하세요",

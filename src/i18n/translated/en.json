@@ -95,6 +95,8 @@
  "subwayGame.selectLine.title": "Which Line?",
  "subwayGame.subway": "subway",
  "subwayGame.timeout": "Timeout",
+ "subwayGame.turn.players": "'s turn!",
+ "subwayGame.turn.yours": "It's your turn!",
  "subwayGame.type": "subway",
  "subwayGame.wrongAnswer": "The Last User Input",
  "waitingRoom.description.one": "Share QR Code to invite other players",
