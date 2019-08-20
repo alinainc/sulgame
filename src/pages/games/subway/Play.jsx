@@ -5,6 +5,7 @@ import { difference, remove } from 'lodash';
 import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 import { Redirect } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { Button, Col, Input, Row, Spinner } from 'reactstrap';
 
 import { FirebaseDatabaseNode } from '@react-firebase/database';
@@ -28,6 +29,7 @@ const Play = ({ match: { params: { lineNum, roomId, userId } } }) => {
   const [disabled, setDisabled] = useState(false);
   const [result, setResult] = useState();
   const [turnCount, setTurnCount] = useState(0);
+  const [playerList, setPlayerList] = useState(null);
 
   useEffect(() => {
     if (userId === 'host') {
@@ -52,6 +54,7 @@ const Play = ({ match: { params: { lineNum, roomId, userId } } }) => {
       const players = await firebase.database()
         .ref(`rooms/${roomId}/players/`)
         .once('value');
+      setPlayerList(players.val());
       const keys = Object.keys(players.val());
       const host = remove(keys, key => key === 'host')[0];
       keys.unshift(host);
@@ -195,10 +198,14 @@ const Play = ({ match: { params: { lineNum, roomId, userId } } }) => {
           if (value !== userId) {
             setSeconds(10);
             if (gameStart) {
+              toast.warning(
+                playerList[value].name.concat(t(intl, messages.subwayGame.turn.players))
+              );
               stop(true, '');
             }
             return null;
           }
+          toast.success(t(intl, messages.subwayGame.turn.yours));
           setDisabled(false);
           setResult('');
           intervalRef.current = setInterval(() => {
