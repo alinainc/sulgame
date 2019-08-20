@@ -4,7 +4,6 @@ import firebase from 'firebase/app';
 import React, { useEffect } from 'react';
 import { useIntl } from 'react-intl';
 import { Redirect } from 'react-router-dom';
-import { Button } from 'reactstrap';
 
 import { FirebaseDatabaseNode } from '@react-firebase/database';
 
@@ -32,13 +31,15 @@ const SelectLine = ({ history, match: { params: { roomId, userId } } }) => {
     history.push(`/games/subway/play/${e.target.value}/${roomId}/user/${userId}`);
   };
   const renderHostPage = () => (
-    <div>
+    <div id="main-title">
       <h2>{t(intl, messages.subwayGame.selectLine.title)}</h2>
-      {lines.map(line => (
-        <button id={line} type="button" key={line} value={line} onClick={onClickButton}>
-          {t(intl, messages.subwayGame.selectLine.line[line])}
-        </button>
-      ))}
+      <div id="line-buttons">
+        {lines.map(line => (
+          <button id={line} type="button" key={line} value={line} onClick={onClickButton}>
+            {t(intl, messages.subwayGame.selectLine.line[line])}
+          </button>
+        ))}
+      </div>
     </div>
   );
   const renderPlayerPage = () => (
