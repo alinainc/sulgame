@@ -35,11 +35,14 @@ const RankingSubway = ({ roomId }) => {
         };
         return (
           <div>
-            <h2>{`${name} ${t(intl, messages.subwayGame.drink)}`}</h2>
-            <h3>
-              {`${t(intl, messages.subwayGame.subway)}:
-              ${t(intl, messages.subwayGame.selectLine.line[line])}`}
-            </h3>
+            <h2 id="subway-title">{`${name} ${t(intl, messages.subwayGame.drink)}`}</h2>
+            <button
+              disabled
+              type="button"
+              id={line}
+            >
+              {t(intl, messages.subwayGame.selectLine.line[line])}
+            </button>
             <h3>
               {replace(t(intl, messages.subwayGame.result),
                 /#1|#2/gi,
