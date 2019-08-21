@@ -1,33 +1,46 @@
 <!DOCTYPE html>
 <html lang="ko">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>술게임🍺</title>
-    <meta name="description" content="술자리를 더 즐겁게 만들어주는 술게임 웹 어플리케이션 입니다.">
-    <meta image="image" content="🍻">
-    <!-- Facebook Pixel Code -->
-    <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window,document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '1307835139379184'); 
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>술게임🍺</title>
+  <meta name="description" content="술자리를 더 즐겁게 만들어주는 술게임 웹 어플리케이션 입니다.">
+  <meta image="image" content="🍻">
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-146089017-1"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'UA-146089017-1');
+  </script>
+  <!-- Facebook Pixel Code -->
+  <script>
+    !function (f, b, e, v, n, t, s) {
+      if (f.fbq) return; n = f.fbq = function () {
+        n.callMethod ?
+        n.callMethod.apply(n, arguments) : n.queue.push(arguments)
+      };
+      if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
+      n.queue = []; t = b.createElement(e); t.async = !0;
+      t.src = v; s = b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t, s)
+    }(window, document, 'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '1307835139379184');
     fbq('track', 'PageView');
     fbq('track', 'ViewContent');
-    </script>
-    <noscript>
-    <img height="1" width="1" 
-    src="https://www.facebook.com/tr?id=1307835139379184&ev=PageView
-    &noscript=1"/>
-    </noscript>
-    <!-- End Facebook Pixel Code -->
-  </head>
-  <body>
-    <div id="root"></div>
-  </body>
+  </script>
+  <noscript>
+    <img height="1" width="1" src="https://www.facebook.com/tr?id=1307835139379184&ev=PageView
+    &noscript=1" />
+  </noscript>
+  <!-- End Facebook Pixel Code -->
+</head>
+<body>
+  <div id="root"></div>
+</body>
+
 </html>
