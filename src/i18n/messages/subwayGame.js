@@ -1,6 +1,7 @@
 // Copyright (C) 2019 Alina Inc. All rights reserved.
 
 export default {
+  clear: '클리어!',
   description: '제시된 호선에 포함되는 정거장을 입력하세요',
   drink: '마셔라!',
   duplication: '(중복값)',

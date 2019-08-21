@@ -69,6 +69,7 @@
  "sequenceGame.time": "시간",
  "sequenceGame.title": "맞춰라!",
  "sequenceGame.type": "sequence",
+ "subwayGame.clear": "클리어!",
  "subwayGame.description": "제시된 호선에 포함되는 정거장을 입력하세요",
  "subwayGame.drink": "마셔라!",
  "subwayGame.duplication": "(중복값)",

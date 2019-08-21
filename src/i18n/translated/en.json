@@ -69,6 +69,7 @@
  "sequenceGame.time": "Time",
  "sequenceGame.title": "Order!",
  "sequenceGame.type": "sequence",
+ "subwayGame.clear": "Game Clear!",
  "subwayGame.description": "[Seoul] Type a subway station for the given line",
  "subwayGame.drink": "Take A Shot!",
  "subwayGame.duplication": "(Duplicated Value)",
