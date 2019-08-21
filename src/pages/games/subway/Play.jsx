@@ -34,6 +34,14 @@ const Play = ({ match: { params: { lineNum, roomId, userId } } }) => {
   useEffect(() => {
     if (userId === 'host') {
       firebase.database()
+        .ref('/statistics/plays')
+        .push({ gametype: 'subway', time: new Date(Date.now()).toString() });
+    }
+  }, [userId]);
+
+  useEffect(() => {
+    if (userId === 'host') {
+      firebase.database()
         .ref(`rooms/${roomId}/players/host/gameData`)
         .set({});
       firebase.database()
