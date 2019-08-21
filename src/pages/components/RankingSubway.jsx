@@ -35,7 +35,10 @@ const RankingSubway = ({ roomId }) => {
         };
         return (
           <div>
-            <h2 id="subway-title">{`${name} ${t(intl, messages.subwayGame.drink)}`}</h2>
+            {(Station[line].length === rightAnswers)
+              ? (<h2 id="subway-title">{t(intl, messages.subwayGame.clear)}</h2>)
+              : (<h2 id="subway-title">{`${name} ${t(intl, messages.subwayGame.drink)}`}</h2>)
+            }
             <button
               disabled
               type="button"
@@ -43,15 +46,28 @@ const RankingSubway = ({ roomId }) => {
             >
               {t(intl, messages.subwayGame.selectLine.line[line])}
             </button>
-            <h3>
-              {replace(t(intl, messages.subwayGame.result),
-                /#1|#2/gi,
-                matched => i18nObject[matched])}
-            </h3>
-            <h3>
-              {`${t(intl, messages.subwayGame.wrongAnswer)}:
-            ${wrongAnswer} ${isOverlapped ? t(intl, messages.subwayGame.duplication) : ''}`}
-            </h3>
+            {(Station[line].length === rightAnswers)
+              ? (
+                <h3>
+                  {replace(t(intl, messages.subwayGame.result),
+                    /#1|#2/gi,
+                    matched => i18nObject[matched])}
+                </h3>
+              )
+              : (
+                <>
+                  <h3>
+                    {replace(t(intl, messages.subwayGame.result),
+                      /#1|#2/gi,
+                      matched => i18nObject[matched])}
+                  </h3>
+                  <h3>
+                    {`${t(intl, messages.subwayGame.wrongAnswer)}:
+                ${wrongAnswer} ${isOverlapped ? t(intl, messages.subwayGame.duplication) : ''}`}
+                  </h3>
+                </>
+              )
+            }
           </div>
         );
       }}

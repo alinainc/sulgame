@@ -172,6 +172,15 @@ const Play = ({ match: { params: { lineNum, roomId, userId } } }) => {
             const keys = Object.keys(value.gameData);
             const inputs = keys
               .map(key => Object.assign(value.gameData[key], { key }));
+            const inputStations = inputs.map(e => e.input);
+            const remainedStations = difference(stationRef.current, inputStations);
+            if (remainedStations.length === 0) {
+              if (userId === 'host') {
+                return <Redirect to={`/platform/ranking/${roomId}/user/host`} />;
+              }
+              return <Redirect to={`/platform/ranking/${roomId}/user/${userId}`} />;
+            }
+
             return (
               <>
                 {inputs.map(answer => (
@@ -275,6 +284,7 @@ const Play = ({ match: { params: { lineNum, roomId, userId } } }) => {
 };
 
 Play.propTypes = {
+  history: shapes.history.isRequired,
   match: shapes.match.isRequired,
 };
 
