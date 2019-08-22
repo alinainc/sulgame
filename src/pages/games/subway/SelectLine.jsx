@@ -30,8 +30,22 @@ const SelectLine = ({ history, match: { params: { roomId, userId } } }) => {
       .update({ line: e.target.value, start: 2 });
     history.push(`/games/subway/play/${e.target.value}/${roomId}/user/${userId}`);
   };
+  const toWaiting = () => (
+    <button
+      className="button-quit"
+      type="button"
+      onClick={async () => {
+        await firebase.database().ref(`/rooms/${roomId}/players/host`)
+          .update({ gameData: null, roulette: null, start: 0 });
+        history.push(`/platform/waiting_room/${roomId}/host`);
+      }}
+    >
+      {t(intl, messages.button.back)}
+    </button>
+  );
   const renderHostPage = () => (
     <div id="main-title">
+      {toWaiting()}
       <h2>{t(intl, messages.subwayGame.selectLine.title)}</h2>
       <div id="line-buttons">
         {lines.map(line => (
@@ -49,6 +63,11 @@ const SelectLine = ({ history, match: { params: { roomId, userId } } }) => {
           if (!value) {
             return <div className="loader" />;
           }
+          if (value.start === 0) {
+            return (
+              <Redirect to={`/platform/waiting_room/${roomId}/user/${userId}`} />
+            );
+          }
           if (value.start === 2) {
             return (
               <Redirect to={`/games/subway/play/${value.line}/${roomId}/user/${userId}`} />
@@ -57,7 +76,7 @@ const SelectLine = ({ history, match: { params: { roomId, userId } } }) => {
           return (
             <div>
               <div className="loader" />
-              <h3 id="waiting">방장이 호선을 선택하고 있습니다</h3>
+              <h3 id="waiting">{t(intl, messages.subwayGame.choosing)}</h3>
             </div>
           );
         }}
