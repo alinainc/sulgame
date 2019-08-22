@@ -8,6 +8,7 @@ import { Redirect } from 'react-router-dom';
 import { FirebaseDatabaseNode } from '@react-firebase/database';
 
 import { messages, t } from '../../../i18n';
+import shuffle from '../../../lib/shuffle';
 import shapes from '../../../shapes';
 
 const SelectLine = ({ history, match: { params: { roomId, userId } } }) => {
@@ -20,8 +21,23 @@ const SelectLine = ({ history, match: { params: { roomId, userId } } }) => {
     if (userId === 'host') {
       firebase.database()
         .ref(`rooms/${roomId}/players/host/`)
-        .update({ gameData: null, replay: 0, start: 1, turn: null });
+        .update({ gameData: null, keys: null, replay: 0, start: 1, turn: null });
     }
+  }, [roomId, userId]);
+
+  useEffect(() => {
+    (async () => {
+      if (userId === 'host') {
+        const players = await firebase.database()
+          .ref(`rooms/${roomId}/players/`)
+          .once('value');
+        const temp = await shuffle(Object.keys(players.val()));
+        await firebase.database()
+          .ref(`rooms/${roomId}/players/host`)
+          .update({ keys: temp });
+      }
+      return null;
+    })();
   }, [roomId, userId]);
 
   const onClickButton = (e) => {

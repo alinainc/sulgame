@@ -15,6 +15,7 @@ import shapes from '../../../shapes';
 import Ready from '../../components/Ready';
 import Station from './Station';
 
+
 const Play = ({ match: { params: { lineNum, roomId, userId } } }) => {
   const intl = useIntl();
 
@@ -62,10 +63,12 @@ const Play = ({ match: { params: { lineNum, roomId, userId } } }) => {
       const players = await firebase.database()
         .ref(`rooms/${roomId}/players/`)
         .once('value');
-      setPlayerList(players.val());
-      const keys = Object.keys(players.val());
-      const host = remove(keys, key => key === 'host')[0];
-      keys.unshift(host);
+      await setPlayerList(players.val());
+    })();
+  }, [roomId]);
+
+  useEffect(() => {
+    (async () => {
       const cnt = await firebase.database()
         .ref(`rooms/${roomId}/players/host/gameData`)
         .once('value');
@@ -75,10 +78,15 @@ const Play = ({ match: { params: { lineNum, roomId, userId } } }) => {
       } else {
         count = 0;
       }
-      const userKey = keys[count % keys.length];
+      const turns = await firebase.database()
+        .ref(`rooms/${roomId}/players/host/keys`)
+        .once('value');
+      console.log(turns);
+      const userKey = turns.val()[count % turns.val().length];
+      console.log(userKey);
       await firebase.database()
-        .ref(`rooms/${roomId}/players/host/turn`)
-        .set(userKey);
+        .ref(`rooms/${roomId}/players/host`)
+        .update({ turn: userKey });
       return null;
     })();
   }, [roomId, turnCount, userId]);
