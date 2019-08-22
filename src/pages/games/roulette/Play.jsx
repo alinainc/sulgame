@@ -70,70 +70,62 @@ const Play = ({ history, location, match: { params: { roomId, userId } } }) => {
   };
   const getName = obj => Object.values(obj).map(e => e.name);
 
-  if (userId === 'host') {
-    return (
-      <div className={!gameStart ? 'game-backdrop' : 'roulette-container'}>
-        <FirebaseDatabaseNode path={`/rooms/${roomId}/players`}>
-          {({ value }) => {
-            if (!value) {
-              return null;
-            }
-            return (
-              <>
-                <Roulette
-                  roomId={roomId}
-                  options={getName(value)}
-                  baseSize={150}
-                  onComplete={handleOnComplete}
-                />
-                {toWaiting()}
-                {(value.host.gameData !== 0)
-                  ? <div className="roulette-result">{value.host.gameData}</div>
-                  : null}
-              </>
-            );
-          }}
-        </FirebaseDatabaseNode>
-        {!gameStart
-          ? (
-            <Ready
-              description={t(intl, messages.rouletteGame.description)}
-              title={t(intl, messages.rouletteGame.title)}
-            />
-          )
-          : null
+  const renderStatus = () => (
+    <FirebaseDatabaseNode path={`/rooms/${roomId}/players/host`}>
+      {({ value }) => {
+        if (!value) {
+          return null;
         }
-      </div>
-    );
-  }
+        if (value.gameData === undefined) {
+          return (
+            <p className="discription">{t(intl, messages.rouletteGame.waiting)}</p>
+          );
+        }
+        if (value.gameData === 0) {
+          return (
+            <p className="discription">{t(intl, messages.rouletteGame.spining)}</p>
+          );
+        }
+        return null;
+      }}
+    </FirebaseDatabaseNode>
+  );
 
   return (
-    <div className="game">
-      <h1 className="game-header">{t(intl, messages.rouletteGame.title)}</h1>
-      {listenToWaitingRoom()}
-      <FirebaseDatabaseNode path={`/rooms/${roomId}/players/host`}>
+    <div className={!gameStart ? 'game-backdrop' : 'roulette-container'}>
+      {(userId !== 'host') ? listenToWaitingRoom() : null}
+      <FirebaseDatabaseNode path={`/rooms/${roomId}/players`}>
         {({ value }) => {
           if (!value) {
             return null;
           }
-          if (value.gameData === undefined) {
-            return (
-              <p className="discription">{t(intl, messages.rouletteGame.waiting)}</p>
-            );
-          }
-          if (value.gameData === 0) {
-            return (
-              <p className="discription">{t(intl, messages.rouletteGame.spining)}</p>
-            );
-          }
-          if (value.gameData) {
-            return (
-              <div className="roulette-result vertical-center">{`결과:${value.gameData}`}</div>
-            );
-          }
-          return null;
+          return (
+            <>
+              <Roulette
+                roomId={roomId}
+                options={getName(value)}
+                baseSize={150}
+                onComplete={handleOnComplete}
+                userId={userId}
+              />
+              {(userId === 'host') ? toWaiting() : null}
+              {(value.host.gameData !== 0)
+                ? <div className="roulette-result">{value.host.gameData}</div>
+                : null}
+            </>
+          );
         }}
       </FirebaseDatabaseNode>
+      {(userId !== 'host') ? renderStatus() : null}
+      {!gameStart
+        ? (
+          <Ready
+            description={t(intl, messages.rouletteGame.description)}
+            title={t(intl, messages.rouletteGame.title)}
+          />
+        )
+        : null
+      }
     </div>
   );
 };

@@ -6,8 +6,10 @@ import React from 'react';
 import { injectIntl } from 'react-intl';
 
 import { messages } from '../../../i18n';
+import { FirebaseDatabaseNode } from '@react-firebase/database';
 
 class Roulette extends React.Component {
+  static randomValues = {};
   constructor(props) {
     super(props);
     this.state = {
@@ -15,11 +17,13 @@ class Roulette extends React.Component {
       startAngle: 0,
       spinTime: 0,
       arc: Math.PI / (props.options.length / 2),
+      toggle: false,
     };
     this.spinTimer = null;
     this.handleOnClick = this.handleOnClick.bind(this);
-    this.spin = this.spin.bind(this);
-    this.rotate = this.rotate.bind(this);
+    firebase.database()
+      .ref(`rooms/${this.props.roomId}/players/host`)
+      .update({ roulette: 0 });
   }
 
   static propTypes = {
@@ -34,8 +38,6 @@ class Roulette extends React.Component {
   static defaultProps = {
     baseSize: 500,
     options: ['item1', 'item2', 'item3', 'item4', 'item5'],
-    spinAngleStart: Math.random() * 10 + 10,
-    spinTimeTotal: Math.random() * 3 + 4 * 1000,
   };
 
   componentDidMount() {
@@ -107,25 +109,42 @@ class Roulette extends React.Component {
     }
   }
   
-  spin() {
+  spin = async() => {
+    if (this.props.userId == 'host') {
+      this.randomValues = {
+        0: Math.random(),
+        1: Math.random(),
+        2: Math.random(),
+        3: Math.random(),
+        spinAngleStart: Math.random() * 10 + 10,
+        spinTimeTotal: Math.random() * 40 + 10 * 1000,
+      };
+      await firebase.database()
+        .ref(`rooms/${this.props.roomId}/players/host`)
+         .update({roulette: this.randomValues})
+    }
     this.spinTimer = null;
     this.setState({ spinTime: 0}, () => this.rotate());
   }
   
-  rotate(){
-    const { spinAngleStart, spinTimeTotal } = this.props;
+  rotate = async () => {
+    const randomResults = await firebase.database()
+      .ref(`rooms/${this.props.roomId}/players/host/roulette`)
+      .once('value');
+    const spinAngleStart = randomResults.val().spinAngleStart;
+    const spinTimeTotal = randomResults.val().spinTimeTotal;
     if(this.state.spinTime > 3000) {
       clearTimeout(this.spinTimer);
       this.stopRotateWheel();
     } else {
       const spinAngle = spinAngleStart - this.easeOut(this.state.spinTime, 0, spinAngleStart, spinTimeTotal);
       this.setState({
-        startAngle: this.state.startAngle + spinAngle * Math.PI / (Math.random() * 30 + 150),
-        spinTime: this.state.spinTime + Math.random() * (Math.random() * 5) + 10,
+        startAngle: this.state.startAngle + spinAngle * Math.PI / (randomResults.val()[0] * 30 + 150),
+        spinTime: this.state.spinTime + randomResults.val()[1] * (randomResults.val()[2] * 5) + 10,
       }, () => {
         this.drawRouletteWheel();
         clearTimeout(this.spinTimer);
-        this.spinTimer = setTimeout(() => this.rotate(), Math.random() * 5 + 10);
+        this.spinTimer = setTimeout(() => this.rotate(), randomResults.val()[3] * 5 + 10);
       })
     }
   }
@@ -147,6 +166,7 @@ class Roulette extends React.Component {
     // // 당첨된 항목 글자 위치 조정
     // ctx.fillText(text, baseSize - ctx.measureText(text).width / 2, baseSize * 1.8);
     // ctx.restore();
+    this.setState({ toggle: false });
     this.props.onComplete(text);
   }
   
@@ -159,6 +179,7 @@ class Roulette extends React.Component {
   handleOnClick(e) {
     e.preventDefault();
     this.spin();
+    this.setState({ toggle: true });
     firebase.database().ref(`/rooms/${this.props.roomId}/players/host`).update({ gameData: 0 });
   }
 
@@ -174,7 +195,27 @@ class Roulette extends React.Component {
           ref="canvas"
           width={baseSize * 2}
         />
-        <button onClick={this.handleOnClick}>{intl.formatMessage(messages.rouletteGame.spin)}</button>
+        {(this.props.userId !== 'host')
+        ? (
+        <FirebaseDatabaseNode path={`rooms/${this.props.roomId}/players/host/roulette`}>
+        {({ value }) => {
+          if (value === null) {
+            return null;
+          }            
+          console.log(value);
+          if (value !== 0) {
+            this.spin();
+          }
+          return null;
+        }
+      }
+      </FirebaseDatabaseNode>
+      )
+      : null}
+      {(this.props.userId === 'host')
+      ? (<button disabled={this.state.toggle} onClick={this.handleOnClick}>{intl.formatMessage(messages.rouletteGame.spin)}</button>)
+      : null
+      }
       </div>
     );
   }
