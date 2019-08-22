@@ -202,7 +202,6 @@ class Roulette extends React.Component {
           if (value === null) {
             return null;
           }            
-          console.log(value);
           if (value !== 0) {
             this.spin();
           }
