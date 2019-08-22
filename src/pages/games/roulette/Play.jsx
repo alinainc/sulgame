@@ -43,7 +43,8 @@ const Play = ({ history, location, match: { params: { roomId, userId } } }) => {
     <button
       type="button"
       onClick={async () => {
-        await firebase.database().ref(`/rooms/${roomId}/players/host`).update({ start: 0 });
+        await firebase.database().ref(`/rooms/${roomId}/players/host`)
+          .update({ gameData: null, roulette: null, start: 0 });
         history.push(`/platform/waiting_room/${roomId}/host`);
       }}
     >
