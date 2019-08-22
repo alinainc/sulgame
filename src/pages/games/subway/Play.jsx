@@ -223,10 +223,10 @@ const Play = ({ match: { params: { lineNum, roomId, userId } } }) => {
         if (value !== null) {
           if (value !== userId) {
             setSeconds(10);
+            toast.warning(
+              playerList[value].name.concat(t(intl, messages.subwayGame.turn.players)),
+            );
             if (gameStart) {
-              toast.warning(
-                playerList[value].name.concat(t(intl, messages.subwayGame.turn.players)),
-              );
               stop(true, '');
             }
             return null;
