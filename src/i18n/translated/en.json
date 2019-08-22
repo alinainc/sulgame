@@ -1,4 +1,5 @@
 {
+ "button.back": "back",
  "button.copy": "Copy",
  "button.english": "English",
  "button.korean": "한국어",
@@ -69,6 +70,7 @@
  "sequenceGame.time": "Time",
  "sequenceGame.title": "Order!",
  "sequenceGame.type": "sequence",
+ "subwayGame.choosing": "The host is choosing a line number",
  "subwayGame.clear": "Game Clear!",
  "subwayGame.description": "[Seoul] Type a subway station for the given line",
  "subwayGame.drink": "Take A Shot!",

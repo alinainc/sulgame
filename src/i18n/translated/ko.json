@@ -1,4 +1,5 @@
 {
+ "button.back": "뒤로가기",
  "button.copy": "복사",
  "button.english": "English",
  "button.korean": "한국어",
@@ -69,6 +70,7 @@
  "sequenceGame.time": "시간",
  "sequenceGame.title": "맞춰라!",
  "sequenceGame.type": "sequence",
+ "subwayGame.choosing": "방장이 호선을 선택하고 있습니다",
  "subwayGame.clear": "클리어!",
  "subwayGame.description": "제시된 호선에 포함되는 정거장을 입력하세요",
  "subwayGame.drink": "마셔라!",
