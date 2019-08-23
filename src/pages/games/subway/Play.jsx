@@ -1,14 +1,14 @@
 // Copyright (C) 2019 Alina Inc. All rights reserved.
 
 import firebase from 'firebase/app';
-import { difference, remove } from 'lodash';
+import { difference } from 'lodash';
 import React, { useEffect, useRef, useState } from 'react';
 import { useIntl } from 'react-intl';
 import { Redirect } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { Spinner } from 'reactstrap';
 
-import { FirebaseDatabaseNode } from '@react-firebase/database';
+import { FirebaseDatabaseMutation, FirebaseDatabaseNode } from '@react-firebase/database';
 
 import { messages, t } from '../../../i18n';
 import shapes from '../../../shapes';
@@ -81,9 +81,7 @@ const Play = ({ match: { params: { lineNum, roomId, userId } } }) => {
       const turns = await firebase.database()
         .ref(`rooms/${roomId}/players/host/keys`)
         .once('value');
-      console.log(turns);
       const userKey = turns.val()[count % turns.val().length];
-      console.log(userKey);
       await firebase.database()
         .ref(`rooms/${roomId}/players/host`)
         .update({ turn: userKey });
@@ -213,6 +211,9 @@ const Play = ({ match: { params: { lineNum, roomId, userId } } }) => {
   const listenGameover = () => (
     <FirebaseDatabaseNode path={`rooms/${roomId}/players/host/start`}>
       {({ value }) => {
+        if (value === 0) {
+          return <Redirect to={`/platform/waiting_room/${roomId}/user/${userId}`} />;
+        }
         if (value === 3) {
           stop(true, '');
           if (userId === 'host') {
@@ -253,6 +254,15 @@ const Play = ({ match: { params: { lineNum, roomId, userId } } }) => {
     </FirebaseDatabaseNode>
   );
 
+  const renderExitButton = () => (
+    <FirebaseDatabaseMutation type="update" path={`rooms/${roomId}/players/host`}>
+      {({ runMutation }) => (
+        <button onClick={() => runMutation({ start: 0 })} type="button" className="button-quit">
+          {t(intl, messages.button.quit)}
+        </button>
+      )}
+    </FirebaseDatabaseMutation>
+  );
   return (
     <div className={!gameStart ? 'game-backdrop' : null}>
       {listenGameover()}
@@ -265,7 +275,8 @@ const Play = ({ match: { params: { lineNum, roomId, userId } } }) => {
             title={t(intl, messages.subwayGame.play.title)}
           />
         )}
-      <div className="game">
+      <div className="subway-game">
+        {(userId === 'host') ? renderExitButton() : null}
         <h1 id="subway-title">{t(intl, messages.subwayGame.play.title)}</h1>
         <h3>{`🕐 ${seconds}`}</h3>
         <button id={lineNum.concat('-game')} disabled type="button">
