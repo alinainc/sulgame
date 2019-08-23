@@ -33,6 +33,31 @@
   }
 }
 
+.subway-game {
+  margin-top: 20%;
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+
+  > div {
+    margin-top: 4rem;
+    margin-bottom: 0;
+  }
+
+  h1 {
+    margin-bottom: 0;
+  }
+
+  .description {
+    color: #aaa;
+  }
+
+  .time {
+    margin: 0.2rem;
+    color: #ccc;
+  }
+}
+
 #drink-order {
   font-size: 1.5rem;
 }
