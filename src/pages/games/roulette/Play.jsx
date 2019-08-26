@@ -89,7 +89,7 @@ const Play = ({ history, location, match: { params: { roomId, userId } } }) => {
         }
         if (value.gameData === 0) {
           return (
-            <p className="discription">{t(intl, messages.rouletteGame.spining)}</p>
+            <p className="discription">{t(intl, messages.rouletteGame.spinning)}</p>
           );
         }
         return null;

@@ -5,8 +5,9 @@ import PropTypes from 'prop-types';
 import React from 'react';
 import { injectIntl } from 'react-intl';
 
-import { messages } from '../../../i18n';
+import { messages, t } from '../../../i18n';
 import { FirebaseDatabaseNode } from '@react-firebase/database';
+import { toast } from 'react-toastify';
 
 class Roulette extends React.Component {
   static randomValues = {};
@@ -167,7 +168,7 @@ class Roulette extends React.Component {
     // // 당첨된 항목 글자 위치 조정
     // ctx.fillText(text, baseSize - ctx.measureText(text).width / 2, baseSize * 1.8);
     // ctx.restore();
-    this.setState({ toggle: false });
+    setTimeout(() => this.setState({ toggle: false }), 2500);
     this.props.onComplete(text);
   }
   
@@ -179,9 +180,14 @@ class Roulette extends React.Component {
   
   handleOnClick(e) {
     e.preventDefault();
-    this.spin();
-    this.setState({ toggle: true });
-    firebase.database().ref(`/rooms/${this.props.roomId}/players/host`).update({ gameData: 0 });
+    if (this.state.toggle) {
+      const { intl } = this.props;
+      toast.success(t(intl, messages.rouletteGame.spinning2));
+    } else {
+      this.spin();
+      this.setState({ toggle: true });
+      firebase.database().ref(`/rooms/${this.props.roomId}/players/host`).update({ gameData: 0 });
+    }
   }
 
   render() {
@@ -213,7 +219,7 @@ class Roulette extends React.Component {
       )
       : null}
       {(this.props.userId === 'host')
-      ? (<button disabled={this.state.toggle} onClick={this.handleOnClick}>{intl.formatMessage(messages.rouletteGame.spin)}</button>)
+      ? (<button onClick={this.handleOnClick}>{this.state.toggle? t(intl, messages.button.spinning) : intl.formatMessage(messages.rouletteGame.spin)}</button>)
       : null
       }
       </div>
