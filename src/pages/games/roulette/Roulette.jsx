@@ -123,6 +123,7 @@ class Roulette extends React.Component {
         .ref(`rooms/${this.props.roomId}/players/host`)
          .update({roulette: this.randomValues})
     }
+    this.props.onSpin();
     this.spinTimer = null;
     this.setState({ spinTime: 0}, () => this.rotate());
   }

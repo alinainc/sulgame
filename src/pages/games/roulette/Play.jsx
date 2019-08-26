@@ -14,6 +14,9 @@ import Roulette from './Roulette';
 
 const Play = ({ history, location, match: { params: { roomId, userId } } }) => {
   const intl = useIntl();
+  const [roll, setRoll] = useState(false);
+  const [gameStart, setGameStart] = useState(false);
+
   useEffect(() => {
     if (userId === 'host') {
       firebase.database()
@@ -22,7 +25,6 @@ const Play = ({ history, location, match: { params: { roomId, userId } } }) => {
     }
   }, [userId]);
 
-  const [gameStart, setGameStart] = useState(false);
   useEffect(() => {
     if (userId === 'host') {
       firebase.database()
@@ -65,9 +67,12 @@ const Play = ({ history, location, match: { params: { roomId, userId } } }) => {
     </FirebaseDatabaseNode>
   );
   const handleOnComplete = async (value) => {
-    await firebase.database()
-      .ref(`/rooms/${roomId}/players/host`)
-      .update({ gameData: value });
+    if (userId === 'host') {
+      await firebase.database()
+        .ref(`/rooms/${roomId}/players/host`)
+        .update({ gameData: value });
+    }
+    setRoll(value);
   };
   const getName = obj => Object.values(obj).map(e => e.name);
 
@@ -91,7 +96,9 @@ const Play = ({ history, location, match: { params: { roomId, userId } } }) => {
       }}
     </FirebaseDatabaseNode>
   );
-
+  const onSpin = () => {
+    setRoll(false);
+  };
   return (
     <div className={!gameStart ? 'game-backdrop' : 'roulette-container'}>
       {(userId !== 'host') ? listenToWaitingRoom() : null}
@@ -108,15 +115,14 @@ const Play = ({ history, location, match: { params: { roomId, userId } } }) => {
                 baseSize={150}
                 onComplete={handleOnComplete}
                 userId={userId}
+                onSpin={onSpin}
               />
               {(userId === 'host') ? toWaiting() : null}
-              {(value.host.gameData !== 0)
-                ? <div className="roulette-result">{value.host.gameData}</div>
-                : null}
             </>
           );
         }}
       </FirebaseDatabaseNode>
+      {(roll) ? <div className="roulette-result">{roll}</div> : null}
       {(userId !== 'host') ? renderStatus() : null}
       {!gameStart
         ? (
