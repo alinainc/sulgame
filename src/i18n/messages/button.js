@@ -13,4 +13,5 @@ export default {
   },
   start: '시작!',
   submit: '제출!',
+  toMain: '메인으로',
 };

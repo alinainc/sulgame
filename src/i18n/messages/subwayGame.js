@@ -6,6 +6,11 @@ export default {
   description: '제시된 호선에 포함되는 정거장을 입력하세요',
   drink: '마셔라!',
   duplication: '(중복값)',
+  exit: {
+    description1: '게임에 오류가 있었을 경우 방장이 강제종료 했을 수 있습니다.',
+    description2: '메인으로 이동하여 다시 게임을 시작해주세요.',
+    title: '방장이 게임을 강제로 종료했습니다.',
+  },
   name: '지하철!',
   play: {
     button: '제출',
@@ -43,4 +48,5 @@ export default {
   },
   type: 'subway',
   wrongAnswer: '입력한 답',
+
 };
