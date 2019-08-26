@@ -12,7 +12,7 @@ import { ToastContainer } from 'react-toastify';
 
 import { FirebaseDatabaseProvider } from '@react-firebase/database';
 
-import { test } from './firebase.config';
+import { config } from './firebase.config';
 import { translated } from './i18n';
 import MainPage from './pages/MainPage';
 import Game from './pages/games';
@@ -39,7 +39,7 @@ const App = () => {
   const messages = translated[locale];
   document.cookie = `language=${locale}`;
   return (
-    <FirebaseDatabaseProvider firebase={firebase} {...test}>
+    <FirebaseDatabaseProvider firebase={firebase} {...config}>
       <ToastContainer />
       <IntlProvider locale={locale} messages={messages}>
         <BrowserRouter>
