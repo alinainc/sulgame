@@ -11,6 +11,7 @@ export default {
     othergame: '게임고르기',
     thisgame: '다시하기',
   },
+  spinning: '도는중..',
   start: '시작!',
   submit: '제출!',
   toMain: '메인으로',
