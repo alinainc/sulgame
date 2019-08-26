@@ -25,7 +25,6 @@ const RatingPage = ({ history }) => {
       <div>
         <Rating history={history} />
       </div>
-      <Footer />
     </div>
   );
 };
