@@ -212,7 +212,7 @@ const Play = ({ match: { params: { lineNum, roomId, userId } } }) => {
     <FirebaseDatabaseNode path={`rooms/${roomId}/players/host/start`}>
       {({ value }) => {
         if (value === 0) {
-          return <Redirect to={`/platform/waiting_room/${roomId}/user/${userId}`} />;
+          return <Redirect to="/games/hostout" />;
         }
         if (value === 3) {
           stop(true, '');
