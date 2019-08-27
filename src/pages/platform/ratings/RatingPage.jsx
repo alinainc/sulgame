@@ -5,7 +5,6 @@ import React from 'react';
 import { useIntl } from 'react-intl';
 
 import { messages, t } from '../../../i18n';
-import Footer from '../../components/Footer';
 import Rating from '../../components/Rating';
 
 const RatingPage = ({ history }) => {
