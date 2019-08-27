@@ -81,6 +81,7 @@
  "subwayGame.exit.description1": "The host could force to shutdown the game play because of unexpected error during the game play.",
  "subwayGame.exit.description2": "Please go back to the main page to restart.",
  "subwayGame.exit.title": "The host shutdown the game play",
+ "subwayGame.hint": "You can use the hint only once!",
  "subwayGame.name": "Subway!",
  "subwayGame.play.button": "Submit",
  "subwayGame.play.input": "Submit",

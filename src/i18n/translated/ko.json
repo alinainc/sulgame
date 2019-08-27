@@ -81,6 +81,7 @@
  "subwayGame.exit.description1": "게임에 오류가 있었을 경우 방장이 강제종료 했을 수 있습니다.",
  "subwayGame.exit.description2": "메인으로 이동하여 다시 게임을 시작해주세요.",
  "subwayGame.exit.title": "방장이 게임을 강제로 종료했습니다.",
+ "subwayGame.hint": "힌트는 한번만 사용가능합니다.",
  "subwayGame.name": "지하철!",
  "subwayGame.play.button": "제출",
  "subwayGame.play.input": "입력",

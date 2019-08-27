@@ -11,6 +11,7 @@ export default {
     description2: '메인으로 이동하여 다시 게임을 시작해주세요.',
     title: '방장이 게임을 강제로 종료했습니다.',
   },
+  hint: '힌트는 한번만 사용가능합니다.',
   name: '지하철!',
   play: {
     button: '제출',
