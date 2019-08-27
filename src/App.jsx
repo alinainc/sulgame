@@ -32,6 +32,7 @@ const App = () => {
       }
     });
   }
+
   const [locale, setLocale] = useState(init);
   const localeCallback = (localeFromChild) => {
     setLocale(localeFromChild);
