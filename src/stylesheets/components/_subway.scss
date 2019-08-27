@@ -203,3 +203,23 @@ $line-colors: (
   padding: 2%;
   font-size: 10pt;
 }
+
+.hint__circle {
+  opacity: 0.4;
+  margin: 0 auto;
+  border: 2px solid #fff;
+  border-radius: 100px;
+  width: 35px;
+  height: 35px;
+  text-align: center;
+  line-height: 25px;
+  color: black;
+  font-size: 20px;
+}
+
+.hint__circle:hover {
+  opacity: 1;
+  border: 2px solid #f37920;
+  cursor: pointer;
+  color: #f37920;
+}

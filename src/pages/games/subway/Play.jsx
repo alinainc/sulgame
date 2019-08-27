@@ -15,7 +15,6 @@ import shapes from '../../../shapes';
 import Ready from '../../components/Ready';
 import Station from './Station';
 
-
 const Play = ({ match: { params: { lineNum, roomId, userId } } }) => {
   const intl = useIntl();
 
@@ -31,6 +30,7 @@ const Play = ({ match: { params: { lineNum, roomId, userId } } }) => {
   const [result, setResult] = useState();
   const [turnCount, setTurnCount] = useState(0);
   const [playerList, setPlayerList] = useState(null);
+  const hintUsed = useRef(false);
 
   useEffect(() => {
     if (userId === 'host') {
@@ -263,6 +263,34 @@ const Play = ({ match: { params: { lineNum, roomId, userId } } }) => {
       )}
     </FirebaseDatabaseMutation>
   );
+
+  const onHintClick = remainedStation => () => {
+    if (hintUsed.current) {
+      toast.error(t(intl, messages.subwayGame.hint));
+      return null;
+    }
+    hintUsed.current = true;
+    toast.success(remainedStation);
+    return null;
+  };
+
+  const renderHint = () => (
+    <FirebaseDatabaseNode path={`rooms/${roomId}/players/host/gameData`}>
+      {({ value }) => {
+        const inputs = value ? Object.values(value).map(e => e.input) : [];
+        const remained = difference(stationRef.current, inputs);
+        return (
+          <button
+            className="hint__circle"
+            type="button"
+            onClick={onHintClick(remained[Math.floor(Math.random() * remained.length)])}
+          >
+            ?
+          </button>
+        );
+      }}
+    </FirebaseDatabaseNode>
+  );
   return (
     <div className={!gameStart ? 'game-backdrop' : null}>
       {listenGameover()}
@@ -297,6 +325,7 @@ const Play = ({ match: { params: { lineNum, roomId, userId } } }) => {
           </button>
         </div>
         <p>{result}</p>
+        {renderHint()}
       </div>
     </div>
   );
