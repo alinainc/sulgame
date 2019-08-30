@@ -34,11 +34,20 @@ const Play = ({ match: { params: { lineNum, roomId, userId } } }) => {
 
   useEffect(() => {
     if (userId === 'host') {
-      firebase.database()
-        .ref('/statistics/plays')
-        .push({ gametype: 'subway', time: new Date(Date.now()).toString() });
+      (async () => {
+        const players = await firebase.database()
+          .ref(`/rooms/${roomId}/players`)
+          .once('value');
+        await firebase.database()
+          .ref('/statistics/plays')
+          .push({
+            gametype: 'subway',
+            playerCount: Object.values(players.val()).length,
+            time: new Date(Date.now()).toString(),
+          });
+      })();
     }
-  }, [userId]);
+  }, [roomId, userId]);
 
   useEffect(() => {
     if (userId === 'host') {
