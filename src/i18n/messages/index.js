@@ -13,7 +13,9 @@ import sequenceGame from './sequenceGame';
 import subwayGame from './subwayGame';
 import waitingRoom from './waitingRoom';
 
-const games = { chooseGame, clickGame, rouletteGame, sequenceGame, subwayGame };
+// let subway game on the first place
+// eslint-disable-next-line sort-keys
+const games = { subwayGame, chooseGame, clickGame, rouletteGame, sequenceGame };
 
 export {
   button,
