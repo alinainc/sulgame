@@ -247,3 +247,64 @@ textarea {
   top: 10px;
   right: 10px;
 }
+
+/* Popover styling */
+
+a {
+  text-decoration: none;
+}
+
+.popover__title {
+  padding: 10px 10px;
+  text-align: center;
+  text-decoration: none;
+  line-height: 36px;
+  font-size: 15px;
+}
+
+.popover__wrapper {
+  display: inline-block;
+  position: relative;
+  margin-top: 1.5rem;
+}
+
+.popover__content {
+  font-size: 1.5rem;
+  color: #333;
+  position: absolute;
+  top: 95px;
+  right: -40px;
+  left: -40px;
+  transform: translate(0, 10px);
+  visibility: hidden;
+  opacity: 0;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+  background-color: #bfbfbf;
+  padding: 0.5rem;
+  width: auto;
+}
+
+.popover__content:before {
+  position: absolute;
+  top: -8px;
+  right: calc(50% - 10px);
+  transition-duration: 0.3s;
+  transition-property: transform;
+  z-index: -1;
+  border-width: 0 10px 10px 10px;
+  border-style: solid;
+  border-color: transparent transparent #bfbfbf transparent;
+  content: "";
+}
+
+.popover__wrapper:hover .popover__content {
+  transform: translate(0, -20px);
+  transition: all 0.5s cubic-bezier(0.75, -0.02, 0.2, 0.97);
+  visibility: visible;
+  opacity: 1;
+  z-index: 10;
+}
+
+.popover__message {
+  text-align: center;
+}

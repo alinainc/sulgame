@@ -30,6 +30,7 @@ const Play = ({ match: { params: { lineNum, roomId, userId } } }) => {
   const [result, setResult] = useState();
   const [turnCount, setTurnCount] = useState(0);
   const [playerList, setPlayerList] = useState(null);
+  const [hintPopper, setHintPopper] = useState(null);
   const hintUsed = useRef(false);
 
   useEffect(() => {
@@ -273,33 +274,31 @@ const Play = ({ match: { params: { lineNum, roomId, userId } } }) => {
     </FirebaseDatabaseMutation>
   );
 
-  const onHintClick = remainedStation => () => {
+  const onHintClick = async () => {
     if (hintUsed.current) {
-      toast.error(t(intl, messages.subwayGame.hint));
       return null;
     }
+    const value = await firebase.database()
+      .ref(`rooms/${roomId}/players/host/gameData`)
+      .once('value');
+    const inputs = await value.val() ? await Object.values(value.val()).map(e => e.input) : [];
+    const remained = await difference(stationRef.current, inputs);
+    const remainedStation = await remained[Math.floor(Math.random() * remained.length)];
+    setHintPopper(remainedStation);
     hintUsed.current = true;
-    toast.success(remainedStation);
     return null;
   };
-
   const renderHint = () => (
-    <FirebaseDatabaseNode path={`rooms/${roomId}/players/host/gameData`}>
-      {({ value }) => {
-        const inputs = value ? Object.values(value).map(e => e.input) : [];
-        const remained = difference(stationRef.current, inputs);
-        return (
-          <button
-            className="hint__circle"
-            type="button"
-            onClick={onHintClick(remained[Math.floor(Math.random() * remained.length)])}
-          >
-            ?
-          </button>
-        );
-      }}
-    </FirebaseDatabaseNode>
+    <div className="popover__wrapper">
+      <button className="popover__title" onClick={onHintClick} type="button">
+        {t(intl, messages.subwayGame.hint)}
+      </button>
+      <div className="popover__content">
+        <p className="popover__message">{hintPopper}</p>
+      </div>
+    </div>
   );
+
   return (
     <div className={!gameStart ? 'game-backdrop' : null}>
       {listenGameover()}
