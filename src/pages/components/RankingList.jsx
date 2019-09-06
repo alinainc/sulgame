@@ -30,7 +30,7 @@ const RankingList = ({ cols, isRank, userId, value }) => {
     const gameDataList = items.map(({ gameData }) => gameData);
 
     if (gameDataList.includes(undefined)) {
-      return 'Please wait...\n';
+      return t(intl, messages.ranking.waiting);
     }
 
     remove(items, player => player.name === undefined);
@@ -55,6 +55,12 @@ const RankingList = ({ cols, isRank, userId, value }) => {
         return t(intl, messages.sequenceGame.result.timeOut);
       }
       return `${time / 10} ${t(intl, messages.sequenceGame.second)}`;
+    }
+    if (gameType === 'stop') {
+      const time = get(item, col.key, '');
+      if (time === 1000) {
+        return t(intl, messages.stopGame.out);
+      }
     }
     return get(item, col.key, '');
   };
