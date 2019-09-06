@@ -9,4 +9,5 @@ export default {
   },
   score: '점수',
   title: 'RANK',
+  waiting: '플레이어들의 게임을 기다리는 중입니다...',
 };
