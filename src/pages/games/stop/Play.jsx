@@ -72,6 +72,7 @@ const Play = ({ history, location, match: { params: { roomId, userId } } }) => {
     <FirebaseDatabaseMutation path={`/rooms/${roomId}/players/${userId}`} type="update">
       {({ runMutation }) => (
         <button
+          id="stop-button"
           type="button"
           onClick={() => {
             firebase.database()
@@ -87,7 +88,7 @@ const Play = ({ history, location, match: { params: { roomId, userId } } }) => {
             }, 1000);
           }}
         >
-          Stop
+          Stop!
         </button>
       )
       }
