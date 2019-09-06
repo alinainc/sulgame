@@ -4,6 +4,9 @@ const RankLogic = (items) => {
   items.forEach((item) => {
     if (item.gametype) {
       switch (item.gametype) {
+        case 'stop':
+          items.sort((a, b) => (a.gameData > b.gameData ? 1 : -1));
+          break;
         case 'choose':
           items.sort((a, b) => (a.gameData > b.gameData ? 1 : -1));
           break;
