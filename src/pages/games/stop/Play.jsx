@@ -76,6 +76,9 @@ const Play = ({ history, location, match: { params: { roomId, userId } } }) => {
         <button
           type="button"
           onClick={() => {
+            firebase.database()
+              .ref(`/rooms/${roomId}/players/host`)
+              .update({ replay: 0 });
             clearInterval(secRef.current);
             runMutation({ gameData: finalSecond.current });
             setTimeout(() => {
@@ -98,6 +101,9 @@ const Play = ({ history, location, match: { params: { roomId, userId } } }) => {
     firebase.database()
       .ref(`/rooms/${roomId}/players/${userId}`)
       .update({ gameData: finalSecond.current });
+    firebase.database()
+      .ref(`/rooms/${roomId}/players/host`)
+      .update({ replay: 0 });
     setTimeout(() => {
       if (userId === 'host') {
         history.push(`/platform/ranking/${roomId}/user/host`);
