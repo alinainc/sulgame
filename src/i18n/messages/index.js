@@ -10,12 +10,21 @@ import mainPage from './mainPage';
 import ranking from './ranking';
 import rouletteGame from './rouletteGame';
 import sequenceGame from './sequenceGame';
+import stopGame from './stopGame';
 import subwayGame from './subwayGame';
 import waitingRoom from './waitingRoom';
 
 // let subway game on the first place
 // eslint-disable-next-line sort-keys
-const games = { subwayGame, chooseGame, clickGame, rouletteGame, sequenceGame };
+const games = {
+  stopGame,
+  subwayGame,
+  // eslint-disable-next-line sort-keys
+  chooseGame,
+  clickGame,
+  rouletteGame,
+  sequenceGame,
+};
 
 export {
   button,
@@ -29,6 +38,7 @@ export {
   rouletteGame,
   sequenceGame,
   subwayGame,
+  stopGame,
   waitingRoom,
 };
 
@@ -42,6 +52,7 @@ export default flatten({
   ranking,
   rouletteGame,
   sequenceGame,
+  stopGame,
   subwayGame,
   waitingRoom,
 });
