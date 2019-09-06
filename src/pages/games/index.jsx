@@ -9,6 +9,7 @@ import Choose from './choose';
 import Click from './click';
 import Roulette from './roulette';
 import Sequence from './sequence';
+import Stop from './stop';
 import Subway from './subway';
 
 const Game = ({ history, match }) => (
@@ -18,6 +19,7 @@ const Game = ({ history, match }) => (
     <Route path={`${match.url}/roulette`} component={Roulette} />
     <Route path={`${match.url}/sequence`} component={Sequence} />
     <Route path={`${match.url}/subway`} component={Subway} />
+    <Route path={`${match.url}/stop`} component={Stop} />
     <Route path={`${match.url}/hostout`} component={() => <HostOut history={history} />} />
   </Switch>
 );
