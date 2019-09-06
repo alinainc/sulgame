@@ -16,6 +16,7 @@
     "qrcode.react": "^0.9.3",
     "random-hash": "^4.0.1",
     "react": "^16.8.6",
+    "react-circular-progressbar": "^2.0.2",
     "react-copy-to-clipboard": "^5.0.1",
     "react-device-detect": "^1.7.5",
     "react-dom": "^16.8.6",
