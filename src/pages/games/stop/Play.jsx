@@ -4,7 +4,6 @@ import firebase from 'firebase/app';
 import React, { useEffect, useRef, useState } from 'react';
 import { CircularProgressbar } from 'react-circular-progressbar';
 import { useIntl } from 'react-intl';
-import { Redirect } from 'react-router-dom';
 
 import { FirebaseDatabaseMutation } from '@react-firebase/database';
 
@@ -18,7 +17,6 @@ const Play = ({ history, location, match: { params: { roomId, userId } } }) => {
   const gameSeconds = 7;
   const waitingSeconds = 3;
   const finalSecond = useRef(0);
-  const [gameState, setGameState] = useState(false);
   const [seconds, setSeconds] = useState(waitingSeconds);
   const [centisecond, setCentisecond] = useState(gameSeconds);
   const [gameStart, setGameStart] = useState(false);
@@ -45,7 +43,7 @@ const Play = ({ history, location, match: { params: { roomId, userId } } }) => {
     if (userId) {
       firebase.database()
         .ref(`/rooms/${roomId}/players/${userId}`)
-        .update({ gameData: 0 });
+        .update({ gameData: null });
     }
   }, [roomId, userId]);
 
@@ -100,7 +98,7 @@ const Play = ({ history, location, match: { params: { roomId, userId } } }) => {
     clearInterval(secRef.current);
     firebase.database()
       .ref(`/rooms/${roomId}/players/${userId}`)
-      .update({ gameData: finalSecond.current });
+      .update({ gameData: finalSecond.current === '0.00' ? 1000 : finalSecond.current });
     firebase.database()
       .ref(`/rooms/${roomId}/players/host`)
       .update({ replay: 0 });
@@ -129,7 +127,7 @@ const Play = ({ history, location, match: { params: { roomId, userId } } }) => {
       <CircularProgressbar
         value={(centisecond / 7).toFixed(2)}
         maxValue={1}
-        text={`${centisecond}초`}
+        text={`${centisecond} ${t(intl, messages.stopGame.sec)}`}
       />
       <p className="discription">{t(intl, messages.stopGame.description)}</p>
       {renderStopButton()}
