@@ -79,7 +79,7 @@ const Play = ({ history, location, match: { params: { roomId, userId } } }) => {
               .ref(`/rooms/${roomId}/players/host`)
               .update({ replay: 0 });
             clearInterval(secRef.current);
-            runMutation({ gameData: finalSecond.current });
+            runMutation({ gameData: finalSecond.current === '0.00' ? 1000 : finalSecond.current });
             setTimeout(() => {
               if (userId === 'host') {
                 history.push(`/platform/ranking/${roomId}/user/host`);
